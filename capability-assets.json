@@ -273,7 +273,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,
@@ -301,7 +301,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": false,
@@ -311,7 +311,7 @@
       "dependencies": [],
       "entry": "tools/distribution.py",
       "hashes": {
-        "tools/distribution.py": "8fb1a9628e34abf90c3bd0e243be2ab02c69c2e1fafe3e45313cdbb126b92f99"
+        "tools/distribution.py": "a77d9103b7f84a157f431395d2d8c6a949a547c82bc56940e9dda96043ba0830"
       },
       "id": "tool.distribution.distribution",
       "kind": "tool",
@@ -329,7 +329,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": false,
@@ -357,7 +357,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,
@@ -367,7 +367,7 @@
       "dependencies": [],
       "entry": "tools/portable_install.py",
       "hashes": {
-        "tools/portable_install.py": "264a6ad89c1357d645d8dcf84f44f96d39652a31f663d05b675fad24b2a26686"
+        "tools/portable_install.py": "bf47e6b7ff086e636c07eb334fff6868d2bb36dc194e53e02ef12fd0fe5ddf97"
       },
       "id": "tool.distribution.portable-install",
       "kind": "tool",
@@ -386,7 +386,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,
@@ -414,7 +414,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,
@@ -447,7 +447,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,
@@ -475,7 +475,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "canonical": true,

@@ -67,7 +67,7 @@ def _relative(value):
     return value
 
 
-def _walk(root, skip_state=False):
+def _walk(root, skip_state=False, source=False):
     root = _check_path(root)
     if not root.is_dir():
         raise Blocked("Bundle/target directory is absent")
@@ -78,6 +78,12 @@ def _walk(root, skip_state=False):
     for base, dirs, files in os.walk(root, followlinks=False, onerror=onerror):
         for name in list(dirs):
             path = _check_path(Path(base) / name)
+            if Path(base) == root and name.casefold() == ".git":
+                if source:
+                    dirs.remove(name)
+                    continue
+                if skip_state:
+                    raise Blocked("Unexpected target Git metadata; preserve and review")
             if skip_state and name == STATE_DIR and Path(base) == root:
                 dirs.remove(name)
             elif name.casefold() == STATE_DIR.casefold():
@@ -86,6 +92,11 @@ def _walk(root, skip_state=False):
             path = _check_path(Path(base) / name)
             if not stat.S_ISREG(path.lstat().st_mode):
                 raise Blocked("Only regular files may be installed")
+            if Path(base) == root and name.casefold() == ".git":
+                if source:
+                    continue
+                if skip_state:
+                    raise Blocked("Unexpected target Git metadata; preserve and review")
             relative = _relative(path.relative_to(root).as_posix())
             if relative.casefold() in folded:
                 raise Blocked("Case-insensitive path collision")
@@ -131,7 +142,7 @@ def _validate_records(records):
 
 def build_manifest(package, exclusions=()):
     """Return a complete manifest; exclusions are exact files, never patterns."""
-    paths = _walk(package)
+    paths = _walk(package, source=True)
     exclusions = sorted(set(_relative(name) for name in exclusions))
     if MANIFEST_NAME in exclusions:
         raise Blocked("The manifest is already implicitly excluded")

@@ -23,7 +23,7 @@
     },
     "capability-assets.json": {
       "bytes": 28402,
-      "sha256": "46b51a9900e07d9194c747e9dfa349606ca4c36b05ec2af720c3ab3b609a859b"
+      "sha256": "14a3393c0164b95df90e269d13432b7e9ae5357e10d5bfdb72f7eacc51ce2bd5"
     },
     "catalog.json": {
       "bytes": 165367,
@@ -38,8 +38,8 @@
       "sha256": "6ac0b6cf863bf7897f439adbb3ffe726c486d18b923a85cfa2ef9728402ca3d1"
     },
     "docs/portable-install.md": {
-      "bytes": 4721,
-      "sha256": "02ca298eae413ac4439b84e4670a53016b6ac6ce10ba1440ce6f5b82c69ab37f"
+      "bytes": 5298,
+      "sha256": "e4f4497d0ef56bd4e3dacd491fb502fc0cee0339770f88a3fbdc73c25da37d8c"
     },
     "docs/weekly-workflow.md": {
       "bytes": 7336,
@@ -54,8 +54,8 @@
       "sha256": "eef97df575d88f981ca1812cace150f6a36c83ef343c6fe2a7a64ee2a132c507"
     },
     "evidence/validation.json": {
-      "bytes": 9402,
-      "sha256": "c7ffdd28c2b856e649f10b4a4ab475513a25c85eb2c63f6090eb5e3fc5978b02"
+      "bytes": 2051,
+      "sha256": "6beac9fdcd121f4dc94ca296b929bf2d1deb7ad3b17dc25dc1b0a6a8df1a126a"
     },
     "governance/AgentOS/README.md": {
       "bytes": 5949,
@@ -534,8 +534,8 @@
       "sha256": "b5eb704f693c2b6ced8ae314ed66281d3b4e7f567e47916c357333d4be3d2b5d"
     },
     "tests/test_portable_install.py": {
-      "bytes": 17260,
-      "sha256": "7b628c1e6f8febc14eb010f4a77e9ff3be34ab0a38af1c44728d70b687f5837b"
+      "bytes": 21233,
+      "sha256": "eaccba900ecfed44bb3f77650f8cddc413aabe5bf5e2f6ed2b6c47d97683aafb"
     },
     "tests/test_verify_release.py": {
       "bytes": 11045,
@@ -555,15 +555,15 @@
     },
     "tools/distribution.py": {
       "bytes": 11119,
-      "sha256": "8fb1a9628e34abf90c3bd0e243be2ab02c69c2e1fafe3e45313cdbb126b92f99"
+      "sha256": "a77d9103b7f84a157f431395d2d8c6a949a547c82bc56940e9dda96043ba0830"
     },
     "tools/lesson_checks.py": {
       "bytes": 991,
       "sha256": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce"
     },
     "tools/portable_install.py": {
-      "bytes": 21132,
-      "sha256": "264a6ad89c1357d645d8dcf84f44f96d39652a31f663d05b675fad24b2a26686"
+      "bytes": 21679,
+      "sha256": "bf47e6b7ff086e636c07eb334fff6868d2bb36dc194e53e02ef12fd0fe5ddf97"
     },
     "tools/security_check.ps1": {
       "bytes": 25831,

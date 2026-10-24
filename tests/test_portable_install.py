@@ -355,6 +355,89 @@ class PortableInstallTests(unittest.TestCase):
         self.assertEqual(json.loads(output.getvalue())["state"], "blocked")
         self.assertFalse(self.target.exists())
 
+    def test_source_root_git_directory_is_metadata_not_payload(self):
+        metadata = self.source / ".git"
+        metadata.mkdir()
+        (metadata / "config").write_bytes(b"synthetic local clone metadata; no real repository")
+        manifest = m.validate_bundle(self.source)
+        self.assertFalse(any(name.startswith(".git/") for name in manifest["files"]))
+        m.install(self.source, self.target)
+        self.assertFalse((self.target / ".git").exists())
+        m.rollback(self.target)
+        self.assertFalse(self.target.exists())
+        self.assertTrue((metadata / "config").is_file())
+
+    def test_source_root_git_worktree_file_is_metadata_not_payload(self):
+        metadata = self.source / ".git"
+        metadata.write_bytes(b"gitdir: synthetic-worktree-metadata-only\n")
+        m.validate_bundle(self.source)
+        m.install(self.source, self.target)
+        self.assertFalse((self.target / ".git").exists())
+        m.rollback(self.target)
+        self.assertEqual(metadata.read_bytes(), b"gitdir: synthetic-worktree-metadata-only\n")
+
+    def test_source_root_git_case_variants_are_metadata(self):
+        metadata = self.source / ".GiT"
+        for kind in ("directory", "file"):
+            with self.subTest(kind=kind):
+                if kind == "directory":
+                    metadata.mkdir()
+                    (metadata / "config").write_bytes(b"synthetic case-variant metadata")
+                else:
+                    metadata.write_bytes(b"gitdir: synthetic case-variant worktree metadata\n")
+                m.validate_bundle(self.source)
+                m.install(self.source, self.target)
+                self.assertFalse((self.target / ".GiT").exists())
+                m.rollback(self.target)
+                if kind == "directory":
+                    (metadata / "config").unlink()
+                    metadata.rmdir()
+                else:
+                    metadata.unlink()
+
+    def test_nested_git_is_not_implicitly_ignored(self):
+        self.write("nested/.git/config", b"unexpected nested payload")
+        with self.assertRaises(m.Blocked):
+            m.validate_bundle(self.source)
+        self.assertIn("nested/.git/config", m.build_manifest(self.source)["files"])
+
+    def test_unexpected_target_git_directory_blocks_install_and_rollback(self):
+        m.install(self.source, self.target)
+        metadata = self.target / ".git"
+        metadata.mkdir()
+        for operation in (lambda: m.install(self.source, self.target), lambda: m.rollback(self.target)):
+            with self.assertRaises(m.Blocked):
+                operation()
+            self.assertTrue(metadata.is_dir())
+            self.assertTrue((self.target / "tools/example.py").is_file())
+
+    def test_unexpected_target_git_file_blocks_install_and_rollback(self):
+        m.install(self.source, self.target)
+        metadata = self.target / ".git"
+        metadata.write_bytes(b"preserve later user repository metadata")
+        for operation in (lambda: m.install(self.source, self.target), lambda: m.rollback(self.target)):
+            with self.assertRaises(m.Blocked):
+                operation()
+            self.assertEqual(metadata.read_bytes(), b"preserve later user repository metadata")
+
+    def test_case_variant_target_git_directory_is_also_preserved(self):
+        m.install(self.source, self.target)
+        metadata = self.target / ".GiT"
+        metadata.mkdir()
+        with self.assertRaises(m.Blocked):
+            m.rollback(self.target)
+        self.assertTrue(metadata.is_dir())
+
+    def test_source_git_symlink_is_rejected_before_metadata_exclusion(self):
+        external = self.root / "external-git-data"
+        external.mkdir()
+        try:
+            (self.source / ".git").symlink_to(external, target_is_directory=True)
+        except OSError as exc:
+            self.skipTest("Symlink creation unavailable: " + str(exc))
+        with self.assertRaises(m.Blocked):
+            m.validate_bundle(self.source)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

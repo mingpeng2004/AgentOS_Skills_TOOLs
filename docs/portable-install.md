@@ -10,6 +10,14 @@ The publisher generates `portable-manifest.json` from the final bundle. It lists
 every installable file's SHA256 and byte size. The manifest itself is excluded
 to avoid self-reference. Any additional exclusion must name an exact existing
 file; excluded files are not installed. No glob or directory exclusion exists.
+The source package root's `.git` directory or worktree-style `.git` file
+(case-insensitive name match) is
+repository metadata and is automatically ignored during manifest generation and
+validation; it is never copied. Its path still undergoes link/reparse checks and
+is never followed. Nested `.git` paths are not automatically excluded and remain
+subject to the complete manifest. A target that later acquires a root `.git`
+directory (even empty) or file blocks reinstall and rollback, preserving the
+user's repository instead of treating it as disposable installation state.
 
 ```powershell
 python -B tools/portable_install.py manifest --source C:\Bundles\AgentOS
