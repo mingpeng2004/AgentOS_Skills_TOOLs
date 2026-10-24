@@ -1,0 +1,9 @@
+{
+  "bilingual_reports": false,
+  "enabled": false,
+  "note": "Explicit opt-in only; no personal author identity is imposed on downstream users.",
+  "presentation_style": "user-defined",
+  "report_file_triplets": false,
+  "schema": "agentos-owner-profile-v1",
+  "signature": ""
+}

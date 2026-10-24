@@ -1,0 +1,45 @@
+{
+  "schema": "agentos-public-learning-summary-v1",
+  "source_policy": "Original DEC excerpts and full source provenance are private; only reusable invariants are published.",
+  "learning": [
+    {
+      "id": "identity-shards",
+      "principle": "Bind readiness and publication state to stable object identity; do not share caches or baselines across repositories.",
+      "implemented_in": [
+        "tools/weekly_learning.py",
+        "tools/distribution.py"
+      ],
+      "tests": [
+        "cross_repository_ready_blocks_before_network",
+        "old_repository_baseline_never_authorizes_overwrite"
+      ]
+    },
+    {
+      "id": "reparse-identity",
+      "principle": "Check the object and every ancestor with lstat/reparse identity; reject links before reads/writes.",
+      "implemented_in": [
+        "tools/portable_install.py",
+        "tools/capability_assets.py",
+        "tools/distribution.py"
+      ],
+      "tests": [
+        "reparse_ancestor_rejected_via_lstat_attributes",
+        "actual_symlink_refused_when_available"
+      ]
+    },
+    {
+      "id": "gate-self-health",
+      "principle": "Known-failure tests, nonempty execution and real scope are part of a gate; observation does not consume unreviewed learning.",
+      "implemented_in": [
+        "tools/verify_release.py",
+        "tools/capability_assets.py"
+      ],
+      "tests": [
+        "zero_test_execution_cannot_pass",
+        "observation_never_consumes_unreviewed_learning",
+        "duplicate_cannot_consume_unrelated_source_or_different_multiplicity"
+      ]
+    }
+  ],
+  "limits": "These are narrow engineering invariants, not crash root-cause claims, specialist certification or measured model-quality gains."
+}

@@ -1,0 +1,714 @@
+{
+  "assets": [
+    {
+      "canonical": true,
+      "capabilities": [
+        "arch-icd",
+        "arch-modular",
+        "arch-adr",
+        "arch-api-first",
+        "emb-state-machine",
+        "emb-rtos-pattern",
+        "emb-hil",
+        "sw-tdd",
+        "sw-solid-clean",
+        "sw-ci-gate",
+        "sw-code-review",
+        "qa-test-pyramid",
+        "qa-doe"
+      ],
+      "dependencies": [],
+      "entry": "skills/embedded-software-engineering/SKILL.md",
+      "hashes": {
+        "skills/embedded-software-engineering/PROVENANCE.md": "6b78f1a49e41ae25c486e9ed2e7241cc4d8050423141512e671f3fd460cbda0f",
+        "skills/embedded-software-engineering/SKILL.md": "581567c13f956d441ad5e2a6fe81062318bc81f3590e8b50cd91c80ea81325b8",
+        "skills/embedded-software-engineering/agents/openai.yaml": "945082e29b84fe3bd0880ff846c40c1cc46fd52be3f75000894483c14af36cb6",
+        "skills/embedded-software-engineering/assets/templates/ACCEPTANCE.md": "b0914e7a8b9898a8cef9d1a1106a81271cef30707d5ed12ce7d602611bf3bc7d",
+        "skills/embedded-software-engineering/assets/templates/DEVELOPMENT_PLAN.md": "be513948ff1a375e76fb3e1e0a653259ac2a5e3351c6d2b1a8b4b61971038fd7",
+        "skills/embedded-software-engineering/assets/templates/FRAMEWORK.md": "dce7cf3bef6ac039f18ecbcb79245ed3e701e7bcae57b6258077e13221825131",
+        "skills/embedded-software-engineering/assets/templates/PROJECT_GOALS.md": "0a862a5314156c987a0c03d148938a41b3cff09410cafa9bade939a3670c2002",
+        "skills/embedded-software-engineering/assets/templates/PROJECT_STATE.md": "26d74ee21f058d008ba181de2845bbeaf10c45561b0901551d987a6cf3781b6f",
+        "skills/embedded-software-engineering/assets/templates/defect-analysis.md": "e73e4f96f1fc89f4d027874899d424738267e5010e8d3c7c87fb0a24c13feef1",
+        "skills/embedded-software-engineering/assets/templates/interface-contract.md": "0574fd590210e6064d759c93db5804794f972b185d6759e4e5408deb8b627728",
+        "skills/embedded-software-engineering/assets/templates/release-handoff.md": "323880a29dab4b2b4bf65b8f2b2fd1b676bc9a9075af15fa2728e901f9610789",
+        "skills/embedded-software-engineering/assets/templates/task-plan.md": "44b3fcdd878c9ca2b3d905dffbe8d60d064e259c17a19afbce07dc04931adeab",
+        "skills/embedded-software-engineering/assets/templates/verification-matrix.md": "2e55c468af43d737dd0a36bc2df3e9280e6f81f528194736d5f4041006cc7c84",
+        "skills/embedded-software-engineering/references/bare-metal.md": "86928559cf4bec6c95cdb8853b302af7aa2d00efec6a1efc7b8479fb39bed3d5",
+        "skills/embedded-software-engineering/references/capability-assurance.md": "3dd5cf583e2c3aebc26b0b20c3b7a14532aa8d0ea81bd8c19fe3eb0872bff4f9",
+        "skills/embedded-software-engineering/references/client-adapters.md": "aca20c81ed2c5c6b0060f588a82f78fd3339c1f2cc35722e3ce46bc5a9594828",
+        "skills/embedded-software-engineering/references/companion-software.md": "7e8f99051da32cdeb312952c608253dbe16d130f56fb22f4ce44e12388ea95d9",
+        "skills/embedded-software-engineering/references/debugging.md": "0574175e3a81bcc778794ff255809cc0ef2ab61c353bb39154a4f5d28837d6a9",
+        "skills/embedded-software-engineering/references/embedded-linux.md": "0bde85ac90d58572ecf4c9e5da59750ba6c38197477e16a33dc10a962dc2de45",
+        "skills/embedded-software-engineering/references/engineering-pitfalls.md": "3356263200707bba71931afe65e58b17eea00fac097f75df6f4dab4e843e29a0",
+        "skills/embedded-software-engineering/references/file-driven-governance.md": "5991422928502aee61c2742859ef2deda0600c90e8679426315366a84732de0a",
+        "skills/embedded-software-engineering/references/force-loop-optimization.md": "ab01795c3e5a40967c4518b026d35bd901ad0ec36764096b038b60f44394fb27",
+        "skills/embedded-software-engineering/references/governance.md": "1392c8679bd29404bcb05ef7b5522a2032c62264f89416a7603f306aec9c747f",
+        "skills/embedded-software-engineering/references/lifecycle.md": "cececc38083b1d844795c70d98a840de8efe0ec48c3fe1dee63e24f73b786f83",
+        "skills/embedded-software-engineering/references/maintenance.md": "9a67300d8263d623f95d49bddc9f0665617bb21a3725ff0c2c70c5952d744f18",
+        "skills/embedded-software-engineering/references/records-lifecycle.md": "e1ad16f2d3bf2fb8b6d148eaf6ed260c662d112330b75548a4822f75198c2656",
+        "skills/embedded-software-engineering/references/rtos.md": "40ae1016be0bbc2465cb0c80198057ca3dc53793e66e5c262249dcd8726ebbd7",
+        "skills/embedded-software-engineering/references/token-efficiency.md": "659a28cc1c7470ed2cfe76fb324e857ce3de7ea18023b053fce54dafe68835ce",
+        "skills/embedded-software-engineering/references/usage.md": "dfc76504add135ee69bd9c645ed1411cebc9f46c64354d73f19bf88063a3c1d3",
+        "skills/embedded-software-engineering/references/verification-release.md": "2d19eef5ea0b3b5ccb81dc44317093711e24ec78a22359c1ce800419b45ffedf"
+      },
+      "id": "skill.embedded-software-engineering",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "embedded-software-engineering",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.1.2"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-router"
+      ],
+      "dependencies": [],
+      "entry": "skills/engineering-contract-and-confirmation/SKILL.md",
+      "hashes": {
+        "skills/engineering-contract-and-confirmation/PROVENANCE.md": "2af78f3ca31e45ee2f25c5c2ebceef59a59fc7f0307139e0d9ef1f8b400d0974",
+        "skills/engineering-contract-and-confirmation/SKILL.md": "a4cc2a3de37bf0e676f95abf345100b30dce0cf3ab5a465ddf25c6046c5bbf6d",
+        "skills/engineering-contract-and-confirmation/agents/openai.yaml": "f114be1e7b0b936221a4b947f177ed2f1c7f1cbe50177e4de4d1f9ef3fd635e6",
+        "skills/engineering-contract-and-confirmation/assets/templates/AMENDMENT.json": "4188a785621418874349f4b4e8a41f688bd6f9e2a46637f66c8d0ed298551e13",
+        "skills/engineering-contract-and-confirmation/assets/templates/CONFIRMATION-PACKET.md": "650e9cc439fa08f5f32395ea1797e78275c10e7e82e155927668d793e0b762d4",
+        "skills/engineering-contract-and-confirmation/references/amendment-and-drift.md": "0b95799656160573de616cd4dc56bb4b64caea877e32fbc7e2d1975eb692e4fc",
+        "skills/engineering-contract-and-confirmation/references/confirmation-packet.md": "c0f5bf1f5c4a0235889bc6655c3675d066e21cc27e0ac34d5811cf0a2e69fd9e",
+        "skills/engineering-contract-and-confirmation/references/design-consistency.md": "e11b8e241fab0c350065e478f715d104d9f62d652bf47f39dee8d4f06bc882cf"
+      },
+      "id": "skill.engineering-contract-and-confirmation",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "engineering-contract-and-confirmation",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "req-spec-freeze",
+        "req-acceptance",
+        "req-trace",
+        "plan-wbs",
+        "plan-gate",
+        "plan-rolling",
+        "plan-risk",
+        "plan-decompose",
+        "ui-design-system",
+        "ui-a11y",
+        "qa-fmea",
+        "qa-vmodel",
+        "qa-review-checklist",
+        "mfg-change",
+        "km-decision-log",
+        "km-postmortem",
+        "km-lessons",
+        "km-context-pack",
+        "meta-router",
+        "meta-skill-registry",
+        "meta-qc-gate",
+        "meta-escalation",
+        "meta-no-fabrication"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/production-skill-routing/SKILL.md",
+      "hashes": {
+        "governance/AgentOS/skills/production-skill-routing/SKILL.md": "6d8a005ca8f196b060a80d19e9ac84441aab788b9b2224b50ae1bca9eed5be95",
+        "governance/AgentOS/skills/production-skill-routing/agents/openai.yaml": "e3ecdeb528263c9c7da1cc3c8fe644ede283ae0c7c300f0b28ff64562207b559",
+        "governance/AgentOS/skills/production-skill-routing/assets/templates/SKILL-CONTRACT.json": "2b568f02da0b5a6af051500ec648e3513847c0cfda896a021740566b04d0b146",
+        "governance/AgentOS/skills/production-skill-routing/references/contracts-and-design.md": "4f55c8fe75f2809025e8b093b0e232e0c5e4fca8f2c2fdeb68048cc061745df2",
+        "governance/AgentOS/skills/production-skill-routing/references/workflow.md": "a523e0df454b91b8e1d0ac3d89505ab7ceea803d49d03f028512cb59977ab6e9"
+      },
+      "id": "skill.production-skill-routing",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "vis-concept-illustration"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/visual-asset-production/SKILL.md",
+      "hashes": {
+        "governance/AgentOS/skills/visual-asset-production/SKILL.md": "475f584124998f77ababb5d43ae480e35477dc04303cf2ce4d3828ae1f81bc5e",
+        "governance/AgentOS/skills/visual-asset-production/assets/templates/info-layer-template.json": "f87d33c7beb4d3eb589923eab37515fbc4f2d2cda75ac01eff847b4e5453143d",
+        "governance/AgentOS/skills/visual-asset-production/assets/templates/subject-template.md": "04106a0de8fc8b8dfc172fd4749b5d21c2b81675bcd49ccec91596d436089559",
+        "governance/AgentOS/skills/visual-asset-production/references/pipeline.md": "7e24adf6e23be8e1f0a7698a89511802591238c60ed941697dd52924849dc9c8",
+        "governance/AgentOS/skills/visual-asset-production/references/qa-gates.md": "4991da9bf05d0412ce03224b5f2801092893e2a8b532c70784e7719d8458213e",
+        "governance/AgentOS/skills/visual-asset-production/references/style-library.md": "88c447c02471ab1b517b6ec8d0585810b30877202969a1dbf8e0aace04c5124b",
+        "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py": "0aacd74f874c0a8baa87220b94050d3b92841206aaa94f9ab1c98e8c0db42e8d",
+        "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py": "10b073ce04656c552fdf0db196b93ede0f933bdcc1781728907ec5e69100af72"
+      },
+      "id": "skill.visual-asset-production",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "visual-asset-production",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Optional scripts only: numpy",
+        "Optional scripts only: Pillow",
+        "Optional scripts only: scipy",
+        "Optional scripts only: matplotlib"
+      ],
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "km-lessons",
+        "meta-skill-registry"
+      ],
+      "dependencies": [],
+      "entry": "skills/weekly-governance-learning/SKILL.md",
+      "hashes": {
+        "skills/weekly-governance-learning/SKILL.md": "fdfb39ee2bcc91108cf51af45163b849107fca63a69b800ccf627abb4c60fac3"
+      },
+      "id": "skill.weekly-governance-learning",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.1.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "km-postmortem"
+      ],
+      "dependencies": [],
+      "entry": "skills/windows-crash-forensics/SKILL.md",
+      "hashes": {
+        "skills/windows-crash-forensics/PROVENANCE.md": "5207c105af6e968049298baf7261b286f49472acfec5e1faabf8a7eefc6a2372",
+        "skills/windows-crash-forensics/SKILL.md": "006b4dbdfc27015f02e4e83b57ed0ea0d8ef5d6c725f9e69300f8a9e55987f68",
+        "skills/windows-crash-forensics/references/bugcheck-codes.md": "d79d529d985a1ea6d6f4570884f911c2a29b41a1c80cdc77fb5cd369e0e6e05f",
+        "skills/windows-crash-forensics/references/evidence-chain.md": "54dd81499f907126663f780658a0b2eefa68aa616db0018fa2ec91f5e4e03573",
+        "skills/windows-crash-forensics/references/triage-playbook.md": "c29b92f538882ff912fe84bb1a8e8ca98aa1ca3ab08581dd3a39f72e9e4def21"
+      },
+      "id": "skill.windows-crash-forensics",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "windows-crash-forensics",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.1"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [
+        "tool.distribution.weekly-learning",
+        "tool.distribution.distribution",
+        "tool.distribution.capability-assets",
+        "tool.distribution.portable-install"
+      ],
+      "entry": "tools/agentos_toolkit.py",
+      "hashes": {
+        "tools/agentos_toolkit.py": "514e2cae614bf9121eb4ceb1755c413c6564c946544f6b0f5c689cbade1162cc"
+      },
+      "id": "tool.distribution.agentos-toolkit",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-toolkit",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-skill-registry"
+      ],
+      "dependencies": [],
+      "entry": "tools/capability_assets.py",
+      "hashes": {
+        "tools/capability_assets.py": "8c722357e1c886baac9fecdab6d282e42574c6460ffdcc34fbe2b41613ee3775"
+      },
+      "id": "tool.distribution.capability-assets",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "capability-assets",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "tools/distribution.py",
+      "hashes": {
+        "tools/distribution.py": "8fb1a9628e34abf90c3bd0e243be2ab02c69c2e1fafe3e45313cdbb126b92f99"
+      },
+      "id": "tool.distribution.distribution",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "distribution",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "tools/lesson_checks.py",
+      "hashes": {
+        "tools/lesson_checks.py": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce"
+      },
+      "id": "tool.distribution.lesson-checks",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "lesson-checks",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "tools/portable_install.py",
+      "hashes": {
+        "tools/portable_install.py": "264a6ad89c1357d645d8dcf84f44f96d39652a31f663d05b675fad24b2a26686"
+      },
+      "id": "tool.distribution.portable-install",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "portable-install",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization",
+        "Explicit install/rollback writes only the requested target and verified backup state"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "tools/verify_release.py",
+      "hashes": {
+        "tools/verify_release.py": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14"
+      },
+      "id": "tool.distribution.verify-release",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "verify-release",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [
+        "tool.distribution.distribution",
+        "tool.distribution.capability-assets",
+        "tool.distribution.portable-install"
+      ],
+      "entry": "tools/weekly_learning.py",
+      "hashes": {
+        "tools/weekly_learning.py": "2b2c548d99849fe8d2b66b6c4770215ab13965172aa19f0a72c45b694c4f22e5"
+      },
+      "id": "tool.distribution.weekly-learning",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "weekly-learning",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization",
+        "Explicit publish command uses authenticated GitHub writes; scan is local"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "tools/security_check.ps1",
+      "hashes": {
+        "tools/security_check.ps1": "f1230be26ad7cecf5fa2da9aa5c35902f9bed7ba13654a6d078b96af1e89e36c"
+      },
+      "id": "tool.distribution.security-check",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "security-check",
+      "platforms": [
+        "windows"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Windows PowerShell 5.1+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-skill-registry"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_skills.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_skills.py": "3f7f6489bf94dcf21fafd503cbee548fa977d1c0a2d982d1114b874117e0531c"
+      },
+      "id": "tool.governance.agentos-skills",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-skills",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-skill-registry"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/gen_capability_objective.py",
+      "hashes": {
+        "governance/AgentOS/bin/gen_capability_objective.py": "f20e80002ef2439a823114d133d7c30b867d839ff2f828c12f776c32c73bf0b0"
+      },
+      "id": "tool.governance.gen-capability-objective",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "gen-capability-objective",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/AgentOS-Contract.ps1",
+      "hashes": {
+        "governance/AgentOS/bin/AgentOS-Contract.ps1": "4bbbd61517b835be35398160d876061716d901c6a455948bbf0088e09e6644f6"
+      },
+      "id": "tool.governance.agentos-contract",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-contract",
+      "platforms": [
+        "windows"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Windows PowerShell 5.1+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
+      "hashes": {
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "6be131532856723db505fe44751d8e0fb5552aae2a488a221c3d08d7470691fc"
+      },
+      "id": "tool.governance.agentos-decision",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-decision",
+      "platforms": [
+        "windows"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Windows PowerShell 5.1+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/AgentOS-Evidence.ps1",
+      "hashes": {
+        "governance/AgentOS/bin/AgentOS-Evidence.ps1": "30fef9c914f17aab04e62fdc19a609bad3d51865acb72522082e89210b078b22"
+      },
+      "id": "tool.governance.agentos-evidence",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-evidence",
+      "platforms": [
+        "windows"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Windows PowerShell 5.1+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/AgentOS.ps1",
+      "hashes": {
+        "governance/AgentOS/bin/AgentOS.ps1": "d96eb5d551415b61a33f55bffdbed920d1428e2b0031581cf0493fb78e127ead"
+      },
+      "id": "tool.governance.agentos",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos",
+      "platforms": [
+        "windows"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Windows PowerShell 5.1+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "vis-concept-illustration"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py",
+      "hashes": {
+        "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py": "0aacd74f874c0a8baa87220b94050d3b92841206aaa94f9ab1c98e8c0db42e8d"
+      },
+      "id": "tool.governance.overlay-compose",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "overlay-compose",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+",
+        "numpy",
+        "Pillow",
+        "scipy",
+        "matplotlib"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "candidate",
+      "supersedes": [],
+      "version": "1.6.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "vis-concept-illustration"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py",
+      "hashes": {
+        "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py": "10b073ce04656c552fdf0db196b93ede0f933bdcc1781728907ec5e69100af72"
+      },
+      "id": "tool.governance.text-screen",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "text-screen",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+",
+        "numpy",
+        "Pillow",
+        "scipy",
+        "matplotlib"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "candidate",
+      "supersedes": [],
+      "version": "1.6.0"
+    }
+  ],
+  "schema": "agentos-capability-assets-v1"
+}

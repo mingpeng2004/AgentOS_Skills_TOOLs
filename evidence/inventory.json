@@ -1,0 +1,244 @@
+{
+  "learning_coverage": [
+    {
+      "directories_inspected": 2,
+      "files_inspected": 11,
+      "id": "maintenance-knowledge",
+      "required": true,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 1,
+      "id": "maintenance-decisions",
+      "required": true,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 1,
+      "id": "codex-persistent-learning",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "shared-persistent-learning",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 1,
+      "id": "claude-persistent-learning",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "minimax-persistent-learning",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "kimi-persistent-learning",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "kimi-code-persistent-learning",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "cursor-persistent-learning",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 0,
+      "files_inspected": 0,
+      "id": "maintenance-feedback",
+      "required": false,
+      "state": "absent"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 6,
+      "id": "maintenance-checkpoints",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 9,
+      "id": "maintenance-tasks",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 3,
+      "id": "reviewed-dec-excerpts",
+      "required": true,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 10,
+      "id": "project-5a55bc766bd7-checkpoints",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 5,
+      "id": "project-4d3c12b9b37c-skill-runs",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 6,
+      "id": "project-4d3c12b9b37c-checkpoints",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 1,
+      "id": "project-857509cac457-checkpoints",
+      "required": false,
+      "state": "scanned"
+    }
+  ],
+  "legacy_installer": "Not distributed; use the preflight/backup/rollback tool.",
+  "lesson_records_inspected": 62,
+  "limits": "Inventory/file checks are not domain certification, client invocation, second-computer or future scheduler evidence.",
+  "projects_inspected": 37,
+  "scan_issues": [
+    {
+      "source_id": "5332af274ca4",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "3ecb148511b6",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "138f60c9d5ac",
+      "state": "skill_unreadable"
+    },
+    {
+      "source_id": "db49b18b7edf",
+      "state": "skill_unreadable"
+    },
+    {
+      "source_id": "4b760922c95e",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "aa8c93b34f56",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "04e6208a3956",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "ca199dd346d7",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "39b61219b9fa",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "1c95f4472abd",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "4de0474a109d",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "3cb83206a053",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "e219700a330e",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "6d9f855b8c21",
+      "state": "absent_at_scan"
+    },
+    {
+      "source_id": "8f943416982e",
+      "state": "absent_at_scan"
+    },
+    {
+      "source_id": "a10502a2720e",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "919c46e043de",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "7cc0ea14fc17",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "b294753e762e",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "b5e084bb02ad",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "6d32ab7f43f8",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "0c8131c19f6a",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "9e3d38f14126",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "a2107e709823",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "24c23671d587",
+      "state": "linked_excluded"
+    },
+    {
+      "source_id": "ffae1afd4267",
+      "state": "absent_at_scan"
+    },
+    {
+      "source_id": "f89f174faab6",
+      "state": "linked_excluded"
+    }
+  ],
+  "scope_complete": false,
+  "skill_sources": 522,
+  "states": {
+    "deduplicated": 22,
+    "exported": 6,
+    "reference_only": 494
+  }
+}

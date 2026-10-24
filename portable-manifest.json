@@ -1,0 +1,582 @@
+{
+  "exclusions": [],
+  "files": {
+    ".gitignore": {
+      "bytes": 49,
+      "sha256": "c07a0474c45f5a935b8f3c0a82663e9322bdcaf47bf43d7877ea85d6e57c14b9"
+    },
+    "AGENTS.md": {
+      "bytes": 1973,
+      "sha256": "7836518665f82ec0f3e4fdf381705a386082f4bedc048d1c0ed37b5a4e3ff2b4"
+    },
+    "LICENSE": {
+      "bytes": 1087,
+      "sha256": "dbdb8acc522b9b1aeb4cd5e7140b48a5b9fe1fe7cb61b548fe0722cf7af06d7b"
+    },
+    "NOTICE.md": {
+      "bytes": 1481,
+      "sha256": "ad3dec696dcdaceac781c7f82903971af053cda7be2ff47e61f3e1e52f1eb882"
+    },
+    "README.md": {
+      "bytes": 4507,
+      "sha256": "bab13dc89e071c917ecc9b0f755077ac8087351eccb409c56f5490dee114244f"
+    },
+    "capability-assets.json": {
+      "bytes": 28402,
+      "sha256": "46b51a9900e07d9194c747e9dfa349606ca4c36b05ec2af720c3ab3b609a859b"
+    },
+    "catalog.json": {
+      "bytes": 165367,
+      "sha256": "ea9fa6e716b3345b08337d4ded211c892329851c533fbbad919fe223a4353c48"
+    },
+    "config/policy.example.json": {
+      "bytes": 361,
+      "sha256": "4121dfbdbcc023794e488794078ab0468d1b4b72aa2b79202893443563dfb0e1"
+    },
+    "docs/capability-assets.md": {
+      "bytes": 9259,
+      "sha256": "6ac0b6cf863bf7897f439adbb3ffe726c486d18b923a85cfa2ef9728402ca3d1"
+    },
+    "docs/portable-install.md": {
+      "bytes": 4721,
+      "sha256": "02ca298eae413ac4439b84e4670a53016b6ac6ce10ba1440ce6f5b82c69ab37f"
+    },
+    "docs/weekly-workflow.md": {
+      "bytes": 7336,
+      "sha256": "adc17fa185e89eb0048d079fd3b961fd9a4253c7ed5070bf79413621a1b81772"
+    },
+    "evidence/inventory.json": {
+      "bytes": 5479,
+      "sha256": "5209c01a82b3dbcd882152d9526339133be8bbd8e72b9a93231e9f279c20b2a3"
+    },
+    "evidence/learning.json": {
+      "bytes": 1756,
+      "sha256": "eef97df575d88f981ca1812cace150f6a36c83ef343c6fe2a7a64ee2a132c507"
+    },
+    "evidence/validation.json": {
+      "bytes": 9402,
+      "sha256": "c7ffdd28c2b856e649f10b4a4ab475513a25c85eb2c63f6090eb5e3fc5978b02"
+    },
+    "governance/AgentOS/README.md": {
+      "bytes": 5949,
+      "sha256": "9f094437bcc9ce2b09082892348d116c3cf574cb012ff6b1f95d67d79f2959f0"
+    },
+    "governance/AgentOS/VERSION": {
+      "bytes": 6,
+      "sha256": "cb1d9a30bc4ab8a397f39b7d786bb82aca0b816077eefc35d7c822017d75f6a5"
+    },
+    "governance/AgentOS/adapters/kimi/SKILL.md": {
+      "bytes": 4285,
+      "sha256": "31cfe59b3d317c974612406e6633eb6c6d7297aeab31632db0608154b04206ee"
+    },
+    "governance/AgentOS/adapters/minimax/SKILL.md": {
+      "bytes": 4510,
+      "sha256": "a0c4a2f270156b3dd9ec1562907799010455119f78b96947182e4bb5421de95e"
+    },
+    "governance/AgentOS/bin/AgentOS-Contract.ps1": {
+      "bytes": 25817,
+      "sha256": "4bbbd61517b835be35398160d876061716d901c6a455948bbf0088e09e6644f6"
+    },
+    "governance/AgentOS/bin/AgentOS-Decision.ps1": {
+      "bytes": 15078,
+      "sha256": "6be131532856723db505fe44751d8e0fb5552aae2a488a221c3d08d7470691fc"
+    },
+    "governance/AgentOS/bin/AgentOS-Evidence.ps1": {
+      "bytes": 30781,
+      "sha256": "30fef9c914f17aab04e62fdc19a609bad3d51865acb72522082e89210b078b22"
+    },
+    "governance/AgentOS/bin/AgentOS.ps1": {
+      "bytes": 26881,
+      "sha256": "d96eb5d551415b61a33f55bffdbed920d1428e2b0031581cf0493fb78e127ead"
+    },
+    "governance/AgentOS/bin/agentos_skills.py": {
+      "bytes": 25973,
+      "sha256": "3f7f6489bf94dcf21fafd503cbee548fa977d1c0a2d982d1114b874117e0531c"
+    },
+    "governance/AgentOS/bin/gen_capability_objective.py": {
+      "bytes": 4515,
+      "sha256": "f20e80002ef2439a823114d133d7c30b867d839ff2f828c12f776c32c73bf0b0"
+    },
+    "governance/AgentOS/constitution/AGENTOS-CONSTITUTION.md": {
+      "bytes": 7518,
+      "sha256": "a5073cb4cc7562dfcc7ee84f6ac63acd992dbd2b8eaeff47c252558923930d93"
+    },
+    "governance/AgentOS/policies/APPROVAL-POLICY.json": {
+      "bytes": 1199,
+      "sha256": "c4f43e73d8b0964c8a1b909909b4f2d30b3e9eeba95e87f002580f690099b67f"
+    },
+    "governance/AgentOS/policies/DECISION-POLICY.json": {
+      "bytes": 1053,
+      "sha256": "b6c98e2a1520a0a4225295d8d6488851aa0dc3b3180ae4426605f60b8b9942ca"
+    },
+    "governance/AgentOS/policies/EVIDENCE-POLICY.json": {
+      "bytes": 2007,
+      "sha256": "e6ce3f0c28d2d4506ceed8f9b7f75ec000035475750edfd1fdc11ca6bed443e9"
+    },
+    "governance/AgentOS/policies/INTERACTION-POLICY.json": {
+      "bytes": 3876,
+      "sha256": "e8db05654ffd0ad05d80094c9a2013aea0438f09aac0a4a27ae15de6e78b33ea"
+    },
+    "governance/AgentOS/policies/SKILL-REGISTRY.json": {
+      "bytes": 119421,
+      "sha256": "6b163a82d94c7b3e6933a308689f75d8d15260566acdda88987d6f664c6137a8"
+    },
+    "governance/AgentOS/profiles/EMBEDDED.md": {
+      "bytes": 2617,
+      "sha256": "852b958bc79e2e3f2bb524b7ca09f5f64562c21120dcfaef2207e85c1510dbb5"
+    },
+    "governance/AgentOS/profiles/OWNER-PROFILE.example.json": {
+      "bytes": 280,
+      "sha256": "32b383f448325540e50f37b01ea784d0977534e79c862ae181ccbe77727453d8"
+    },
+    "governance/AgentOS/protocols/APPROVAL-SCOPE.md": {
+      "bytes": 2275,
+      "sha256": "359734d3f43cad0e65338ae9e6e4926cfd7565a30833586f828d6d752660a861"
+    },
+    "governance/AgentOS/protocols/CAPABILITY-OBJECTIVE.md": {
+      "bytes": 8895,
+      "sha256": "bdf1271f4d62876aafd3c94724977d5b284d7e5ef4e2fbe6e84b5c4b380ecc25"
+    },
+    "governance/AgentOS/protocols/CONTEXT-PIPELINE.md": {
+      "bytes": 1828,
+      "sha256": "ed57b4e9b7254b3cea57b120adaed7baca4ff17acadb4bd6e164b2f02d986aef"
+    },
+    "governance/AgentOS/protocols/DATA-SAFETY-STANDARD.md": {
+      "bytes": 7188,
+      "sha256": "ab7f5f99b5a731f720a4c8a682762beb1803f1570958ca04db1c973a4e899dc4"
+    },
+    "governance/AgentOS/protocols/DATABASE-INTEGRITY-STANDARD.md": {
+      "bytes": 11276,
+      "sha256": "6c1c5af16ba990acb8410452a592ea9a847f6d681398387399cb6e6a74498874"
+    },
+    "governance/AgentOS/protocols/DELEGATED-AUTONOMY.md": {
+      "bytes": 4399,
+      "sha256": "8a3339dee18b1ac228b27e71b8e761707b7b2cd9a6d240a5c227fe3d76f8af8b"
+    },
+    "governance/AgentOS/protocols/DELIVERABLE-STANDARD.md": {
+      "bytes": 18763,
+      "sha256": "521c9c462146068dbe5cd9aa8642cd16b1cb219938b0af8ac47e3d52db373be8"
+    },
+    "governance/AgentOS/protocols/DESIGN-CONSISTENCY.md": {
+      "bytes": 6671,
+      "sha256": "559bee5ba84e2c0ef1df8e8150abc5c0283f147e4988b828d94d829616255a1b"
+    },
+    "governance/AgentOS/protocols/FILE-DRIVEN-ENGINEERING.md": {
+      "bytes": 3583,
+      "sha256": "243b487d5dd586c9c9cb3842542c49b6dc11b1dd73ce67966183efd5716dcbb0"
+    },
+    "governance/AgentOS/protocols/HARNESS-ENHANCEMENTS.md": {
+      "bytes": 2096,
+      "sha256": "0a2c5ed8f05a8c8c6cce6f069c62b352790276cc4dbce1ab3f99e7977d54f7f3"
+    },
+    "governance/AgentOS/protocols/LEARNING-EVIDENCE-QUALITY.md": {
+      "bytes": 2332,
+      "sha256": "ac32b9490c1b255482c8af78f5f33708fd4323428ab855a9c979ea9f82684101"
+    },
+    "governance/AgentOS/protocols/LONG-HORIZON.md": {
+      "bytes": 3903,
+      "sha256": "eee50c82a9cf58d9a50a44f7d819d3a8d8d6574c897a235a432604a5582e5421"
+    },
+    "governance/AgentOS/protocols/MEMORY.md": {
+      "bytes": 1364,
+      "sha256": "99c669b371b82b092550a8dea9b9ba66a65e82cd28cefe9c6796b847c42c7757"
+    },
+    "governance/AgentOS/protocols/MODEL-ADAPTER.md": {
+      "bytes": 1124,
+      "sha256": "734bfea444657fa73cf8bca25138ec830657bfbcb662699fbc76a2790e0a76f3"
+    },
+    "governance/AgentOS/protocols/QUALITY-GATE.md": {
+      "bytes": 4759,
+      "sha256": "20e7feb19fe2f374d829b22a0bd0a67fb4c25c4c60b8d3e73b61b93e4c80017d"
+    },
+    "governance/AgentOS/protocols/RECURSIVE-PLANNING.md": {
+      "bytes": 2086,
+      "sha256": "ace15d910fe4130597893cf3f2c15a47fc9a8ba66ce72a9b5ecb4dbdf3e4b782"
+    },
+    "governance/AgentOS/protocols/ROLE-ROUTER.md": {
+      "bytes": 2484,
+      "sha256": "cd4b9191d88dbc6066623715215170dd2d0061edb2e503b873c133ba3c502028"
+    },
+    "governance/AgentOS/protocols/SKILL-MATRIX.md": {
+      "bytes": 6572,
+      "sha256": "b5da78828222e38704ae04baa7099eb869c3728cd1ba19ead0f499d72aec53dc"
+    },
+    "governance/AgentOS/protocols/TASK-PROTOCOL.md": {
+      "bytes": 2408,
+      "sha256": "6745fc618416aa5cc336f531212c8094a6ef70cd90dbca3b99ed3815d4bf81b8"
+    },
+    "governance/AgentOS/protocols/TRUTH-AND-EVIDENCE.md": {
+      "bytes": 5564,
+      "sha256": "4ab6109f0f36402f9974891ed4fbb945d1556c782b9a17787b867fb4b800e159"
+    },
+    "governance/AgentOS/protocols/UPFRONT-CONFIRMATION.md": {
+      "bytes": 7950,
+      "sha256": "fcca1a465cda9e19ab8ea44e1418d03e7cf65e344fdfc2997faed29ec9d384d6"
+    },
+    "governance/AgentOS/protocols/VISUAL-ASSET-STANDARD.md": {
+      "bytes": 33187,
+      "sha256": "bbfd1f7e042d581c7ca71b0c36a52ab7e8f48b7eacf5201dda9590a2b57a5e41"
+    },
+    "governance/AgentOS/protocols/WEEKLY-LEARNING.md": {
+      "bytes": 3377,
+      "sha256": "4eefe3dc385ff15f42f5563401772f31160f585a318a47572c823a97f753e4ce"
+    },
+    "governance/AgentOS/protocols/ZERO-GAP-STANDARD.md": {
+      "bytes": 10524,
+      "sha256": "e7773bfb45e932dd1d1261dc3548ec8c0edf1976d5a97f9d22fde789a387fe63"
+    },
+    "governance/AgentOS/runtime/AGENT-IMPORT.md": {
+      "bytes": 5108,
+      "sha256": "5e9135a702c74447dca48e157109d9bc109878a65eb63d8713bb123d0df946fb"
+    },
+    "governance/AgentOS/runtime/BOOT.md": {
+      "bytes": 7635,
+      "sha256": "b5c84fedc974353eab5cf111dffa6838053f0506d4c8d1d1f95702741817e52a"
+    },
+    "governance/AgentOS/runtime/IMPORT-MANIFEST.json": {
+      "bytes": 1675,
+      "sha256": "4761d4b68492cf976fb59141eae62a5017197517b9b432c62bc499f59a4f372f"
+    },
+    "governance/AgentOS/skills/production-skill-routing/SKILL.md": {
+      "bytes": 4267,
+      "sha256": "6d8a005ca8f196b060a80d19e9ac84441aab788b9b2224b50ae1bca9eed5be95"
+    },
+    "governance/AgentOS/skills/production-skill-routing/agents/openai.yaml": {
+      "bytes": 345,
+      "sha256": "e3ecdeb528263c9c7da1cc3c8fe644ede283ae0c7c300f0b28ff64562207b559"
+    },
+    "governance/AgentOS/skills/production-skill-routing/assets/templates/SKILL-CONTRACT.json": {
+      "bytes": 943,
+      "sha256": "2b568f02da0b5a6af051500ec648e3513847c0cfda896a021740566b04d0b146"
+    },
+    "governance/AgentOS/skills/production-skill-routing/references/contracts-and-design.md": {
+      "bytes": 1553,
+      "sha256": "4f55c8fe75f2809025e8b093b0e232e0c5e4fca8f2c2fdeb68048cc061745df2"
+    },
+    "governance/AgentOS/skills/production-skill-routing/references/workflow.md": {
+      "bytes": 6762,
+      "sha256": "a523e0df454b91b8e1d0ac3d89505ab7ceea803d49d03f028512cb59977ab6e9"
+    },
+    "governance/AgentOS/skills/visual-asset-production/SKILL.md": {
+      "bytes": 4456,
+      "sha256": "475f584124998f77ababb5d43ae480e35477dc04303cf2ce4d3828ae1f81bc5e"
+    },
+    "governance/AgentOS/skills/visual-asset-production/assets/templates/info-layer-template.json": {
+      "bytes": 981,
+      "sha256": "f87d33c7beb4d3eb589923eab37515fbc4f2d2cda75ac01eff847b4e5453143d"
+    },
+    "governance/AgentOS/skills/visual-asset-production/assets/templates/subject-template.md": {
+      "bytes": 1976,
+      "sha256": "04106a0de8fc8b8dfc172fd4749b5d21c2b81675bcd49ccec91596d436089559"
+    },
+    "governance/AgentOS/skills/visual-asset-production/references/pipeline.md": {
+      "bytes": 4448,
+      "sha256": "7e24adf6e23be8e1f0a7698a89511802591238c60ed941697dd52924849dc9c8"
+    },
+    "governance/AgentOS/skills/visual-asset-production/references/qa-gates.md": {
+      "bytes": 4641,
+      "sha256": "4991da9bf05d0412ce03224b5f2801092893e2a8b532c70784e7719d8458213e"
+    },
+    "governance/AgentOS/skills/visual-asset-production/references/style-library.md": {
+      "bytes": 3602,
+      "sha256": "88c447c02471ab1b517b6ec8d0585810b30877202969a1dbf8e0aace04c5124b"
+    },
+    "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py": {
+      "bytes": 11973,
+      "sha256": "0aacd74f874c0a8baa87220b94050d3b92841206aaa94f9ab1c98e8c0db42e8d"
+    },
+    "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py": {
+      "bytes": 7970,
+      "sha256": "10b073ce04656c552fdf0db196b93ede0f933bdcc1781728907ec5e69100af72"
+    },
+    "governance/AgentOS/templates/AMENDMENT.json": {
+      "bytes": 565,
+      "sha256": "14f5de7a7d6490c01f9e34ae6494530fe06b3a9f46a673025ede1a80886ac982"
+    },
+    "governance/AgentOS/templates/CHECKPOINT.md": {
+      "bytes": 1610,
+      "sha256": "163f8ce0aef8c117fa214ceea403be4ed1e745a9f921f4fa99f646e1f098269b"
+    },
+    "governance/AgentOS/templates/CONFIRMATION-PACKET.md": {
+      "bytes": 2185,
+      "sha256": "b5ab829d0e16ede10ddd763610b7661665d710b1efd08f07ce75d1669f122f20"
+    },
+    "governance/AgentOS/templates/DECISION.json": {
+      "bytes": 633,
+      "sha256": "738589f3e7f886b5e1f8e00c918fd1638acef78a1745fe37c055b12d3ff25f11"
+    },
+    "governance/AgentOS/templates/DESIGN-CONTRACT.md": {
+      "bytes": 2281,
+      "sha256": "7795be2a72e4e289aa9192d6c593cce843692bcdfec559d4d4a72ecdb893858d"
+    },
+    "governance/AgentOS/templates/ENGINEERING-REVIEW.md": {
+      "bytes": 1561,
+      "sha256": "40ca7e5c45f6741f355823f90e4599f8df1ff17601a71f35d172934bc710817a"
+    },
+    "governance/AgentOS/templates/PROJECT-ENTRY.md": {
+      "bytes": 1708,
+      "sha256": "a465d2760487efa299b3402f22234d14ebbb77037f337fdaf64ee854373c8fef"
+    },
+    "governance/AgentOS/templates/TASK.md": {
+      "bytes": 2223,
+      "sha256": "1ab0bec388a984993c611a24cec65c7d47e89fbe015bff4ad38cd5ad82a206aa"
+    },
+    "governance/AgentOS/tests/Test-AgentOS-Contract.ps1": {
+      "bytes": 17845,
+      "sha256": "3967e81a567b6d506534bd8901cdc7b66af0bf52be37d2fb8bfefc0c26ed9cda"
+    },
+    "governance/AgentOS/tests/Test-AgentOS-Decision.ps1": {
+      "bytes": 12448,
+      "sha256": "95127c2422dc4582271fd4b6f9031b40d6a95c4479882f81d469b91a10fe39fe"
+    },
+    "governance/AgentOS/tests/Test-AgentOS-Evidence.ps1": {
+      "bytes": 10751,
+      "sha256": "0fe87209773de7d12ed985f0245637bdee15a6234841a3d361813e022f488b03"
+    },
+    "governance/AgentOS/tests/Test-AgentOS.ps1": {
+      "bytes": 4804,
+      "sha256": "6e374554dadc09880076c90f3f155420e736c77a466c31de6c80c6f56f107b61"
+    },
+    "governance/AgentOS/tests/test_agentos_skills.py": {
+      "bytes": 15397,
+      "sha256": "851f8ab738d224e827c91b16d232b10c3578516db80d75f3860f9bf9c1c02d7c"
+    },
+    "governance/AgentOS/tests/verify_matrix_release.py": {
+      "bytes": 9078,
+      "sha256": "d4dc1e201bce5a33f12a5e9c9aafd76045939324458108755e558b5d4e3f5736"
+    },
+    "skills/embedded-software-engineering/PROVENANCE.md": {
+      "bytes": 2063,
+      "sha256": "6b78f1a49e41ae25c486e9ed2e7241cc4d8050423141512e671f3fd460cbda0f"
+    },
+    "skills/embedded-software-engineering/SKILL.md": {
+      "bytes": 14464,
+      "sha256": "581567c13f956d441ad5e2a6fe81062318bc81f3590e8b50cd91c80ea81325b8"
+    },
+    "skills/embedded-software-engineering/agents/openai.yaml": {
+      "bytes": 470,
+      "sha256": "945082e29b84fe3bd0880ff846c40c1cc46fd52be3f75000894483c14af36cb6"
+    },
+    "skills/embedded-software-engineering/assets/templates/ACCEPTANCE.md": {
+      "bytes": 1834,
+      "sha256": "b0914e7a8b9898a8cef9d1a1106a81271cef30707d5ed12ce7d602611bf3bc7d"
+    },
+    "skills/embedded-software-engineering/assets/templates/DEVELOPMENT_PLAN.md": {
+      "bytes": 1983,
+      "sha256": "be513948ff1a375e76fb3e1e0a653259ac2a5e3351c6d2b1a8b4b61971038fd7"
+    },
+    "skills/embedded-software-engineering/assets/templates/FRAMEWORK.md": {
+      "bytes": 1712,
+      "sha256": "dce7cf3bef6ac039f18ecbcb79245ed3e701e7bcae57b6258077e13221825131"
+    },
+    "skills/embedded-software-engineering/assets/templates/PROJECT_GOALS.md": {
+      "bytes": 1491,
+      "sha256": "0a862a5314156c987a0c03d148938a41b3cff09410cafa9bade939a3670c2002"
+    },
+    "skills/embedded-software-engineering/assets/templates/PROJECT_STATE.md": {
+      "bytes": 2043,
+      "sha256": "26d74ee21f058d008ba181de2845bbeaf10c45561b0901551d987a6cf3781b6f"
+    },
+    "skills/embedded-software-engineering/assets/templates/defect-analysis.md": {
+      "bytes": 1100,
+      "sha256": "e73e4f96f1fc89f4d027874899d424738267e5010e8d3c7c87fb0a24c13feef1"
+    },
+    "skills/embedded-software-engineering/assets/templates/interface-contract.md": {
+      "bytes": 1409,
+      "sha256": "0574fd590210e6064d759c93db5804794f972b185d6759e4e5408deb8b627728"
+    },
+    "skills/embedded-software-engineering/assets/templates/release-handoff.md": {
+      "bytes": 1306,
+      "sha256": "323880a29dab4b2b4bf65b8f2b2fd1b676bc9a9075af15fa2728e901f9610789"
+    },
+    "skills/embedded-software-engineering/assets/templates/task-plan.md": {
+      "bytes": 1637,
+      "sha256": "44b3fcdd878c9ca2b3d905dffbe8d60d064e259c17a19afbce07dc04931adeab"
+    },
+    "skills/embedded-software-engineering/assets/templates/verification-matrix.md": {
+      "bytes": 1130,
+      "sha256": "2e55c468af43d737dd0a36bc2df3e9280e6f81f528194736d5f4041006cc7c84"
+    },
+    "skills/embedded-software-engineering/references/bare-metal.md": {
+      "bytes": 3982,
+      "sha256": "86928559cf4bec6c95cdb8853b302af7aa2d00efec6a1efc7b8479fb39bed3d5"
+    },
+    "skills/embedded-software-engineering/references/capability-assurance.md": {
+      "bytes": 2205,
+      "sha256": "3dd5cf583e2c3aebc26b0b20c3b7a14532aa8d0ea81bd8c19fe3eb0872bff4f9"
+    },
+    "skills/embedded-software-engineering/references/client-adapters.md": {
+      "bytes": 2851,
+      "sha256": "aca20c81ed2c5c6b0060f588a82f78fd3339c1f2cc35722e3ce46bc5a9594828"
+    },
+    "skills/embedded-software-engineering/references/companion-software.md": {
+      "bytes": 3698,
+      "sha256": "7e8f99051da32cdeb312952c608253dbe16d130f56fb22f4ce44e12388ea95d9"
+    },
+    "skills/embedded-software-engineering/references/debugging.md": {
+      "bytes": 3494,
+      "sha256": "0574175e3a81bcc778794ff255809cc0ef2ab61c353bb39154a4f5d28837d6a9"
+    },
+    "skills/embedded-software-engineering/references/embedded-linux.md": {
+      "bytes": 3357,
+      "sha256": "0bde85ac90d58572ecf4c9e5da59750ba6c38197477e16a33dc10a962dc2de45"
+    },
+    "skills/embedded-software-engineering/references/engineering-pitfalls.md": {
+      "bytes": 18048,
+      "sha256": "3356263200707bba71931afe65e58b17eea00fac097f75df6f4dab4e843e29a0"
+    },
+    "skills/embedded-software-engineering/references/file-driven-governance.md": {
+      "bytes": 7794,
+      "sha256": "5991422928502aee61c2742859ef2deda0600c90e8679426315366a84732de0a"
+    },
+    "skills/embedded-software-engineering/references/force-loop-optimization.md": {
+      "bytes": 8901,
+      "sha256": "ab01795c3e5a40967c4518b026d35bd901ad0ec36764096b038b60f44394fb27"
+    },
+    "skills/embedded-software-engineering/references/governance.md": {
+      "bytes": 4815,
+      "sha256": "1392c8679bd29404bcb05ef7b5522a2032c62264f89416a7603f306aec9c747f"
+    },
+    "skills/embedded-software-engineering/references/lifecycle.md": {
+      "bytes": 4550,
+      "sha256": "cececc38083b1d844795c70d98a840de8efe0ec48c3fe1dee63e24f73b786f83"
+    },
+    "skills/embedded-software-engineering/references/maintenance.md": {
+      "bytes": 3069,
+      "sha256": "9a67300d8263d623f95d49bddc9f0665617bb21a3725ff0c2c70c5952d744f18"
+    },
+    "skills/embedded-software-engineering/references/records-lifecycle.md": {
+      "bytes": 3986,
+      "sha256": "e1ad16f2d3bf2fb8b6d148eaf6ed260c662d112330b75548a4822f75198c2656"
+    },
+    "skills/embedded-software-engineering/references/rtos.md": {
+      "bytes": 3321,
+      "sha256": "40ae1016be0bbc2465cb0c80198057ca3dc53793e66e5c262249dcd8726ebbd7"
+    },
+    "skills/embedded-software-engineering/references/token-efficiency.md": {
+      "bytes": 3224,
+      "sha256": "659a28cc1c7470ed2cfe76fb324e857ce3de7ea18023b053fce54dafe68835ce"
+    },
+    "skills/embedded-software-engineering/references/usage.md": {
+      "bytes": 1744,
+      "sha256": "dfc76504add135ee69bd9c645ed1411cebc9f46c64354d73f19bf88063a3c1d3"
+    },
+    "skills/embedded-software-engineering/references/verification-release.md": {
+      "bytes": 4659,
+      "sha256": "2d19eef5ea0b3b5ccb81dc44317093711e24ec78a22359c1ce800419b45ffedf"
+    },
+    "skills/engineering-contract-and-confirmation/PROVENANCE.md": {
+      "bytes": 1570,
+      "sha256": "2af78f3ca31e45ee2f25c5c2ebceef59a59fc7f0307139e0d9ef1f8b400d0974"
+    },
+    "skills/engineering-contract-and-confirmation/SKILL.md": {
+      "bytes": 5667,
+      "sha256": "a4cc2a3de37bf0e676f95abf345100b30dce0cf3ab5a465ddf25c6046c5bbf6d"
+    },
+    "skills/engineering-contract-and-confirmation/agents/openai.yaml": {
+      "bytes": 492,
+      "sha256": "f114be1e7b0b936221a4b947f177ed2f1c7f1cbe50177e4de4d1f9ef3fd635e6"
+    },
+    "skills/engineering-contract-and-confirmation/assets/templates/AMENDMENT.json": {
+      "bytes": 443,
+      "sha256": "4188a785621418874349f4b4e8a41f688bd6f9e2a46637f66c8d0ed298551e13"
+    },
+    "skills/engineering-contract-and-confirmation/assets/templates/CONFIRMATION-PACKET.md": {
+      "bytes": 1266,
+      "sha256": "650e9cc439fa08f5f32395ea1797e78275c10e7e82e155927668d793e0b762d4"
+    },
+    "skills/engineering-contract-and-confirmation/references/amendment-and-drift.md": {
+      "bytes": 2617,
+      "sha256": "0b95799656160573de616cd4dc56bb4b64caea877e32fbc7e2d1975eb692e4fc"
+    },
+    "skills/engineering-contract-and-confirmation/references/confirmation-packet.md": {
+      "bytes": 3578,
+      "sha256": "c0f5bf1f5c4a0235889bc6655c3675d066e21cc27e0ac34d5811cf0a2e69fd9e"
+    },
+    "skills/engineering-contract-and-confirmation/references/design-consistency.md": {
+      "bytes": 3256,
+      "sha256": "e11b8e241fab0c350065e478f715d104d9f62d652bf47f39dee8d4f06bc882cf"
+    },
+    "skills/weekly-governance-learning/SKILL.md": {
+      "bytes": 3816,
+      "sha256": "fdfb39ee2bcc91108cf51af45163b849107fca63a69b800ccf627abb4c60fac3"
+    },
+    "skills/windows-crash-forensics/PROVENANCE.md": {
+      "bytes": 1542,
+      "sha256": "5207c105af6e968049298baf7261b286f49472acfec5e1faabf8a7eefc6a2372"
+    },
+    "skills/windows-crash-forensics/SKILL.md": {
+      "bytes": 10645,
+      "sha256": "006b4dbdfc27015f02e4e83b57ed0ea0d8ef5d6c725f9e69300f8a9e55987f68"
+    },
+    "skills/windows-crash-forensics/references/bugcheck-codes.md": {
+      "bytes": 5206,
+      "sha256": "d79d529d985a1ea6d6f4570884f911c2a29b41a1c80cdc77fb5cd369e0e6e05f"
+    },
+    "skills/windows-crash-forensics/references/evidence-chain.md": {
+      "bytes": 6969,
+      "sha256": "54dd81499f907126663f780658a0b2eefa68aa616db0018fa2ec91f5e4e03573"
+    },
+    "skills/windows-crash-forensics/references/triage-playbook.md": {
+      "bytes": 5936,
+      "sha256": "c29b92f538882ff912fe84bb1a8e8ca98aa1ca3ab08581dd3a39f72e9e4def21"
+    },
+    "tests/test_capability_assets.py": {
+      "bytes": 26297,
+      "sha256": "c0cc153ffab86e7c30ce90e45db25b4b65423883baace44ed272b8ecca504625"
+    },
+    "tests/test_distribution.py": {
+      "bytes": 10680,
+      "sha256": "1ae1389016bbbc6321ebcc39838d9742763432aa077a7a5b54eba0b479834aba"
+    },
+    "tests/test_lesson_checks.py": {
+      "bytes": 1725,
+      "sha256": "b5eb704f693c2b6ced8ae314ed66281d3b4e7f567e47916c357333d4be3d2b5d"
+    },
+    "tests/test_portable_install.py": {
+      "bytes": 17260,
+      "sha256": "7b628c1e6f8febc14eb010f4a77e9ff3be34ab0a38af1c44728d70b687f5837b"
+    },
+    "tests/test_verify_release.py": {
+      "bytes": 11045,
+      "sha256": "9c8f3dfd272d0f81e93ba686ac328f489a7d77e9b4b16b84c105ef137db908a7"
+    },
+    "tests/test_weekly_learning.py": {
+      "bytes": 12598,
+      "sha256": "463ae140196f8168d2bb9984e17220e1d42744d9d4089d62d2d37cfdd95a1b4a"
+    },
+    "tools/agentos_toolkit.py": {
+      "bytes": 3920,
+      "sha256": "514e2cae614bf9121eb4ceb1755c413c6564c946544f6b0f5c689cbade1162cc"
+    },
+    "tools/capability_assets.py": {
+      "bytes": 32773,
+      "sha256": "8c722357e1c886baac9fecdab6d282e42574c6460ffdcc34fbe2b41613ee3775"
+    },
+    "tools/distribution.py": {
+      "bytes": 11119,
+      "sha256": "8fb1a9628e34abf90c3bd0e243be2ab02c69c2e1fafe3e45313cdbb126b92f99"
+    },
+    "tools/lesson_checks.py": {
+      "bytes": 991,
+      "sha256": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce"
+    },
+    "tools/portable_install.py": {
+      "bytes": 21132,
+      "sha256": "264a6ad89c1357d645d8dcf84f44f96d39652a31f663d05b675fad24b2a26686"
+    },
+    "tools/security_check.ps1": {
+      "bytes": 25831,
+      "sha256": "f1230be26ad7cecf5fa2da9aa5c35902f9bed7ba13654a6d078b96af1e89e36c"
+    },
+    "tools/verify_release.py": {
+      "bytes": 14792,
+      "sha256": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14"
+    },
+    "tools/weekly_learning.py": {
+      "bytes": 37837,
+      "sha256": "2b2c548d99849fe8d2b66b6c4770215ab13965172aa19f0a72c45b694c4f22e5"
+    }
+  },
+  "schema": "agentos-portable-bundle-v1"
+}

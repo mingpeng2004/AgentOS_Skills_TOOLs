@@ -1,0 +1,14 @@
+{
+  "repository": "OWNER/REPOSITORY",
+  "repository_id": 0,
+  "authorization": {
+    "reference": "REPLACE with explicit owner approval reference",
+    "license": "MIT"
+  },
+  "agentos_root": "/absolute/installed/AgentOS",
+  "project_roots": [],
+  "skill_roots": [],
+  "authored_roots": [],
+  "learning_sources": [],
+  "max_directories": 160000
+}

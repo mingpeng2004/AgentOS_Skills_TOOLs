@@ -1,0 +1,31 @@
+{
+  "_comment": "矢量标注层配置模板。每一项的 base 指向 2K 底图相对路径；zh/en 各自成套。labels 与 crit 必须与画面里真实存在的东西一致——不一致时用 OVERRIDE 表人工校准，不要另起一套口径。",
+  "canvas": {
+    "width": 1700,
+    "height": 952,
+    "dpi": 170
+  },
+  "band": {
+    "top_ratio": 0.243,
+    "paper": "#FBF9F5",
+    "rule": "#E8E4DD"
+  },
+  "items": {
+    "a1": {
+      "base": "raw/a1.png",
+      "accent": "#826430",
+      "zh": {
+        "title": "同一赛道的三种走法",
+        "sub": "控制方式对比",
+        "labels": ["绕田埂", "抄近道", "河闸终点"],
+        "crit": "只改一个变量：路线怎么选"
+      },
+      "en": {
+        "title": "Three ways round the same track",
+        "sub": "Control method",
+        "labels": ["along the ridge", "straight across", "the sluice gate"],
+        "crit": "One variable changes: how the route is chosen"
+      }
+    }
+  }
+}
