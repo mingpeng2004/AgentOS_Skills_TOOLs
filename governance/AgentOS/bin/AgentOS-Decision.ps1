@@ -167,7 +167,7 @@ function Invoke-DecisionTool-Ming {
             $snapshot = Join-Path $directory ($DecisionId + '.proposal.json')
             [IO.File]::Copy([IO.Path]::GetFullPath($ProposalPath), $snapshot, $false)
             $record = [PSCustomObject][ordered]@{
-                schema = 'agentos-decision-v1'; agentos_version = '1.8.5'
+                schema = 'agentos-decision-v1'; agentos_version = '1.8.6'
                 decision_id = $DecisionId; project_root = $root; task_id = $proposal.task_id
                 proposal_hash = Get-DecisionHash-Ming $snapshot; policy_hash = $policy.Hash
                 fact_sources = $sources; state = 'proposed'; created_at_utc = $now.ToString('o')

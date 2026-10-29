@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.8.5",
+  "agentos_version": "1.8.6",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {
@@ -483,7 +483,32 @@
       "skill_roots": [],
       "rule_files": [],
       "entry": "runtime/managed-client-entry.md",
-      "limits": "Local process, executable product metadata, and a window titled Magpie were observed. Whether this is an agent client is unverified; no native governance or Skill-loading surface is established. Only the portable fallback is advertised. Runtime import and behavior remain unknown."
+      "limits": "Magpie is observed as a running app and as the host of the shared Skill library that the Codex symlinked view resolves to. Whether Magpie itself is an agent client is unverified, and no native governance or Skill-loading surface is established for it. Its Skill library is classified reference_only except for the five hash-verified AgentOS Skills. Runtime import and behavior remain unknown.",
+      "third_party_skill_corpus": {
+        "bundled_skill_count": 120,
+        "location": "${USER_HOME}/.config/magpie/library/skills",
+        "governance_state": "reference_only",
+        "role": "shared_skill_library",
+        "verified_shared_skills": [
+          "embedded-software-engineering",
+          "engineering-contract-and-confirmation",
+          "production-skill-routing",
+          "weekly-governance-learning",
+          "windows-crash-forensics"
+        ],
+        "overlaps_with_agentos": [
+          "capability-matrix",
+          "skill-import-gate",
+          "self-improving-agent",
+          "source-absorption",
+          "engineering-pitfall-library",
+          "resource-index",
+          "untrusted-content",
+          "prompt-optimizer",
+          "skill-estate"
+        ],
+        "note": "This library is the shared Skill store that several clients mount, including the Codex symlinked view. The five AgentOS-governed Skills it carries are byte-identical to their canonical sources and are registered as verified shared sources. The remaining Skills are third-party providers classified reference_only; AgentOS routing stays authoritative and the library never becomes a second governance body."
+      }
     },
     {
       "id": "minimax-code",

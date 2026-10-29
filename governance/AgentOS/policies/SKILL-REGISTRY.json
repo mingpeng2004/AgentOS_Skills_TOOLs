@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.8.5",
+  "agentos_version": "1.8.6",
   "capabilities": [
     {
       "acceptance": [
@@ -3784,6 +3784,65 @@
         "Report background_task_tools_published, background_subagent_launchable and background_subagent_unreachable as separate states with evidence.",
         "Never implement a token reduction by disabling background execution; escalate a client-side product limit as a client-side limit."
       ]
+    },
+    {
+      "acceptance": [
+        "Scan and learning coverage are complete within the declared roots, or the exclusion is explicit.",
+        "The published set equals the sealed install manifest and the remote readback matches the local package.",
+        "Every new or changed capability carries an independent review artifact."
+      ],
+      "availability": "mapped",
+      "domain": "H",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Learning source absent or unreadable",
+          "response": "Record the absence explicitly; do not report coverage as complete."
+        },
+        {
+          "failure": "Publication succeeded but the remote tree differs",
+          "response": "Treat the publication as failed and repair the publisher, not the manifest."
+        },
+        {
+          "failure": "A third-party Skill overlaps an AgentOS capability",
+          "response": "Keep AgentOS routing authoritative and record the overlap as reference-only."
+        }
+      ],
+      "group": "meta",
+      "id": "meta-weekly-learning",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "The weekly cycle updates the governed corpus; it does not by itself prove that a client loaded it. Runtime import and behavior remain separately attested states.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "weekly learning outcome linked to task, review and publication evidence"
+        }
+      ],
+      "provider": "weekly",
+      "resources": [
+        "references/weekly-learning.md"
+      ],
+      "scenarios": [
+        "Iterate the AgentOS capability matrix from one evidence-backed weekly learning cycle."
+      ],
+      "triggers": [
+        "周迭代",
+        "weekly learning",
+        "weekly review",
+        "learning iteration",
+        "周任务"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the declared learning sources, the capability registry and the current release state.",
+        "Strengthen an existing capability when the learning fits it; register a new capability when it is a real gap.",
+        "Produce the reviewed, gated and published corpus update, then read the remote state back."
+      ]
     }
   ],
   "providers": [
@@ -3821,6 +3880,11 @@
       "bundled": "skills/requirements-anchoring",
       "id": "requirements",
       "skill": "requirements-anchoring"
+    },
+    {
+      "bundled": "skills/weekly-governance-learning",
+      "id": "weekly",
+      "skill": "weekly-governance-learning"
     }
   ],
   "schema": "agentos-skill-registry-v1",

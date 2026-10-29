@@ -10,6 +10,23 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "bin"))
 import agentos_import as tool
 
 
+def replace_with_link(link_path, target_path):
+    """Replace a directory with a real symbolic link to target_path.
+
+    A real link is used rather than a mock so the resolution path under test
+    is the one that runs on a real host. If the platform refuses symlinks the
+    test is skipped instead of silently passing.
+    """
+    import os
+    if os.name == "nt" and not Path(target_path).is_dir():
+        raise unittest.SkipTest("directory symlink target required")
+    shutil.rmtree(link_path)
+    try:
+        os.symlink(str(target_path), str(link_path), target_is_directory=True)
+    except (OSError, NotImplementedError) as exc:
+        raise unittest.SkipTest("symlink unavailable: " + str(exc))
+
+
 class ImportTests(unittest.TestCase):
     def setUp(self):
         self.root = Path(tempfile.mkdtemp(prefix="agentos-import-"))
@@ -195,6 +212,45 @@ class ImportTests(unittest.TestCase):
         self.assertEqual(receipt["missing_skills"], [])
         self.assertEqual(Path(receipt["skill_checks"][0]["path"]), profile_root / "fixture-method")
         self.assertEqual(receipt["skill_checks"][0]["status"], "verified_files")
+
+    def test_linked_view_of_verified_shared_source_is_accepted(self):
+        """A link that resolves to a verified shared source is the same content."""
+        target = self.parity_fixture()
+        shared = self.root / "shared/skills/fixture-method"
+        shutil.copytree(self.root / "skills/fixture-method", shared)
+
+        bindings_path = self.root / ".local/host-bindings.json"
+        bindings = json.loads(bindings_path.read_text())
+        bindings["shared_skill_roots"] = [str(self.root / "shared/skills")]
+        bindings["shared_source_verification"] = [{
+            "skill": "fixture-method", "canonical_root": str(shared),
+            "file_sha256": tool.skill_tree(shared)}]
+        bindings_path.write_text(json.dumps(bindings))
+
+        linked_candidate = target / "skills/fixture-method"
+        replace_with_link(linked_candidate, shared)
+        self.assertTrue(tool.linked(linked_candidate))
+        with mock.patch.object(tool, "skill_tree", wraps=tool.skill_tree):
+            receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+
+        self.assertEqual(receipt["skill_checks"][0]["status"], "verified_files")
+        self.assertEqual(receipt["skill_checks"][0]["availability"], "client_target_verified")
+        self.assertEqual(receipt["missing_skills"], [])
+
+    def test_linked_view_of_unverified_source_stays_refused(self):
+        """A link that resolves to anything else must not become a target."""
+        target = self.parity_fixture()
+        elsewhere = self.root / "elsewhere/fixture-method"
+        shutil.copytree(self.root / "skills/fixture-method", elsewhere)
+
+        linked_candidate = target / "skills/fixture-method"
+        replace_with_link(linked_candidate, elsewhere)
+        self.assertTrue(tool.linked(linked_candidate))
+        with mock.patch.object(tool, "skill_tree", wraps=tool.skill_tree):
+            receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+
+        self.assertNotEqual(receipt["skill_checks"][0]["status"], "verified_files")
+        self.assertEqual(receipt["skill_checks"][0]["availability"], "canonical_reference_only")
 
     def test_adapter_drift_rejected(self):
         target = self.parity_fixture()

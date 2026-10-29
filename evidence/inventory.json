@@ -212,9 +212,9 @@
   "projects_inspected": 59,
   "scan_issues": [],
   "scope_complete": true,
-  "skill_sources": 2243,
+  "skill_sources": 2244,
   "states": {
-    "deduplicated": 24,
+    "deduplicated": 25,
     "exported": 6,
     "reference_only": 2213
   },

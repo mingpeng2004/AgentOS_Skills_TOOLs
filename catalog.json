@@ -17597,10 +17597,11 @@
       "state": "reference_only"
     },
     {
-      "digest": "a12aef1585f2eb9f147806e44dfd1d8ed494780f4f4f0bdac592af43196e5fef",
+      "digest": "34e1534ddfca0eab5745819cd0f577db4944fb54ad302e32481dddf22e7736f0",
       "export": "skills/weekly-governance-learning",
       "files": {
-        "SKILL.md": "fdfb39ee2bcc91108cf51af45163b849107fca63a69b800ccf627abb4c60fac3"
+        "SKILL.md": "fdfb39ee2bcc91108cf51af45163b849107fca63a69b800ccf627abb4c60fac3",
+        "references/weekly-learning.md": "9064855fc4c29252389df7b1df38962646dcd56b6068728ce144cbac947aecd0"
       },
       "license": "MIT",
       "license_notices": [
@@ -17635,6 +17636,14 @@
       "name": "weekly-governance-learning",
       "source_category": "client",
       "source_id": "0452892291ba",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "e834751b0ec2",
       "state": "deduplicated"
     },
     {
@@ -18115,5 +18124,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2243
+  "source_count": 2244
 }

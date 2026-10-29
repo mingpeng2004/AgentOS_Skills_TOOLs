@@ -132,6 +132,35 @@ def skill_tree(root):
     return tree
 
 
+def resolve_verified_shared(candidate, resolved_paths):
+    """Resolve a linked Skill view to a verified canonical source.
+
+    A client may expose a Skill through a symlinked root (for example a shared
+    library mounted into several client homes). Such a view is the same content
+    as its source, so it must not be reported as a missing target. It is
+    accepted only when it resolves to a source that is already hash-verified
+    for this client and the content matches byte-for-byte; a link to anything
+    else stays refused.
+    """
+    try:
+        resolved = Path(candidate).resolve()
+    except OSError:
+        return None
+    for source in (resolved_paths.get("shared_sources") or {}).values():
+        root = Path(source)
+        try:
+            if not root.is_dir() or root.resolve() != resolved:
+                continue
+        except OSError:
+            continue
+        try:
+            if skill_tree(resolved) == skill_tree(root):
+                return resolved
+        except (Blocked, OSError, ValueError):
+            continue
+    return None
+
+
 def host_and_paths(root, client):
     host_file = root / ".local/host-bindings.json"
     if host_file.exists() and linked(host_file):
@@ -223,8 +252,18 @@ def client_parity(root, client, project, required_skills):
         # it appears first; choose the first complete non-reparse target instead.
         selected = None
         for candidate in target_choices:
-            if not (candidate / "SKILL.md").is_file() or linked(candidate):
+            if not (candidate / "SKILL.md").is_file():
                 continue
+            if linked(candidate):
+                # A linked Skill view is acceptable only when it resolves to a
+                # verified canonical source and its content matches it
+                # byte-for-byte. The link is then a view of the same content,
+                # not a divergent copy; the target is still never trusted
+                # because it is a link (DEC-064/071).
+                resolved_shared = resolve_verified_shared(candidate, resolved_paths)
+                if resolved_shared is None:
+                    continue
+                candidate = resolved_shared
             try:
                 skill_tree(candidate)
             except (Blocked, OSError, ValueError):

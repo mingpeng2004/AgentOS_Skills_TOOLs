@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.8.5",
+  "agentos_version": "1.8.6",
   "confirmation_rule": "Framework-level domains require explicit user confirmation; preference tier may default after 300 s; contract recorded in .agentos/contract.",
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
@@ -101,13 +101,14 @@
       "governance/AgentOS/skills/engineering-contract-and-confirmation/references/confirmation-packet.md",
       "governance/AgentOS/skills/engineering-contract-and-confirmation/references/design-consistency.md",
       "governance/AgentOS/skills/weekly-governance-learning/SKILL.md",
+      "governance/AgentOS/skills/weekly-governance-learning/references/weekly-learning.md",
       "governance/AgentOS/skills/windows-crash-forensics/PROVENANCE.md",
       "governance/AgentOS/skills/windows-crash-forensics/SKILL.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/bugcheck-codes.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "6d559550f5b56376576473ceaadeda2b18d9653906411b8c067e9cb61a169100",
+    "source_manifest_sha256": "2a39ee29d446c350e2a5dd242fc0cc45cdd80bf53b68e253d7854b6142cfbc59",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
         "meta-background-agent",
@@ -225,6 +226,7 @@
     "skills/engineering-contract-and-confirmation/references/confirmation-packet.md",
     "skills/engineering-contract-and-confirmation/references/design-consistency.md",
     "skills/weekly-governance-learning/SKILL.md",
+    "skills/weekly-governance-learning/references/weekly-learning.md",
     "skills/windows-crash-forensics/PROVENANCE.md",
     "skills/windows-crash-forensics/SKILL.md",
     "skills/windows-crash-forensics/references/bugcheck-codes.md",

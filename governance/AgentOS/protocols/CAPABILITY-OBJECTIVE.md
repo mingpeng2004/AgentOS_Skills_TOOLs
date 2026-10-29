@@ -1,6 +1,6 @@
 # AgentOS 能力目标清单（CAPABILITY-OBJECTIVE）
 
-> 版本：AgentOS 1.8.5 · 注册表 1.4.0 · 能力总数 67
+> 版本：AgentOS 1.8.6 · 注册表 1.4.0 · 能力总数 68
 >
 > 本文件由 `policies/SKILL-REGISTRY.json` 生成（生成器：`bin/gen_capability_objective.py`），
 > 是**能力集合的机读基准**。`tests/verify_matrix_release.py` 会抽取本文件中每行开头的
@@ -103,10 +103,11 @@ meta-escalation  H/meta · mapped · core/production-skill-routing · 连续失�
 meta-no-fabrication  H/meta · mapped · core/production-skill-routing · 数据校验、零编造、证据真实性 · 2 项验收
 meta-token-budget  H/meta · protocol · governance/agentos-governed-integration · Token预算、token效率、上下文压缩、context pressure · 4 项验收
 meta-background-agent  H/meta · protocol · governance/agentos-governed-integration · 后台子智能体、后台运行、background agent、background subagent · 3 项验收
+meta-weekly-learning  H/meta · mapped · weekly/weekly-governance-learning · 周迭代、weekly learning、weekly review、learning iteration · 3 项验收
 
 ## 汇总
 
 - candidate: 18 项
-- mapped: 28 项
+- mapped: 29 项
 - protocol: 21 项
-- 合计: 67 项
+- 合计: 68 项
