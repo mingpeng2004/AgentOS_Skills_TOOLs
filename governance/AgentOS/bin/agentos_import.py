@@ -306,6 +306,55 @@ def client_parity(root, client, project, required_skills):
     return state, checks, skill_checks, missing, native_missing
 
 
+def client_attestations(project: Path, client: str, manifest_sha: str):
+    """Read the client's own import and behavior attestations, if any.
+
+    A client that can report reading the rules, or that has refused a known
+    violation, states so in a file under the project's evidence directory. The
+    attestation is only honoured when it is bound to the exact manifest that is
+    being verified now: an attestation from an older manifest describes a
+    different set of rules and must not be carried forward.
+
+    Absent, malformed or stale attestations leave the state unattested. They
+    never become a pass by omission.
+    """
+    states = {"import_reported": "unattested", "behavior_attested": "unattested"}
+    directory = project / ".agentos/evidence"
+    if not directory.is_dir():
+        return states, []
+    records = []
+    for path in sorted(directory.glob("client-attestation-*.json")):
+        try:
+            data = load(path)
+        except (Blocked, OSError, ValueError):
+            continue
+        if data.get("client") != client:
+            continue
+        if data.get("manifest_sha256") != manifest_sha:
+            continue
+        if not isinstance(data.get("evidence"), list) or not data["evidence"]:
+            continue
+        intact = True
+        for item in data["evidence"]:
+            if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+                intact = False
+                break
+            referenced = Path(item["path"])
+            if not referenced.is_absolute():
+                referenced = project / referenced
+            if not referenced.is_file() or digest(referenced) != item.get("sha256"):
+                intact = False
+                break
+        if not intact:
+            continue
+        records.append({"path": str(path), "sha256": digest(path), "state": data.get("state")})
+        if data.get("state") == "reported" and states["import_reported"] == "unattested":
+            states["import_reported"] = "reported"
+        if data.get("state") == "passed" and states["behavior_attested"] == "unattested":
+            states["behavior_attested"] = "passed"
+    return states, records
+
+
 def verify(root: Path, client: str, project: Path, output: Path):
     root = Path(root)
     project = Path(project)
@@ -341,6 +390,8 @@ def verify(root: Path, client: str, project: Path, output: Path):
                 raise Blocked("Project overlay missing or changed: " + item["path"])
         required_skills = strings(overlay.get("required_skills", []), "required_skills")
     parity, client_checks, skill_checks, missing, native_missing = client_parity(root, client, project, required_skills)
+    attested, attestation_records = client_attestations(
+        project, client, checked["manifest_sha256"])
     receipt = {
         "schema": "agentos-import-receipt-v2", "agent": client,
         "client_version": adapter.get("version", "unknown"),
@@ -352,10 +403,12 @@ def verify(root: Path, client: str, project: Path, output: Path):
         "required_skills": required_skills, "missing_skills": missing,
         "native_missing_skills": native_missing,
         "states": {"canonical_files": "validated", "file_parity": parity,
-                   "import_reported": "unattested", "behavior_attested": "unattested"},
+                   "import_reported": attested["import_reported"],
+                   "behavior_attested": attested["behavior_attested"]},
+        "evidence": attestation_records,
         "adapter_surfaces": adapter["surfaces"],
         "native_surface_reference": adapter.get("native_surface_reference"),
-        "limits": "Canonical hashes are observations, not proof of loading. File parity compares recorded deployed targets; runtime import and behavior remain unattested. Shared Skill files do not prove native discovery or tool execution. Host policy is local integrity evidence, not authentication.",
+        "limits": "Canonical hashes are observations, not proof of loading. File parity compares recorded deployed targets. Runtime import and behavior are honoured only from a client attestation bound to this exact manifest hash; without one they stay unattested. Shared Skill files do not prove native discovery or tool execution. Host policy is local integrity evidence, not authentication.",
         "observed_at": datetime.now(timezone.utc).isoformat()
     }
     output = Path(os.path.abspath(output))

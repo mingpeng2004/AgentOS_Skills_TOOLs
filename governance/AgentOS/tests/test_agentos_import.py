@@ -296,3 +296,84 @@ class ImportTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class AttestationTests(unittest.TestCase):
+    """A client attestation may promote import/behavior, but only when it is
+    bound to the manifest being verified and its evidence is intact.
+
+    The fixture is shared with ImportTests, but the cases are separate so the
+    suite does not run the same test twice.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="agentos-attestation-")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.fixture = ImportTests("test_real_target_and_complete_skill_tree_parity")
+        self.fixture.setUp()
+        self.addCleanup(self.fixture.doCleanups)
+        self.root = self.fixture.root
+
+    def parity_fixture(self):
+        return self.fixture.parity_fixture()
+
+    def attestation(self, manifest_sha, evidence_path, evidence_sha, state="reported"):
+        path = self.root / "project/.agentos/evidence/client-attestation-fixture.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({
+            "schema": "agentos-client-attestation-v1", "client": "fixture",
+            "state": state, "manifest_sha256": manifest_sha,
+            "evidence": [{"path": str(evidence_path), "sha256": evidence_sha}]}), encoding="utf-8")
+        return path
+
+    def test_absent_attestation_stays_unattested(self):
+        self.parity_fixture()
+        receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+        self.assertEqual(receipt["states"]["import_reported"], "unattested")
+        self.assertEqual(receipt["states"]["behavior_attested"], "unattested")
+
+    def test_bound_attestation_is_honoured(self):
+        self.parity_fixture()
+        evidence = self.root / "project/.agentos/evidence/witness.txt"
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text("client reported reading the rules\n", encoding="utf-8")
+        manifest_sha = tool.digest(self.root / "runtime/IMPORT-MANIFEST.json")
+        self.attestation(manifest_sha, evidence, tool.digest(evidence))
+        receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+        self.assertEqual(receipt["states"]["import_reported"], "reported")
+        self.assertEqual(receipt["states"]["behavior_attested"], "unattested")
+        self.assertTrue(receipt["evidence"])
+
+    def test_attestation_for_another_manifest_is_refused(self):
+        self.parity_fixture()
+        evidence = self.root / "project/.agentos/evidence/witness.txt"
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text("witness\n", encoding="utf-8")
+        self.attestation("0" * 64, evidence, tool.digest(evidence))
+        receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+        self.assertEqual(receipt["states"]["import_reported"], "unattested")
+
+    def test_attestation_with_tampered_evidence_is_refused(self):
+        self.parity_fixture()
+        evidence = self.root / "project/.agentos/evidence/witness.txt"
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text("witness\n", encoding="utf-8")
+        manifest_sha = tool.digest(self.root / "runtime/IMPORT-MANIFEST.json")
+        self.attestation(manifest_sha, evidence, "1" * 64)
+        receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+        self.assertEqual(receipt["states"]["import_reported"], "unattested")
+
+    def test_attestation_for_another_client_is_refused(self):
+        self.parity_fixture()
+        evidence = self.root / "project/.agentos/evidence/witness.txt"
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text("witness\n", encoding="utf-8")
+        manifest_sha = tool.digest(self.root / "runtime/IMPORT-MANIFEST.json")
+        path = self.root / "project/.agentos/evidence/client-attestation-fixture.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({
+            "schema": "agentos-client-attestation-v1", "client": "someone-else",
+            "state": "reported", "manifest_sha256": manifest_sha,
+            "evidence": [{"path": str(evidence), "sha256": tool.digest(evidence)}]}), encoding="utf-8")
+        receipt = tool.verify(self.root, "fixture", self.root / "project", self.root / "receipt.json")
+        self.assertEqual(receipt["states"]["import_reported"], "unattested")

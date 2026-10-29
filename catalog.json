@@ -655,6 +655,14 @@
       "license": "unknown",
       "name": "agent-governance-os",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "client",
+      "source_id": "a53d34fd909a",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "c384cc197563",
       "state": "reference_only"
@@ -712,7 +720,7 @@
       "name": "agentos-governed-integration",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "4bd2c0ecdde1",
+      "source_id": "1c3c676f9b4e",
       "state": "reference_only"
     },
     {
@@ -720,7 +728,7 @@
       "name": "agentos-governed-integration",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1c3c676f9b4e",
+      "source_id": "4bd2c0ecdde1",
       "state": "reference_only"
     },
     {
@@ -9205,6 +9213,30 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "186ba3690c85",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "mechanical-cam-lab",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d05e707d372f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "mechanical-cam-lab",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "44474c6a5251",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "mechanical-cam-lab",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "shared",
+      "source_id": "fa3db964e174",
       "state": "reference_only"
     },
     {
@@ -18171,5 +18203,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2250
+  "source_count": 2254
 }

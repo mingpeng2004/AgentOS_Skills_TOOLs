@@ -212,11 +212,11 @@
   "projects_inspected": 59,
   "scan_issues": [],
   "scope_complete": true,
-  "skill_sources": 2250,
+  "skill_sources": 2254,
   "states": {
     "deduplicated": 25,
     "exported": 6,
-    "reference_only": 2219
+    "reference_only": 2223
   },
   "verified_link_aliases": 121
 }

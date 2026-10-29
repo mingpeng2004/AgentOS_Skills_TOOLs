@@ -1,6 +1,6 @@
 # AgentOS 能力目标清单（CAPABILITY-OBJECTIVE）
 
-> 版本：AgentOS 1.8.7 · 注册表 1.4.0 · 能力总数 68
+> 版本：AgentOS 1.8.8 · 注册表 1.4.0 · 能力总数 68
 >
 > 本文件由 `policies/SKILL-REGISTRY.json` 生成（生成器：`bin/gen_capability_objective.py`），
 > 是**能力集合的机读基准**。`tests/verify_matrix_release.py` 会抽取本文件中每行开头的

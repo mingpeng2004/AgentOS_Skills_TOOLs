@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.8.7",
+  "agentos_version": "1.8.8",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {
@@ -550,7 +550,8 @@
         "observed_at": "2026-10-29",
         "note": "Not yet verified under this protocol. A client-local background task store exists; that is shell/background-task evidence, not subagent background evidence.",
         "evidence": null
-      }
+      },
+      "notes": "The managed rule surface is the Mavis profile skills root, where the adapter is a real file rather than a link. The global MiniMax skills root is a Magpie-owned symlink view of the shared library and stays a Skill root, never a required managed rule target."
     },
     {
       "id": "trae",

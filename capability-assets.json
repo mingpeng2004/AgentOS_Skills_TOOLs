@@ -506,7 +506,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -534,7 +534,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -544,7 +544,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/agentos_import.py",
       "hashes": {
-        "governance/AgentOS/bin/agentos_import.py": "60e76ccbc6f2f7b05845297703b4e9c5731aa5e1c03fa358ce9fda2c4bd20175"
+        "governance/AgentOS/bin/agentos_import.py": "909adff9da2215cf566c11931fe97ed03075f90d867751fb47b5ba26db101c5c"
       },
       "id": "tool.governance.agentos-import",
       "kind": "tool",
@@ -562,7 +562,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -590,7 +590,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": true,
@@ -618,7 +618,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -646,7 +646,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -674,7 +674,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -702,7 +702,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": true,
@@ -730,7 +730,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": true,
@@ -740,7 +740,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS-Decision.ps1": "7d89c8b4af5deecc9b04f3a84c17e9191034a391ab3126ff40f8cf6414fc804d"
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "7b26206a113e02b85fcc54e747841b2c6d0cc36fc3022d201bd603adc331d21f"
       },
       "id": "tool.governance.agentos-decision",
       "kind": "tool",
@@ -758,7 +758,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": true,
@@ -786,7 +786,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": true,
@@ -814,7 +814,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -846,7 +846,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -878,7 +878,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -910,7 +910,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     },
     {
       "canonical": false,
@@ -942,7 +942,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.7"
+      "version": "1.8.8"
     }
   ],
   "schema": "agentos-capability-assets-v1"
