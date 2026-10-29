@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.8.4",
+  "agentos_version": "1.8.5",
   "confirmation_rule": "Framework-level domains require explicit user confirmation; preference tier may default after 300 s; contract recorded in .agentos/contract.",
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
@@ -107,7 +107,7 @@
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "f116725ec0cde8b0b1afbe62e120cd81149642e3b12c15118d48d9b265f1f2df",
+    "source_manifest_sha256": "6d559550f5b56376576473ceaadeda2b18d9653906411b8c067e9cb61a169100",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
         "meta-background-agent",
@@ -141,6 +141,9 @@
   ],
   "required_files": [
     "README.md",
+    "adapters\\kimi\\SKILL.md",
+    "adapters\\minimax\\SKILL.md",
+    "adapters\\openclaw\\SKILL.md",
     "bin\\AgentOS-Contract.ps1",
     "bin\\AgentOS.ps1",
     "bin\\agentos_client_deploy.py",

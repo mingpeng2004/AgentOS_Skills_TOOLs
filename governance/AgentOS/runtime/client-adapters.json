@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.8.4",
+  "agentos_version": "1.8.5",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {
@@ -550,11 +550,25 @@
       "skill_roots": [],
       "rule_files": [],
       "entry": "runtime/managed-client-entry.md",
-      "limits": "The user_rules path is a directory for UI-managed global rule records, not a standalone file. No UI changes made. Keep global parity unknown until a supported UI-created rule is read back and compared with canonical entry; runtime remains unattested.",
+      "limits": "Trae's user_rules path is a directory for UI-managed global rule records, not a standalone file; it does not exist on this host. No UI changes were made and no global rule file was written, so global parity stays unknown. The built-in Skill corpus is reference-only. Runtime import and behavior remain unattested.",
       "native_surface_reference": {
         "url": "https://docs.trae.ai/ide/rules?_lang=zh",
         "checked_at": "2026-10-29T01:17:52.837740+00:00",
         "scope": "Official doc says %USERPROFILE%/.trae/user_rules is a local root directory. Create global rules via Settings > Rules and Memory; app writes/manage rules there. File format/naming not assumed."
+      },
+      "third_party_skill_corpus": {
+        "bundled_skill_count": 3,
+        "location": "${USER_HOME}/.trae/builtin_skills",
+        "skill_ids": [
+          "TRAE-code-review",
+          "TRAE-debugger",
+          "TRAE-generate-mini-app"
+        ],
+        "governance_state": "reference_only",
+        "overlaps_with_agentos": [
+          "code-review"
+        ],
+        "note": "Trae ships built-in Skills in a read-only area. They are third-party providers, not AgentOS-governed, and must not become a second governance body. The skill-config.json managedSkills map is empty, so no user-installed Skill surface is claimed."
       }
     },
     {
@@ -590,6 +604,79 @@
         "scope": "VS Code user-scope instruction files under %APPDATA%/Code/User/prompts; file extension .instructions.md and applyTo metadata."
       },
       "limits": "User-scope VS Code instruction file is separate from Copilot CLI ~/.copilot/instructions. Runtime import and behavior remain unattested until a current VS Code session reports loading it and passes a canary."
+    },
+    {
+      "id": "openclaw",
+      "display_name": "OpenClaw multi-channel AI gateway",
+      "version": "2026.7.1-2 (local npm package metadata, observed 2026-10-29)",
+      "source": "adapters/openclaw/SKILL.md",
+      "surfaces": [
+        "user_skill",
+        "project_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "open-claw"
+      ],
+      "skill_roots": [
+        "${USER_HOME}/.openclaw/workspace/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.openclaw/workspace/AGENTS.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "OpenClaw is installed as a global npm package and ships 51 bundled third-party Skills, but onboarding was never completed on this host: no openclaw.json existed and the agent workspace was absent. The workspace was created on 2026-10-29 with the AgentOS managed entry skill and a physical copy of production-skill-routing; both match the canonical source. The bundled ClawHub Skills are third-party providers outside AgentOS governance and must not become a second governance body. File parity is verified for installed files only: OpenClaw has not reported reading the rules and no behavior canary has run, so runtime import and behavior remain unattested. The gateway itself was never started on this host.",
+      "native_surface_reference": {
+        "url": "https://docs.openclaw.ai/tools/skills",
+        "checked_at": "2026-10-29T21:20:00+08:00",
+        "scope": "Vendor README documents workspace skills at ~/.openclaw/workspace/skills/<skill>/SKILL.md and injected prompt files AGENTS.md, SOUL.md, TOOLS.md. Verified against the installed package README on this host; the workspace itself is not created."
+      },
+      "third_party_skill_corpus": {
+        "bundled_skill_count": 51,
+        "location": "${APPDATA}/npm/node_modules/openclaw/skills",
+        "governance_state": "reference_only",
+        "overlaps_with_agentos": [
+          "skill-creator",
+          "coding-agent",
+          "session-logs"
+        ],
+        "note": "Third-party Skills are external providers. AgentOS routing decides when an AgentOS capability overlaps; a gap is registered in the AgentOS registry instead of growing silently in the bundle."
+      }
+    },
+    {
+      "id": "chat-cc",
+      "display_name": "chat-cc Lark/Feishu message gateway",
+      "version": "unknown (npm package removed; ~/.chat-cc residual config and one session remain)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "chatcc"
+      ],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Observed only as a residual directory: the npm package chat-cc is no longer installed, no process is running, and the last log entry is 2026-08-18. The residual config.yaml holds live-looking app credentials and must never be copied into a governance package, receipt or adapter. This client has no local rule or Skill surface on this host; only the portable fallback applies. Reinstalling the client is required before any file parity, import or behavior claim.",
+      "credential_handling": "Residual ~/.chat-cc/config.yaml contains an app_id/app_secret pair. It is classified as a credential and is excluded from every governance artifact, package and evidence file by the existing secret-pattern gate."
     }
   ],
   "future_client_rule": "Register a thin adapter and preserve unattested/blocked states; never copy a divergent governance body.",

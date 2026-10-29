@@ -640,6 +640,14 @@
       "name": "agent-governance-os",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "9bb906eb9ef8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "c384cc197563",
       "state": "reference_only"
     },
@@ -18107,5 +18115,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2242
+  "source_count": 2243
 }

@@ -145,9 +145,15 @@ def main():
     host_clients = bindings.get("clients", {})
     fallback_roots = {"minimax": Path.home() / ".minimax/skills",
                       "kimi": Path.home() / ".kimi/skills",
-                      "kimi-code": Path.home() / ".kimi-code/skills"}
+                      "kimi-code": Path.home() / ".kimi-code/skills",
+                      "openclaw": Path.home() / ".openclaw/workspace/skills"}
+    # Each verified client owns its own thin adapter body. A new client that
+    # is deployed but not listed here would be silently outside the release
+    # gate, so the checked set names the adapter directory explicitly.
+    adapter_dirs = {"minimax": "minimax", "kimi": "kimi", "kimi-code": "kimi",
+                    "openclaw": "openclaw"}
     users = {}
-    for client in ["codex", "minimax", "kimi", "kimi-code"]:
+    for client in ["codex", "minimax", "kimi", "kimi-code", "openclaw"]:
         # The binding key is the adapter id, which is not always the same as
         # the short name used by the routing tool (minimax-code vs minimax).
         binding_key = {"minimax": "minimax-code"}.get(client, client)
@@ -171,7 +177,7 @@ def main():
         tree = {p.relative_to(method).as_posix(): sha(p) for p in method.rglob("*") if p.is_file()}
         require(tree == source_tree, "Installed method drift: " + client)
         if client != "codex":
-            adapter = ROOT / "adapters" / ("minimax" if client == "minimax" else "kimi") / "SKILL.md"
+            adapter = ROOT / "adapters" / adapter_dirs[client] / "SKILL.md"
             installed = next((r / "agent-governance-os/SKILL.md" for r in roots
                               if (r / "agent-governance-os/SKILL.md").is_file()), None)
             require(installed is not None, "Governance adapter missing for client: " + client)
