@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.8.6",
+  "agentos_version": "1.8.7",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {

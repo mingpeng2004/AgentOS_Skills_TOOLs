@@ -28,6 +28,15 @@ canary to fail when the rule is deliberately violated. `unattested` is the hones
 state when the client exposes no trustworthy loading signal. `blocked` means a
 required source, hash, overlay or canary is missing.
 
+## Canary evidence
+
+`behavior_attested` needs an observed refusal at runtime, not a file that
+matches. `bin/agentos_canary.py` provides the known-failure probes for the
+governance path itself, and `protocols/BEHAVIOR-CANARIES.md` defines them. A
+green canary run shows that the governance path still refuses; it does not
+promote a client to `behavior_attested`. That still needs a client-owned run
+against that client's real path.
+
 ## New-client onboarding
 
 1. Register the client in `runtime/client-adapters.json`.

@@ -183,7 +183,7 @@
   "portable_agentos_profile": {
     "excluded_required_files": 54,
     "profile": "portable-owner-authorized",
-    "required_files": 53,
+    "required_files": 56,
     "test_template_sha256": "c99c66ce2a548537964306668e0f89f4973d56830f5347db36faa0114552f5be",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
@@ -212,11 +212,11 @@
   "projects_inspected": 59,
   "scan_issues": [],
   "scope_complete": true,
-  "skill_sources": 2244,
+  "skill_sources": 2250,
   "states": {
     "deduplicated": 25,
     "exported": 6,
-    "reference_only": 2213
+    "reference_only": 2219
   },
   "verified_link_aliases": 121
 }

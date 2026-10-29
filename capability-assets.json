@@ -486,6 +486,34 @@
         "meta-qc-gate"
       ],
       "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_canary.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_canary.py": "98512e59af5a51e773e4f262a94e611f2e36e07c917d659f1ab963a5631a6c5f"
+      },
+      "id": "tool.governance.agentos-canary",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-canary",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.7"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
       "entry": "governance/AgentOS/bin/agentos_client_deploy.py",
       "hashes": {
         "governance/AgentOS/bin/agentos_client_deploy.py": "0f3ecf8a57157de49c2b78cf4e21798844abd25aa3d5d908ddccbf4783b50b01"
@@ -506,7 +534,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -534,7 +562,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -562,7 +590,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": true,
@@ -590,7 +618,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -618,7 +646,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -646,7 +674,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -674,7 +702,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": true,
@@ -702,7 +730,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": true,
@@ -712,7 +740,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS-Decision.ps1": "9b88173e3e2c943037591f643738d7cda48f539f72624003f2c04e3b2b3b3c07"
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "7d89c8b4af5deecc9b04f3a84c17e9191034a391ab3126ff40f8cf6414fc804d"
       },
       "id": "tool.governance.agentos-decision",
       "kind": "tool",
@@ -730,7 +758,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": true,
@@ -758,7 +786,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": true,
@@ -786,7 +814,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -818,7 +846,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -850,7 +878,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -882,7 +910,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     },
     {
       "canonical": false,
@@ -914,7 +942,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.6"
+      "version": "1.8.7"
     }
   ],
   "schema": "agentos-capability-assets-v1"

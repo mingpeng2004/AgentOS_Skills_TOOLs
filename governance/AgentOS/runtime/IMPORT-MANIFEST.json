@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.8.6",
+  "agentos_version": "1.8.7",
   "confirmation_rule": "Framework-level domains require explicit user confirmation; preference tier may default after 300 s; contract recorded in .agentos/contract.",
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
@@ -108,7 +108,7 @@
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "2a39ee29d446c350e2a5dd242fc0cc45cdd80bf53b68e253d7854b6142cfbc59",
+    "source_manifest_sha256": "b47a226ca42b553116681cedb91988380b7d510582a26d426f52f8c61554c73d",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
         "meta-background-agent",
@@ -147,6 +147,7 @@
     "adapters\\openclaw\\SKILL.md",
     "bin\\AgentOS-Contract.ps1",
     "bin\\AgentOS.ps1",
+    "bin\\agentos_canary.py",
     "bin\\agentos_client_deploy.py",
     "bin\\agentos_import.py",
     "bin\\agentos_paths.py",
@@ -158,6 +159,7 @@
     "policies\\SKILL-REGISTRY.json",
     "profiles\\EMBEDDED.md",
     "protocols\\BACKGROUND-AGENT-EXECUTION.md",
+    "protocols\\BEHAVIOR-CANARIES.md",
     "protocols\\CAPABILITY-OBJECTIVE.md",
     "protocols\\CLIENT-ADAPTER-CONTRACT.md",
     "protocols\\CONTEXT-PIPELINE.md",
@@ -235,6 +237,7 @@
     "skills\\production-skill-routing\\SKILL.md",
     "skills\\visual-asset-production\\SKILL.md",
     "templates\\AGENTOS-PORTABLE-ENTRY.md",
+    "tests\\test_agentos_canary.py",
     "tests\\test_agentos_client_deploy.py",
     "tests\\test_agentos_import.py",
     "tests\\test_agentos_paths.py",

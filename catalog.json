@@ -72,6 +72,14 @@
       "name": "a11y-debugging",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "c26c3a4efa32",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "a11y-debugging",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "cd9eff9ff19a",
       "state": "reference_only"
     },
@@ -704,7 +712,7 @@
       "name": "agentos-governed-integration",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1c3c676f9b4e",
+      "source_id": "4bd2c0ecdde1",
       "state": "reference_only"
     },
     {
@@ -712,7 +720,7 @@
       "name": "agentos-governed-integration",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "4bd2c0ecdde1",
+      "source_id": "1c3c676f9b4e",
       "state": "reference_only"
     },
     {
@@ -2450,7 +2458,23 @@
       "name": "chrome-devtools",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "9f52790e6619",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "chrome-devtools",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "bc6412c25d21",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "chrome-devtools-cli",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "60602800ceec",
       "state": "reference_only"
     },
     {
@@ -3059,6 +3083,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "3abd2d58a9bc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "cookie-debugging",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "52cfc8f1fb5d",
       "state": "reference_only"
     },
     {
@@ -3707,6 +3739,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "667b31faabb9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "debug-optimize-lcp",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "6422a54f5755",
       "state": "reference_only"
     },
     {
@@ -8662,15 +8702,6 @@
       "state": "reference_only"
     },
     {
-      "kind": "client_entry",
-      "license": "not_applicable",
-      "name": "managed-client-entry",
-      "reason": "Managed AgentOS client instruction entry, not a Skill asset; use the canonical governance entrypoint.",
-      "source_category": "client",
-      "source_id": "a53d34fd909a",
-      "state": "reference_only"
-    },
-    {
       "license": "unknown",
       "name": "manim-composer",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
@@ -9246,6 +9277,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "714ed2327190",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "memory-leak-debugging",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4c2edd03f76f",
       "state": "reference_only"
     },
     {
@@ -16032,6 +16071,14 @@
       "name": "troubleshooting",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "f0020522c759",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "troubleshooting",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "f62a0b310b7b",
       "state": "reference_only"
     },
@@ -18124,5 +18171,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2244
+  "source_count": 2250
 }

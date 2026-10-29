@@ -1,6 +1,6 @@
 {
   "schema": "agentos-evidence-policy-v1",
-  "agentos_version": "1.8.6",
+  "agentos_version": "1.8.7",
   "ledger_relative_path": ".agentos\\evidence\\claims.jsonl",
   "allowed_statuses": [
     "verified",

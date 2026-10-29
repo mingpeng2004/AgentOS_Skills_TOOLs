@@ -88,6 +88,11 @@ def main():
                                args.output / (label + "-" + test + ".log")))
         results.append(run([sys.executable, "-B", str(root / "tests/test_agentos_skills.py")],
                            args.output / (label + "-matrix-tests.log")))
+        # The canary suite proves the known-failure probes still refuse. It must
+        # run in the release gate, or a weakened governance check would ship
+        # unnoticed.
+        results.append(run([sys.executable, "-B", str(root / "tests/test_agentos_canary.py")],
+                           args.output / (label + "-canary-tests.log")))
     registry = json.loads((ROOT / "policies/SKILL-REGISTRY.json").read_text(encoding="utf-8-sig"))
     objective_text = args.objective.read_text(encoding="utf-8-sig")
     requested = set(re.findall(r"(?m)^((?:req|arch|plan|hw|mech|id|emb|sw|ui|qa|mfg|km|meta|vis)-[a-z0-9-]+)\s", objective_text))

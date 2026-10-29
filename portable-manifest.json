@@ -22,12 +22,12 @@
       "sha256": "814185014c606d2d34c3f6db8a6ba9a5154b5d1f76c80c9607026a335fcb8d66"
     },
     "capability-assets.json": {
-      "bytes": 35856,
-      "sha256": "fca8b4887c66cbc667841404d0cb5d32b1a751f5ba7252fed05533ad631b1d67"
+      "bytes": 36740,
+      "sha256": "f2c0ed4c86e3c974d1c104006b15446183c4a56ca9f0ebd0a2b2ce5e18027162"
     },
     "catalog.json": {
-      "bytes": 680304,
-      "sha256": "fbddeafe47460c53865cd0bff5d3cdd3439ccfeb40b80452078b50c73c9be1e7"
+      "bytes": 682043,
+      "sha256": "927cd62520d12610a23b8d378a97a7cf9a3d80944a784fbce346d041868026f7"
     },
     "config/policy.example.json": {
       "bytes": 361,
@@ -47,7 +47,7 @@
     },
     "evidence/inventory.json": {
       "bytes": 6183,
-      "sha256": "bebaa487baaf725649f82177c413cf9d3e5f2a4a8908e5d016191fb4e00c4108"
+      "sha256": "eb59a3d66233ec4ac0b56a3ee2fa8dcf226703bd523d75531f7b3df0d6fa8651"
     },
     "evidence/learning.json": {
       "bytes": 1756,
@@ -59,11 +59,11 @@
     },
     "governance/AgentOS/README.md": {
       "bytes": 8629,
-      "sha256": "2140964fe1d4feab9bfb8a7b810d1dbac828e17fa6812c4bf145d30c8a528f20"
+      "sha256": "641f2cd6d5ec7decd42c07e73486ee3435338c428c089a562c02a669d4f4d58e"
     },
     "governance/AgentOS/VERSION": {
       "bytes": 7,
-      "sha256": "e205f0fd8680ae71179dcfbfc6fc81854d97ab565eaeee83363352baf670a770"
+      "sha256": "c6e804ddc0a154f4b3b4458b389118898c06d2dfb7947f1dcdcc17ee15926df1"
     },
     "governance/AgentOS/adapters/kimi/SKILL.md": {
       "bytes": 4285,
@@ -83,7 +83,7 @@
     },
     "governance/AgentOS/bin/AgentOS-Decision.ps1": {
       "bytes": 15332,
-      "sha256": "9b88173e3e2c943037591f643738d7cda48f539f72624003f2c04e3b2b3b3c07"
+      "sha256": "7d89c8b4af5deecc9b04f3a84c17e9191034a391ab3126ff40f8cf6414fc804d"
     },
     "governance/AgentOS/bin/AgentOS-Evidence.ps1": {
       "bytes": 30781,
@@ -92,6 +92,10 @@
     "governance/AgentOS/bin/AgentOS.ps1": {
       "bytes": 32829,
       "sha256": "62769f4475dc68b0c06a9c41a1c136d67f68893aecf07b41180d7820d7a8a14d"
+    },
+    "governance/AgentOS/bin/agentos_canary.py": {
+      "bytes": 15677,
+      "sha256": "98512e59af5a51e773e4f262a94e611f2e36e07c917d659f1ab963a5631a6c5f"
     },
     "governance/AgentOS/bin/agentos_client_deploy.py": {
       "bytes": 11377,
@@ -127,19 +131,19 @@
     },
     "governance/AgentOS/policies/APPROVAL-POLICY.json": {
       "bytes": 1237,
-      "sha256": "6e2a7a9b81e804a786a71db39404632ffafe52e4b54646848ae8f5feb3e72538"
+      "sha256": "9ef91e104fd4ae9f0668d11fb23e213f6e5204469656913be0b406cfe9e38640"
     },
     "governance/AgentOS/policies/DECISION-POLICY.json": {
       "bytes": 1072,
-      "sha256": "51a56723b3995f1b32518f1db3515396dece95cb8f6b43eff6f5d9f1e7615634"
+      "sha256": "2af758397756a16e0c601a36f706553af9e78dbdc6e51345e57c57e51d8c5cf3"
     },
     "governance/AgentOS/policies/EVIDENCE-POLICY.json": {
       "bytes": 2111,
-      "sha256": "d9c35bc0e75bedd9a7b39b6848036968edc803b384b7b587b8a351de0428007c"
+      "sha256": "e0f421f6cd22f8ac49b2e4782f86de464798e12e99e8e9374e004e68ea6695f5"
     },
     "governance/AgentOS/policies/INTERACTION-POLICY.json": {
       "bytes": 3962,
-      "sha256": "caf5e0c0cd1924037bf98a3b7a48090c76f192d777b3278e2e575881bf0cf3b5"
+      "sha256": "a220a0cd351c8877316094136b35677fe3c98663e71d36a26e9d3876cc0b10e3"
     },
     "governance/AgentOS/policies/REDACTION-TERMS.json": {
       "bytes": 2598,
@@ -147,11 +151,11 @@
     },
     "governance/AgentOS/policies/ROLE-ROUTING.json": {
       "bytes": 12787,
-      "sha256": "9667b3820b6f4900e94ebc5a3142a2f36c199063443cc032937071beceee6a2d"
+      "sha256": "59f3430ef4824f75fb98edbe84c7018ffb76154b1165167bf31be4785c062fb6"
     },
     "governance/AgentOS/policies/SKILL-REGISTRY.json": {
       "bytes": 136998,
-      "sha256": "9bdb467835b473a7fd8f2e41ee2b0a94723302d4879d8230a0a8a4136869dc41"
+      "sha256": "a069103d13fab5d9b37478748c97dfef04bbc266dec1a87c3c9f0e81b4459e17"
     },
     "governance/AgentOS/profiles/EMBEDDED.md": {
       "bytes": 2617,
@@ -169,13 +173,17 @@
       "bytes": 6349,
       "sha256": "c7594fe6e3e25769c6fd5171f47842ef467df6816f1c1dce52bdd6540e2684ae"
     },
+    "governance/AgentOS/protocols/BEHAVIOR-CANARIES.md": {
+      "bytes": 3290,
+      "sha256": "c9160e75e5bcdc777da167f300fec1b1d91bd9aae6b2d80ecebf69d7e181a1d0"
+    },
     "governance/AgentOS/protocols/CAPABILITY-OBJECTIVE.md": {
-      "bytes": 9705,
-      "sha256": "25c825c53a88ddcb22201ad5ee12fcdd7309ffd1859e4b5574462d2e501a4535"
+      "bytes": 9818,
+      "sha256": "3f6172486d7a74a3d50decc14033b6f5db7f020eceea31dc61e09e9592f61b5d"
     },
     "governance/AgentOS/protocols/CLIENT-ADAPTER-CONTRACT.md": {
-      "bytes": 2270,
-      "sha256": "29aaba8d6f09eeeb5673397959e16cf552de708820b3ed664cad5721ccfb8d85"
+      "bytes": 2761,
+      "sha256": "79528b9127445491b6f7b0b838ec8e5c476f1ce864676c7f58f7fce5e66ef5c1"
     },
     "governance/AgentOS/protocols/CONTEXT-PIPELINE.md": {
       "bytes": 1828,
@@ -298,12 +306,12 @@
       "sha256": "d054db5e2c800e271df74837d5da38616c7c58f61562bfc6bbf33a343fce7efa"
     },
     "governance/AgentOS/runtime/IMPORT-MANIFEST.json": {
-      "bytes": 15017,
-      "sha256": "ce3da7f57276f77252d59270be1c089d4b0fd17c9734ca226a655b60ad397b7c"
+      "bytes": 15123,
+      "sha256": "1d7c070bf1385ca9cf4e1f3798faf088dc7ce3739970c1e16c4517210e65ae81"
     },
     "governance/AgentOS/runtime/client-adapters.json": {
       "bytes": 31289,
-      "sha256": "b88272b0aa0064655ef4706a5a35f75856e2724a0d2b18c445d43c29e153c027"
+      "sha256": "e93ba27b71c1326a9ad0b4300ef5620d9a9b6242d43c0f7911398025d38bca58"
     },
     "governance/AgentOS/runtime/managed-client-entry.md": {
       "bytes": 2007,
@@ -633,6 +641,10 @@
       "bytes": 5354,
       "sha256": "edba292f707fadf1a47841a7fa9b8faa09b390824d8576d141a605337a3ad718"
     },
+    "governance/AgentOS/tests/test_agentos_canary.py": {
+      "bytes": 6146,
+      "sha256": "fe33754c730e2595570c8d93d40e0b226e4b15f666c01a8467d941c60e1649f2"
+    },
     "governance/AgentOS/tests/test_agentos_client_deploy.py": {
       "bytes": 6593,
       "sha256": "3d70ed385295eb9459a77f5d99dbc4059ef7df68d02cf10c9adc790b1aad1dda"
@@ -658,8 +670,8 @@
       "sha256": "ed194336bcb01d6677ae12d14cf4b53e9ee3df9cc55280c0248465b8b985ee22"
     },
     "governance/AgentOS/tests/verify_matrix_release.py": {
-      "bytes": 14378,
-      "sha256": "eb626b863222b59d03af150052b0f9f7ffd6e9b1a30db0742b70aa08385ed5cc"
+      "bytes": 14725,
+      "sha256": "7619e5fbb42423ad0f48e6c81259d7ef4a3e4f0da2f5bf0c9a950b5d938d348c"
     },
     "skills/embedded-software-engineering/PROVENANCE.md": {
       "bytes": 2063,
