@@ -348,9 +348,20 @@ def portable(data, suffix, replacements):
 
 
 def payload_files(package):
+    """Enumerate the publish payload exactly as the install manifest does.
+
+    The source-scan SKIP set (reports/, trace/, sessions/, ...) governs what may
+    be read from a *source* tree. It must never filter the staged package:
+    a staged file was already reviewed and sealed by portable-manifest.json.
+    Filtering here silently dropped manifest-declared files from the upload.
+    """
     package = Path(package)
     result = {}
-    for file in root_files(package):
+    for file in sorted(package.rglob("*")):
+        if file.is_symlink():
+            raise Blocked("Linked publish payload refused")
+        if not file.is_file():
+            continue
         rel = file.relative_to(package).as_posix()
         safe_relative(rel)
         result[rel] = file.read_bytes()
@@ -673,6 +684,12 @@ def validate(package):
             portable_install.validate_bundle(package)
         except portable_install.Blocked as exc:
             raise Blocked(str(exc)) from exc
+        # The published set must equal the sealed install manifest (plus the
+        # manifest file itself). Otherwise a declared file never reaches the
+        # repository, or an undeclared file escapes the manifest.
+        declared = set(load(package / "portable-manifest.json")["files"]) | {"portable-manifest.json"}
+        if set(files) != declared:
+            raise Blocked("Publish payload does not match the sealed install manifest")
     return {"state": "valid", "files": len(files), "fingerprint": fingerprint(package)}
 
 

@@ -231,6 +231,29 @@ class WeeklyTests(unittest.TestCase):
         self.assertIn("README.md", manifest["files"])
         self.assertEqual(portable_install.validate_bundle(package), manifest)
 
+    def test_payload_includes_manifest_declared_files_inside_source_skip_names(self):
+        """A staged file under a scan-SKIP directory name must still be published."""
+        package = self.root / "payload-skip"
+        m.create(package / "README.md", b"portable fixture\n")
+        m.create(package / "governance/AgentOS/reports/TOKEN-BUDGET-GOVERNANCE-BRIEF.md",
+                 b"token governance brief\n")
+        m.create(package / "governance/AgentOS/trace/private.txt", b"must not be staged\n")
+        self.seal(package)
+
+        files = m.payload_files(package)
+
+        self.assertIn("governance/AgentOS/reports/TOKEN-BUDGET-GOVERNANCE-BRIEF.md", files)
+        self.assertIn("portable-manifest.json", files)
+
+    def test_payload_refuses_bundle_that_contradicts_its_manifest(self):
+        package = self.root / "payload-drift"
+        m.create(package / "README.md", b"portable fixture\n")
+        self.seal(package)
+        m.create(package / "unsealed-extra.md", b"added after sealing\n")
+
+        with self.assertRaises(m.Blocked):
+            m.validate(package)
+
     def review_fixture(self, package, review):
         log = self.root / "independent.log"
         if not log.exists():

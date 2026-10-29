@@ -23,7 +23,7 @@
     },
     "capability-assets.json": {
       "bytes": 35734,
-      "sha256": "bbf8fc4588f121434f0584c39d3f3f79fabf076fd2b59849bfb333b4a5b2f06e"
+      "sha256": "190f1b882e8cb6875662dae3ebad759dfe87ebe8dc91d231d5f4832ef602cb0c"
     },
     "catalog.json": {
       "bytes": 679661,
@@ -850,8 +850,8 @@
       "sha256": "9c8f3dfd272d0f81e93ba686ac328f489a7d77e9b4b16b84c105ef137db908a7"
     },
     "tests/test_weekly_learning.py": {
-      "bytes": 25815,
-      "sha256": "0b5544d8fff3aa8eed6b1b767151c4813da002b87ff40ff28fe242466b451961"
+      "bytes": 26924,
+      "sha256": "ce275223753608364da7fa4ff0ae97f62d6c73e2b42a4ea4cca0f28bce5a289c"
     },
     "tools/agentos_toolkit.py": {
       "bytes": 3920,
@@ -886,8 +886,8 @@
       "sha256": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14"
     },
     "tools/weekly_learning.py": {
-      "bytes": 52414,
-      "sha256": "a4dbf48225d8fd1ab491f507be61353e74cf220497df51203a093fd81ef50443"
+      "bytes": 53420,
+      "sha256": "04efc28aba9a132a2dd943b084d44c9b131752af607c4001a984f431ec1b8d0c"
     }
   },
   "schema": "agentos-portable-bundle-v1"

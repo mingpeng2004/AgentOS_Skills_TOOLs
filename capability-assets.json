@@ -431,7 +431,7 @@
       ],
       "entry": "tools/weekly_learning.py",
       "hashes": {
-        "tools/weekly_learning.py": "a4dbf48225d8fd1ab491f507be61353e74cf220497df51203a093fd81ef50443"
+        "tools/weekly_learning.py": "04efc28aba9a132a2dd943b084d44c9b131752af607c4001a984f431ec1b8d0c"
       },
       "id": "tool.distribution.weekly-learning",
       "kind": "tool",
