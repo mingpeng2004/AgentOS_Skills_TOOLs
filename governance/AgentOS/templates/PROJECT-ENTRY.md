@@ -1,4 +1,4 @@
-<!-- AGENTOS:BEGIN managed v1.6.0 -->
+<!-- AGENTOS:BEGIN managed v1.8.4 -->
 ## AgentOS 系统治理入口
 
 AGOS-SKILLS：复杂任务读取 protocols/SKILL-MATRIX.md；通过 agentos_skills.py 选一个

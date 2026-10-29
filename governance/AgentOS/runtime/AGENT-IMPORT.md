@@ -20,20 +20,29 @@ must read it before doing work.
    AgentOS/protocols/HARNESS-ENHANCEMENTS.md,
    AgentOS/protocols/LONG-HORIZON.md, AgentOS/protocols/QUALITY-GATE.md
    and AgentOS/protocols/MEMORY.md.
-8. AgentOS/protocols/DELIVERABLE-STANDARD.md — 对外交付物的署名、中英双语与数据严谨性
+8. AgentOS/protocols/TOKEN-BUDGET.md for tool-heavy or long-running work,
+   context pressure, compaction or token-efficiency measurement.
+9. AgentOS/protocols/DELIVERABLE-STANDARD.md — 对外交付物的署名、中英双语与数据严谨性
    硬规则。任何产出报告、调研、方案、白皮书、评审结论或对外 PPT 的任务，本条为必读；
    不产出对外交付物的任务可跳过。
-9. The project's .agentos/project.json, active task and latest checkpoint.
-10. The project's .agentos/evidence/claims.jsonl, when present.
-11. AgentOS/protocols/DELEGATED-AUTONOMY.md,
+10. The project's .agentos/project.json, active task and latest checkpoint.
+11. The project's .agentos/evidence/claims.jsonl, when present.
+12. AgentOS/protocols/DELEGATED-AUTONOMY.md,
     AgentOS/policies/DECISION-POLICY.json and project .agentos/decisions/.
-12. When the project has a contract: AgentOS/protocols/UPFRONT-CONFIRMATION.md,
+13. When the project has a contract: AgentOS/protocols/UPFRONT-CONFIRMATION.md,
     AgentOS/policies/INTERACTION-POLICY.json and project .agentos/contract/contract.json.
-13. For complex engineering work: protocols/SKILL-MATRIX.md and the matching
+14. Load `runtime/CLIENT-IMPORT-PROTOCOL.md` and the client entry in
+    `runtime/client-adapters.json`. If a project declares an overlay manifest,
+    verify its hashes before using project-specific governance.
+15. For complex engineering work: protocols/SKILL-MATRIX.md and the matching
     capability contracts in policies/SKILL-REGISTRY.json. Load one primary
     provider and up to two necessary constraints, not the whole skills library.
     Candidate or absent capabilities remain blocked. Route/gate reports index
     the existing task and evidence ledger without replacing them.
+16. Before installing, relocating or upgrading any tool, CLI, IDE, MCP
+    server or skill library on this host, read
+    protocols/TOOL-DEPLOYMENT-STANDARD.md. All tool deployment belongs under
+    `${PROJECT_PATH}`; the C: drive keeps only junctions.
 
 ## Import acknowledgement
 

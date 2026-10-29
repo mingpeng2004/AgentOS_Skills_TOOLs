@@ -1,0 +1,110 @@
+{
+ "meta": {
+  "title": "注塑 DFM 设计规范",
+  "count": 3,
+  "facts": "<相对路径>/facts.md"
+ },
+ "panels": [
+  {
+   "id": "wall",
+   "title_zh": "壁厚、筋厚与圆角",
+   "title_en": "Wall, rib and fillet",
+   "points_zh": [
+    "名义壁厚 2.0~3.0 mm",
+    "筋厚 ≤ 0.6 × 壁厚",
+    "内圆角 R ≥ 0.5 × 壁厚",
+    "厚薄比 ≤ 3:1"
+   ],
+   "points_en": [
+    "nominal wall 2.0-3.0 mm",
+    "rib <= 0.6 x wall",
+    "fillet R >= 0.5 x wall",
+    "thick : thin <= 3 : 1"
+   ],
+   "reason_zh": "缩痕来自局部收缩量超过体积补偿。筋比壁厚收缩得快，筋过厚时表面先冷、周围壁料补缩不足，表面被拉凹；圆角过小则玻纤在转角堆积、基体被割断。",
+   "reason_en": "Sink marks appear where local shrinkage exceeds what the surrounding volume can feed. A rib shrinks faster than the wall; a tight radius traps glass fibre and cuts the matrix.",
+   "failure_zh": "筋过厚 → 表面缩痕   ·   R 过小 → 纤维堆积",
+   "failure_en": "A thick rib sinks the surface  ·  a tight radius packs fibre",
+   "callouts": [
+    {
+     "fx": 0.14,
+     "fy": 0.63,
+     "zh": "壁厚 2~3 mm",
+     "en": "wall 2-3 mm"
+    },
+    {
+     "fx": 0.31,
+     "fy": 0.47,
+     "zh": "筋厚 ≤ 0.6×壁厚",
+     "en": "rib <= 0.6x wall"
+    }
+   ],
+   "body": "<相对路径>/wall.png",
+   "body_kind": "iso"
+  },
+  {
+   "id": "ribs",
+   "title_zh": "掏空与筋的布置",
+   "title_en": "Hollow core and rib layout",
+   "points_zh": [
+    "大件掏空，不做实心",
+    "筋呈网格或放射分布",
+    "掏空后壁厚回到 2~3 mm"
+   ],
+   "points_en": [
+    "hollow large parts, never solid",
+    "ribs in a grid or radial pattern",
+    "bring the wall back to 2-3 mm"
+   ],
+   "reason_zh": "实心厚壁件冷却时间长于薄壁件，先冷却区收缩量大、后冷却区被拉薄，残余应力直接变成翘曲。掏空把壁厚拉回均匀区间。",
+   "reason_en": "A solid block cools far slower than a thin wall, so the early-shrinking region pulls against the still-soft region and the residual stress shows up as warp.",
+   "failure_zh": "实心厚壁 → 缩痕与翘曲",
+   "failure_en": "A solid thick wall brings sink marks and warp",
+   "callouts": [
+    {
+     "fx": 0.21,
+     "fy": 0.39,
+     "zh": "掏空 + 网格筋",
+     "en": "hollow + rib grid"
+    }
+   ],
+   "body": "<相对路径>/ribs.png",
+   "body_kind": "iso"
+  },
+  {
+   "id": "taper",
+   "title_zh": "壁厚突变与均匀过渡",
+   "title_en": "Abrupt step versus even transition",
+   "points_zh": [
+    "厚薄比 ≤ 3:1",
+    "壁厚变化处用圆角或斜面过渡",
+    "禁止厚壁直接叠在薄壁上"
+   ],
+   "points_en": [
+    "thick : thin <= 3 : 1",
+    "radius or chamfer every thickness step",
+    "never stack a boss straight onto a thin wall"
+   ],
+   "reason_zh": "突变壁厚在凝固时形成两个收缩速率不同的区域，交界处应力集中，最先出现缩痕与开裂。用圆角把收缩速率的台阶抹平，是成本最低、也最容易被忽略的一条。",
+   "reason_en": "An abrupt step creates two zones with different solidification rates; the boundary takes the stress and is where the sink mark appears first.",
+   "failure_zh": "直角台阶 → 缩痕与开裂",
+   "failure_en": "A square step brings sink marks and cracks",
+   "callouts": [
+    {
+     "fx": 0.23,
+     "fy": 0.52,
+     "zh": "直角台阶（坏）",
+     "en": "square step (bad)"
+    },
+    {
+     "fx": 0.47,
+     "fy": 0.4,
+     "zh": "圆角过渡（好）",
+     "en": "radiused (good)"
+    }
+   ],
+   "body": "<相对路径>/taper.png",
+   "body_kind": "iso"
+  }
+ ]
+}

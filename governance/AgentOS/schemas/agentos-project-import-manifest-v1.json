@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agentos-project-import-manifest-v1",
+  "type": "object",
+  "required": ["schema", "project_id", "required_overlays", "required_skills", "behavior_canaries"],
+  "properties": {
+    "schema": {"const": "agentos-project-import-manifest-v1"},
+    "project_id": {"type": "string", "minLength": 1},
+    "required_overlays": {"type": "array", "items": {"type": "object", "required": ["path", "sha256", "scope"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, "scope": {"type": "string", "minLength": 1}}}},
+    "required_skills": {"type": "array", "items": {"type": "string"}},
+    "behavior_canaries": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

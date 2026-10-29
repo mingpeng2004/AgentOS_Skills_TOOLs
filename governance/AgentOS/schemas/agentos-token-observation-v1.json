@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentos.invalid/schemas/agentos-token-observation-v1.json",
+  "title": "AgentOS Token Observation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "observation_id", "observed_at", "client", "profile",
+    "model", "task_mix", "session_ids", "source", "evidence_level",
+    "data_class", "metrics"
+  ],
+  "properties": {
+    "schema": {"const": "agentos-token-observation-v1"},
+    "observation_id": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "client": {"type": "string", "minLength": 1},
+    "profile": {"type": ["string", "null"]},
+    "model": {"type": ["string", "null"]},
+    "task_mix": {"type": "string", "minLength": 1},
+    "session_ids": {"type": "array", "items": {"type": "string"}},
+    "source": {"type": "string", "minLength": 1},
+    "evidence_level": {"enum": ["E0", "E1", "E2", "E3", "E4"]},
+    "data_class": {"enum": ["real", "synthetic", "mixed", "unknown"]},
+    "provider_billing": {"enum": ["available", "unavailable", "unknown"]},
+    "configuration_sha256": {"type": ["string", "null"], "pattern": "^[A-Fa-f0-9]{64}$"},
+    "artifact": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "api_calls": {"type": ["integer", "null"], "minimum": 0},
+        "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "cached_input_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "prefix_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "tool_result_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "compression_events": {"type": ["integer", "null"], "minimum": 0}
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
 contract_ref: .agentos/contract/contract.json
 contract_version: 0
 contract_sections_in_scope: none
-agentos_version: 1.6.0
+agentos_version: 1.8.4
 task_id: {{TASK_ID}}
 status: planned
 created_at: {{CREATED_AT}}

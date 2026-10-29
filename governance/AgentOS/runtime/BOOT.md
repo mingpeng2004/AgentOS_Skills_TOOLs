@@ -15,6 +15,12 @@ protocols/LEARNING-EVIDENCE-QUALITY.md，按实际来源提炼与验证，公开
 核对来源摘要、当前证据和独立复核；路由成功不是执行许可或验收。复盘只生成有来源的
 待审教训，72h 为复核目标，无新增定时器。规则不改变安全、已锁定 SSOT 或用户授权。
 
+## AGOS-TOKEN: concise, evidence-preserving work
+
+长程或工具密集任务路由 `meta-token-budget`，并循 `protocols/TOKEN-BUDGET.md`。
+速记：**先验源，次验器；矩阵变即重读；无回执不称载；长物先存证后摘要；质安证据优先。**
+此速记仅作入口，不免来源校验、数据分级、质量门禁。
+
 ## AGOS-CONFIRM: upfront confirmation and iteration
 
 Before implementing a new project or a major framework change, settle the development
@@ -67,6 +73,9 @@ timed-out or truncated evidence blocks delivery.
 1. **目标**：用一句话复述用户目标，列 DoD、边界、安全确认和可委托的普通偏好。
 2. **拆解**：拆成 Phase -> Task -> Unit；每个 Unit 只能有一个清晰动作和一个绿条件。
 3. **行动**：先读后写，一次处理一个 Unit；并行只用于不争用资源的工作。
+   「一次一个 Unit」限制的是**资源争用**，不是调度：客户端支持时，不争用独占
+   资源的单元应放到**后台子智能体**执行，主线程继续做另一个独立单元。禁止为了
+   省 Token 而关闭后台/并发能力，见 `protocols/BACKGROUND-AGENT-EXECUTION.md`。
 4. **验证**：立即运行测试、编译、安全审计或真实设备检查，并保留证据路径。
 5. **落盘**：更新任务单和 checkpoint，写清已完成、结论、失败假设和下一步。
 6. **判定**：DoD 全绿才是 verified；否则继续、恢复或升级。

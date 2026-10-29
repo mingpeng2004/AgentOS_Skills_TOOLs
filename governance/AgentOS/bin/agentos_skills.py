@@ -5,6 +5,7 @@ permissions. Reports are local inspection evidence, not authenticated authority.
 """
 
 import argparse
+import importlib.util
 from datetime import datetime, timedelta, timezone
 import hashlib
 import json
@@ -17,14 +18,21 @@ import uuid
 
 ROOT = Path(__file__).resolve().parent.parent
 ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+# Role ids follow the A1-A10 convention from protocols/ROLE-ROUTER.md and are
+# upper-case, so they cannot reuse the lower-case capability id pattern.
+ROLE_ID = re.compile(r"[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\Z")
 PROVIDER_FIELDS = {"id", "skill", "bundled"}
 CAP_FIELDS = {"id", "domain", "group", "availability", "provider", "triggers",
               "scenarios", "inputs", "outputs", "workflow", "acceptance",
               "failure_modes", "upstream", "downstream", "resources", "limits"}
 RISKS = {"static": "E1", "software": "E2", "integration": "E3",
          "physical": "E4", "production": "E4"}
-CLIENTS = {"codex": ".codex/skills", "minimax": ".minimax/agents/mavis/skills",
-           "kimi": ".kimi/skills", "kimi-code": ".kimi-code/skills"}
+_paths_spec = importlib.util.spec_from_file_location("_agentos_paths", ROOT / "bin/agentos_paths.py")
+paths = importlib.util.module_from_spec(_paths_spec)
+_paths_spec.loader.exec_module(paths)
+# Compatibility view only; canonical IDs and aliases come from the adapter manifest.
+CLIENTS = paths.definitions(ROOT)[1]
+
 
 
 class Blocked(ValueError):
@@ -189,18 +197,48 @@ def registry(path):
 
 
 def resolve_provider(provider, project, client, user_root=None, system_root=ROOT):
-    user_root = Path(user_root or Path.home())
-    roots = [("project", Path(project) / "skills" / provider["skill"])]
-    roots.append(("client", user_root / CLIENTS[client] / provider["skill"]))
-    if provider["bundled"]:
-        roots.append(("bundled", Path(system_root) / provider["bundled"]))
-    for scope, root in roots:
-        if (root / "SKILL.md").is_file():
-            entry = contained(root, "SKILL.md")
+    candidates = [("project", Path(project) / "skills", False)]
+    shared_sources = {}
+    try:
+        binding = paths.client_paths(client, system_root, user_root=user_root)
+        candidates.extend(("client", Path(base), True) for base in binding["skill_roots"])
+        candidates.extend(("shared", Path(base), True) for base in binding["shared_skill_roots"])
+        shared_sources = binding.get("shared_sources", {})
+        for scope, base, declared in candidates:
+            if declared:
+                base = paths.trusted_root(base)
+                provider_root = base / provider["skill"]
+                # A client cache may point at an external Skill through a link.
+                # Ignore it; never read through it when a canonical fallback exists.
+                if paths.is_link(provider_root):
+                    continue
+                entry = provider_root / "SKILL.md"
+                if not entry.is_file():
+                    continue
+                entry = paths.checked_child(base, provider["skill"] + "/SKILL.md")
+            else:
+                root = base / provider["skill"]
+                if paths.is_link(root):
+                    continue
+                if not (root / "SKILL.md").is_file():
+                    continue
+                entry = contained(root, "SKILL.md")
             text = entry.read_text(encoding="utf-8-sig")
             if not re.search(r"(?m)^name:\s*[\"']?" + re.escape(provider["skill"]) + r"[\"']?\s*$", text):
                 raise Blocked("provider identity mismatch: " + str(entry))
-            return root, scope
+                if scope == "shared":
+                    expected = shared_sources.get(provider["skill"])
+                    if expected is None or Path(expected).resolve() != entry.parent.resolve():
+                        raise Blocked("shared provider lacks a verified canonical tree binding: " + provider["skill"])
+            return entry.parent, scope
+        if provider["bundled"]:
+            entry = contained(system_root, provider["bundled"] + "/SKILL.md")
+            text = entry.read_text(encoding="utf-8-sig")
+            if not re.search(r"(?m)^name:\s*[\"']?" + re.escape(provider["skill"]) + r"[\"']?\s*$", text):
+                raise Blocked("provider identity mismatch: " + str(entry))
+            return entry.parent, "bundled"
+    except paths.PathError as exc:
+        raise Blocked(str(exc)) from exc
     raise Blocked("provider unavailable for client: " + provider["skill"])
 
 
@@ -273,6 +311,11 @@ def route(registry_path, project, client, request, inputs, result, risk,
         policy_bindings.append(asset(system_root, relative))
     protocol_paths = {"VERSION", "runtime/BOOT.md", "protocols/SKILL-MATRIX.md",
                       "protocols/TRUTH-AND-EVIDENCE.md", "protocols/QUALITY-GATE.md"}
+    for relative in ["runtime/client-adapters.json", "bin/agentos_paths.py"]:
+        if (Path(system_root) / relative).is_file():
+            protocol_paths.add(relative)
+    if user_root is None and (Path(system_root) / ".local/host-bindings.json").is_file():
+        protocol_paths.add(".local/host-bindings.json")
     if any(cap["id"].startswith("req-") for cap in chosen):
         protocol_paths.add("protocols/UPFRONT-CONFIRMATION.md")
     if any(cap["id"].startswith("ui-") for cap in chosen):
@@ -418,12 +461,90 @@ def persist(path, data):
         stream.write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 
+ROLE_FIELDS = {"id", "role_card", "title", "description", "required_capabilities",
+               "default_assignee", "triggers", "priority", "escalation", "authority"}
+
+
+def role_routing(path, request, explicit=None, registry_path=None):
+    """Rank execution roles for a task description.
+
+    Routing is a proposal, not a dispatch. Ambiguity is reported, never
+    silently resolved: the coordinator owns the final assignment.
+    """
+    data = read_json(path)
+    expected = {"schema", "agentos_version", "authority", "profile", "board",
+                "protocols", "escalation", "assignment", "roles", "routing"}
+    if set(data) != expected or data["schema"] != "agentos-role-routing-v1":
+        raise Blocked("invalid role routing envelope/unknown fields")
+    roles = {}
+    for role in data["roles"]:
+        if set(role) != ROLE_FIELDS or not ROLE_ID.fullmatch(role["id"]):
+            raise Blocked("incomplete role contract or unknown field: " + str(role.get("id")))
+        if role["id"] in roles:
+            raise Blocked("duplicate role id: " + role["id"])
+        text_list(role["triggers"], "triggers")
+        text_list(role["required_capabilities"], "required_capabilities", empty=True)
+        text_list(role["escalation"], "escalation", empty=True)
+        if not isinstance(role["priority"], int):
+            raise Blocked("role priority must be an integer")
+        roles[role["id"]] = role
+    if not roles:
+        raise Blocked("empty role routing cannot pass")
+    if registry_path is not None:
+        _, caps, _ = registry(registry_path)
+        for role in roles.values():
+            for cap in role["required_capabilities"]:
+                if cap not in caps:
+                    raise Blocked("role references unknown capability: " + role["id"] + "/" + cap)
+    if not request.strip():
+        raise Blocked("empty request")
+    text = request.casefold()
+    scored = []
+    for role in roles.values():
+        hits = [t for t in role["triggers"] if t.casefold() in text]
+        scored.append({"role": role, "score": len(hits), "hits": hits})
+    if explicit:
+        chosen = [x for x in scored if x["role"]["id"] == explicit]
+        if not chosen:
+            raise Blocked("unknown role: " + explicit)
+        # An explicit role is the caller's decision. It is reported as the
+        # single selection and is never ranked against the other roles.
+        selected = chosen[0]
+        selected["score"] = max(selected["score"], 1)
+        selected["hits"] = selected["hits"] or ["explicit"]
+        scored = [selected]
+    else:
+        scored = [x for x in scored if x["score"] > 0]
+        if not scored:
+            raise Blocked("no role matched; specify --role after investigation")
+        scored.sort(key=lambda x: (-x["score"], -x["role"]["priority"], x["role"]["id"]))
+    best = scored[0]["score"]
+    leaders = [x for x in scored if x["score"] == best]
+    ambiguous = len(leaders) > 1
+    return {"schema": "agentos-role-route-v1", "generated_at": stamp(),
+            "request": request, "explicit": explicit,
+            "profile": data["profile"], "board": data["board"],
+            "selected": leaders[0]["role"]["id"] if len(leaders) == 1 else None,
+            "ambiguous": ambiguous,
+            "candidates": [{"role_id": x["role"]["id"], "title": x["role"]["title"],
+                           "score": x["score"], "matched_triggers": x["hits"],
+                           "required_capabilities": x["role"]["required_capabilities"],
+                           "role_card": x["role"]["role_card"],
+                           "default_assignee": x["role"]["default_assignee"],
+                           "escalation": x["role"]["escalation"]} for x in scored],
+            "tie_break": data["routing"]["tie_break"],
+            "dispatch_requires_explicit_role": data["routing"].get("dispatch_requires_explicit_role", True),
+            "authority": data["authority"]}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["validate", "catalog", "route", "gate", "feedback"])
+    parser.add_argument("command", choices=["validate", "catalog", "route", "role-route", "gate", "feedback"])
     parser.add_argument("--registry", type=Path, default=ROOT / "policies/SKILL-REGISTRY.json")
+    parser.add_argument("--role-routing", type=Path, default=ROOT / "policies/ROLE-ROUTING.json")
+    parser.add_argument("--role")
     parser.add_argument("--project", type=Path)
-    parser.add_argument("--client", choices=CLIENTS, default="codex")
+    parser.add_argument("--client", default="codex", help="registered client ID or alias")
     parser.add_argument("--task", default="")
     parser.add_argument("--capability")
     parser.add_argument("--constraint", action="append", default=[])
@@ -444,8 +565,13 @@ def main(argv=None):
                       "domains": sorted({x["domain"] for x in caps.values()}),
                       "registry_sha256": digest(args.registry), "claim": "Structure only; providers are checked when routed."}
         elif args.command == "catalog":
+            try:
+                path_binding = paths.client_paths(args.client, ROOT)
+            except paths.PathError as exc:
+                raise Blocked(str(exc)) from exc
             result = {"capabilities": [{"id": x["id"], "domain": x["domain"],
                        "availability": x["availability"], "provider": x["provider"], "limits": x["limits"]} for x in caps.values()]}
+            result["client_paths"] = path_binding
             if args.project:
                 project, _, _ = project_files(args.project)
                 for item in result["capabilities"]:
@@ -461,6 +587,8 @@ def main(argv=None):
                     except Blocked as exc:
                         item["provider_status"] = "blocked"
                         item["reason"] = str(exc)
+        elif args.command == "role-route":
+            result = role_routing(args.role_routing, args.task, args.role, args.registry)
         else:
             if not args.project:
                 raise Blocked("--project required")

@@ -20,7 +20,27 @@ notify only on meaningful improvement, publication, failure or needed decision.
 3. Inventory all discovered Skills, preserve variant content and licensing.
    Built-in/plugin/vendor material without established redistribution permission
    remains reference-only with a visible reason; do not silently omit it. Export
-   only explicitly allowlisted authored MIT assets; a user-managed directory is not proof of rights. Unknown third-party items stay reference-only. Binary assets are excluded in this text-first edition.
+   only explicitly allowlisted authored MIT assets; a user-managed directory is
+   not proof of rights. Readable `SKILL.md` files without standard identity are
+   preserved as `unregistered_skill` (reference-only), except managed AgentOS
+   client entries, which are `client_entry` and are not Skills. Neither category
+   is routed or exported as a Skill. Unknown third-party items stay
+   reference-only. Binary assets are excluded in this text-first edition.
+   Oversize, unreadable, linked/reparse and absent sources remain explicit
+   coverage issues; the scanner must not follow links or call an incomplete scan
+   complete merely because some linked paths look like duplicate cache entries.
+   Links nested below already excluded dependency/build directory names are not
+   visited and are not separately counted as scan gaps; links in the remaining
+   declared scope remain explicit exclusions. Readable source files up to the
+   explicit per-file hash bound are streamed into SHA256, including large binary
+   inventory items; oversized files beyond that bound remain an incomplete scan
+   issue and are never silently omitted from the coverage report.
+   A reparse alias may be marked `linked_alias_verified` only when its stored
+   target metadata matches an explicit policy prefix, the mapped physical
+   canonical root is link-free, and that source was independently inventoried
+   by direct path. Do not open/read through the client link; unresolved aliases
+   remain exclusions. This proves only source-tree identity, not client parity,
+   native discovery, or runtime activation.
 4. Stage portable copies. Remove machine-private absolute paths and remote/local
    identifiers using explicit normalization; preserve semantics and mark generated
    placeholders in documentation. Reject credentials, PII, raw traces, dumps,
@@ -29,6 +49,9 @@ notify only on meaningful improvement, publication, failure or needed decision.
 5. Validate every export path/content/link/Skill frontmatter and run relevant
    tests. Run the existing SecurityCheck on changed code and inspect actual scan
    counts/findings. A pass on an empty or uninspected scope never counts.
+   `prepare` additionally requires both `scope_complete=true` and
+   `learning_coverage_complete=true` in the staged inventory; an explicit
+   independent review cannot waive either machine gate.
    A real review records the package fingerprint and actual test outputs before
    prepare. Recompute source and package hashes immediately before publishing.
 6. Publish only reviewed content to the named repository. Observe its default

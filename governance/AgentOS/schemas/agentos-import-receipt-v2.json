@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agentos-import-receipt-v2",
+  "type": "object",
+  "required": [
+    "schema",
+    "agent",
+    "agentos_version",
+    "project",
+    "manifest_sha256",
+    "states",
+    "observed_at",
+    "adapter_surfaces",
+    "limits",
+    "observed_files",
+    "required_skills",
+    "missing_skills",
+    "client_checks",
+    "skill_checks",
+    "native_missing_skills"
+  ],
+  "properties": {
+    "schema": {
+      "const": "agentos-import-receipt-v2"
+    },
+    "agent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "client_version": {
+      "type": "string"
+    },
+    "agentos_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "project_manifest_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "required_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "object",
+      "required": [
+        "canonical_files",
+        "file_parity",
+        "import_reported",
+        "behavior_attested"
+      ],
+      "properties": {
+        "file_parity": {
+          "enum": [
+            "verified",
+            "failed",
+            "unknown"
+          ]
+        },
+        "import_reported": {
+          "enum": [
+            "reported",
+            "unattested",
+            "failed"
+          ]
+        },
+        "behavior_attested": {
+          "enum": [
+            "passed",
+            "pending",
+            "failed",
+            "unattested"
+          ]
+        },
+        "canonical_files": {
+          "enum": [
+            "validated",
+            "failed"
+          ]
+        }
+      }
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    },
+    "adapter_surfaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Surfaces through which the client adapter's rules reach the agent (e.g. project_rules, explicit_cli)."
+    },
+    "limits": {
+      "type": "string",
+      "description": "Explicit statement of what this receipt does NOT prove. Absence of a runtime handshake limits attestations to file_parity."
+    },
+    "observed_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    },
+    "client_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "expected_sha256",
+          "status"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expected_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "failed",
+              "unknown"
+            ]
+          },
+          "source_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-fA-F]{64}$"
+          },
+          "managed_block_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-fA-F]{64}$"
+          },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "skill_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "skill",
+          "path",
+          "canonical",
+          "status"
+        ],
+        "properties": {
+          "skill": {
+            "type": "string"
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "canonical": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "failed",
+              "verified_files",
+              "unattested_source",
+              "missing_target",
+              "missing_source"
+            ]
+          },
+          "files": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{64}$"
+            }
+          },
+          "reason": {
+            "type": "string"
+          },
+          "availability": {
+            "enum": [
+              "canonical_reference_only",
+              "client_target_verified",
+              "unavailable"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "native_missing_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "x-amended": "2026-10-28: v2 separates canonical observation, deployed client file parity, resolved required Skills and runtime attestation; v1 remains historical."
+}

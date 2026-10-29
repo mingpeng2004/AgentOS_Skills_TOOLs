@@ -33,7 +33,7 @@ flowchart LR
 
 - `governance/AgentOS/`: core protocols, authoritative capability contracts and thin adapters.
 - `capability-assets.json`: Skill/Tool version, entry, capability reference, dependency, side effect, license and hashes; no duplicate capability definitions.
-- `catalog.json`: every discovered Skill with exported/deduplicated/reference-only status. Inventory is not a capability certification.
+- `catalog.json`: every discovered Skill and Skill-like entry, classified as exported, deduplicated or reference-only. Non-Skill AgentOS client entries and identity-missing documents are explicitly identified as `client_entry` or `unregistered_skill`; neither is routable or exported as a Skill. Inventory is not a capability certification.
 - `tools/agentos_toolkit.py`: one entry point for setup, inventory, learning, deployment and publication.
 - `tools/capability_assets.py`: strict asset gate and private evidence-bound lesson receipts; scan does not consume lessons.
 - `tools/verify_release.py`: reproducible source/staged tests, Windows PowerShell5.1 checks and per-file security coverage; missing prerequisites remain not_run, not PASS.
@@ -53,6 +53,6 @@ Start with `config/policy.example.json`; explicitly authorize your own repositor
 
 ## Rights and scope / 许可与边界
 
-Owner-authored exported assets are MIT; unknown third-party rights remain reference-only. This is a sanitized text edition, not a backup of all installed third-party assets. Personal owner-report preferences are opt-in only. A configured native weekly task requires its host/app to be available; this repository does not install a daemon or guarantee future execution. See NOTICE.md and evidence/validation.json for actual checks and unresolved coverage.
+Owner-authored exported assets are MIT; unknown third-party rights remain reference-only. This is a sanitized text edition, not a backup of all installed third-party assets. Personal owner-report preferences are opt-in only. A configured native weekly task requires its host/app to be available; this repository does not install a daemon or guarantee future execution. See evidence/validation.json for the source-unit-test receipt only, and evidence/inventory.json for the current coverage state, including declared scope exclusions and verified link aliases. It is not a candidate-package release receipt; run tools/verify_release.py against the exact candidate and retain its output separately.
 
 自有白名单采用 MIT，其余不推定授权。个人报告偏好为可选配置。本仓库不安装守护程序，也不保证机器关闭后执行。实测范围与未检项见证据。

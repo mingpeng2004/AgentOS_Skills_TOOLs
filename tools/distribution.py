@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import hashlib
+import fnmatch
 import json
 import os
 from pathlib import Path
@@ -55,13 +56,17 @@ def tree(root, excluded):
     if not root.is_dir():
         raise Blocked("Source tree missing")
     result = {}
+    def is_excluded(name):
+        return name in excluded or any("*" in item and fnmatch.fnmatchcase(name, item) for item in excluded)
     def error(exc):
         raise Blocked("Source directory unreadable") from exc
     for base, dirs, files in os.walk(root, followlinks=False, onerror=error):
-        dirs[:] = sorted(x for x in dirs if x not in excluded)
+        dirs[:] = sorted(x for x in dirs if not is_excluded(x))
         for name in dirs + files:
             no_links(Path(base) / name)
         for name in sorted(files):
+            if is_excluded(name):
+                continue
             file = Path(base) / name
             result[file.relative_to(root).as_posix()] = digest(file.read_bytes())
     return result

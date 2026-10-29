@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agentos-import-receipt-v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "agent",
+    "agentos_version",
+    "project",
+    "manifest_sha256",
+    "states",
+    "observed_at",
+    "adapter_surfaces",
+    "limits"
+  ],
+  "properties": {
+    "schema": {
+      "const": "agentos-import-receipt-v1"
+    },
+    "agent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "client_version": {
+      "type": "string"
+    },
+    "agentos_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "project_manifest_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "loaded_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    },
+    "required_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "object",
+      "required": [
+        "file_parity",
+        "import_reported",
+        "behavior_attested"
+      ],
+      "properties": {
+        "file_parity": {
+          "enum": [
+            "verified",
+            "failed",
+            "unknown"
+          ]
+        },
+        "import_reported": {
+          "enum": [
+            "reported",
+            "unattested",
+            "failed"
+          ]
+        },
+        "behavior_attested": {
+          "enum": [
+            "passed",
+            "pending",
+            "failed",
+            "unattested"
+          ]
+        }
+      }
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    },
+    "adapter_surfaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Surfaces through which the client adapter's rules reach the agent (e.g. project_rules, explicit_cli)."
+    },
+    "limits": {
+      "type": "string",
+      "description": "Explicit statement of what this receipt does NOT prove. Absence of a runtime handshake limits attestations to file_parity."
+    }
+  },
+  "additionalProperties": false,
+  "x-amended": "2026-10-26: declared adapter_surfaces + limits emitted by bin/agentos_import.py (receipts were schema-invalid before)."
+}

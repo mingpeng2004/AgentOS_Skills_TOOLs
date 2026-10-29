@@ -1,15 +1,22 @@
 ## Public distribution profile boundary (takes precedence over the historical owner text)
 Personal signature, bilingual file-triplet, presentation-style and image-generation preferences in this historical owner profile are opt-in only. They are NOT mandatory defaults for another user. Configure profiles/OWNER-PROFILE.example.json explicitly. This JSON is a declarative configuration example, not a runtime loader; the importing agent must explicitly apply the user's selected profile. Core evidence, safety, authorization and truthful reporting remain mandatory. Unknown evidence must stay unknown; a zero-gap preference cannot authorize fabrication.
 
-# AgentOS 交付物标准协议 v1.6
+# AgentOS 交付物标准协议 v1.9
 
 > 适用范围：本机**所有**智能体（MiniMax Code、Kimi Code、VS Code 集成、委派子智能体、
 > 以后新装的任何智能体）产出的一切**对外交付物**——报告、调研报告、方案、白皮书、
 > 技术分析、评审结论、PPT、说明书。
 > 本协议由用户 2026-10-20 裁决并直接融合进 AgentOS 治理体系，非建议、非可选。
 > R5 / R6 / R7 / R8 由用户 2026-10-23 追加裁决，同样为最高级硬规则。
+> R9 由用户 2026-10-25 追加裁决：设计规范 / DFM 章节的配图按同一水准出。
+> v1.8 由 2026-10-25 金属制程库 DFM 章节实测审计回写：R9 的图形态判据由
+> "必须受光三面"改为**三条底图路线**（A 实景 / B 带填充工程剖面或等轴测实体 /
+> C 符号关系图），**唯一不合格的是骨架图**。
+> **R10 由用户 2026-10-26 追加裁决：所有报告输出不得出现用户材料里的品牌 / 产品名 /
+> 代码等商业机密标识，只允许出现 R1 署名。** 门禁工具：`bin/qa_leak.py`，
+> 词表：`policies/REDACTION-TERMS.json`。
 
-## 0. 八条硬规则
+## 0. 十条硬规则
 
 | # | 规则 | 等级 |
 |---|---|---|
@@ -21,6 +28,8 @@ Personal signature, bilingual file-triplet, presentation-style and image-generat
 | R6 | **数据库零臆测**：数据库/参数库/材料库的**每一个非空格都必须可溯源到具体来源**；模型先验、记忆值、"手册典型值"**不得进主表**；主键必须落到「厂商 × 牌号」且与厂商官方文件相符。**绝对硬门禁、无豁免**。详见 `DATABASE-INTEGRITY-STANDARD.md` | 最高 |
 | R7 | **维护期数据安全**：对既有数据的任何写入必须**先备份、可断言、可回滚、可验证**；独立数据库必须**分属独立文件**（页签级隔离不足）；破坏性操作（清空/删列/删页签/改名）须显式确认 + 已有快照。**绝对硬门禁、无豁免**。详见 `DATA-SAFETY-STANDARD.md` | 最高 |
 | R8 | **配图默认水准 = 实景概念渲染**：示意图默认走「生成式底图（**零文字、零人脸**）+ 程序化矢量标注层（**文字与数值全部来自事实源**）」两层法；底图出图后必须过**文字筛查闸门**并逐张目检，模型自造的乱码文字一律重做。达不到即视为未完成。详见 `VISUAL-ASSET-STANDARD.md` §6 | 最高 |
+| R9 | **设计规范 / DFM 章节的配图**：每一条规范都要配图，且必须同时给**要点清单 + 机理理由 + 失败模式**（失败模式须在理由段里被点明，且逐字来自事实源）；图走 `VISUAL-ASSET-STANDARD.md` §6.6.2 的三条路线之一（**A 实景概念渲染 / B 带填充的工程剖面或等轴测实体 / C 符号关系图**），**唯一不合格的是骨架图**（勾了零件轮廓 + 文字标签，而关系本可由 A 或 B 表达）；图内每个数字都要能在事实源里找到出处，否则构建失败。达不到即视为未完成。详见 `VISUAL-ASSET-STANDARD.md` §6.6 | 最高 |
+| R10 | **商业机密零出现（脱敏）**：交付物中**不得出现**用户提供的材料里的**品牌名、产品名、型号、内部代号**等设计商业机密标识——正文、图表、文件名、目录名、PDF 文本层一律不得出现；**唯一允许出现的用户标识是 R1 署名**。**绝对硬门禁、无豁免**，交付前必须过泄漏门禁（`bin/qa_leak.py`，扫路径层 + 文本层 + PDF 文本层）。详见 §5 | 最高 |
 
 ---
 
@@ -220,7 +229,66 @@ ${OWNER_SIGNATURE}
 
 ---
 
-## 5. 与既有规则的关系
+## 5. R10 脱敏（商业机密零出现）
+
+### 5.1 规则本体
+
+用户提供的原始材料里带着**品牌名、产品名、型号、内部代号**。它们一旦随交付物流出去，
+就是把商业机密连同报告一起递了出去。因此：
+
+> **所有对外交付物中，不得出现用户材料里的任何商业机密标识。
+> 唯一允许出现的用户标识是 R1 署名。**
+
+适用范围 = 本协议 §适用范围里的全部交付物，**不分内外部分析**。
+
+### 5.2 三层都要查（机械门禁，不靠肉眼）
+
+| 层 | 查什么 | 工具 |
+|---|---|---|
+| `path` | 目录名 + 文件名 | `bin/qa_leak.py` |
+| `text` | md / txt / csv / tsv / json / html / xml / yaml / py / js 等可检索文本 | 同上 |
+| `pdf_text` | PDF 每页文本层 | 同上 |
+
+**图像像素层门禁扫不了**（不做 OCR）。因此规则是**制图阶段就避开**：
+生成式底图按零文字出，图表标题与图例从事实源取且不带品牌。
+
+### 5.3 脱敏怎么做
+
+| 做法 | 判定 | 理由 |
+|---|---|---|
+| **整值移除** | ✅ 正确 | 文字里直接不写那个值，只保留论证本身（「三处载体载有同一序列号，逐字一致」） |
+| **假代号**（S-7K3M9Q 之类） | ❌ 错误 | 假代号仍能指回原件，等于没脱敏；「你这种方式，还不如不脱敏」 |
+| **生硬灰框** | ❌ 错误 | 视觉上像 bug |
+| **档案式遮蔽贴片** | ✅ 正确 | 照片用深墨底 + 细亮边 + 一排圆点表示「此处原有数值」；二维码实心遮盖（只做马赛克仍可解码） |
+| **加整节脱敏说明** | ❌ 错误 | 只在封面横幅、页脚、边界表各加一行 |
+
+### 5.4 保留什么
+
+**公开目录信息**（参考号 / GTIN / 机芯号）**不脱敏**——遮蔽它没有安全收益，
+反而让报告失去对象指向。保留时须在报告里写明保留理由。
+
+### 5.5 内部版与交付版物理分开
+
+- 未脱敏的内部版**不得留在交付目录里**。
+- 交付目录里只有脱敏件，且**不得混着未脱敏副本**。
+- 报告正文里不出现任何品牌标识，**只出现 R1 署名**。
+
+### 5.6 门禁怎么跑
+
+```powershell
+# 交付前必跑；退出码 1 = 有命中 = 不许交付
+python %AGENTOS_HOME%\bin\qa_leak.py <交付目录> --json <leak_report.json>
+```
+
+> 退出码 **2 = 词表读不到 / 路径不存在**。**退出码 2 绝不能当成 0**：
+> 读不到词表等于**没检过**，不是检过了没发现。
+
+词表：`policies/REDACTION-TERMS.json`（只增不删；新增标识须写明来源材料）。
+MCP 侧同名工具：`metal-dfm-kernel` 的 `scan_redaction`，与本脚本共用同一份实现。
+
+---
+
+## 6. 与既有规则的关系
 
 - 本协议是 `TRUTH-AND-EVIDENCE.md` 在**对外交付物**上的具体化：真值分级（verified / observed /
   derived / user-stated / assumption / unknown）在此处对应到"该标什么来源、该怎么写"。
@@ -245,20 +313,33 @@ ${OWNER_SIGNATURE}
   可执行实现：AgentOS bundled skill `skills/visual-asset-production`（能力 ID `vis-concept-illustration`），
   含文字筛查与矢量合成两个自带负控制的脚本。
   本协议只定义"必须有"，细则在那一份。
+- **R9（设计规范 / DFM 章节配图）的完整规范见 `VISUAL-ASSET-STANDARD.md` §6.6**：一条规范
+  = 图 + 要点清单 + 机理理由 + 失败模式；**三条底图路线**（A 实景概念渲染 /
+  B 带填充的工程剖面或等轴测实体 / C 符号关系图），唯一不合格的是骨架图；
+  图内数值的数值自洽门禁；**八道门禁**（覆盖率 / 双语纯度 / 数值自洽 / 失败模式可溯 /
+  锚点落墨 / 版面守卫 / 判定完整 / 负控制）。
+  可执行实现：同一 bundled skill（能力 ID `vis-dfm-illustration`），含 `scripts/iso_render.py`
+  与 `scripts/dfm_panel.py` 两个自带负控制的脚本。
+  本协议只定义"必须有"，细则在那一份。
+- **R10（脱敏）的完整规范见本协议 §5**：三层扫描范围（路径层 / 文本层 / PDF 文本层）、
+  脱敏做法（整值移除，不做假代号）、保留项（公开目录信息）、内部版与交付版物理分离、
+  门禁脚本 `bin/qa_leak.py` 与词表 `policies/REDACTION-TERMS.json`。
+  MCP 侧同名工具 `metal-dfm-kernel / scan_redaction` 与之共用同一份实现。
+  本协议只定义"必须有"，细则在本节。
 - 本机各智能体的 `agent.md` 覆盖层、`review-rules/global.md` 与报告类 Skill 均须引用本协议，
   以保证"本机所有智能体均采用同一要求"。
 
-## 6. 修订记录
+## 7. 修订记录
 
 | 日期 | 版本 | 变更 |
 |---|---|---|
+| 2026-10-26 | v1.9 | 用户裁决新增 **R10 商业机密零出现（脱敏）**（绝对硬门禁、无豁免）：所有报告输出不得出现用户材料里的品牌 / 产品名 / 型号 / 内部代号，只允许出现 R1 署名；正文、图表、文件名、目录名、PDF 文本层一律不得出现。细则见 §5；门禁脚本 `bin/qa_leak.py`（路径层 + 文本层 + PDF 文本层），词表 `policies/REDACTION-TERMS.json`。证据：实测 999_output 交付目录名与 PDF/HTML 标题均含客户品牌与产品型号；金属半壳需求规格说明书文件名曾含品牌+代号 |
+| 2026-10-25 | v1.8 | 金属制程库 DFM 章节（240 cell / 458 面板）全量审计后回写 **R9 措辞**：图不再是"必须受光三面"，改为**三条底图路线**（A 实景概念渲染 / B 带填充的工程剖面或等轴测实体 / C 符号关系图），**唯一不合格的是骨架图** —— 此前措辞会把 118 个合格的工程剖面判为不合格；补"失败模式须在理由段里被点明，且逐字来自事实源"；§5 关系段的门禁清单由五条同步为八道。实证来源：金属制程库 DFM 审计（`_dfm_pilot_v17/audit_report.md`）+ 试点面板 PC-01 p1c1 |
+| 2026-10-25 | v1.7 | 用户裁决新增 **R9 设计规范 / DFM 章节的配图**（默认硬要求，达不到视为未完成）：每条规范都要配图 + 要点清单 + 机理理由 + 失败模式；图必须是实体（受光三面 / 切面纹理 / 接地阴影 / 制图标注），线框不算数；图内每个数字都要能在事实源里找到出处（数值自洽门禁），否则构建失败。细则移入 `VISUAL-ASSET-STANDARD.md` §6.6，AgentOS bundled skill `skills/visual-asset-production` 新增能力 `vis-dfm-illustration`，含 `scripts/iso_render.py`（等轴测原语库）与 `scripts/dfm_panel.py`（面板装配 + 门禁）两个自带负控制的脚本。实证来源：湘乡 50 届 43 张底图 + 80 张成品图、塑胶材料库 DFM 章节 12 组等轴测实体面板 |
 | 2026-10-23 | v1.6 | 用户裁决新增 **R8 配图默认水准 = 实景概念渲染**（默认硬要求，达不到视为未完成）：示意图默认走「生成式底图（零文字零人脸）+ 程序化矢量标注层（文字数值全部来自事实源）」两层法；底图必须过文字筛查闸门并逐张目检；成品图 JPEG q94 且改编码前做像素级差分验证。细则移入 `VISUAL-ASSET-STANDARD.md` §6，AgentOS bundled skill `skills/visual-asset-production`（能力 `vis-concept-illustration`）提供可执行实现。实证来源：湘乡 50 届科创大赛 40 个点子的图版升级 |
 | 2026-10-23 | v1.5 | 用户裁决新增 **R7 维护期数据安全**（默认硬要求，绝对门禁无豁免）：写入必须先备份、可断言、可回滚、可验证；独立数据库分属独立文件；破坏性操作须显式确认+已有快照；细则移入 `DATA-SAFETY-STANDARD.md`，门禁脚本 `skills/professional-report-deliverable/scripts/data_safety_preflight.py` |
 | 2026-10-23 | v1.4 | 用户裁决新增 **R6 数据库零臆测**（默认硬要求，绝对门禁无豁免）：数据库/参数库每一非空格必须可溯源，模型先验与"手册典型值"禁入主表，主键落到「厂商 × 牌号」并与厂商官方文件相符；细则移入 `DATABASE-INTEGRITY-STANDARD.md`，门禁脚本 `skills/professional-report-deliverable/scripts/data_integrity_gate.py` |
 | 2026-10-23 | v1.3 | 用户裁决新增 **R5 零缺口**（默认硬要求，绝对门禁无豁免）：定义 K1–K5 五类缺口、C1–C3 三条闭合路径、推断值分区隔离与置信度标注、边界定论三要素；细则移入 `ZERO-GAP-STANDARD.md`，门禁脚本 `skills/professional-report-deliverable/scripts/zero_gap_gate.py` |
-
-| 日期 | 版本 | 变更 |
-|---|---|---|
 | 2026-10-21 | v1.2 | 用户裁决新增 **R4 图文并茂**（默认基本需求，用户不再单独提出）：配图/流程图/动图/视频灯为交付硬要求；细则移入 `VISUAL-ASSET-STANDARD.md` |
 | 2026-10-20 | v1.1 | 依第一轮独立盲审实证，增补 §3.6「数据自洽的机械校验」六类高发缺陷与两版数值集合比对脚本做法 |
 | 2026-10-20 | v1.0 | 用户裁决建立本协议：统一署名 `${OWNER_SIGNATURE}`；报告一律中英双语；数据 100% 可推敲 + 交付前独立盲审 |

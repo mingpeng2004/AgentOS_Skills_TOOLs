@@ -1,25 +1,25 @@
 {
-  "schema": "agentos-release-source-verification-v1",
-  "distribution_version": "1.0.1",
-  "state": "passed",
-  "source_python_tests": 114,
   "exit_code": 0,
-  "actual_log_sha256": "b9b684f56fa7dd3f12605569549a4d200b5dbd042c93ed428f22c222a0657b59",
-  "source_code_hashes": {
-    "tools\\agentos_toolkit.py": "514e2cae614bf9121eb4ceb1755c413c6564c946544f6b0f5c689cbade1162cc",
-    "tools\\capability_assets.py": "8c722357e1c886baac9fecdab6d282e42574c6460ffdcc34fbe2b41613ee3775",
-    "tools\\distribution.py": "0fe048bd59b08a122df8e96614097e4dad345e5c6858915de2e10cb547051292",
-    "tools\\lesson_checks.py": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce",
-    "tools\\portable_install.py": "bf47e6b7ff086e636c07eb334fff6868d2bb36dc194e53e02ef12fd0fe5ddf97",
-    "tools\\verify_release.py": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14",
-    "tools\\weekly_learning.py": "2b2c548d99849fe8d2b66b6c4770215ab13965172aa19f0a72c45b694c4f22e5",
-    "tests\\test_capability_assets.py": "c0cc153ffab86e7c30ce90e45db25b4b65423883baace44ed272b8ecca504625",
-    "tests\\test_distribution.py": "a3cf87f8844e547c7c6e0170e604dce50c1077ae69e47a796b4751831f2b7555",
-    "tests\\test_lesson_checks.py": "b5eb704f693c2b6ced8ae314ed66281d3b4e7f567e47916c357333d4be3d2b5d",
-    "tests\\test_portable_install.py": "eaccba900ecfed44bb3f77650f8cddc413aabe5bf5e2f6ed2b6c47d97683aafb",
-    "tests\\test_verify_release.py": "9c8f3dfd272d0f81e93ba686ac328f489a7d77e9b4b16b84c105ef137db908a7",
-    "tests\\test_weekly_learning.py": "463ae140196f8168d2bb9984e17220e1d42744d9d4089d62d2d37cfdd95a1b4a"
+  "limits": "Re-run tools/verify_release.py for a candidate-specific package gate. This receipt is source-bound, not package-bound.",
+  "log_sha256": "df6b21c20d4748380bef46a11d93e992fc2f88e30e83545df6aeb914cb916f92",
+  "observed_test_count": 135,
+  "output_complete": true,
+  "schema": "agentos-source-verification-v2",
+  "scope": "Publisher source-tree Python unit tests only; not a staged-package, installer, security, independent-review, client-activation, or remote-publication receipt.",
+  "source_files_sha256": {
+    "tests/test_capability_assets.py": "80d1a27ccb599a19890d76cc86669e869f0bb74c64fa2c33242e9aaa5dab4679",
+    "tests/test_distribution.py": "0bd2d565d4ac5ee26084a57d14c8cae2f8bbf15a3113a1abec85de629ab6202e",
+    "tests/test_lesson_checks.py": "b5eb704f693c2b6ced8ae314ed66281d3b4e7f567e47916c357333d4be3d2b5d",
+    "tests/test_portable_install.py": "eaccba900ecfed44bb3f77650f8cddc413aabe5bf5e2f6ed2b6c47d97683aafb",
+    "tests/test_verify_release.py": "9c8f3dfd272d0f81e93ba686ac328f489a7d77e9b4b16b84c105ef137db908a7",
+    "tests/test_weekly_learning.py": "0b5544d8fff3aa8eed6b1b767151c4813da002b87ff40ff28fe242466b451961",
+    "tools/agentos_toolkit.py": "514e2cae614bf9121eb4ceb1755c413c6564c946544f6b0f5c689cbade1162cc",
+    "tools/capability_assets.py": "b7ca805666d777a08c4cc9080518330eb837bfb34de8650461a40c974f7149cb",
+    "tools/distribution.py": "ea45e4c4579c177a248b96c4fcdb938bc25fe61ba5bd506ae3bdb5cde04a673c",
+    "tools/lesson_checks.py": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce",
+    "tools/portable_install.py": "bf47e6b7ff086e636c07eb334fff6868d2bb36dc194e53e02ef12fd0fe5ddf97",
+    "tools/verify_release.py": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14",
+    "tools/weekly_learning.py": "a4dbf48225d8fd1ab491f507be61353e74cf220497df51203a093fd81ef50443"
   },
-  "scope": "Actual current publisher source unittests including Git metadata regressions. Final exact-package integration/security/deployment/review gates have separate actual private receipts; run tools/verify_release.py to reproduce them.",
-  "limits": "Synthetic failure fixtures are labeled; these tests do not establish second-computer, client activation, future-scheduler or real-device acceptance."
+  "state": "passed"
 }

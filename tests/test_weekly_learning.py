@@ -55,6 +55,23 @@ class WeeklyTests(unittest.TestCase):
             m.create(path, {"state": "overwritten"})
         self.assertEqual(m.load(path)["state"], "original")
 
+    def test_scan_skips_raw_session_directories(self):
+        project = self.root / "project"
+        project.mkdir()
+        (project / "AGENTS.md").write_text("fixture\n", encoding="utf-8")
+        sessions = project / "knowledge" / "sessions"
+        sessions.mkdir(parents=True)
+        (sessions / "request_dump.json").write_text('{"raw": true}\n', encoding="utf-8")
+        policy = {"project_roots": [str(project)], "skill_roots": [], "max_directories": 10,
+                  "learning_sources": []}
+        m.atomic(self.root / ".local/policy.json", policy)
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            result = m.scan(self.root)
+
+        self.assertEqual(result["issues"], [])
+        self.assertTrue(result["complete_within_declared_roots"])
+
     def test_skill_frontmatter_and_links(self):
         source = self.root / "fixture-skill"
         source.mkdir()
@@ -65,9 +82,129 @@ class WeeklyTests(unittest.TestCase):
         with self.assertRaises(m.Blocked):
             m.source_entry(source, "project")
 
+    def test_scan_separates_managed_entry_and_unregistered_skill_from_unreadable(self):
+        project = self.root / "project"
+        project.mkdir()
+        (project / "AGENTS.md").write_text("project rules\n", encoding="utf-8")
+        root = self.root / "skill-sources"
+        managed = root / "agent-governance-os"
+        vendor = root / "vendor-method"
+        marker_mention = root / "marker-mention"
+        managed.mkdir(parents=True)
+        vendor.mkdir()
+        marker_mention.mkdir()
+        managed_text = "<!-- AGENTOS:BEGIN client-entry-v1 -->\nGovernance entry\n<!-- AGENTOS:END client-entry-v1 -->\n"
+        (managed / "SKILL.md").write_text(managed_text, encoding="utf-8")
+        (vendor / "SKILL.md").write_text("# Third-party method\n", encoding="utf-8")
+        (vendor / "reference.md").write_text("Reference details\n", encoding="utf-8")
+        (marker_mention / "SKILL.md").write_text(
+            "This document quotes `<!-- AGENTOS:BEGIN client-entry-v1 -->` and "
+            "`<!-- AGENTOS:END client-entry-v1 -->` as examples only.\n", encoding="utf-8")
+        policy = {"project_roots": [str(project)], "skill_roots": [
+            {"path": str(root), "category": "vendor"}], "max_directories": 20,
+            "learning_sources": []}
+        m.atomic(self.root / ".local/policy.json", policy)
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            result = m.scan(self.root)
+
+        by_name = {item["name"]: item for item in result["skills"]}
+        self.assertTrue(result["complete_within_declared_roots"])
+        self.assertEqual(result["issues"], [])
+        self.assertEqual(by_name["managed-client-entry"]["inventory_kind"], "client_entry")
+        self.assertEqual(set(by_name["managed-client-entry"]["files"]), {"SKILL.md"})
+        self.assertEqual(by_name["vendor-method"]["inventory_kind"], "unregistered_skill")
+        self.assertEqual(set(by_name["vendor-method"]["files"]), {"SKILL.md", "reference.md"})
+        self.assertEqual(by_name["marker-mention"]["inventory_kind"], "unregistered_skill")
+
+    def test_bounded_large_binary_is_hashed_without_loading_whole_file(self):
+        source = self.root / "oversize-skill"
+        source.mkdir()
+        (source / "SKILL.md").write_text("---\nname: oversize-skill\ndescription: fixture\n---\n", encoding="utf-8")
+        binary = source / "showcase.mp4"
+        with binary.open("wb") as stream:
+            stream.truncate(8 * 1024 * 1024 + 1)
+
+        entry = m.source_entry(source, "vendor")
+
+        self.assertEqual(entry["files"]["showcase.mp4"], m.sha_file(binary))
+
+    def test_file_over_scan_hash_limit_still_blocks(self):
+        source = self.root / "oversize-skill"
+        source.mkdir()
+        (source / "SKILL.md").write_text("---\nname: oversize-skill\ndescription: fixture\n---\n", encoding="utf-8")
+        with (source / "too-large.bin").open("wb") as stream:
+            stream.truncate(m.MAX_SKILL_FILE_BYTES + 1)
+        with self.assertRaisesRegex(m.Blocked, "Oversize Skill source file"):
+            m.source_entry(source, "vendor")
+
+    def test_timestamped_backup_files_are_excluded_from_skill_source(self):
+        source = self.root / "fixture-skill"
+        source.mkdir()
+        (source / "SKILL.md").write_text("---\nname: fixture-skill\ndescription: fixture\n---\n", encoding="utf-8")
+        backup = source / "SKILL.md.bak.20261026-121315"
+        backup.write_text("private pre-change copy", encoding="utf-8")
+
+        entry = m.source_entry(source, "project")
+        exported_paths = {path.relative_to(source).as_posix() for path in m.root_files(source)}
+
+        self.assertEqual(set(entry["files"]), {"SKILL.md"})
+        self.assertEqual(exported_paths, {"SKILL.md"})
+
+    def test_portable_agentos_profile_marks_unredistributed_providers_candidate(self):
+        package = self.root / "portable"
+        agentos = self.root / "canonical-agentos"
+        (package / "governance/AgentOS/runtime").mkdir(parents=True)
+        (package / "governance/AgentOS/policies").mkdir(parents=True)
+        (package / "governance/AgentOS/bin").mkdir(parents=True)
+        (package / "governance/AgentOS/skills/public-method").mkdir(parents=True)
+        (package / "governance/AgentOS/skills/public-method/SKILL.md").write_text("entry\n")
+        (package / "governance/AgentOS/skills/public-method/reference.md").write_text("resource\n")
+        (package / "governance/AgentOS/VERSION").write_text("1.8.4\n")
+        (package / "governance/AgentOS/bin/agentos.ps1").write_text("included\n")
+        (package / "governance/AgentOS/reports").mkdir()
+        (agentos / "reports").mkdir(parents=True)
+        (agentos / "runtime").mkdir()
+        (agentos / "VERSION").write_text("1.8.4\n")
+        (agentos / "reports/TOKEN-BUDGET-GOVERNANCE-BRIEF.md").write_text("brief\n")
+        (agentos / "runtime/IMPORT-MANIFEST.json").write_text(json.dumps({
+            "schema": "agentos-import-manifest-v1", "agentos_version": "1.8.4",
+            "required_files": ["bin/agentos.ps1", "skills/private-method/SKILL.md"]
+        }))
+        (package / "governance/AgentOS/runtime/IMPORT-MANIFEST.json").write_text(
+            (agentos / "runtime/IMPORT-MANIFEST.json").read_text())
+        registry = {
+            "schema": "agentos-skill-registry-v1", "version": "test", "agentos_version": "1.8.4",
+            "selection": {}, "providers": [
+                {"id": "public", "skill": "public-method", "bundled": "old/path"},
+                {"id": "private", "skill": "private-method", "bundled": "skills/private-method"}],
+            "capabilities": [
+                {"id": "meta-public", "availability": "mapped", "provider": "public", "resources": ["reference.md"], "limits": "original"},
+                {"id": "meta-private", "availability": "mapped", "provider": "private", "resources": ["reference.md"], "limits": "original"}]
+        }
+        (package / "governance/AgentOS/policies/SKILL-REGISTRY.json").write_text(json.dumps(registry))
+        catalog = [{"name": "public-method", "state": "exported", "export": "governance/AgentOS/skills/public-method"}]
+
+        result = m.portable_agentos_profile(package, agentos, catalog)
+
+        public = json.loads((package / "governance/AgentOS/policies/SKILL-REGISTRY.json").read_text())
+        caps = {item["id"]: item for item in public["capabilities"]}
+        self.assertEqual(result["excluded_required_files"], 1)
+        self.assertEqual(caps["meta-public"]["availability"], "mapped")
+        self.assertEqual(public["providers"][0]["bundled"], "skills/public-method")
+        self.assertEqual(caps["meta-private"]["availability"], "candidate")
+        self.assertIsNone(caps["meta-private"]["provider"])
+        self.assertEqual(caps["meta-private"]["resources"], [])
+        manifest = json.loads((package / "governance/AgentOS/runtime/IMPORT-MANIFEST.json").read_text())
+        self.assertIn("skills/private-method/SKILL.md", manifest["distribution_profile"]["excluded_required_files"])
+        self.assertEqual((package / "governance/AgentOS/tests/test_agentos_skills.py").read_bytes(),
+                         (m.WORKSPACE / "tools/templates/portable_agentos_matrix_test.py").read_bytes())
+
     def package(self):
         package = self.root / "package"
         m.create(package / "README.md", b"fixture public repository\n")
+        m.create(package / "evidence/inventory.json", {"scope_complete": True,
+                 "learning_coverage_complete": True})
         m.create(package / "governance/AgentOS/VERSION", b"1.4.0\n")
         m.create(package / "catalog.json", {"schema": "governed-skill-catalog-v2", "source_count": 0, "skills": []})
         m.create(package / "governance/AgentOS/policies/SKILL-REGISTRY.json", {"schema": "agentos-skill-registry-v1", "capabilities": [{"id": "fixture-cap"}]})
@@ -83,6 +220,16 @@ class WeeklyTests(unittest.TestCase):
     def seal(self, package):
         import portable_install
         m.atomic(package / "portable-manifest.json", portable_install.build_manifest(package))
+
+    def test_stage_manifest_sealer_emits_complete_install_manifest(self):
+        package = self.root / "manifest-sealer"
+        m.create(package / "README.md", b"portable fixture\n")
+
+        manifest = m.seal_portable_manifest(package)
+
+        import portable_install
+        self.assertIn("README.md", manifest["files"])
+        self.assertEqual(portable_install.validate_bundle(package), manifest)
 
     def review_fixture(self, package, review):
         log = self.root / "independent.log"
@@ -114,6 +261,29 @@ class WeeklyTests(unittest.TestCase):
         (package / "README.md").write_text("changed")
         with self.assertRaises(m.Blocked):
             m.publish(package.parent / "ready.json", self.root, api=object())
+
+    def test_incomplete_scan_or_learning_coverage_blocks_release_review(self):
+        package = self.package()
+        source = self.root / "source.md"
+        source.write_text("fixture")
+
+        for field, expected in [
+            ("scope_complete", "declared project/Skill scan coverage"),
+            ("learning_coverage_complete", "learning-source coverage"),
+        ]:
+            with self.subTest(field=field):
+                inventory_path = package / "evidence/inventory.json"
+                inventory = m.load(inventory_path)
+                inventory[field] = False
+                m.atomic(inventory_path, inventory)
+                self.seal(package)
+                review_path = self.root / (field + "-review.json")
+                self.review_fixture(package, review_path)
+                with self.assertRaisesRegex(m.Blocked, expected):
+                    m.release_review(package, review_path)
+                inventory[field] = True
+                m.atomic(inventory_path, inventory)
+                self.seal(package)
 
     def test_publish_readback_preserves_unrelated_and_is_idempotent(self):
         package = self.package()
@@ -173,6 +343,75 @@ class WeeklyTests(unittest.TestCase):
             result = m.scan(self.root)
         self.assertFalse(result["complete_within_declared_roots"])
         self.assertEqual(result["issues"][0]["state"], "unreadable")
+
+    def test_scan_ignores_links_inside_declared_excluded_dependency_dirs(self):
+        project = self.root / "project"
+        project.mkdir()
+        (project / "AGENTS.md").write_text("fixture\n", encoding="utf-8")
+        policy = {"project_roots": [str(project)], "skill_roots": [], "max_directories": 10,
+                  "learning_sources": []}
+        m.atomic(self.root / ".local/policy.json", policy)
+
+        def fake_walk(root, onerror=None, followlinks=False):
+            yield str(project), ["node_modules", "active-link"], ["AGENTS.md"]
+
+        def fake_is_link(path):
+            return Path(path).name in {"node_modules", "active-link"}
+
+        with mock.patch.object(m.os, "walk", side_effect=fake_walk), \
+                mock.patch.object(m, "is_link", side_effect=fake_is_link), \
+                contextlib.redirect_stdout(io.StringIO()):
+            result = m.scan(self.root)
+
+        self.assertFalse(result["complete_within_declared_roots"])
+        self.assertEqual([issue["root"] for issue in result["issues"]],
+                         [str(project / "active-link")])
+
+    def test_scan_resolves_only_explicit_link_alias_to_scanned_direct_source(self):
+        project = self.root / "project"
+        project.mkdir()
+        (project / "AGENTS.md").write_text("fixture\n", encoding="utf-8")
+        source_root = self.root / "canonical-skills"
+        source = source_root / "vendor-method"
+        source.mkdir(parents=True)
+        (source / "SKILL.md").write_text(
+            "---\nname: vendor-method\ndescription: fixture\n---\n", encoding="utf-8")
+        alias_path = project / "magpie-skill"
+        policy = {"project_roots": [str(project), str(project)], "skill_roots": [
+            {"path": str(source_root), "category": "vendor"}], "max_directories": 10,
+            "link_aliases": [{"target_prefix": r"C:\Alias\skills",
+                              "canonical_root": str(source_root)}],
+            "learning_sources": []}
+        m.atomic(self.root / ".local/policy.json", policy)
+
+        def fake_walk(root, onerror=None, followlinks=False):
+            if Path(root) == project:
+                yield str(project), ["magpie-skill", "unmapped-skill"], ["AGENTS.md"]
+            else:
+                yield str(source_root), ["vendor-method"], []
+                yield str(source), [], ["SKILL.md"]
+
+        def fake_is_link(path):
+            return Path(path).name in {"magpie-skill", "unmapped-skill"}
+
+        def fake_readlink(path):
+            if Path(path) == alias_path:
+                return r"C:\Alias\skills\vendor-method"
+            raise OSError("not a declared alias")
+
+        with mock.patch.object(m.os, "walk", side_effect=fake_walk), \
+                mock.patch.object(m, "is_link", side_effect=fake_is_link), \
+                mock.patch.object(m.os, "readlink", side_effect=fake_readlink), \
+                contextlib.redirect_stdout(io.StringIO()):
+            result = m.scan(self.root)
+
+        self.assertTrue(result["complete_within_declared_roots"] is False)
+        self.assertEqual(result["link_aliases"], [{
+            "path": str(alias_path), "target": str(source),
+            "source_id": m.sha(str(source.resolve()).encode())[:12],
+            "state": "linked_alias_verified"}])
+        self.assertEqual([issue["root"] for issue in result["issues"]],
+                         [str(project / "unmapped-skill")])
 
     def test_publication_lock_closes_before_cleanup_on_failure(self):
         with mock.patch.object(m, "WORKSPACE", self.root), mock.patch.object(m, "publish", side_effect=m.Blocked("fixture failed")), contextlib.redirect_stdout(io.StringIO()):

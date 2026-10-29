@@ -1,6 +1,6 @@
 {
   "schema": "agentos-decision-policy-v1",
-  "agentos_version": "1.6.0",
+  "agentos_version": "1.8.4",
   "policy_id": "delegated-preference-default-v1",
   "authority": "User delegation on 2026-10-09: notified non-safety choices default after five minutes without feedback.",
   "preference_wait_seconds": 300,

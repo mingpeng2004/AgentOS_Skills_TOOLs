@@ -4,9 +4,9 @@ Use the repository root README and tools/portable_install.py. Legacy install com
 
 # Agent Governance OS
 
-## Capability contracts and skill routing (1.6.0)
+## Capability contracts and skill routing (1.8.4)
 
-The 64-capability matrix is mapped to existing methods and explicit candidate
+The 67-capability matrix is mapped to existing methods and explicit candidate
 gaps in policies/SKILL-REGISTRY.json. Read protocols/SKILL-MATRIX.md. The stdlib
 CLI bin/agentos_skills.py validates contracts, selects one primary capability
 with up to two constraints, checks input/source bindings, gates actual outputs
@@ -65,6 +65,51 @@ Agent Governance OS (AgentOS) 是 Minimax Code、Kimi Code 以及其他代码智
 - MiniMax Code：全局 Mavis overlay + 全局 `agent-governance-os` skill。
 - Kimi Code：用户 skill + 项目根 `AGENTS.md` 托管入口。Kimi CLI 也可以通过 `--skills-dir` 显式指定 AgentOS。
 - 项目：根 `AGENTS.md` 只增加一个带标记的 AgentOS 托管段，项目原有规则继续作为项目层约束。
+
+## Universal client propagation / 全客户端传播
+
+AgentOS is the canonical governance source for every current and future agent.
+Client-specific files are thin adapters described by `runtime/client-adapters.json`;
+they are not independent copies of the constitution. The stable handoff is
+`runtime/CLIENT-IMPORT-PROTOCOL.md` and the rules are in
+`protocols/CLIENT-ADAPTER-CONTRACT.md`.
+
+Use `bin/agentos_import.py validate` to check the canonical source and
+`bin/agentos_import.py verify --client <id> --project <path> --output <receipt>`
+to create a file-parity/import receipt. The receipt deliberately separates file
+parity, client-reported import and behavior attestation. A future client may use
+the portable `AGENTOS.md`/project-rules fallback when it has no native injection
+surface, but it remains `unattested` until a known-failure canary passes.
+
+Project-specific rules use `.agentos/project-import-manifest.json` to bind overlay
+files, required Skills and behavior canaries. Missing or changed overlays block
+dependent work; they are never interpreted as an empty rule set.
+
+The reusable operating guide for onboarding any client is
+`protocols/UNIVERSAL-AGENT-INTEGRATION-SOP.md`. Give a new client that canonical
+path or the repository link, then require it to report discovery, proposal,
+file parity, import status and behavior attestation separately. A link helps a
+client find the SOP; the import manifest and receipt are the actual integrity
+and state checks.
+
+All Skill/Tool creation, review, activation, distribution and retirement is
+governed by `protocols/SKILL-TOOL-MANAGEMENT-SOP.md`. Agents must search the
+existing capability and asset registry first, keep blind spots as candidates,
+bind learning to evidence and independent review, and never treat a
+client-local copy as a new source of truth.
+
+For Tools, `bin/agentos_tools.py catalog` and `route --tool <asset-id>` validate
+the host-bound asset projection and return a stable entry path without executing
+it. Tool side effects and task permission gates still apply; path discovery is
+not proof of vendor-client runtime access.
+
+## Token efficiency / Token 效率
+
+`protocols/TOKEN-BUDGET.md` is the single cross-client policy; `meta-token-budget`
+routes its measured workflow. The 50% reduction is a matched-baseline target,
+not a billing promise. Quality, safety, user intent and evidence outrank token
+savings. Compact client handoff: **先验源，次验器；矩阵变即重读；无回执不称载；
+长物先存证后摘要；质安证据优先。**
 
 ## 常用命令
 

@@ -26,10 +26,13 @@ $required = @(
     'templates\CHECKPOINT.md',
     'runtime\AGENT-IMPORT.md',
     'runtime\IMPORT-MANIFEST.json',
+    'runtime\CLIENT-IMPORT-PROTOCOL.md',
+    'runtime\client-adapters.json',
     'protocols\TRUTH-AND-EVIDENCE.md',
     'protocols\TASK-PROTOCOL.md',
     'protocols\RECURSIVE-PLANNING.md',
     'protocols\CONTEXT-PIPELINE.md',
+    'protocols\TOKEN-BUDGET.md',
     'protocols\HARNESS-ENHANCEMENTS.md',
     'policies\EVIDENCE-POLICY.json',
     'adapters\minimax\SKILL.md',
@@ -51,9 +54,16 @@ $required = @(
     'templates\AMENDMENT.json',
     'bin\AgentOS-Contract.ps1',
     'bin\agentos_skills.py',
+    'bin\agentos_import.py',
+    'schemas\agentos-import-receipt-v1.json',
+    'schemas\agentos-project-import-manifest-v1.json',
+    'templates\AGENTOS-PORTABLE-ENTRY.md',
     'tests\test_agentos_skills.py',
     'policies\SKILL-REGISTRY.json',
     'protocols\SKILL-MATRIX.md',
+    'protocols\CLIENT-ADAPTER-CONTRACT.md',
+    'protocols\UNIVERSAL-AGENT-INTEGRATION-SOP.md',
+    'protocols\SKILL-TOOL-MANAGEMENT-SOP.md',
     'skills\production-skill-routing\SKILL.md',
     'templates\ENGINEERING-REVIEW.md'
 )
@@ -102,6 +112,7 @@ try {
     $policy = Get-Content -LiteralPath (Join-Path $AgentOsRoot 'policies\DECISION-POLICY.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($policy.preference_wait_seconds -ne 300) { $failed += 'decision-deadline-not-300' }
     $manifest = Get-Content -LiteralPath (Join-Path $AgentOsRoot 'runtime\IMPORT-MANIFEST.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($manifest.required_files -notcontains 'bin\AgentOS.ps1') { $failed += 'import-manifest-missing-agentos-entrypoint' }
     foreach ($file in $manifest.required_files) {
         if (-not (Test-Path -LiteralPath (Join-Path $AgentOsRoot $file))) { $failed += "import-missing: $file" }
     }

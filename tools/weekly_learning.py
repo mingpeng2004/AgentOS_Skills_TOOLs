@@ -22,21 +22,69 @@ WORKSPACE = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import distribution as dist
 import capability_assets
+import portable_install
 
 REPOSITORY = "mingpeng2004/AgentOS_Skills_TOOLs"
 API = "https://api.github.com/repos/" + REPOSITORY
-SKIP = {".git", ".venv", "venv", "node_modules", "__pycache__", "dist", "build", ".archive", "_tmp",
-        "archive", "archives", "vendor", ".local", ".agentos", "attachments", "reports", "trace", "traces"}
+SKIP = {".git", ".venv", "venv", "node_modules", "oh_modules", ".plugin_symlinks",
+        "__pycache__", "dist", "build", ".archive", "_tmp", "archive", "archives", "vendor",
+        ".local", ".agentos", "attachments", "reports", "trace", "traces",
+        # Raw client session artifacts and request dumps are never lesson input.
+        "sessions", "archived_sessions", "transcripts", "conversations", "dumps"}
 TEXT = {".md", ".txt", ".json", ".yaml", ".yml", ".toml", ".py", ".ps1", ".cs", ".jsx", ".tsx", ".mjs", ".cjs",
         ".mdc", ".sh", ".bat", ".js", ".ts", ".html", ".css", ".svg", ".xml", ".ini", ".cfg"}
 BINARY = {".png", ".jpg", ".jpeg", ".webp", ".docx", ".mp3", ".mp4", ".wav", ".woff2", ".woff", ".ttf"}
 SECRETS = re.compile(rb"gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{25,}|AKIA[A-Z0-9]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
 LOCAL = re.compile(r"(?i)(?:[a-z]:[\\/](?:users|000_ai)[\\/]|/" + r"Users/[^/]+/|/" + r"home/[^/]+/)")
 IP = re.compile(r"\b(?:192\.168|10\.\d+|172\.(?:1[6-9]|2\d|3[01]))\.\d+\.\d+\b")
+PRIVATE_BACKUP_NAME = re.compile(r"(?i)\.bak(?:\.[^/\\]+)*$")
+MAX_SKILL_FILE_BYTES = 64 * 1024 * 1024
+
+
+def sha_file(path, chunk_size=1024 * 1024):
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(chunk_size), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def mapped_link_alias(link_path, aliases):
+    """Resolve a link only by metadata to an explicitly declared direct source root."""
+    try:
+        target = os.readlink(link_path)
+    except OSError:
+        return None
+    target = target.replace("\\\\?\\", "").replace("/", "\\")
+    folded = target.casefold().rstrip("\\")
+    for declaration in aliases:
+        alias_prefix = str(declaration.get("target_prefix", "")).replace("/", "\\").rstrip("\\")
+        canonical_root = declaration.get("canonical_root")
+        if not alias_prefix or not canonical_root:
+            continue
+        prefix = alias_prefix.casefold()
+        if not folded.startswith(prefix + "\\"):
+            continue
+        relative = target[len(alias_prefix):].lstrip("\\")
+        candidate = Path(canonical_root) / Path(relative)
+        try:
+            candidate = dist.no_links(candidate)
+        except (OSError, dist.Blocked):
+            return None
+        return candidate
+    return None
 
 
 class Blocked(RuntimeError):
     pass
+
+
+class SkillIdentityAbsent(Blocked):
+    """Readable, hashed content that is not a named Agent Skill."""
+    def __init__(self, files, text):
+        super().__init__("Skill identity absent")
+        self.files = files
+        self.text = text
 
 
 def now():
@@ -102,6 +150,8 @@ def root_files(root):
             path = Path(base) / name
             if is_link(path):
                 raise Blocked("Linked source file refused")
+            if PRIVATE_BACKUP_NAME.search(name):
+                continue
             yield path
 
 
@@ -109,15 +159,15 @@ def source_entry(root, category):
     root = Path(root)
     files = {}
     for file in root_files(root):
-        if file.stat().st_size > 8 * 1024 * 1024:
+        if file.stat().st_size > MAX_SKILL_FILE_BYTES:
             raise Blocked("Oversize Skill source file")
-        files[file.relative_to(root).as_posix()] = sha(file.read_bytes())
+        files[file.relative_to(root).as_posix()] = sha_file(file)
     if "SKILL.md" not in files:
         raise Blocked("Skill entry missing")
     text = (root / "SKILL.md").read_text(encoding="utf-8-sig")
     match = re.search(r"(?m)^name:\s*[\"']?([A-Za-z0-9][A-Za-z0-9-]{0,63})[\"']?\s*$", text)
     if not match:
-        raise Blocked("Skill identity absent")
+        raise SkillIdentityAbsent(files, text)
     return {"path": str(root), "category": category, "name": match[1].lower(), "files": files,
             "digest": sha(encoded(files)), "observed_at": now()}
 
@@ -125,17 +175,27 @@ def source_entry(root, category):
 def scan(workspace=WORKSPACE):
     policy = load(Path(workspace) / ".local/policy.json")
     run = Path(workspace) / ".local/runs" / (time.strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex[:6])
-    skills, records, projects, issues = {}, [], {}, []
+    skills, records, projects, issues, link_aliases, scope_exclusions = {}, [], {}, [], [], []
+    pending_link_aliases = []
     directory_count = 0
     previous_file = Path(workspace) / ".local/last-scan.json"
     previous = load(previous_file) if previous_file.exists() else {"records": []}
     old = {x["path"]: x["sha256"] for x in previous["records"]}
     roots = [(x, "project") for x in policy["project_roots"]]
     roots += [(x["path"], x["category"]) for x in policy["skill_roots"]]
+    optional_roots = {os.path.normcase(os.path.abspath(item["path"])): item.get("reason", "Optional root absent at scan time")
+                      for item in policy.get("optional_roots", [])}
+    excluded_paths = {os.path.normcase(os.path.abspath(item["path"])): item.get("reason", "Explicitly excluded by scan policy")
+                      for item in policy.get("excluded_paths", [])}
     for location, category in roots:
         root = Path(location)
         if not root.is_dir():
-            issues.append({"root": str(root), "state": "absent_at_scan", "observed_at": now()})
+            root_key = os.path.normcase(os.path.abspath(str(root)))
+            if root_key in optional_roots:
+                scope_exclusions.append({"root": str(root), "state": "optional_root_absent",
+                                         "reason": optional_roots[root_key], "observed_at": now()})
+            else:
+                issues.append({"root": str(root), "state": "absent_at_scan", "observed_at": now()})
             continue
         def error(exc):
             issues.append({"root": str(root), "state": "unreadable", "error": type(exc).__name__})
@@ -147,13 +207,45 @@ def scan(workspace=WORKSPACE):
             if here.resolve() == Path(workspace).resolve():
                 dirs[:] = []
                 continue
-            linked = [x for x in dirs if is_link(here / x)]
-            issues.extend({"root": str(here / x), "state": "linked_excluded"} for x in linked)
-            dirs[:] = sorted(x for x in dirs if x not in SKIP and x not in linked)
+            excluded = []
+            for name in dirs:
+                child = here / name
+                key = os.path.normcase(os.path.abspath(str(child)))
+                if key in excluded_paths:
+                    excluded.append(name)
+                    scope_exclusions.append({"root": str(child), "state": "explicitly_excluded",
+                                             "reason": excluded_paths[key], "observed_at": now()})
+            dirs[:] = [name for name in dirs if name not in excluded]
+            # A symlink inside an already excluded dependency/build directory
+            # is outside the scan contract; do not report it as a coverage gap.
+            candidates = [x for x in dirs if x not in SKIP]
+            linked = [x for x in candidates if is_link(here / x)]
+            for name in linked:
+                link_path = here / name
+                mapped = mapped_link_alias(link_path, policy.get("link_aliases", []))
+                if mapped is None:
+                    issues.append({"root": str(link_path), "state": "linked_excluded"})
+                else:
+                    pending_link_aliases.append((str(link_path), str(mapped)))
+            dirs[:] = sorted(x for x in candidates if x not in linked)
             if "SKILL.md" in files:
                 try:
                     entry = source_entry(here, category)
                     skills[str(here.resolve())] = entry
+                except SkillIdentityAbsent as exc:
+                    begin = re.search(r"(?m)^<!-- AGENTOS:BEGIN client-entry-v1 -->\s*$", exc.text)
+                    end = re.search(r"(?m)^<!-- AGENTOS:END client-entry-v1 -->\s*$", exc.text)
+                    managed_entry = bool(begin and end and begin.end() < end.start())
+                    kind = "client_entry" if managed_entry else "unregistered_skill"
+                    key = str(here.resolve())
+                    skills[key] = {
+                        "path": str(here), "category": category,
+                        "name": "managed-client-entry" if managed_entry else
+                                (re.sub(r"[^a-z0-9-]+", "-", here.name.lower()).strip("-") or "unnamed-skill"),
+                        "files": exc.files, "digest": sha(encoded(exc.files)),
+                        "observed_at": now(), "inventory_kind": kind,
+                        "inventory_only": str(exc),
+                    }
                 except (Blocked, OSError, UnicodeError) as exc:
                     issues.append({"root": str(here), "state": "skill_unreadable", "error": str(exc)})
                     # Keep malformed/unportable Skills visible in the full inventory.
@@ -182,6 +274,20 @@ def scan(workspace=WORKSPACE):
                                     "changed": old.get(str(path)) != sha(data), "observed_at": now()})
                 except OSError as exc:
                     issues.append({"root": str(path), "state": "unreadable", "error": type(exc).__name__})
+    scanned_by_path = {str(Path(item["path"]).resolve()).casefold(): item for item in skills.values()}
+    for link_path, target_path in pending_link_aliases:
+        source = scanned_by_path.get(str(Path(target_path)).casefold())
+        if source is None:
+            issues.append({"root": link_path, "state": "linked_alias_target_unscanned"})
+            continue
+        link_aliases.append({"path": link_path, "target": target_path,
+                             "source_id": sha(source["path"].encode())[:12],
+                             "state": "linked_alias_verified"})
+    link_aliases = list({item["path"].casefold(): item for item in link_aliases}.values())
+    scope_exclusions = list({(item["root"].casefold(), item["state"]): item
+                             for item in scope_exclusions}.values())
+    issues = list({(item.get("root", "").casefold(), item["state"], item.get("error", "")): item
+                   for item in issues}.values())
     learning_policy = dict(policy)
     learning_policy["learning_sources"] = list(policy.get("learning_sources", []))
     for item in projects.values():
@@ -192,10 +298,15 @@ def scan(workspace=WORKSPACE):
                     "path": str(path), "kind": "directory", "include": ["*.md", "**/*.md", "*.json", "**/*.json"],
                     "max_files": 500, "max_bytes": 4 * 1024 * 1024, "required": False})
     learning = capability_assets.scan_learning(learning_policy, workspace) if learning_policy["learning_sources"] else None
+    learning_coverage_complete = bool(learning) and all(
+        item.get("state") in {"scanned", "empty", "absent"} for item in learning.get("coverage", []))
     report = {"schema": "weekly-learning-scan-v2", "created_at": now(), "policy_sha256": sha(encoded(policy)),
               "projects": list(projects.values()), "skills": list(skills.values()), "records": records,
-              "issues": issues, "directories_inspected": directory_count, "scope": policy,
+              "issues": issues, "link_aliases": link_aliases,
+              "scope_exclusions": scope_exclusions,
+              "directories_inspected": directory_count, "scope": policy,
               "learning": learning,
+              "learning_coverage_complete": learning_coverage_complete,
               "complete_within_declared_roots": not issues}
     create(run / "scan.json", report)
     atomic(Path(workspace) / ".local/last-scan.json", report)
@@ -251,6 +362,111 @@ def fingerprint(package):
     return sha(encoded({key: sha(value) for key, value in files.items()}))
 
 
+def portable_agentos_profile(package, agentos, catalog):
+    """Derive a truthful import/capability profile from explicitly exported Skills."""
+    package = Path(package)
+    agentos = Path(agentos)
+    report = agentos / "reports/TOKEN-BUDGET-GOVERNANCE-BRIEF.md"
+    if report.is_file():
+        target = package / "governance/AgentOS/reports/TOKEN-BUDGET-GOVERNANCE-BRIEF.md"
+        content = portable(report.read_bytes(), ".md", {str(agentos): "${AGENTOS_HOME}", str(Path.home()): "${USER_HOME}"})[0]
+        if target.exists():
+            if target.read_bytes() != content:
+                raise Blocked("Conflicting token-governance report projection")
+        else:
+            create(target, content)
+
+    manifest_path = package / "governance/AgentOS/runtime/IMPORT-MANIFEST.json"
+    if not manifest_path.is_file():
+        return {"profile": "unconfigured-fixture", "required_files": 0,
+                "excluded_required_files": 0, "unavailable_capabilities": {}}
+    registry_path = package / "governance/AgentOS/policies/SKILL-REGISTRY.json"
+    registry = load(registry_path)
+    exported = {}
+    for item in catalog:
+        if item.get("state") not in {"exported", "deduplicated"}:
+            continue
+        name, prefix = item.get("name"), item.get("export")
+        if not name or not prefix:
+            continue
+        entry = package / prefix / "SKILL.md"
+        if entry.is_file():
+            exported[name] = prefix
+
+    runtime_roots = {}
+    runtime_files = []
+    for name, prefix in sorted(exported.items()):
+        runtime_prefix = prefix
+        if prefix.startswith("skills/"):
+            runtime_prefix = "governance/AgentOS/skills/" + name
+            source_root = package / prefix
+            target_root = package / runtime_prefix
+            for source_file in sorted(source_root.rglob("*")):
+                if not source_file.is_file():
+                    continue
+                relative = source_file.relative_to(source_root).as_posix()
+                target = target_root / relative
+                create(target, source_file.read_bytes())
+                runtime_files.append(runtime_prefix + "/" + relative)
+        runtime_roots[name] = runtime_prefix.removeprefix("governance/AgentOS/")
+
+    providers = {item["id"]: item for item in registry["providers"]}
+    omissions = {}
+    for capability in registry["capabilities"]:
+        if capability["availability"] == "candidate":
+            continue
+        provider = providers[capability["provider"]]
+        prefix = runtime_roots.get(provider["skill"])
+        if prefix is None:
+            capability["availability"] = "candidate"
+            capability["provider"] = None
+            capability["resources"] = []
+            capability["limits"] = (capability["limits"].rstrip() +
+                " Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.")
+            omissions.setdefault(provider["skill"], []).append(capability["id"])
+            continue
+        provider["bundled"] = prefix
+        runtime_root = package / "governance/AgentOS" / prefix
+        missing_resources = [name for name in capability.get("resources", []) if not (runtime_root / name).is_file()]
+        if missing_resources:
+            capability["availability"] = "candidate"
+            capability["provider"] = None
+            capability["resources"] = []
+            capability["limits"] = (capability["limits"].rstrip() +
+                " Portable release: one or more required Skill resources were not redistributed; verify the complete provider before use.")
+            omissions.setdefault(provider["skill"], []).append(capability["id"])
+    registry["agentos_version"] = (package / "governance/AgentOS/VERSION").read_text(encoding="utf-8-sig").strip()
+    atomic(registry_path, registry)
+
+    manifest = load(manifest_path)
+    original_required = list(manifest["required_files"])
+    present = [relative for relative in original_required
+               if (package / "governance/AgentOS" / relative.replace("\\", "/")).is_file()]
+    omitted = sorted(set(original_required) - set(present))
+    manifest["required_files"] = present
+    manifest["required_files"] = sorted(set(manifest["required_files"]) | {
+        path.removeprefix("governance/AgentOS/") for path in runtime_files})
+    manifest["agentos_version"] = (package / "governance/AgentOS/VERSION").read_text(encoding="utf-8-sig").strip()
+    manifest["distribution_profile"] = {
+        "id": "portable-owner-authorized",
+        "source_manifest_sha256": sha((agentos / "runtime/IMPORT-MANIFEST.json").read_bytes()),
+        "excluded_required_files": omitted,
+        "runtime_skill_copies": sorted(runtime_files),
+        "unavailable_capabilities": {key: sorted(set(value)) for key, value in sorted(omissions.items())},
+        "rule": "Only files with explicit redistribution authorization are packaged; absent providers are candidate/reference-only, never implied installed competence."
+    }
+    atomic(manifest_path, manifest)
+
+    test_source = WORKSPACE / "tools/templates/portable_agentos_matrix_test.py"
+    if not test_source.is_file():
+        raise Blocked("Portable AgentOS matrix test template missing")
+    test_path = package / "governance/AgentOS/tests/test_agentos_skills.py"
+    create(test_path, test_source.read_bytes())
+    return {"profile": "portable-owner-authorized", "required_files": len(present),
+            "excluded_required_files": len(omitted), "unavailable_capabilities": omissions,
+            "test_template_sha256": sha(test_source.read_bytes())}
+
+
 def stage(scan_path, workspace=WORKSPACE):
     workspace = dist.no_links(workspace)
     scan_data = load(scan_path)
@@ -265,7 +481,9 @@ def stage(scan_path, workspace=WORKSPACE):
     catalog, bindings, source_trees = [], [], []
     def bind_tree(root):
         root = Path(root)
-        source_trees.append({"kind": "tree", "source": str(root), "files": dist.tree(root, SKIP), "excluded": sorted(SKIP)})
+        excluded = set(SKIP) | {"*.bak", "*.bak.*"}
+        source_trees.append({"kind": "tree", "source": str(root),
+                             "files": dist.tree(root, excluded), "excluded": sorted(excluded)})
     def export(relative, source, data=None):
         relative = safe_relative(relative)
         raw = Path(source).read_bytes() if data is None else data
@@ -287,7 +505,7 @@ def stage(scan_path, workspace=WORKSPACE):
     if policy.get("security_check_source"):
         export("tools/security_check.ps1", policy["security_check_source"])
     # Legacy installers mutate client/environment state without rollback; do not ship them.
-    for name in ["VERSION", "README.md", "adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "templates", "tests"]:
+    for name in ["VERSION", "README.md", "adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests"]:
         base = agentos / name
         if base.is_file():
             export("governance/AgentOS/" + name, base)
@@ -296,7 +514,17 @@ def stage(scan_path, workspace=WORKSPACE):
             for file in root_files(base):
                 if file.suffix.lower() in BINARY:
                     continue
+                if name == "tests" and file.relative_to(base).as_posix() == "test_agentos_skills.py":
+                    continue
                 export("governance/AgentOS/" + file.relative_to(agentos).as_posix(), file)
+    for relative in ["VERSION", "README.md", "bin/AgentOS.ps1", "bin/AgentOS-Contract.ps1",
+                     "bin/agentos_import.py", "bin/agentos_paths.py", "bin/agentos_skills.py",
+                     "policies/SKILL-REGISTRY.json", "runtime/IMPORT-MANIFEST.json"]:
+        bound = next((x for x in bindings if x.get("target") == "governance/AgentOS/" + relative), None)
+        if bound is None:
+            source = agentos / relative
+            if source.is_file():
+                export("governance/AgentOS/" + relative, source)
     authored = {}
     for declaration in policy.get("authored_roots", []):
         if declaration.get("license") != "MIT":
@@ -314,6 +542,18 @@ def stage(scan_path, workspace=WORKSPACE):
         selected.setdefault(key, root)
     for item in sorted(items.values(), key=lambda x: (x["name"], x["digest"], x["category"], x["path"])):
         public = {"name": item["name"], "source_category": item["category"], "source_id": sha(item["path"].encode())[:12]}
+        if item.get("inventory_kind") == "client_entry":
+            public.update(state="reference_only", kind="client_entry",
+                          reason="Managed AgentOS client instruction entry, not a Skill asset; use the canonical governance entrypoint.",
+                          license="not_applicable")
+            catalog.append(public)
+            continue
+        if item.get("inventory_kind") == "unregistered_skill":
+            public.update(state="reference_only", kind="unregistered_skill",
+                          reason="Readable content was inventoried, but standard Skill identity metadata is absent; do not route or redistribute as a Skill.",
+                          license="unknown")
+            catalog.append(public)
+            continue
         key = (item["name"], item["digest"])
         if key not in selected or item.get("inventory_only"):
             public.update(state="reference_only", reason="Redistribution rights or complete source integrity not established; obtain from original provider.", license="unknown")
@@ -362,11 +602,18 @@ def stage(scan_path, workspace=WORKSPACE):
     create(package / "catalog.json", {"schema": "governed-skill-catalog-v2", "skills": catalog,
         "source_count": len(catalog), "scan_scope": "Configured roots; every unavailable or unsupported source remains explicit.",
         "privacy": "Raw project, client learning and machine data remain private."})
+    public_profile = portable_agentos_profile(package, agentos, catalog)
     create(package / "capability-assets.json", dist.assets(package, catalog))
     summary = {"projects_inspected": len(scan_data["projects"]), "lesson_records_inspected": len(scan_data["records"]),
         "skill_sources": len(catalog), "states": {s: sum(x["state"] == s for x in catalog) for s in sorted({x["state"] for x in catalog})},
         "scan_issues": [{"state": x["state"], "source_id": sha(x["root"].encode())[:12]} for x in scan_data["issues"]],
+        "verified_link_aliases": len(scan_data.get("link_aliases", [])),
+        "declared_scope_exclusions": [{"state": x["state"], "source_id": sha(x["root"].encode())[:12],
+                                        "reason": x["reason"]}
+                                       for x in scan_data.get("scope_exclusions", [])],
         "scope_complete": scan_data["complete_within_declared_roots"],
+        "learning_coverage_complete": scan_data.get("learning_coverage_complete", False),
+        "portable_agentos_profile": public_profile,
         "legacy_installer": "Not distributed; use the preflight/backup/rollback tool.",
         "limits": "Inventory/file checks are not domain certification, client invocation, second-computer or future scheduler evidence."}
     learning = scan_data.get("learning")
@@ -377,12 +624,20 @@ def stage(scan_path, workspace=WORKSPACE):
     for file in (workspace / ".local/public-evidence").glob("*"):
         if file.is_file():
             export("evidence/" + file.name, file)
+    seal_portable_manifest(package)
     bindings.extend(source_trees)
     create(run / "source-bindings.json", bindings)
     create(run / "target.json", identity)
     atomic(workspace / ".local/latest-package.json", {"package": str(package), "sources": str(run / "source-bindings.json"), "scan": str(scan_path)})
     print(json.dumps({"package": str(package), "inventory": summary}, ensure_ascii=False))
     return package
+
+
+def seal_portable_manifest(package):
+    """Create the complete install manifest only after staging is finished."""
+    manifest = portable_install.build_manifest(package)
+    create(Path(package) / "portable-manifest.json", manifest)
+    return manifest
 
 
 def validate(package):
@@ -441,6 +696,11 @@ def release_review(package, review_path):
     catalog = load(package / "catalog.json")
     if catalog.get("schema") != "governed-skill-catalog-v2" or not (package / "portable-manifest.json").is_file():
         raise Blocked("Production release requires v2 catalog and complete portable manifest")
+    inventory = load(package / "evidence/inventory.json")
+    if inventory.get("scope_complete") is not True:
+        raise Blocked("Publication blocked: declared project/Skill scan coverage is incomplete")
+    if inventory.get("learning_coverage_complete") is not True:
+        raise Blocked("Publication blocked: configured learning-source coverage is incomplete")
     review = load(review_path)
     if review.get("state") != "passed" or review.get("package_fingerprint") != validation["fingerprint"]:
         raise Blocked("Actual review must pass for this exact package")

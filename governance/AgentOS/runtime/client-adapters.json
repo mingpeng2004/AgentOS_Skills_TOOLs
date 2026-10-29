@@ -1,0 +1,603 @@
+{
+  "schema": "agentos-client-adapters-v1",
+  "agentos_version": "1.8.4",
+  "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
+  "adapters": [
+    {
+      "id": "claude-code",
+      "display_name": "Claude Code",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "project_rules",
+        "explicit_cli"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [
+        "${USER_HOME}/.claude/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.claude/CLAUDE.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "notes": "The global ${USER_HOME}/.minimax/skills root is a Magpie-owned symlink view of the shared library and is not a required managed rule target; the Mavis profile copy is the managed rule surface.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "Not yet verified under this protocol. The Agent tool documents background-by-default; state must be proven by a live background launch.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "claude-desktop",
+      "display_name": "Claude Desktop",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback."
+    },
+    {
+      "id": "cline",
+      "display_name": "Cline",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "global_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [
+        "${USER_HOME}/.agents/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.cline/rules/agentos.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback."
+    },
+    {
+      "id": "codex",
+      "display_name": "Codex",
+      "version": "observed-current-host",
+      "source": null,
+      "surfaces": [
+        "explicit_cli",
+        "project_rules"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [
+        "${CODEX_HOME}/skills"
+      ],
+      "rule_files": [
+        "${CODEX_HOME}/AGENTS.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "Not yet verified under this protocol. A multi_agent surface exists in the client; state must be proven by a live background launch before being quoted.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "continue",
+      "display_name": "Continue",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "global_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [
+        "${USER_HOME}/.continue/rules/agentos.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback."
+    },
+    {
+      "id": "copilot",
+      "display_name": "GitHub Copilot CLI",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "user_level_instructions",
+        "explicit_cli"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "discovered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [
+        "${USER_HOME}/.copilot/instructions/agentos.instructions.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "VS Code and Copilot CLI can share this physical harness file where user homes match. The CLI runtime has not reported loading it; retain import and behavior as unattested.",
+      "native_surface_reference": {
+        "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions",
+        "checked_at": "2026-10-28T23:30:28.711179+00:00",
+        "scope": "GitHub Copilot CLI user instructions; modular instruction-file format."
+      },
+      "rule_file_prefixes": {
+        "${USER_HOME}/.copilot/instructions/agentos.instructions.md": "---\ndescription: Load the canonical AgentOS entry before agent work.\napplyTo: \"**\"\n---\n\n"
+      },
+      "additional_native_surfaces": []
+    },
+    {
+      "id": "cursor",
+      "display_name": "Cursor",
+      "version": "2.6.19 (uninstall registry, observed 2026-10-29)",
+      "source": null,
+      "surfaces": [
+        "user_managed_rules",
+        "project_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "No global rule was written because the official docs do not confirm a home-level file target. Project AGENTS/rules remain the supported file-based path. This client stays unattested globally.",
+      "native_surface_reference": {
+        "url": "https://cursor.com/docs/rules",
+        "checked_at": "2026-10-28T23:16:18.818182+00:00",
+        "scope": "Official Cursor docs describe User Rules as a Customize/Rules UI surface and .cursor/rules as project-specific. No ~/.cursor/rules user-level path is documented."
+      }
+    },
+    {
+      "id": "hermes",
+      "display_name": "Hermes",
+      "version": "not installed on this host (removed 2026-10-29 per DEC-075; preserved archive 0.22.5 install stamp)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "observed_install_root": null,
+      "observed_skills_root": null,
+      "archived_preservation_root": "${PROJECT_PATH}",
+      "status": "removed_archived",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "file_parity_only"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "The Hermes application was removed from this host on 2026-10-29 (DEC-075). Skills, role cards, profiles and knowledge are preserved as an archive only. There is no native rule or Skill surface on this host; only the portable fallback applies. Reinstalling Hermes is required before any file parity, import or behavior claim.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "The Hermes application was removed from this host on 2026-10-29 (DEC-075); no background delegation surface can be exercised here.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "hermes-metal-expert",
+      "display_name": "Hermes metal-expert",
+      "version": "not installed on this host (removed 2026-10-29 per DEC-075; profile preserved in the archive)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "archived_preservation_root": "${PROJECT_PATH}",
+      "status": "removed_archived",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "The Hermes application was removed from this host on 2026-10-29 (DEC-075). This profile survives only as archived data. There is no native rule or Skill surface on this host; only the portable fallback applies.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "The Hermes application was removed from this host on 2026-10-29 (DEC-075); no background delegation surface can be exercised here.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "hermes-ming-systems",
+      "display_name": "Hermes ming-systems",
+      "version": "not installed on this host (removed 2026-10-29 per DEC-075; profile preserved in the archive)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "archived_preservation_root": "${PROJECT_PATH}",
+      "status": "removed_archived",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "The Hermes application was removed from this host on 2026-10-29 (DEC-075). This profile survives only as archived data. There is no native rule or Skill surface on this host; only the portable fallback applies.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "The Hermes application was removed from this host on 2026-10-29 (DEC-075); no background delegation surface can be exercised here.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "kimi",
+      "display_name": "Kimi",
+      "version": "unknown",
+      "source": "adapters/kimi/SKILL.md",
+      "surfaces": [
+        "user_skill",
+        "explicit_cli",
+        "project_rules"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "file_parity_only",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "file_parity_only"
+      },
+      "aliases": [],
+      "skill_roots": [
+        "${USER_HOME}/.kimi/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.kimi/skills/agent-governance-os/SKILL.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "Not separately verified. The legacy .kimi install is not the active Kimi client; verify before quoting.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "kimi-code",
+      "display_name": "Kimi Code",
+      "version": "unknown",
+      "source": "adapters/kimi/SKILL.md",
+      "surfaces": [
+        "user_skill",
+        "explicit_cli",
+        "project_rules"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "file_parity_only",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "file_parity_only"
+      },
+      "aliases": [],
+      "skill_roots": [
+        "${USER_HOME}/.kimi-code/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.kimi-code/skills/agent-governance-os/SKILL.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": true,
+        "background_subagent_launchable": true,
+        "background_subagent_unreachable": false,
+        "observed_at": "2026-10-29",
+        "note": "Kimi Code CLI 0.22.0 default agent profile publishes TaskList/TaskOutput/TaskStop. Live Agent(run_in_background=true) on 2026-10-29 returned a background task handle.",
+        "evidence": "${USER_HOME}\\.kimi-code\\bin\\kimi.exe"
+      }
+    },
+    {
+      "id": "kimi-desktop",
+      "display_name": "Kimi Desktop",
+      "version": "unknown",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": false,
+        "background_subagent_launchable": false,
+        "background_subagent_unreachable": true,
+        "observed_at": "2026-10-29",
+        "note": "Host-side policy gates the three task tools on sessionKind==conversation AND executionSurface==local-control AND backgroundTaskSupport AND a supporting permissionMode. Desktop conversation turns run on message-route, so the tools are never published. No user-facing key exists on this host.",
+        "evidence": "${USER_HOME}\\AppData\\Roaming\\kimi-desktop\\daimon-bundle\\app\\daimon\\dist\\_internal\\c-YDI4E4KB.js"
+      }
+    },
+    {
+      "id": "kimi-web",
+      "display_name": "Kimi Chrome app / web client",
+      "version": "1.0 (Windows uninstall-registry display version; web runtime version unknown)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "kimi-chrome-app"
+      ],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Chrome-registered Kimi app observed from local uninstall metadata. No local native instruction or Skill injection surface verified; this adapter only advertises the canonical manual/portable fallback. Runtime import/behavior unknown."
+    },
+    {
+      "id": "magpie",
+      "display_name": "Magpie app / agent host",
+      "version": "0.1.1987 (local executable metadata; agent/runtime capability not verified)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Local process, executable product metadata, and a window titled Magpie were observed. Whether this is an agent client is unverified; no native governance or Skill-loading surface is established. Only the portable fallback is advertised. Runtime import and behavior remain unknown."
+    },
+    {
+      "id": "minimax-code",
+      "display_name": "MiniMax Code",
+      "version": "unknown",
+      "source": "adapters/minimax/SKILL.md",
+      "surfaces": [
+        "user_skill",
+        "project_rules"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "file_parity_only",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "file_parity_only"
+      },
+      "aliases": [
+        "minimax",
+        "mavis"
+      ],
+      "skill_roots": [
+        "${USER_HOME}/.minimax/skills",
+        "${USER_HOME}/.minimax/agents/mavis/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.minimax/agents/mavis/skills/agent-governance-os/SKILL.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
+      "background_agent": {
+        "protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md",
+        "capability": "meta-background-agent",
+        "background_task_tools_published": null,
+        "background_subagent_launchable": null,
+        "background_subagent_unreachable": null,
+        "observed_at": "2026-10-29",
+        "note": "Not yet verified under this protocol. A client-local background task store exists; that is shell/background-task evidence, not subagent background evidence.",
+        "evidence": null
+      }
+    },
+    {
+      "id": "trae",
+      "display_name": "Trae",
+      "version": "unknown (local .trae client data root and built-in/extensions inventory observed; application version not established)",
+      "source": null,
+      "surfaces": [
+        "user_managed_rules",
+        "project_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "The user_rules path is a directory for UI-managed global rule records, not a standalone file. No UI changes made. Keep global parity unknown until a supported UI-created rule is read back and compared with canonical entry; runtime remains unattested.",
+      "native_surface_reference": {
+        "url": "https://docs.trae.ai/ide/rules?_lang=zh",
+        "checked_at": "2026-10-29T01:17:52.837740+00:00",
+        "scope": "Official doc says %USERPROFILE%/.trae/user_rules is a local root directory. Create global rules via Settings > Rules and Memory; app writes/manage rules there. File format/naming not assumed."
+      }
+    },
+    {
+      "id": "vscode-copilot",
+      "display_name": "VS Code Copilot",
+      "version": "VS Code 1.143.1 observed; built-in Copilot/Chat version unknown",
+      "source": null,
+      "surfaces": [
+        "user_level_instructions",
+        "project_rules"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "file_parity_only",
+      "status": "registered_unattested",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [],
+      "skill_roots": [],
+      "rule_files": [
+        "${APPDATA}/Code/User/prompts/agentos.instructions.md"
+      ],
+      "rule_file_prefixes": {
+        "${APPDATA}/Code/User/prompts/agentos.instructions.md": "---\ndescription: Load the canonical AgentOS entry before agent work.\napplyTo: \"**\"\n---\n\n"
+      },
+      "entry": "runtime/managed-client-entry.md",
+      "native_surface_reference": {
+        "url": "https://code.visualstudio.com/docs/agent-customization/custom-instructions.md",
+        "checked_at": "2026-10-28T23:35:09.506009+00:00",
+        "scope": "VS Code user-scope instruction files under %APPDATA%/Code/User/prompts; file extension .instructions.md and applyTo metadata."
+      },
+      "limits": "User-scope VS Code instruction file is separate from Copilot CLI ~/.copilot/instructions. Runtime import and behavior remain unattested until a current VS Code session reports loading it and passes a canary."
+    }
+  ],
+  "future_client_rule": "Register a thin adapter and preserve unattested/blocked states; never copy a divergent governance body.",
+  "token_budget_protocol": "protocols/TOKEN-BUDGET.md",
+  "compact_import_directive": "先验源，次验器；矩阵变即重读；无回执不称载；长物先存证后摘要；质安证据优先。",
+  "reload_policy": {
+    "on_manifest_change": "before_next_task",
+    "unattested_without_receipt": true
+  },
+  "background_agent_protocol": "protocols/BACKGROUND-AGENT-EXECUTION.md"
+}

@@ -1,71 +1,69 @@
 {
-  "schema": "agentos-skill-registry-v1",
-  "version": "1.1.0",
-  "agentos_version": "1.6.0",
-  "selection": {
-    "max_constraints": 2,
-    "tie": "blocked_ambiguous",
-    "precedence": [
-      "project",
-      "client",
-      "bundled"
-    ],
-    "unknown": "blocked"
-  },
-  "providers": [
-    {
-      "id": "core",
-      "skill": "production-skill-routing",
-      "bundled": "skills/production-skill-routing"
-    },
-    {
-      "id": "engineering",
-      "skill": "embedded-software-engineering",
-      "bundled": null
-    },
-    {
-      "id": "visual",
-      "skill": "visual-asset-production",
-      "bundled": "skills/visual-asset-production"
-    }
-  ],
+  "agentos_version": "1.8.4",
   "capabilities": [
     {
-      "id": "req-jtbd",
-      "domain": "A",
-      "group": "requirements",
+      "acceptance": [
+        "Inputs and declared result exist with current hashes.",
+        "Task-specific acceptance criteria and external verification have current ledger evidence."
+      ],
       "availability": "candidate",
+      "domain": "A",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Missing or outdated input",
+          "response": "Block dependent work and acquire the authoritative asset."
+        },
+        {
+          "failure": "Unsupported specialist or standard claim",
+          "response": "Mark unvalidated and request the relevant tool or specialist."
+        },
+        {
+          "failure": "Repeated failed attempt",
+          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
+        }
+      ],
+      "group": "requirements",
+      "id": "req-jtbd",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-jtbd result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-jtbd deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "JTBD",
         "用户任务",
         "场景",
         "需求定义"
       ],
-      "scenarios": [
-        "Produce the req-jtbd deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-jtbd result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-jtbd within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "A",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -80,46 +78,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "req-kano",
-      "domain": "A",
       "group": "requirements",
-      "availability": "candidate",
+      "id": "req-kano",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-kano result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-kano deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "Kano",
         "需求分级",
         "镀金"
       ],
-      "scenarios": [
-        "Produce the req-kano deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-kano result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-kano within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "A",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -134,46 +132,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "req-qfd",
-      "domain": "A",
       "group": "requirements",
-      "availability": "candidate",
+      "id": "req-qfd",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-qfd result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-qfd deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "QFD",
         "用户需求",
         "工程指标"
       ],
-      "scenarios": [
-        "Produce the req-qfd deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-qfd result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-qfd within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "A",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -188,45 +186,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "req-spec-freeze",
-      "domain": "A",
       "group": "requirements",
-      "availability": "mapped",
-      "provider": "core",
+      "id": "req-spec-freeze",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-spec-freeze result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-spec-freeze deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "规格冻结",
         "冻结约束",
         "specification"
       ],
-      "scenarios": [
-        "Produce the req-spec-freeze deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-spec-freeze result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-spec-freeze within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
+      ],
+      "availability": "candidate",
+      "domain": "A",
+      "downstream": [
+        "req-trace"
       ],
       "failure_modes": [
         {
@@ -242,49 +242,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/contracts-and-design.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "req-acceptance",
-      "domain": "A",
       "group": "requirements",
-      "availability": "mapped",
-      "provider": "core",
+      "id": "req-acceptance",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-acceptance result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-acceptance deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "验收标准",
         "acceptance",
         "criteria",
         "DoD"
       ],
-      "scenarios": [
-        "Produce the req-acceptance deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-acceptance result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-acceptance within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "A",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -299,50 +297,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [
-        "req-trace"
-      ],
-      "resources": [
-        "references/contracts-and-design.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "req-trace",
-      "domain": "A",
       "group": "requirements",
-      "availability": "mapped",
-      "provider": "core",
+      "id": "req-trace",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "req-trace result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the req-trace deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "需求追溯",
         "traceability",
         "追溯矩阵"
       ],
-      "scenarios": [
-        "Produce the req-trace deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "req-trace result linked to task and acceptance evidence"
-        }
+      "upstream": [
+        "req-acceptance"
       ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-trace within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -357,50 +353,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [
-        "req-acceptance"
-      ],
-      "downstream": [],
-      "resources": [
-        "references/contracts-and-design.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "arch-mbse",
-      "domain": "B",
       "group": "architecture",
-      "availability": "candidate",
-      "provider": null,
-      "triggers": [
-        "MBSE",
-        "SysML",
-        "系统模型"
-      ],
-      "scenarios": [
-        "Produce the arch-mbse deliverable in a scoped engineering task."
-      ],
+      "id": "arch-mbse",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "arch-mbse result linked to task and acceptance evidence"
         }
       ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the arch-mbse deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "MBSE",
+        "SysML",
+        "系统模型"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-mbse within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -415,47 +407,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "arch-icd",
-      "domain": "B",
       "group": "architecture",
-      "availability": "mapped",
+      "id": "arch-icd",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "arch-icd result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/file-driven-governance.md"
+      ],
+      "scenarios": [
+        "Produce the arch-icd deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "接口控制",
         "ICD",
         "interface",
         "contract"
       ],
-      "scenarios": [
-        "Produce the arch-icd deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "arch-icd result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-icd within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -470,48 +464,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/file-driven-governance.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "arch-modular",
-      "domain": "B",
       "group": "architecture",
-      "availability": "mapped",
+      "id": "arch-modular",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "arch-modular result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/lifecycle.md"
+      ],
+      "scenarios": [
+        "Produce the arch-modular deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "模块化",
         "模块边界",
         "依赖方向"
       ],
-      "scenarios": [
-        "Produce the arch-modular deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "arch-modular result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-modular within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -526,48 +520,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "architecture",
+      "id": "arch-adr",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "arch-adr result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "engineering",
       "resources": [
         "references/lifecycle.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "arch-adr",
-      "domain": "B",
-      "group": "architecture",
-      "availability": "mapped",
-      "provider": "engineering",
+      "scenarios": [
+        "Produce the arch-adr deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "ADR",
         "架构决策",
         "被否方案"
       ],
-      "scenarios": [
-        "Produce the arch-adr deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "arch-adr result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-adr within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -582,48 +576,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/lifecycle.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "arch-ddd",
-      "domain": "B",
       "group": "architecture",
-      "availability": "candidate",
+      "id": "arch-ddd",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "arch-ddd result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the arch-ddd deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "DDD",
         "领域驱动",
         "限界上下文"
       ],
-      "scenarios": [
-        "Produce the arch-ddd deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "arch-ddd result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-ddd within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "B",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -638,47 +630,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "arch-api-first",
-      "domain": "B",
       "group": "architecture",
-      "availability": "mapped",
+      "id": "arch-api-first",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "arch-api-first result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/lifecycle.md"
+      ],
+      "scenarios": [
+        "Produce the arch-api-first deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "API优先",
         "API",
         "first",
         "接口先行"
       ],
-      "scenarios": [
-        "Produce the arch-api-first deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "arch-api-first result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-api-first within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -693,48 +687,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/lifecycle.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "plan-wbs",
-      "domain": "C",
       "group": "planning",
-      "availability": "mapped",
+      "id": "plan-wbs",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-wbs result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the plan-wbs deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "WBS",
         "工作分解",
         "任务树"
       ],
-      "scenarios": [
-        "Produce the plan-wbs deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-wbs result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-wbs within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -749,48 +743,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "plan-cpm",
-      "domain": "C",
       "group": "planning",
-      "availability": "candidate",
+      "id": "plan-cpm",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-cpm result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the plan-cpm deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "CPM",
         "PERT",
         "关键路径"
       ],
-      "scenarios": [
-        "Produce the plan-cpm deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-cpm result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-cpm within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -805,17 +797,28 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "plan-gate",
-      "domain": "C",
       "group": "planning",
-      "availability": "protocol",
+      "id": "plan-gate",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-gate result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the plan-gate deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "Stage-Gate",
         "SRR",
@@ -824,30 +827,21 @@
         "TRR",
         "阶段评审"
       ],
-      "scenarios": [
-        "Produce the plan-gate deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-gate result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-gate within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -862,48 +856,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "planning",
+      "id": "plan-rolling",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-rolling result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "plan-rolling",
-      "domain": "C",
-      "group": "planning",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the plan-rolling deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "滚动规划",
         "远粗近细",
         "rolling"
       ],
-      "scenarios": [
-        "Produce the plan-rolling deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-rolling result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-rolling within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -918,48 +912,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "planning",
+      "id": "plan-risk",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-risk result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "plan-risk",
-      "domain": "C",
-      "group": "planning",
-      "availability": "protocol",
-      "provider": "core",
+      "scenarios": [
+        "Produce the plan-risk deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "风险登记",
         "预案",
         "风险敞口"
       ],
-      "scenarios": [
-        "Produce the plan-risk deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-risk result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-risk within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "C",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -974,48 +968,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "planning",
+      "id": "plan-decompose",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-decompose result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "plan-decompose",
-      "domain": "C",
-      "group": "planning",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the plan-decompose deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "任务派发",
         "子智能体",
         "工作包"
       ],
-      "scenarios": [
-        "Produce the plan-decompose deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "plan-decompose result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-decompose within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1030,49 +1024,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "hw-schematic-review",
-      "domain": "D",
       "group": "hardware",
-      "availability": "candidate",
+      "id": "hw-schematic-review",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "hw-schematic-review result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the hw-schematic-review deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "原理图",
         "去耦",
         "复位",
         "时钟"
       ],
-      "scenarios": [
-        "Produce the hw-schematic-review deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "hw-schematic-review result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply hw-schematic-review within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1087,47 +1079,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "hw-drc",
-      "domain": "D",
       "group": "hardware",
-      "availability": "candidate",
+      "id": "hw-drc",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "hw-drc result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the hw-drc deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "DRC",
         "布线规则",
         "间距",
         "阻抗"
       ],
-      "scenarios": [
-        "Produce the hw-drc deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "hw-drc result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply hw-drc within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1142,47 +1134,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "hw-si-pi",
-      "domain": "D",
       "group": "hardware",
-      "availability": "candidate",
+      "id": "hw-si-pi",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "hw-si-pi result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the hw-si-pi deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "SI",
         "PI",
         "信号完整性",
         "电源完整性"
       ],
-      "scenarios": [
-        "Produce the hw-si-pi deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "hw-si-pi result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply hw-si-pi within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1197,47 +1189,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "hw-dfm",
-      "domain": "D",
       "group": "hardware",
-      "availability": "candidate",
+      "id": "hw-dfm",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "hw-dfm result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the hw-dfm deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "DFM",
         "PCB",
         "可制造性",
         "SMT"
       ],
-      "scenarios": [
-        "Produce the hw-dfm deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "hw-dfm result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply hw-dfm within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1252,47 +1244,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "hw-bom-audit",
-      "domain": "D",
       "group": "hardware",
-      "availability": "candidate",
+      "id": "hw-bom-audit",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "hw-bom-audit result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the hw-bom-audit deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "BOM",
         "生命周期",
         "二供",
         "物料"
       ],
-      "scenarios": [
-        "Produce the hw-bom-audit deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "hw-bom-audit result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply hw-bom-audit within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1307,46 +1299,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mech-dfma",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "mech-dfma",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mech-dfma result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mech-dfma deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "DFMA",
         "装配",
         "防呆"
       ],
-      "scenarios": [
-        "Produce the mech-dfma deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mech-dfma result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mech-dfma within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1361,46 +1353,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mech-tolerance",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "mech-tolerance",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mech-tolerance result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mech-tolerance deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "公差堆叠",
         "极值法",
         "RSS"
       ],
-      "scenarios": [
-        "Produce the mech-tolerance deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mech-tolerance result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mech-tolerance within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1415,45 +1407,45 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mech-gdt",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
-      "provider": null,
-      "triggers": [
-        "GD&T",
-        "几何公差"
-      ],
-      "scenarios": [
-        "Produce the mech-gdt deliverable in a scoped engineering task."
-      ],
+      "id": "mech-gdt",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "mech-gdt result linked to task and acceptance evidence"
         }
       ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mech-gdt deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "GD&T",
+        "几何公差"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mech-gdt within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1468,47 +1460,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mech-sim",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "mech-sim",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mech-sim result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mech-sim deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "结构仿真",
         "强度",
         "跌落",
         "热仿真"
       ],
-      "scenarios": [
-        "Produce the mech-sim deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mech-sim result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mech-sim within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1523,47 +1515,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "id-cmf",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "id-cmf",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "id-cmf result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the id-cmf deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "CMF",
         "颜色",
         "材料",
         "工艺"
       ],
-      "scenarios": [
-        "Produce the id-cmf deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "id-cmf result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply id-cmf within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1578,47 +1570,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "id-ergo",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "id-ergo",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "id-ergo result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the id-ergo deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "人因",
         "握持",
         "重心",
         "热区"
       ],
-      "scenarios": [
-        "Produce the id-ergo deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "id-ergo result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply id-ergo within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1633,46 +1625,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "id-design-language",
-      "domain": "D",
       "group": "mechanical",
-      "availability": "candidate",
+      "id": "id-design-language",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "id-design-language result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the id-design-language deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "造型一致性",
         "家族化",
         "比例"
       ],
-      "scenarios": [
-        "Produce the id-design-language deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "id-design-language result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply id-design-language within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1687,47 +1679,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "emb-state-machine",
-      "domain": "D",
       "group": "embedded",
-      "availability": "mapped",
+      "id": "emb-state-machine",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "emb-state-machine result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/bare-metal.md"
+      ],
+      "scenarios": [
+        "Produce the emb-state-machine deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "状态机",
         "firmware",
         "state",
         "machine"
       ],
-      "scenarios": [
-        "Produce the emb-state-machine deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "emb-state-machine result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-state-machine within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1742,48 +1736,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/bare-metal.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "emb-misra",
-      "domain": "D",
       "group": "embedded",
-      "availability": "candidate",
+      "id": "emb-misra",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "emb-misra result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the emb-misra deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "MISRA",
         "C",
         "规范合规"
       ],
-      "scenarios": [
-        "Produce the emb-misra deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "emb-misra result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-misra within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1798,47 +1790,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "emb-rtos-pattern",
-      "domain": "D",
       "group": "embedded",
-      "availability": "mapped",
+      "id": "emb-rtos-pattern",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "emb-rtos-pattern result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/rtos.md"
+      ],
+      "scenarios": [
+        "Produce the emb-rtos-pattern deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "RTOS",
         "优先级",
         "队列",
         "信号量"
       ],
-      "scenarios": [
-        "Produce the emb-rtos-pattern deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "emb-rtos-pattern result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-rtos-pattern within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1853,47 +1847,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/rtos.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "emb-hil",
-      "domain": "D",
       "group": "embedded",
-      "availability": "mapped",
-      "provider": "engineering",
-      "triggers": [
-        "HIL",
-        "硬件在环"
-      ],
-      "scenarios": [
-        "Produce the emb-hil deliverable in a scoped engineering task."
-      ],
+      "id": "emb-hil",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "emb-hil result linked to task and acceptance evidence"
         }
       ],
+      "provider": "engineering",
+      "resources": [
+        "references/verification-release.md"
+      ],
+      "scenarios": [
+        "Produce the emb-hil deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "HIL",
+        "硬件在环"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-hil within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1908,48 +1902,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/verification-release.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "emb-lowpower",
-      "domain": "D",
       "group": "embedded",
-      "availability": "candidate",
+      "id": "emb-lowpower",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "emb-lowpower result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the emb-lowpower deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "低功耗",
         "睡眠",
         "功耗预算"
       ],
-      "scenarios": [
-        "Produce the emb-lowpower deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "emb-lowpower result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-lowpower within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1964,46 +1956,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "sw-tdd",
-      "domain": "D",
       "group": "software",
-      "availability": "mapped",
+      "id": "sw-tdd",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "sw-tdd result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/debugging.md"
+      ],
+      "scenarios": [
+        "Produce the sw-tdd deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "TDD",
         "测试驱动",
         "先红后绿"
       ],
-      "scenarios": [
-        "Produce the sw-tdd deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "sw-tdd result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-tdd within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2018,48 +2012,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/debugging.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "sw-solid-clean",
-      "domain": "D",
       "group": "software",
-      "availability": "mapped",
+      "id": "sw-solid-clean",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "sw-solid-clean result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/companion-software.md"
+      ],
+      "scenarios": [
+        "Produce the sw-solid-clean deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "SOLID",
         "整洁架构",
         "软件分层"
       ],
-      "scenarios": [
-        "Produce the sw-solid-clean deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "sw-solid-clean result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-solid-clean within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2074,49 +2068,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/companion-software.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "sw-ci-gate",
-      "domain": "D",
       "group": "software",
-      "availability": "mapped",
+      "id": "sw-ci-gate",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "sw-ci-gate result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/verification-release.md"
+      ],
+      "scenarios": [
+        "Produce the sw-ci-gate deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "CI",
         "构建",
         "可重复",
         "构建门禁"
       ],
-      "scenarios": [
-        "Produce the sw-ci-gate deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "sw-ci-gate result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-ci-gate within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2131,49 +2125,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "software",
+      "id": "sw-code-review",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "sw-code-review result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "engineering",
       "resources": [
         "references/verification-release.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "sw-code-review",
-      "domain": "D",
-      "group": "software",
-      "availability": "mapped",
-      "provider": "engineering",
+      "scenarios": [
+        "Produce the sw-code-review deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "代码评审",
         "code",
         "review",
         "回归"
       ],
-      "scenarios": [
-        "Produce the sw-code-review deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "sw-code-review result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-code-review within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2188,47 +2182,45 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/verification-release.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "sw-threat-model",
-      "domain": "D",
       "group": "software",
-      "availability": "candidate",
-      "provider": null,
-      "triggers": [
-        "STRIDE",
-        "威胁建模"
-      ],
-      "scenarios": [
-        "Produce the sw-threat-model deliverable in a scoped engineering task."
-      ],
+      "id": "sw-threat-model",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "sw-threat-model result linked to task and acceptance evidence"
         }
       ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the sw-threat-model deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "STRIDE",
+        "威胁建模"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-threat-model within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2243,47 +2235,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "ui-design-system",
-      "domain": "D",
       "group": "ui",
-      "availability": "mapped",
+      "id": "ui-design-system",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "ui-design-system result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/contracts-and-design.md"
+      ],
+      "scenarios": [
+        "Produce the ui-design-system deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "Design",
         "Tokens",
         "设计系统",
         "UI一致性"
       ],
-      "scenarios": [
-        "Produce the ui-design-system deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "ui-design-system result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply ui-design-system within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2298,47 +2292,45 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/contracts-and-design.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "ui-heuristic",
-      "domain": "D",
       "group": "ui",
-      "availability": "candidate",
-      "provider": null,
-      "triggers": [
-        "Nielsen",
-        "可用性启发式"
-      ],
-      "scenarios": [
-        "Produce the ui-heuristic deliverable in a scoped engineering task."
-      ],
+      "id": "ui-heuristic",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "ui-heuristic result linked to task and acceptance evidence"
         }
       ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the ui-heuristic deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "Nielsen",
+        "可用性启发式"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply ui-heuristic within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "D",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2353,47 +2345,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "ui-a11y",
-      "domain": "D",
       "group": "ui",
-      "availability": "mapped",
+      "id": "ui-a11y",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "ui-a11y result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/contracts-and-design.md"
+      ],
+      "scenarios": [
+        "Produce the ui-a11y deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "可访问性",
         "无障碍",
         "焦点",
         "对比度"
       ],
-      "scenarios": [
-        "Produce the ui-a11y deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "ui-a11y result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply ui-a11y within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2408,48 +2402,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/contracts-and-design.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "qa-fmea",
-      "domain": "E",
       "group": "quality",
-      "availability": "protocol",
+      "id": "qa-fmea",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-fmea result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the qa-fmea deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "FMEA",
         "失效模式",
         "检测控制"
       ],
-      "scenarios": [
-        "Produce the qa-fmea deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-fmea result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-fmea within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2464,48 +2458,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "quality",
+      "id": "qa-vmodel",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-vmodel result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "qa-vmodel",
-      "domain": "E",
-      "group": "quality",
-      "availability": "protocol",
-      "provider": "core",
+      "scenarios": [
+        "Produce the qa-vmodel deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "V模型",
         "V-model",
         "设计验证对应"
       ],
-      "scenarios": [
-        "Produce the qa-vmodel deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-vmodel result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-vmodel within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2520,47 +2514,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "qa-test-pyramid",
-      "domain": "E",
       "group": "quality",
-      "availability": "mapped",
-      "provider": "engineering",
-      "triggers": [
-        "测试金字塔",
-        "测试层次"
-      ],
-      "scenarios": [
-        "Produce the qa-test-pyramid deliverable in a scoped engineering task."
-      ],
+      "id": "qa-test-pyramid",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "qa-test-pyramid result linked to task and acceptance evidence"
         }
       ],
+      "provider": "engineering",
+      "resources": [
+        "references/verification-release.md"
+      ],
+      "scenarios": [
+        "Produce the qa-test-pyramid deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "测试金字塔",
+        "测试层次"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-test-pyramid within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2575,48 +2569,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/verification-release.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "qa-doe",
-      "domain": "E",
       "group": "quality",
-      "availability": "mapped",
+      "id": "qa-doe",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-doe result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "engineering",
+      "resources": [
+        "references/force-loop-optimization.md"
+      ],
+      "scenarios": [
+        "Produce the qa-doe deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "DOE",
         "多因素",
         "实验设计"
       ],
-      "scenarios": [
-        "Produce the qa-doe deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-doe result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-doe within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2631,48 +2625,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/force-loop-optimization.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "qa-reliability",
-      "domain": "E",
       "group": "quality",
-      "availability": "candidate",
+      "id": "qa-reliability",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-reliability result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the qa-reliability deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "HALT",
         "可靠性",
         "寿命预估"
       ],
-      "scenarios": [
-        "Produce the qa-reliability deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-reliability result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-reliability within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2687,46 +2679,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "qa-8d",
-      "domain": "E",
       "group": "quality",
-      "availability": "candidate",
+      "id": "qa-8d",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-8d result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the qa-8d deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "8D",
         "围堵",
         "问题求解"
       ],
-      "scenarios": [
-        "Produce the qa-8d deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-8d result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-8d within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "E",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2741,46 +2733,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "qa-review-checklist",
-      "domain": "E",
       "group": "quality",
-      "availability": "protocol",
+      "id": "qa-review-checklist",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "qa-review-checklist result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the qa-review-checklist deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "设计评审",
         "清单",
         "checklist"
       ],
-      "scenarios": [
-        "Produce the qa-review-checklist deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "qa-review-checklist result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-review-checklist within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "F",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2795,19 +2789,26 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "mfg-npi",
-      "domain": "F",
       "group": "manufacturing",
-      "availability": "candidate",
+      "id": "mfg-npi",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mfg-npi result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mfg-npi deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "NPI",
         "EVT",
@@ -2815,30 +2816,21 @@
         "PVT",
         "生产导入"
       ],
-      "scenarios": [
-        "Produce the mfg-npi deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mfg-npi result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mfg-npi within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "F",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2853,45 +2845,45 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mfg-ppap",
-      "domain": "F",
       "group": "manufacturing",
-      "availability": "candidate",
-      "provider": null,
-      "triggers": [
-        "PPAP",
-        "生产件批准"
-      ],
-      "scenarios": [
-        "Produce the mfg-ppap deliverable in a scoped engineering task."
-      ],
+      "id": "mfg-ppap",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "mfg-ppap result linked to task and acceptance evidence"
         }
       ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mfg-ppap deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "PPAP",
+        "生产件批准"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mfg-ppap within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "F",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2906,46 +2898,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mfg-spc",
-      "domain": "F",
       "group": "manufacturing",
-      "availability": "candidate",
+      "id": "mfg-spc",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "金属制程方法已提供可执行实现（build123d/OCP 几何核 + 项目制程知识库）；DFM 规则库当前为 PARTIAL_PLACEHOLDER（E3 占位），生产门禁前必须替换为实际工艺能力表；不构成标准认证或量产能力声明。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mfg-spc result linked to task and acceptance evidence"
+        }
+      ],
       "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the mfg-spc deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "SPC",
         "Cpk",
         "统计过程控制"
       ],
-      "scenarios": [
-        "Produce the mfg-spc deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mfg-spc result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mfg-spc within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "F",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2960,46 +2952,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [],
-      "limits": "Catalogued opportunity; no deployable provider, certification or measured quality is claimed."
-    },
-    {
-      "id": "mfg-change",
-      "domain": "F",
       "group": "manufacturing",
-      "availability": "protocol",
+      "id": "mfg-change",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "mfg-change result linked to task and acceptance evidence"
+        }
+      ],
       "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the mfg-change deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "ECN",
         "工程变更",
         "影响分析"
       ],
-      "scenarios": [
-        "Produce the mfg-change deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "mfg-change result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mfg-change within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "G",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3014,48 +3008,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "knowledge",
+      "id": "km-decision-log",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "km-decision-log result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "km-decision-log",
-      "domain": "G",
-      "group": "knowledge",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the km-decision-log deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "决策台账",
         "decision",
         "log"
       ],
-      "scenarios": [
-        "Produce the km-decision-log deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "km-decision-log result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply km-decision-log within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "G",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3070,48 +3064,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "knowledge",
+      "id": "km-postmortem",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "km-postmortem result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "km-postmortem",
-      "domain": "G",
-      "group": "knowledge",
-      "availability": "protocol",
-      "provider": "core",
+      "scenarios": [
+        "Produce the km-postmortem deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "复盘",
         "AAR",
         "事故教训"
       ],
-      "scenarios": [
-        "Produce the km-postmortem deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "km-postmortem result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply km-postmortem within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "G",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3126,47 +3120,47 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "km-lessons",
-      "domain": "G",
       "group": "knowledge",
-      "availability": "protocol",
-      "provider": "core",
-      "triggers": [
-        "教训入库",
-        "checklist更新"
-      ],
-      "scenarios": [
-        "Produce the km-lessons deliverable in a scoped engineering task."
-      ],
+      "id": "km-lessons",
       "inputs": [
         "task",
         "goals",
         "constraints"
       ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
       "outputs": [
         {
-          "id": "result",
           "format": "project-owned file",
+          "id": "result",
           "purpose": "km-lessons result linked to task and acceptance evidence"
         }
       ],
+      "provider": "core",
+      "resources": [
+        "references/workflow.md"
+      ],
+      "scenarios": [
+        "Produce the km-lessons deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "教训入库",
+        "checklist更新"
+      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply km-lessons within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "G",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3181,49 +3175,49 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "knowledge",
+      "id": "km-context-pack",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "km-context-pack result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "km-context-pack",
-      "domain": "G",
-      "group": "knowledge",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the km-context-pack deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "上下文装配",
         "context",
         "pack",
         "checkpoint"
       ],
-      "scenarios": [
-        "Produce the km-context-pack deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "km-context-pack result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply km-context-pack within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "H",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3238,48 +3232,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "meta",
+      "id": "meta-router",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "meta-router result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "meta-router",
-      "domain": "H",
-      "group": "meta",
-      "availability": "protocol",
-      "provider": "core",
+      "scenarios": [
+        "Produce the meta-router deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "技能路由",
         "任务分类",
         "route"
       ],
-      "scenarios": [
-        "Produce the meta-router deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "meta-router result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply meta-router within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "candidate",
+      "domain": "H",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3294,48 +3288,46 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "meta-skill-registry",
-      "domain": "H",
       "group": "meta",
-      "availability": "protocol",
-      "provider": "core",
+      "id": "meta-skill-registry",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "AgentOS 接入与能力注册的操作方法；治理正文仍以 AgentOS 原文为准，本方法不复制治理正文，不构成客户端已接入的证据。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "meta-skill-registry result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the meta-skill-registry deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "技能注册",
         "冲突检测",
         "registry"
       ],
-      "scenarios": [
-        "Produce the meta-skill-registry deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "meta-skill-registry result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply meta-skill-registry within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "protocol",
+      "domain": "H",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3350,49 +3342,53 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "meta",
+      "id": "meta-qc-gate",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Workflow support; production validity requires the actual project result and verification.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "meta-qc-gate result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "meta-qc-gate",
-      "domain": "H",
-      "group": "meta",
-      "availability": "protocol",
-      "provider": "core",
+      "scenarios": [
+        "Produce the meta-qc-gate deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "产出质检",
         "质量门禁",
         "output",
         "gate"
       ],
-      "scenarios": [
-        "Produce the meta-qc-gate deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "meta-qc-gate result linked to task and acceptance evidence"
-        }
+      "upstream": [
+        "vis-concept-illustration",
+        "vis-dfm-illustration",
+        "meta-token-budget"
       ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply meta-qc-gate within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "H",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3407,50 +3403,48 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [
-        "vis-concept-illustration"
+      "group": "meta",
+      "id": "meta-escalation",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
       ],
-      "downstream": [],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "meta-escalation result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Workflow support; production validity requires the actual project result and verification."
-    },
-    {
-      "id": "meta-escalation",
-      "domain": "H",
-      "group": "meta",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the meta-escalation deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "连续失败",
         "熔断",
         "升级"
       ],
-      "scenarios": [
-        "Produce the meta-escalation deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "meta-escalation result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply meta-escalation within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
+      ]
+    },
+    {
       "acceptance": [
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
+      "availability": "mapped",
+      "domain": "H",
+      "downstream": [],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3465,114 +3459,52 @@
           "response": "Change path at second failure; root-cause table at third; escalate at fourth."
         }
       ],
-      "upstream": [],
-      "downstream": [],
+      "group": "meta",
+      "id": "meta-no-fabrication",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "meta-no-fabrication result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "core",
       "resources": [
         "references/workflow.md"
       ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
-    },
-    {
-      "id": "meta-no-fabrication",
-      "domain": "H",
-      "group": "meta",
-      "availability": "mapped",
-      "provider": "core",
+      "scenarios": [
+        "Produce the meta-no-fabrication deliverable in a scoped engineering task."
+      ],
       "triggers": [
         "数据校验",
         "零编造",
         "证据真实性"
       ],
-      "scenarios": [
-        "Produce the meta-no-fabrication deliverable in a scoped engineering task."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "meta-no-fabrication result linked to task and acceptance evidence"
-        }
-      ],
+      "upstream": [],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply meta-no-fabrication within the current confirmed scope; label missing facts.",
         "Produce the declared result, verify it, and link current claims before handoff."
-      ],
-      "acceptance": [
-        "Inputs and declared result exist with current hashes.",
-        "Task-specific acceptance criteria and external verification have current ledger evidence."
-      ],
-      "failure_modes": [
-        {
-          "failure": "Missing or outdated input",
-          "response": "Block dependent work and acquire the authoritative asset."
-        },
-        {
-          "failure": "Unsupported specialist or standard claim",
-          "response": "Mark unvalidated and request the relevant tool or specialist."
-        },
-        {
-          "failure": "Repeated failed attempt",
-          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
-        }
-      ],
-      "upstream": [],
-      "downstream": [],
-      "resources": [
-        "references/workflow.md"
-      ],
-      "limits": "Existing authored guidance mapped; no specialist certification or performance parity is implied."
+      ]
     },
     {
-      "id": "vis-concept-illustration",
-      "domain": "D",
-      "group": "visual",
-      "availability": "protocol",
-      "provider": "visual",
-      "triggers": [
-        "概念渲染",
-        "实景插画",
-        "场景插画",
-        "示意图风格",
-        "封面主视觉",
-        "方向扉页",
-        "concept rendering",
-        "concept illustration"
-      ],
-      "scenarios": [
-        "Produce the vis-concept-illustration deliverable in a scoped reporting or presentation task.",
-        "Raise a report or deck whose illustrations are line diagrams and cannot show a real scene, texture or build."
-      ],
-      "inputs": [
-        "task",
-        "goals",
-        "constraints"
-      ],
-      "outputs": [
-        {
-          "id": "result",
-          "format": "project-owned file",
-          "purpose": "vis-concept-illustration result linked to task and acceptance evidence"
-        }
-      ],
-      "workflow": [
-        "Read only the task, the declared authoritative content source and the existing figure specification.",
-        "Write one subject description per figure: state counts, positions and blank carriers; keep every carrier unmarked.",
-        "Generate the text-free base images, then run the text-screening gate and inspect every base image before compositing.",
-        "Draw all titles, component names, criteria and disclaimers with the programmatic overlay layer from the audited fact source.",
-        "Compress to JPEG q94 with 4:4:4 chroma, verify the pixel difference against the reference, and place images without distortion.",
-        "Verify the deliverable, record the actual gate result, and link current claims before handoff."
-      ],
       "acceptance": [
         "Every base image contains no model-written text, letters, numbers or visible faces.",
         "Every rendered text element comes from the programmatic overlay layer and the audited fact source.",
         "Images placed in the deliverable are neither stretched nor cropped away, confirmed by real rendering.",
         "Asset integrity gate passes and its negative control has been executed."
+      ],
+      "availability": "protocol",
+      "domain": "D",
+      "downstream": [
+        "meta-qc-gate",
+        "vis-dfm-illustration"
       ],
       "failure_modes": [
         {
@@ -3588,10 +3520,22 @@
           "response": "Reduce the batch to five requests or fewer and resume; never treat an empty batch as success."
         }
       ],
-      "upstream": [],
-      "downstream": [
-        "meta-qc-gate"
+      "group": "visual",
+      "id": "vis-concept-illustration",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
       ],
+      "limits": "Method and scripts only. It does not certify generation quality by itself: every base image still needs human inspection, and a style prompt is not a brand guideline.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "vis-concept-illustration result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "visual",
       "resources": [
         "references/pipeline.md",
         "references/style-library.md",
@@ -3599,7 +3543,296 @@
         "scripts/text_screen.py",
         "scripts/overlay_compose.py"
       ],
-      "limits": "Method and scripts only. It does not certify generation quality by itself: every base image still needs human inspection, and a style prompt is not a brand guideline."
+      "scenarios": [
+        "Produce the vis-concept-illustration deliverable in a scoped reporting or presentation task.",
+        "Raise a report or deck whose illustrations are line diagrams and cannot show a real scene, texture or build."
+      ],
+      "triggers": [
+        "概念渲染",
+        "实景插画",
+        "场景插画",
+        "示意图风格",
+        "封面主视觉",
+        "方向扉页",
+        "concept rendering",
+        "concept illustration"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the task, the declared authoritative content source and the existing figure specification.",
+        "Write one subject description per figure: state counts, positions and blank carriers; keep every carrier unmarked.",
+        "Generate the text-free base images, then run the text-screening gate and inspect every base image before compositing.",
+        "Draw all titles, component names, criteria and disclaimers with the programmatic overlay layer from the audited fact source.",
+        "Compress to JPEG q94 with 4:4:4 chroma, verify the pixel difference against the reference, and place images without distortion.",
+        "Verify the deliverable, record the actual gate result, and link current claims before handoff."
+      ]
+    },
+    {
+      "acceptance": [
+        "Every design rule in scope has a picture, at least two testable constraints, a mechanism and a failure mode.",
+        "The failure mode is named inside the mechanism paragraph and is a verbatim substring of the fact source.",
+        "Every figure follows one of the three body routes; the only unacceptable form is a skeleton drawing that outlines a part and adds text labels where a filled body would have carried the relation.",
+        "Every number printed on a figure is traceable to the fact source; numbers without a source stay in the constraint list only.",
+        "Every body declares its verdict explicitly; an undeclared verdict fails the gate and is never read as neutral.",
+        "The English version contains no Chinese characters including the footer declaration, and all eight gates were executed with a negative control."
+      ],
+      "availability": "protocol",
+      "domain": "D",
+      "downstream": [
+        "meta-qc-gate"
+      ],
+      "failure_modes": [
+        {
+          "failure": "Rule delivered as a skeleton drawing: a part outlined with text labels and no filled body",
+          "response": "Redraw it as a filled engineering section or isometric solid. Keep a symbolic relation diagram only when the rule is about two reference quantities and the picture has no part in it."
+        },
+        {
+          "failure": "A valid filled engineering section is rejected because it has no three lit faces",
+          "response": "That rejection is wrong: a filled section with hatching, leader lines and dimensions is an accepted body form. Judge the picture by the skeleton rule, not by a single lighting recipe."
+        },
+        {
+          "failure": "The mechanism paragraph restates the rule instead of explaining it",
+          "response": "State why the rule exists - shrinkage rate, cooling order, fibre orientation, stress concentration - and rewrite the paragraph."
+        },
+        {
+          "failure": "The failure mode appears only in the constraint list, so the reader never learns what breaks",
+          "response": "Name the failure inside the mechanism paragraph and keep the wording a verbatim excerpt of the fact source."
+        },
+        {
+          "failure": "A body's verdict is left undeclared and is silently read as neutral",
+          "response": "Declare good, bad or neutral explicitly. An absent verdict fails the gate; it must not be filled in by a default."
+        },
+        {
+          "failure": "A good and a bad body are ordered so the bad one sits on the left",
+          "response": "Order good-left and bad-right at load time. Exception: a parameter sequence such as too small, right, too large keeps its semantic order."
+        },
+        {
+          "failure": "A number printed on the figure cannot be traced to the fact source",
+          "response": "Remove it from the figure, keep it in the constraint list, and fix the source table."
+        }
+      ],
+      "group": "visual",
+      "id": "vis-dfm-illustration",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Method and scripts only. It does not certify that a drawn body is physically accurate: every figure still needs human inspection, and a rule set is engineering judgement, not vendor data. The gate judges structure, traceability and bilingual purity - it cannot judge whether a drawing is a good drawing.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "vis-dfm-illustration result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": "visual",
+      "resources": [
+        "references/dfm-panel-grammar.md",
+        "references/iso-primitives.md",
+        "references/scene-brief-grammar.md",
+        "scripts/iso_render.py",
+        "scripts/dfm_panel.py",
+        "assets/templates/dfm-spec-sheet.json"
+      ],
+      "scenarios": [
+        "Produce the vis-dfm-illustration deliverable in a design-rule or process-criterion chapter.",
+        "Raise a DFM or forming-rule chapter whose rules are stated as text without a picture, a mechanism or a failure mode."
+      ],
+      "triggers": [
+        "DFM 配图",
+        "设计规范配图",
+        "注塑设计准则",
+        "工艺准则插图",
+        "design rule illustration",
+        "DFM chapter figure"
+      ],
+      "upstream": [
+        "vis-concept-illustration"
+      ],
+      "workflow": [
+        "List every design rule in scope from the audited fact source; one rule is one panel.",
+        "For each rule write the testable constraints, the mechanism and the failure mode; a rule without a mechanism is not done.",
+        "State the failure mode in the mechanism paragraph as well, and keep it a verbatim excerpt of the fact source.",
+        "Choose one of the three body routes: A text-free generated scene, B a filled engineering section or isometric solid, or C a symbolic relation diagram with no part in it.",
+        "Assemble the panel with the programmatic layer so every number and every label comes from the fact source.",
+        "Run the eight gates - coverage, bilingual purity including the footer, numeric self-consistency, verbatim failure mode, anchor on ink, verdict completeness, layout, negative control.",
+        "Verify the deliverable, record the actual gate result, and link current claims before handoff."
+      ]
+    },
+    {
+      "acceptance": [
+        "Baseline and comparison identify client, profile, model, task mix, time window, source and configuration.",
+        "A 50% reduction claim is made only from matched measurements; otherwise the result is labeled unknown or observed.",
+        "Artifact-first eviction, SHA256, data classification and rollback evidence are present when context is reduced.",
+        "Existing task quality, safety and evidence gates remain green; provider charges are not fabricated."
+      ],
+      "availability": "candidate",
+      "domain": "H",
+      "downstream": [
+        "meta-qc-gate",
+        "meta-background-agent"
+      ],
+      "failure_modes": [
+        {
+          "failure": "Missing or non-comparable telemetry",
+          "response": "Do not estimate savings; keep the result unknown and collect a matched baseline."
+        },
+        {
+          "failure": "Eviction without approved artifact/hash or with sensitive data",
+          "response": "Block eviction, preserve the output and escalate the data-policy decision."
+        },
+        {
+          "failure": "Token reduction with quality/evidence regression",
+          "response": "Roll back the client-specific change and record the failed comparison."
+        }
+      ],
+      "group": "meta",
+      "id": "meta-token-budget",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Provides measurement and governance guidance, not provider billing truth or universal client runtime enforcement. Client-specific compression values require matched evidence; unobserved client behavior remains unattested. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned token observation or governance report",
+          "id": "result",
+          "purpose": "Measured token baseline, intervention, comparison and rollback/acceptance decision."
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Measure and reduce client token consumption without weakening quality, safety or evidence gates."
+      ],
+      "triggers": [
+        "Token预算",
+        "token效率",
+        "上下文压缩",
+        "context pressure",
+        "token budget"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read the canonical TOKEN-BUDGET protocol and current task acceptance gates.",
+        "Establish a client/profile/task baseline from traceable telemetry; label unavailable provider billing data as unknown.",
+        "Apply the smallest evidence-backed intervention, preserving user messages, tool-call parameters and artifact traceability.",
+        "Compare the same task mix, run quality/evidence gates, append raw observations and promote or roll back truthfully."
+      ]
+    },
+    {
+      "acceptance": [
+        "Each reported client state is backed by the client's own tool list or a live launch result, not by a governance file.",
+        "A rejected background launch is recorded with the client's own rejection text and the effective tool list.",
+        "No AgentOS change disables or filters a background-task or subagent tool, and the token-budget protocol is unchanged in meaning."
+      ],
+      "availability": "candidate",
+      "domain": "H",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "No client-side evidence for the capability state",
+          "response": "Mark the state unknown or unattested and obtain a live launch attempt before claiming either support or a limitation."
+        },
+        {
+          "failure": "A token or concurrency measure requires removing background execution",
+          "response": "Reject the measure; background concurrency is never the token lever."
+        },
+        {
+          "failure": "The client product, not governance, blocks background execution",
+          "response": "Record a client-side limitation with the host policy evidence and use a supported path; never patch the client bundle."
+        }
+      ],
+      "group": "meta",
+      "id": "meta-background-agent",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Provides measurement and governance guidance. It cannot grant a client a capability its product withholds, and it never claims runtime behavior without the client's own evidence. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned background-agent capability report",
+          "id": "result",
+          "purpose": "Per-client background execution state with the client's own rejection evidence or live handle."
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Verify or restore a client's ability to launch and manage background subagents without letting governance remove the capability."
+      ],
+      "triggers": [
+        "后台子智能体",
+        "后台运行",
+        "background agent",
+        "background subagent",
+        "run_in_background",
+        "并发智能体",
+        "后台任务"
+      ],
+      "upstream": [
+        "meta-token-budget"
+      ],
+      "workflow": [
+        "Read protocols/BACKGROUND-AGENT-EXECUTION.md and the current client adapter record.",
+        "Establish the effective active-tool list and whether the client's task-management tools are published; do not infer from copied governance files.",
+        "Attempt a live background subagent launch and record either a background handle or the client's own rejection reason.",
+        "Report background_task_tools_published, background_subagent_launchable and background_subagent_unreachable as separate states with evidence.",
+        "Never implement a token reduction by disabling background execution; escalate a client-side product limit as a client-side limit."
+      ]
     }
-  ]
+  ],
+  "providers": [
+    {
+      "bundled": "skills/production-skill-routing",
+      "id": "core",
+      "skill": "production-skill-routing"
+    },
+    {
+      "bundled": "skills/embedded-software-engineering",
+      "id": "engineering",
+      "skill": "embedded-software-engineering"
+    },
+    {
+      "bundled": "skills/visual-asset-production",
+      "id": "visual",
+      "skill": "visual-asset-production"
+    },
+    {
+      "bundled": "skills/metal-process-engineering",
+      "id": "metal",
+      "skill": "metal-process-engineering"
+    },
+    {
+      "bundled": "skills/agentos-governed-integration",
+      "id": "governance",
+      "skill": "agentos-governed-integration"
+    },
+    {
+      "bundled": "skills/cad-geometry-automation",
+      "id": "cad-geometry",
+      "skill": "cad-geometry-automation"
+    },
+    {
+      "bundled": "skills/requirements-anchoring",
+      "id": "requirements",
+      "skill": "requirements-anchoring"
+    }
+  ],
+  "schema": "agentos-skill-registry-v1",
+  "selection": {
+    "max_constraints": 2,
+    "precedence": [
+      "project",
+      "client",
+      "bundled"
+    ],
+    "tie": "blocked_ambiguous",
+    "unknown": "blocked"
+  },
+  "version": "1.4.0"
 }

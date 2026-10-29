@@ -1,0 +1,74 @@
+{
+  "schema": "redaction-terms-v1",
+  "version": "1.0",
+  "updated": "2026-10-26",
+  "note": "R10 脱敏门禁词表。命中即不得交付。词表由用户裁决驱动，只增不删；新增标识须同时写明来源材料。",
+  "maintained_by": "${OWNER_SIGNATURE}",
+
+  "terms": [
+    {
+      "pattern": "BYD(?![A-Za-z0-9])",
+      "kind": "regex",
+      "category": "brand",
+      "note": "客户品牌名（英文），出现在 999_output 的交付目录名、PDF/HTML 标题与文件名。用正则而非字面量：字面量会把英文正文里的 bydifferent、base64 片段误报。"
+    },
+    {
+      "pattern": "比亚迪",
+      "kind": "literal",
+      "category": "brand",
+      "note": "客户品牌名（中文）"
+    },
+    {
+      "pattern": "Sealion",
+      "kind": "literal",
+      "category": "product",
+      "note": "产品型号英文段（覆盖 Sealion08 / Sealion_08 / Sealion 08）"
+    },
+    {
+      "pattern": "海狮",
+      "kind": "literal",
+      "category": "product",
+      "note": "产品型号中文段（覆盖 海狮08 / 海狮 08）"
+    },
+    {
+      "pattern": "Hitsoshi",
+      "kind": "literal",
+      "category": "customer_code",
+      "note": "客户内部代号，出现在金属半壳需求规格说明书的早期文件名与引用中"
+    },
+    {
+      "pattern": "LG_Hitsoshi",
+      "kind": "literal",
+      "category": "brand",
+      "note": "品牌名 + 内部代号的组合形式"
+    },
+    {
+      "pattern": "LG半壳",
+      "kind": "literal",
+      "category": "product",
+      "note": "品牌 + 产品简称"
+    }
+  ],
+
+  "review_candidates": [
+    {
+      "pattern": "有限公司|股份有限公司|株式会社|Co\\.,?\\s*Ltd\\.?|Corporation|Corp\\.",
+      "note": "企业名后缀。若出现在用户提供的材料里，多半是需要脱敏的关联方；出现在公开标准/数据来源引用里则属正常。门禁不自动拦，标记待人工判定。"
+    },
+    {
+      "pattern": "客户|甲方|委托方|项目代号|车型代号",
+      "note": "指代词。若其后紧跟具体标识，则该标识本身必须进 terms；本项只是提醒词表可能漏项。"
+    }
+  ],
+
+  "retained_public_identifiers": [
+    {
+      "pattern": "GTIN|参考号|机芯号",
+      "note": "公开目录信息。遮蔽它没有安全收益，反而让报告失去对象指向；保留时须在报告里写明保留理由。"
+    },
+    {
+      "pattern": "Ming Peng|放眼看世界，明天更美好",
+      "note": "R1 统一署名。R10 明确：唯一允许出现的用户标识就是这条署名。"
+    }
+  ]
+}

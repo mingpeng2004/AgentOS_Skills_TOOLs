@@ -101,9 +101,6 @@
     {
       "canonical": true,
       "capabilities": [
-        "req-spec-freeze",
-        "req-acceptance",
-        "req-trace",
         "plan-wbs",
         "plan-gate",
         "plan-rolling",
@@ -120,7 +117,6 @@
         "km-lessons",
         "km-context-pack",
         "meta-router",
-        "meta-skill-registry",
         "meta-qc-gate",
         "meta-escalation",
         "meta-no-fabrication"
@@ -128,7 +124,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/skills/production-skill-routing/SKILL.md",
       "hashes": {
-        "governance/AgentOS/skills/production-skill-routing/SKILL.md": "6d8a005ca8f196b060a80d19e9ac84441aab788b9b2224b50ae1bca9eed5be95",
+        "governance/AgentOS/skills/production-skill-routing/SKILL.md": "fb1411632b2970a11aecd2305417ee309a3196d5081800c2dbefa2db99c709a6",
         "governance/AgentOS/skills/production-skill-routing/agents/openai.yaml": "e3ecdeb528263c9c7da1cc3c8fe644ede283ae0c7c300f0b28ff64562207b559",
         "governance/AgentOS/skills/production-skill-routing/assets/templates/SKILL-CONTRACT.json": "2b568f02da0b5a6af051500ec648e3513847c0cfda896a021740566b04d0b146",
         "governance/AgentOS/skills/production-skill-routing/references/contracts-and-design.md": "4f55c8fe75f2809025e8b093b0e232e0c5e4fca8f2c2fdeb68048cc061745df2",
@@ -152,17 +148,24 @@
     {
       "canonical": true,
       "capabilities": [
-        "vis-concept-illustration"
+        "vis-concept-illustration",
+        "vis-dfm-illustration"
       ],
       "dependencies": [],
       "entry": "governance/AgentOS/skills/visual-asset-production/SKILL.md",
       "hashes": {
-        "governance/AgentOS/skills/visual-asset-production/SKILL.md": "475f584124998f77ababb5d43ae480e35477dc04303cf2ce4d3828ae1f81bc5e",
+        "governance/AgentOS/skills/visual-asset-production/SKILL.md": "9f337fbbff86ff8ab0f2380662a31ebe50bec9026fc429909c7933fbf70aa7ca",
+        "governance/AgentOS/skills/visual-asset-production/assets/templates/dfm-spec-sheet.json": "9014b847299023a6c07e2919bb7c6b1849fe0740def61f7ff1531dad3f33b85f",
         "governance/AgentOS/skills/visual-asset-production/assets/templates/info-layer-template.json": "f87d33c7beb4d3eb589923eab37515fbc4f2d2cda75ac01eff847b4e5453143d",
         "governance/AgentOS/skills/visual-asset-production/assets/templates/subject-template.md": "04106a0de8fc8b8dfc172fd4749b5d21c2b81675bcd49ccec91596d436089559",
+        "governance/AgentOS/skills/visual-asset-production/references/dfm-panel-grammar.md": "01e52ff591143f0fa4f6abc806ba12e78cc444b1dea0cf4016449de120facb0b",
+        "governance/AgentOS/skills/visual-asset-production/references/iso-primitives.md": "6e04ff26d418b78ef22071ad461e3408bd28a704ac29d24be73e76b80fc76c97",
         "governance/AgentOS/skills/visual-asset-production/references/pipeline.md": "7e24adf6e23be8e1f0a7698a89511802591238c60ed941697dd52924849dc9c8",
         "governance/AgentOS/skills/visual-asset-production/references/qa-gates.md": "4991da9bf05d0412ce03224b5f2801092893e2a8b532c70784e7719d8458213e",
+        "governance/AgentOS/skills/visual-asset-production/references/scene-brief-grammar.md": "c027650f3ab83bc3dea8b9cb2a1882a3eb5241c8aff0790f39173e94ae0d9059",
         "governance/AgentOS/skills/visual-asset-production/references/style-library.md": "88c447c02471ab1b517b6ec8d0585810b30877202969a1dbf8e0aace04c5124b",
+        "governance/AgentOS/skills/visual-asset-production/scripts/dfm_panel.py": "89faf84995d178a9d08cf0303e0e12d9f9bb55f026a8cf2ccb17142aea57d95e",
+        "governance/AgentOS/skills/visual-asset-production/scripts/iso_render.py": "574bcb0862516058fdfb524081bd5cf793da766ff40d3f88a24d7803c1c3e4f1",
         "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py": "0aacd74f874c0a8baa87220b94050d3b92841206aaa94f9ab1c98e8c0db42e8d",
         "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py": "10b073ce04656c552fdf0db196b93ede0f933bdcc1781728907ec5e69100af72"
       },
@@ -185,7 +188,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.0.0"
+      "version": "1.2.0"
     },
     {
       "canonical": true,
@@ -283,7 +286,7 @@
       "dependencies": [],
       "entry": "tools/capability_assets.py",
       "hashes": {
-        "tools/capability_assets.py": "8c722357e1c886baac9fecdab6d282e42574c6460ffdcc34fbe2b41613ee3775"
+        "tools/capability_assets.py": "b7ca805666d777a08c4cc9080518330eb837bfb34de8650461a40c974f7149cb"
       },
       "id": "tool.distribution.capability-assets",
       "kind": "tool",
@@ -311,7 +314,7 @@
       "dependencies": [],
       "entry": "tools/distribution.py",
       "hashes": {
-        "tools/distribution.py": "a77d9103b7f84a157f431395d2d8c6a949a547c82bc56940e9dda96043ba0830"
+        "tools/distribution.py": "6fd430e7bb6960f79e95d13ba8c4f38d6ca8b6e729281bc2ff2112687ccac35a"
       },
       "id": "tool.distribution.distribution",
       "kind": "tool",
@@ -428,7 +431,7 @@
       ],
       "entry": "tools/weekly_learning.py",
       "hashes": {
-        "tools/weekly_learning.py": "2b2c548d99849fe8d2b66b6c4770215ab13965172aa19f0a72c45b694c4f22e5"
+        "tools/weekly_learning.py": "a4dbf48225d8fd1ab491f507be61353e74cf220497df51203a093fd81ef50443"
       },
       "id": "tool.distribution.weekly-learning",
       "kind": "tool",
@@ -478,6 +481,90 @@
       "version": "1.0.1"
     },
     {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_client_deploy.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_client_deploy.py": "0f3ecf8a57157de49c2b78cf4e21798844abd25aa3d5d908ddccbf4783b50b01"
+      },
+      "id": "tool.governance.agentos-client-deploy",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-client-deploy",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_import.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_import.py": "7e0b60bb20160bddbe713aa68b2d2782a8738f9bdda999e9d92e810d6369205f"
+      },
+      "id": "tool.governance.agentos-import",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-import",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_paths.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_paths.py": "189d7eb6992b986f7cdb2119e1cbe90138bfc5c1641e21030d0f8bed3e9857f5"
+      },
+      "id": "tool.governance.agentos-paths",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-paths",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.4"
+    },
+    {
       "canonical": true,
       "capabilities": [
         "meta-skill-registry"
@@ -485,7 +572,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/agentos_skills.py",
       "hashes": {
-        "governance/AgentOS/bin/agentos_skills.py": "3f7f6489bf94dcf21fafd503cbee548fa977d1c0a2d982d1114b874117e0531c"
+        "governance/AgentOS/bin/agentos_skills.py": "2497a03f412d9b1d047b088952f9ab72605600079b0f7686ef8e7b8ae4b23237"
       },
       "id": "tool.governance.agentos-skills",
       "kind": "tool",
@@ -503,7 +590,35 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_tools.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_tools.py": "37a446a0073fddfea2c55dcf721eae32147ca54180db9620245bd58be230a328"
+      },
+      "id": "tool.governance.agentos-tools",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-tools",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.4"
     },
     {
       "canonical": false,
@@ -531,7 +646,35 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/qa_leak.py",
+      "hashes": {
+        "governance/AgentOS/bin/qa_leak.py": "baea47580ed0f1ae998d0aeb015444c7c36d35688ddebdea0374328fc53a92bd"
+      },
+      "id": "tool.governance.qa-leak",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "qa-leak",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.8.4"
     },
     {
       "canonical": true,
@@ -559,7 +702,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
     },
     {
       "canonical": true,
@@ -569,7 +712,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS-Decision.ps1": "6be131532856723db505fe44751d8e0fb5552aae2a488a221c3d08d7470691fc"
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "24194ed0f84a73ccad7d8e014366a2e1e40666dfac9bb7446243218c7b85781b"
       },
       "id": "tool.governance.agentos-decision",
       "kind": "tool",
@@ -587,7 +730,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
     },
     {
       "canonical": true,
@@ -615,7 +758,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
     },
     {
       "canonical": true,
@@ -625,7 +768,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS.ps1": "d96eb5d551415b61a33f55bffdbed920d1428e2b0031581cf0493fb78e127ead"
+        "governance/AgentOS/bin/AgentOS.ps1": "62769f4475dc68b0c06a9c41a1c136d67f68893aecf07b41180d7820d7a8a14d"
       },
       "id": "tool.governance.agentos",
       "kind": "tool",
@@ -643,7 +786,71 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "vis-concept-illustration"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/dfm_panel.py",
+      "hashes": {
+        "governance/AgentOS/skills/visual-asset-production/scripts/dfm_panel.py": "89faf84995d178a9d08cf0303e0e12d9f9bb55f026a8cf2ccb17142aea57d95e"
+      },
+      "id": "tool.governance.dfm-panel",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "dfm-panel",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+",
+        "numpy",
+        "Pillow",
+        "scipy",
+        "matplotlib"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "candidate",
+      "supersedes": [],
+      "version": "1.8.4"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "vis-concept-illustration"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/iso_render.py",
+      "hashes": {
+        "governance/AgentOS/skills/visual-asset-production/scripts/iso_render.py": "574bcb0862516058fdfb524081bd5cf793da766ff40d3f88a24d7803c1c3e4f1"
+      },
+      "id": "tool.governance.iso-render",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "iso-render",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+",
+        "numpy",
+        "Pillow",
+        "scipy",
+        "matplotlib"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "candidate",
+      "supersedes": [],
+      "version": "1.8.4"
     },
     {
       "canonical": false,
@@ -675,7 +882,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
     },
     {
       "canonical": false,
@@ -707,7 +914,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.6.0"
+      "version": "1.8.4"
     }
   ],
   "schema": "agentos-capability-assets-v1"

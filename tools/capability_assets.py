@@ -271,7 +271,7 @@ def learning_status(workspace):
 def _source_policy(source):
     if not isinstance(source, dict) or not {"id", "path", "kind"} <= set(source):
         raise Blocked("Learning source requires id/path/kind")
-    if set(source) - {"id", "path", "kind", "include", "max_files", "max_bytes", "max_directories", "required"}:
+    if set(source) - {"id", "path", "kind", "include", "max_files", "max_bytes", "max_directories", "required", "note"}:
         raise Blocked("Unknown learning-source field")
     if not isinstance(source["id"], str) or not ID.fullmatch(source["id"]) or source["kind"] not in {"file", "directory"}:
         raise Blocked("Invalid learning-source identity/kind")
@@ -283,6 +283,8 @@ def _source_policy(source):
             raise Blocked("Invalid learning-source bound: " + key)
     if "required" in source and type(source["required"]) is not bool:
         raise Blocked("required must be boolean")
+    if "note" in source and (not isinstance(source["note"], str) or not source["note"].strip()):
+        raise Blocked("note must be a non-empty string")
     _strings(source.get("include", ["*.md", "*.mdc", "*.txt"]), "include")
     return source
 

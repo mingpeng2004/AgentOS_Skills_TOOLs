@@ -442,6 +442,13 @@ class AssetTests(unittest.TestCase):
         with self.assertRaises(m.Blocked):
             self.scan({"learning_sources": [{"id": "bad", "path": "relative", "kind": "file"}]})
         policy = self.policy()
+        policy["learning_sources"][0]["note"] = "Direct physical path; former C: junction is not followed."
+        report = self.scan(policy)
+        self.assertEqual(report["coverage"][0]["state"], "scanned")
+        policy["learning_sources"][0]["note"] = "   "
+        with self.assertRaisesRegex(m.Blocked, "note must be"):
+            self.scan(policy)
+        policy = self.policy()
         policy["learning_sources"].append(copy.deepcopy(policy["learning_sources"][0]))
         with self.assertRaisesRegex(m.Blocked, "Duplicate learning"):
             self.scan(policy)

@@ -1,0 +1,417 @@
+{
+  "schema": "agentos-role-routing-v1",
+  "agentos_version": "1.8.4",
+  "authority": "Role routing maps a task description to an execution role and assignee. It is not execution permission, specialist certification or delivery evidence.",
+  "profile": "ming-systems",
+  "board": "ming-systems",
+  "protocols": {
+    "role_router": "protocols/ROLE-ROUTER.md",
+    "task_protocol": "protocols/TASK-PROTOCOL.md",
+    "truth_and_evidence": "protocols/TRUTH-AND-EVIDENCE.md",
+    "delegated_autonomy": "protocols/DELEGATED-AUTONOMY.md",
+    "interaction_policy": "policies/INTERACTION-POLICY.json",
+    "evidence_policy": "policies/EVIDENCE-POLICY.json"
+  },
+  "escalation": {
+    "policy": "direct_first",
+    "modes": [
+      "direct",
+      "central"
+    ],
+    "note": "Fixed strategy, no runtime switch. Roles talk directly through kanban task_comments. Escalation to the central top-level agent is a recorded decision, not a config toggle.",
+    "triggers": [
+      "two roles state conflicting conclusions about the same technical fact",
+      "task exceeded its declared max_runtime without convergence",
+      "evidence is missing, stale or synthetic and the role cannot resolve it alone",
+      "the task requires a change outside its declared scope",
+      "the task touches hardware, credentials, privilege or an irreversible system change"
+    ],
+    "escalation_record": {
+      "sink": "kanban_task_events",
+      "requires": [
+        "task_id",
+        "trigger",
+        "conflicting_positions",
+        "evidence_refs",
+        "arbitrator"
+      ],
+      "note": "An escalation without evidence_refs is rejected. 'I believe' is not a position."
+    }
+  },
+  "assignment": {
+    "default_assignee": "ming-systems",
+    "assignee_kinds": [
+      "hermes_profile",
+      "control_plane_lane"
+    ],
+    "note": "assignee may name a Hermes profile or a control-plane lane (an external terminal such as a Claude Code or Codex session) that pulls the card itself via claim_task."
+  },
+  "roles": [
+    {
+      "id": "coordinator",
+      "role_card": "ming-coordinator",
+      "title": "顶层协调",
+      "description": "唯一对外接口。把用户目标拆解为可分派 Unit，定义 DoD，决定分派与升级，处理需要业主确认的事项。",
+      "required_capabilities": [
+        "meta-router",
+        "meta-escalation",
+        "plan-decompose",
+        "plan-gate",
+        "km-decision-log"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "总纲",
+        "拆解",
+        "编排",
+        "协调",
+        "分派",
+        "总体方案",
+        "路线图",
+        "排期",
+        "优先级",
+        "go/no-go",
+        "任务分解",
+        "派单",
+        "决策",
+        "仲裁",
+        "统筹"
+      ],
+      "priority": 100,
+      "escalation": [
+        "需要业主确认的架构选型或跨域决策",
+        "多角色结论冲突且无法自行收敛"
+      ],
+      "authority": "Owns task decomposition and delivery state. Does not perform specialist verification."
+    },
+    {
+      "id": "A1",
+      "role_card": "ming-requirements-analyzer",
+      "title": "需求分析",
+      "description": "目标澄清、用户故事、验收标准。可研判范围与 DoD 草案，产出需求锚点。",
+      "required_capabilities": [
+        "req-jtbd",
+        "req-kano",
+        "req-qfd",
+        "req-spec-freeze",
+        "req-acceptance",
+        "req-trace"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "需求",
+        "用户故事",
+        "验收标准",
+        "DoD",
+        "目标",
+        "场景",
+        "痛点",
+        "范围",
+        "澄清",
+        "定义",
+        "规格"
+      ],
+      "priority": 80,
+      "escalation": [
+        "需求边界存在多种合理解释且会改变交付形态"
+      ],
+      "authority": "Produces scope and acceptance draft. Only the owner can seal a requirement."
+    },
+    {
+      "id": "A2",
+      "role_card": "ming-architecture-designer",
+      "title": "架构设计",
+      "description": "模块划分、接口与数据契约、架构决策记录。产出可迁移、可回滚的架构方案。",
+      "required_capabilities": [
+        "arch-icd",
+        "arch-modular",
+        "arch-adr",
+        "arch-api-first"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "架构",
+        "模块",
+        "接口",
+        "数据契约",
+        "分层",
+        "解耦",
+        "ADR",
+        "技术选型",
+        "设计",
+        "契约",
+        "边界"
+      ],
+      "priority": 75,
+      "escalation": [
+        "重大架构选型需业主确认",
+        "方案涉及硬件拆机或电源改动"
+      ],
+      "authority": "Produces architecture and interface contracts. Not an approved build."
+    },
+    {
+      "id": "A3",
+      "role_card": "ming-code-engineer",
+      "title": "代码工程",
+      "description": "实现具体 Unit，产出代码与自验证据。默认实现方式为测试先行。",
+      "required_capabilities": [
+        "sw-tdd",
+        "sw-solid-clean",
+        "sw-ci-gate",
+        "emb-state-machine",
+        "emb-rtos-pattern"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "实现",
+        "编码",
+        "写代码",
+        "开发",
+        "重构",
+        "修复 bug",
+        "集成代码",
+        "单元实现",
+        "修复",
+        "改代码",
+        "功能实现"
+      ],
+      "priority": 70,
+      "escalation": [
+        "实现需要越过已确认契约的边界",
+        "改动触及提权或不可逆系统状态"
+      ],
+      "authority": "Owns the current Unit and produces self-verification evidence."
+    },
+    {
+      "id": "A4",
+      "role_card": "ming-test-verifier",
+      "title": "测试验证",
+      "description": "构建测试用例、覆盖正常/异常/边界路径，并独立运行以取得外部证据。",
+      "required_capabilities": [
+        "qa-test-pyramid",
+        "qa-doe",
+        "qa-vmodel",
+        "emb-hil"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "测试",
+        "用例",
+        "验证",
+        "回归",
+        "边界",
+        "异常路径",
+        "覆盖",
+        "复现",
+        "跑测试",
+        "单元测试"
+      ],
+      "priority": 65,
+      "escalation": [
+        "测试产出被怀疑是伪造证据",
+        "真实硬件验证需要现场或业主参与"
+      ],
+      "authority": "Verifies against an external artifact. Repeating the implementer's assertion is not verification."
+    },
+    {
+      "id": "A5",
+      "role_card": "ming-quality-auditor",
+      "title": "质量审计",
+      "description": "审计交付质量与证据完整性，检查流程合规，识别未闭环的缺陷。",
+      "required_capabilities": [
+        "sw-code-review",
+        "qa-review-checklist",
+        "meta-qc-gate"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "审计",
+        "质量",
+        "评审",
+        "合规",
+        "缺陷",
+        "风险",
+        "检查",
+        "把关",
+        "复查",
+        "审查"
+      ],
+      "priority": 60,
+      "escalation": [
+        "审计发现需要业主决断的取舍",
+        "审计结论与被审计角色结论冲突"
+      ],
+      "authority": "Issues findings; does not repair them."
+    },
+    {
+      "id": "A6",
+      "role_card": "ming-documentation-writer",
+      "title": "文档编纂",
+      "description": "编写 API 文档、操作说明、记录与迁移说明，保持文档与实现一致。",
+      "required_capabilities": [
+        "km-decision-log",
+        "km-postmortem",
+        "km-lessons",
+        "km-context-pack"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "文档",
+        "说明",
+        "记录",
+        "手册",
+        "复盘",
+        "迁移说明",
+        "API 文档",
+        "归档",
+        "注释",
+        "知识沉淀"
+      ],
+      "priority": 50,
+      "escalation": [
+        "文档内容需要引用尚未确认的结论"
+      ],
+      "authority": "Documents what is already evidenced. Does not create facts."
+    },
+    {
+      "id": "A7",
+      "role_card": "ming-performance-optimizer",
+      "title": "性能优化",
+      "description": "定位性能瓶颈，评估内存/磁盘/温度/开机耗时等，提供优化路径与数据支撑。",
+      "required_capabilities": [
+        "qa-doe",
+        "sw-solid-clean",
+        "sw-ci-gate"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "性能",
+        "优化",
+        "瓶颈",
+        "慢",
+        "内存",
+        "磁盘空间",
+        "温度",
+        "占用",
+        "响应时间",
+        "卡顿",
+        "资源"
+      ],
+      "priority": 55,
+      "escalation": [
+        "优化需要硬件换件或拆机",
+        "优化会牺牲已确认的功能约束"
+      ],
+      "authority": "Proposes optimizations with measurements. Does not silently trade away a confirmed constraint."
+    },
+    {
+      "id": "A8",
+      "role_card": "ming-security-auditor",
+      "title": "安全审计",
+      "description": "审查攻击面、权限、依赖、ACL 与安全控制有效性，给出安全结论与未决项。",
+      "required_capabilities": [
+        "sw-code-review",
+        "plan-risk",
+        "meta-no-fabrication",
+        "plan-gate"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "安全",
+        "漏洞",
+        "权限",
+        "攻击面",
+        "审计",
+        "ACL",
+        "提权",
+        "凭据",
+        "防火墙",
+        "风险",
+        "暴露面"
+      ],
+      "priority": 70,
+      "escalation": [
+        "需要关闭或绕过任何安全控制",
+        "涉及凭据、密钥或远程访问"
+      ],
+      "authority": "Blocks unauthorized change. Security confirmation never times out into a default."
+    },
+    {
+      "id": "A9",
+      "role_card": "ming-operations-monitor",
+      "title": "运维监控",
+      "description": "保障任务存活、告警分级与去重、趋势判定与自愈编排，保证 7x24 稳健运行。",
+      "required_capabilities": [
+        "plan-gate",
+        "plan-rolling",
+        "meta-token-budget",
+        "km-context-pack"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "监控",
+        "运维",
+        "告警",
+        "巡检",
+        "存活",
+        "计划任务",
+        "看护",
+        "心跳",
+        "稳定性",
+        "崩溃",
+        "取证",
+        "dump",
+        "证据链",
+        "蓝屏",
+        "事件日志"
+      ],
+      "priority": 60,
+      "escalation": [
+        "监控层发现证据层缺失（根因在取证链而非看护任务）",
+        "自愈动作会改变系统状态"
+      ],
+      "authority": "Runs monitoring and orchestration. A monitoring layer is not the evidence layer."
+    },
+    {
+      "id": "A10",
+      "role_card": "ming-integration-verifier",
+      "title": "集成验证",
+      "description": "跨角色跨模块的集成检查，核对接口契约、版本新鲜度与端到端行为。",
+      "required_capabilities": [
+        "qa-review-checklist",
+        "arch-icd",
+        "meta-qc-gate",
+        "qa-vmodel"
+      ],
+      "default_assignee": "ming-systems",
+      "triggers": [
+        "集成",
+        "联调",
+        "端到端",
+        "跨模块",
+        "版本",
+        "新鲜度",
+        "接口一致性",
+        "整体验证",
+        "组装"
+      ],
+      "priority": 65,
+      "escalation": [
+        "集成失败源于组件外部依赖且无法自行定位",
+        "需要真实硬件或现场验收"
+      ],
+      "authority": "Verifies the assembled system. Software delivery and physical acceptance are reported separately."
+    }
+  ],
+  "routing": {
+    "note": "Free-text routing is a ranked proposal, not an automatic dispatch. Ambiguity must be resolved by the coordinator before a card is created.",
+    "tie_break": [
+      "explicit --role",
+      "trigger score",
+      "priority",
+      "role id"
+    ],
+    "minimum_score": 1,
+    "dispatch_requires_explicit_role": true
+  }
+}

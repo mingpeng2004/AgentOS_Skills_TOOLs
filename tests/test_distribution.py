@@ -58,6 +58,21 @@ class DistributionTests(fixtures.WeeklyTests):
         with self.assertRaisesRegex(w.Blocked, "membership"):
             w.check_sources(binding)
 
+    def test_timestamped_backups_are_excluded_consistently_from_tree_binding(self):
+        tree = self.root / "source-backups"
+        tree.mkdir()
+        (tree / "SKILL.md").write_text("active source")
+        backup = tree / "SKILL.md.bak.20261026-121315"
+        backup.write_text("private historical copy")
+        excluded = set(w.SKIP) | {"*.bak", "*.bak.*"}
+        binding = [{"kind": "tree", "source": str(tree), "files": d.tree(tree, excluded),
+                    "excluded": sorted(excluded)}]
+
+        backup.write_text("changed historical copy")
+        w.check_sources(binding)
+
+        self.assertEqual(set(d.tree(tree, excluded)), {"SKILL.md"})
+
     def test_tree_walk_permission_failure_is_not_empty(self):
         def denied(root, **kwargs):
             kwargs["onerror"](PermissionError("synthetic denied"))
@@ -162,7 +177,7 @@ class DistributionTests(fixtures.WeeklyTests):
         workspace = self.root / "publisher"
         framework = self.root / "framework"
         framework.mkdir()
-        for folder in ["adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "templates", "tests", "skills"]:
+        for folder in ["adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests", "skills"]:
             (framework / folder).mkdir()
         (framework / "VERSION").write_text("1.6.0\n")
         (framework / "README.md").write_text("fixture framework")

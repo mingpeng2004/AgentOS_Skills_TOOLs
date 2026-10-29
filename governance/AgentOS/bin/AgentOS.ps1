@@ -94,7 +94,11 @@ function Add-ManagedSection {
 }
 
 function Add-MiniMaxOverlay {
-    $path = Join-Path $env:USERPROFILE '.minimax\agents\mavis\agent.md'
+    $client = @((Get-AgentOsClientPaths).clients | Where-Object { $_.id -eq 'minimax-code' })
+    if ($client.Count -eq 0 -or -not $client[0].discovered) { return $false }
+    $rules = @($client[0].rule_files | Where-Object { [IO.Path]::GetFileName($_) -eq 'agent.md' })
+    if ($rules.Count -eq 0) { return $false }
+    $path = $rules[0]
     if (-not (Test-Path -LiteralPath (Split-Path -Parent $path))) { return $false }
     $begin = '<!-- AGENTOS:BEGIN minimax overlay -->'
     $end = '<!-- AGENTOS:END minimax overlay -->'
@@ -131,42 +135,93 @@ $end
     return $true
 }
 
-function Install-ClientAdapters {
-    $minimaxSkill = Join-Path $script:AgentOsRoot 'adapters\minimax\SKILL.md'
-    $kimiSkill = Join-Path $script:AgentOsRoot 'adapters\kimi\SKILL.md'
-    $targets = @(
-        (Join-Path $env:USERPROFILE '.minimax\agents\mavis\skills\agent-governance-os\SKILL.md'),
-        (Join-Path $env:USERPROFILE '.kimi\skills\agent-governance-os\SKILL.md'),
-        (Join-Path $env:USERPROFILE '.kimi-code\skills\agent-governance-os\SKILL.md')
-    )
-    foreach ($target in $targets) {
-        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
-    }
-    Copy-Item -LiteralPath $minimaxSkill -Destination $targets[0] -Force
-    Copy-Item -LiteralPath $kimiSkill -Destination $targets[1] -Force
-    Copy-Item -LiteralPath $kimiSkill -Destination $targets[2] -Force
-    $methodSource = Join-Path $script:AgentOsRoot 'skills\production-skill-routing'
-    foreach ($base in @('.codex\skills', '.minimax\agents\mavis\skills', '.kimi\skills', '.kimi-code\skills')) {
-        $destination = Join-Path (Join-Path $env:USERPROFILE $base) 'production-skill-routing'
-        if (Test-Path -LiteralPath $destination) {
-            $sourceFiles = @(Get-ChildItem -LiteralPath $methodSource -Recurse -File)
-            $installedFiles = @(Get-ChildItem -LiteralPath $destination -Recurse -File)
-            if ($installedFiles.Count -ne $sourceFiles.Count) { throw "Existing method Skill differs; preserve and review: $destination" }
-            foreach ($file in $sourceFiles) {
-                $relative = $file.FullName.Substring($methodSource.Length).TrimStart('\', '/')
-                $installed = Join-Path $destination $relative
-                if (-not (Test-Path -LiteralPath $installed -PathType Leaf) -or
-                    (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash -ne
-                    (Get-FileHash -LiteralPath $installed -Algorithm SHA256).Hash) {
-                    throw "Existing method Skill differs; preserve and review: $destination"
-                }
-            }
-        } else {
-            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destination) | Out-Null
-            Copy-Item -LiteralPath $methodSource -Destination $destination -Recurse
+function Get-AgentOsHostBindings {
+    $path = Join-Path $script:AgentOsRoot '.local\host-bindings.json'
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { return $null }
+    return (Get-Content -LiteralPath $path -Raw -Encoding UTF8 | ConvertFrom-Json)
+}
+
+function Get-AgentOsField {
+    param([object]$Object, [string]$Name, [object]$Default = $null)
+    if ($null -eq $Object) { return $Default }
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) { return $Default }
+    return $property.Value
+}
+
+function Get-AgentOsPython {
+    $bindings = Get-AgentOsHostBindings
+    $runtime = Get-AgentOsField $bindings 'runtime'
+    $python = Get-AgentOsField $runtime 'python'
+    $pinned = [string](Get-AgentOsField $python 'path' '')
+    if ($pinned) {
+        if (-not [IO.Path]::IsPathRooted($pinned) -or -not (Test-Path -LiteralPath $pinned -PathType Leaf)) {
+            throw "Registered AgentOS Python path is missing or not absolute: $pinned"
         }
+        return [ordered]@{ path = $pinned; source = 'host-binding' }
     }
-    return Add-MiniMaxOverlay
+    $command = Get-Command python -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($command -and $command.Source -and (Test-Path -LiteralPath $command.Source -PathType Leaf)) {
+        return [ordered]@{ path = $command.Source; source = 'Get-Command' }
+    }
+    throw 'No AgentOS Python runtime: host binding unavailable and Get-Command python failed.'
+}
+
+function Get-AgentOsClientPaths {
+    $python = Get-AgentOsPython
+    $tool = Join-Path $script:AgentOsRoot 'bin\agentos_paths.py'
+    $json = & $python.path -B $tool inspect --root $script:AgentOsRoot 2>&1
+    $code = $LASTEXITCODE
+    if ($code -ne 0) { throw "Client path resolution failed (python source=$($python.source), exit=$code): $json" }
+    return [pscustomobject]@{ resolution = ($json | Out-String | ConvertFrom-Json); python = $python }
+}
+
+function Invoke-AgentOsClientDeployment {
+    param([string]$Client, [switch]$DryRun)
+    $bindings = Join-Path $script:AgentOsRoot '.local\host-bindings.json'
+    if (-not (Test-Path -LiteralPath $bindings -PathType Leaf)) {
+        return [ordered]@{ state = 'unknown'; reason = 'private host bindings absent; no client writes attempted' }
+    }
+    $python = Get-AgentOsPython
+    $tool = Join-Path $script:AgentOsRoot 'bin\agentos_client_deploy.py'
+    if (-not (Test-Path -LiteralPath $tool -PathType Leaf)) { throw "Controlled deployment tool missing: $tool" }
+    $backupRoot = Join-Path $script:AgentOsRoot '.local\client-deployment-backups'
+    $arguments = @('-B', $tool, '--root', $script:AgentOsRoot, '--bindings', $bindings,
+                   '--backup-root', $backupRoot)
+    if ($Client) { $arguments += @('--client', $Client) }
+    if ($DryRun) { $arguments += '--dry-run' }
+    $receipt = Join-Path $script:AgentOsRoot ("reports\client-deployment-{0}.json" -f [guid]::NewGuid().ToString('N'))
+    $arguments += @('--output', $receipt)
+    $text = & $python.path @arguments 2>&1
+    $code = $LASTEXITCODE
+    if ($code -ne 0) { throw "Controlled client deployment failed (python source=$($python.source), exit=$code): $text" }
+    return (Get-Content -LiteralPath $receipt -Raw -Encoding UTF8 | ConvertFrom-Json)
+}
+
+function Get-AgentOsToolCatalogStatus {
+    $python = Get-AgentOsPython
+    $tool = Join-Path $script:AgentOsRoot 'bin\agentos_tools.py'
+    if (-not (Test-Path -LiteralPath $tool -PathType Leaf)) { throw 'AgentOS Tool catalog CLI is missing.' }
+    $output = & $python.path -B $tool catalog --root $script:AgentOsRoot 2>&1
+    $code = $LASTEXITCODE
+    if ($code -ne 0) { throw "Tool catalog validation failed (exit=$code): $($output | Out-String)" }
+    $catalog = ($output | Out-String) | ConvertFrom-Json
+    if ($catalog.state -ne 'validated_inventory' -or [int]$catalog.asset_count -lt 1) {
+        throw 'Tool catalog returned an invalid or empty inventory.'
+    }
+    return [ordered]@{ state = $catalog.state; assets = [int]$catalog.asset_count; capabilities = [int]$catalog.capability_count }
+}
+
+function Install-ClientAdapters {
+    $bindings = Get-AgentOsHostBindings
+    $clients = Get-AgentOsField $bindings 'clients'
+    if ($null -eq $clients -or @($clients.PSObject.Properties).Count -eq 0) {
+        Write-Host 'No registered native client bindings; no client files changed.'
+        return [ordered]@{ state = 'unknown'; clients = @() }
+    }
+    $result = Invoke-AgentOsClientDeployment
+    $result | ConvertTo-Json -Depth 8 | Write-Host
+    return $result
 }
 
 function Register-AgentOsProject {
@@ -359,6 +414,7 @@ function Show-AgentOsApprovalStatus {
 function Invoke-AgentOsDiagnose {
     $script:diagnoseChecks = @()
     function Add-Check { param([string]$Name, [bool]$Pass, [string]$Detail) $script:diagnoseChecks += [ordered]@{ name = $Name; pass = $Pass; detail = $Detail } }
+    $coreCheckCount = 0
     Add-Check 'core-import-contract' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'runtime\AGENT-IMPORT.md')) 'next-session import contract'
     Add-Check 'core-boot' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'runtime\BOOT.md')) (Join-Path $script:AgentOsRoot 'runtime\BOOT.md')
     Add-Check 'truth-protocol' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'protocols\TRUTH-AND-EVIDENCE.md')) 'truth protocol'
@@ -371,31 +427,93 @@ function Invoke-AgentOsDiagnose {
     Add-Check 'decision-tool' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'bin\AgentOS-Decision.ps1')) 'durable decision state machine'
     Add-Check 'contract-protocol' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'protocols\UPFRONT-CONFIRMATION.md')) 'upfront confirmation'
     Add-Check 'skill-matrix' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'protocols\SKILL-MATRIX.md')) 'capability contract workflow'
-    Add-Check 'skill-registry' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'policies\SKILL-REGISTRY.json')) '64-capability coverage registry'
+    Add-Check 'skill-registry' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'policies\SKILL-REGISTRY.json')) 'capability coverage registry'
     Add-Check 'skill-inspector' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'bin\agentos_skills.py')) 'stdlib input and output gate'
     Add-Check 'interaction-policy' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'policies\INTERACTION-POLICY.json')) 'confirmation tiers'
     Add-Check 'contract-tool' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'bin\AgentOS-Contract.ps1')) 'contract state machine'
     Add-Check 'design-protocol' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'protocols\DESIGN-CONSISTENCY.md')) 'design consistency'
     Add-Check 'constitution' (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'constitution\AGENTOS-CONSTITUTION.md')) 'constitution present'
-    Add-Check 'minimax-skill' (Test-Path -LiteralPath (Join-Path $env:USERPROFILE '.minimax\agents\mavis\skills\agent-governance-os\SKILL.md')) 'MiniMax skill'
-    $miniMaxAgentPath = Join-Path $env:USERPROFILE '.minimax\agents\mavis\agent.md'
-    Add-Check 'minimax-overlay' ((Test-Path -LiteralPath $miniMaxAgentPath) -and ((Get-Content -LiteralPath $miniMaxAgentPath -Raw -Encoding UTF8) -match 'AGENTOS:BEGIN minimax overlay')) 'MiniMax overlay'
-    Add-Check 'kimi-user-skill' (Test-Path -LiteralPath (Join-Path $env:USERPROFILE '.kimi\skills\agent-governance-os\SKILL.md')) 'Kimi user skill'
-    Add-Check 'kimi-code-skill' (Test-Path -LiteralPath (Join-Path $env:USERPROFILE '.kimi-code\skills\agent-governance-os\SKILL.md')) 'Kimi Code skill'
-    $skillPairs = @(
-        @('adapters\minimax\SKILL.md', '.minimax\agents\mavis\skills\agent-governance-os\SKILL.md'),
-        @('adapters\kimi\SKILL.md', '.kimi\skills\agent-governance-os\SKILL.md'),
-        @('adapters\kimi\SKILL.md', '.kimi-code\skills\agent-governance-os\SKILL.md')
-    )
-    foreach ($pair in $skillPairs) {
-        $sourcePath = Join-Path $script:AgentOsRoot $pair[0]
-        $targetPath = Join-Path $env:USERPROFILE $pair[1]
-        $same = (Test-Path -LiteralPath $targetPath) -and
-            (Get-FileHash -LiteralPath $sourcePath -Algorithm SHA256).Hash -eq (Get-FileHash -LiteralPath $targetPath -Algorithm SHA256).Hash
-        Add-Check ('skill-current:' + $pair[1]) $same 'Installed adapter hash matches current source; live client import is not attested.'
+    if (Test-Path -LiteralPath (Join-Path $script:AgentOsRoot 'bin\agentos_tools.py') -PathType Leaf) {
+        try {
+            $toolStatus = Get-AgentOsToolCatalogStatus
+            Add-Check 'tool-catalog' ($toolStatus.assets -gt 0) ("validated {0} assets / {1} capabilities" -f $toolStatus.assets, $toolStatus.capabilities)
+        } catch {
+            Add-Check 'tool-catalog' $false $_.Exception.Message
+        }
+    }
+    $coreCheckCount = $script:diagnoseChecks.Count
+    $clientReport = @()
+    $pythonInfo = $null
+    $pathError = $null
+    try {
+        $resolved = Get-AgentOsClientPaths
+        $pythonInfo = $resolved.python
+        $binding = Get-AgentOsHostBindings
+        $hostClients = Get-AgentOsField $binding 'clients'
+        foreach ($client in $resolved.resolution.clients) {
+            $hostRecord = if ($hostClients) { Get-AgentOsField $hostClients ([string]$client.id) } else { $null }
+            $declaredRules = @($client.rule_files)
+            $fileState = 'unknown'
+            $reason = 'No verified native rule target; canonical fallback remains available but runtime import is unattested.'
+            $checks = @()
+            if ($declaredRules.Count -gt 0) {
+                if ($null -eq $hostRecord) {
+                    $fileState = 'missing'
+                    $reason = 'Native rule target is declared but has no private host binding/expected hash.'
+                } else {
+                    try {
+                        $deployment = Invoke-AgentOsClientDeployment -Client $client.id -DryRun
+                        $items = @($deployment.clients | ForEach-Object { $_.adapter_files } | ForEach-Object { $_ })
+                        if ($items.Count -eq 0) { throw 'Registered native target produced no deployment checks.' }
+                        $bad = @($items | Where-Object {
+                            $_.state -ne 'unchanged' -or -not $_.sha256 -or
+                            $_.sha256 -ne $_.before_sha256 -or -not $_.source_sha256 -or
+                            -not $_.managed_block_sha256
+                        })
+                        if ($bad.Count) {
+                            $fileState = 'drift'
+                            $reason = 'Registered full-target/source/managed-block hash does not match canonical bytes.'
+                        } else {
+                            $fileState = 'verified'
+                            $reason = 'Controlled deployment dry-run verified registered full-target, source and managed-block hashes; runtime remains unattested.'
+                        }
+                        $checks = $items
+                    } catch {
+                        $fileState = 'drift'
+                        $reason = $_.Exception.Message
+                    }
+                }
+                Add-Check ('client-file-parity:' + $client.id) ($fileState -eq 'verified') $reason
+            }
+            $states = Get-AgentOsField $hostRecord 'states'
+            $importState = [string](Get-AgentOsField $states 'import_reported' 'unattested')
+            $behaviorState = [string](Get-AgentOsField $states 'behavior_attested' 'unattested')
+            $clientReport += [ordered]@{
+                id = $client.id; discovered = [bool]$client.discovered
+                native_rule_target_present = [bool](Get-AgentOsField $client 'native_rule_target_present' $false)
+                skill_roots = @($client.skill_roots); rule_files = $declaredRules
+                file_parity = $fileState; import_reported = $importState
+                behavior_attested = $behaviorState; checks = $checks; reason = $reason
+            }
+        }
+    } catch {
+        $pathError = $_.Exception.Message
+        Add-Check 'client-path-inventory' $false $pathError
     }
     $checks = @($script:diagnoseChecks)
-    $report = [ordered]@{ generated_at = (Get-Date).ToString('o'); root = $script:AgentOsRoot; checks = $checks; pass = @($checks | Where-Object { -not $_.pass }).Count -eq 0 }
+    $coreFailures = @($checks | Select-Object -First $coreCheckCount | Where-Object { -not $_.pass }).Count
+    $nativeFailures = @($checks | Select-Object -Skip $coreCheckCount | Where-Object { -not $_.pass }).Count
+    $complete = $clientReport.Count -gt 0 -and @($clientReport | Where-Object {
+        $_.file_parity -ne 'verified' -or $_.import_reported -ne 'reported' -or $_.behavior_attested -ne 'verified'
+    }).Count -eq 0
+    $report = [ordered]@{
+        generated_at = (Get-Date).ToString('o'); root = $script:AgentOsRoot
+        python = $pythonInfo; client_inventory_error = $pathError; checks = $checks; clients = $clientReport
+        core_pass = $coreFailures -eq 0; native_client_pass = $nativeFailures -eq 0
+        complete = $complete; pass = ($coreFailures -eq 0 -and $nativeFailures -eq 0)
+        limits = @('Fallback-only clients remain unknown and do not fail core checks.',
+                   'Runtime import and behavior are not inferred from file parity.')
+    }
     $path = Join-Path $script:AgentOsRoot "reports\diagnose-$(Get-Date -Format 'yyyyMMdd-HHmmss').json"
     Write-AgentOsText -Path $path -Content ($report | ConvertTo-Json -Depth 5)
     $report | ConvertTo-Json -Depth 5 | Write-Host
@@ -405,8 +523,6 @@ function Invoke-AgentOsDiagnose {
 
 switch ($Command) {
     'install' {
-        [Environment]::SetEnvironmentVariable('AGENTOS_HOME', $script:AgentOsRoot, 'User')
-        $env:AGENTOS_HOME = $script:AgentOsRoot
         Install-ClientAdapters | Out-Null
         $known = @(
             '${PROJECT_PATH}',
