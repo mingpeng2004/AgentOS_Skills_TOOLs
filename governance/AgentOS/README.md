@@ -4,7 +4,7 @@ Use the repository root README and tools/portable_install.py. Legacy install com
 
 # Agent Governance OS
 
-## Capability contracts and skill routing (1.9.0)
+## Capability contracts and skill routing (1.9.1)
 
 The 67-capability matrix is mapped to existing methods and explicit candidate
 gaps in policies/SKILL-REGISTRY.json. Read protocols/SKILL-MATRIX.md. The stdlib

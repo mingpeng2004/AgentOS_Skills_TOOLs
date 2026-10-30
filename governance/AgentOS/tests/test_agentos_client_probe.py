@@ -14,6 +14,21 @@ import unittest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "bin"))
 import agentos_client_probe as probe
+import importlib.util
+
+_spec = importlib.util.spec_from_file_location(
+    "grade_client_selftests", ROOT / "bin/grade_client_selftests.py")
+_grader = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_grader)
+run_grader = _grader.run
+import importlib.util
+
+_spec = importlib.util.spec_from_file_location(
+    "grade_client_selftests", ROOT / "bin/grade_client_selftests.py")
+_grader = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_grader)
+run_grader = _grader.run
+
 
 
 class ClientProbeTests(unittest.TestCase):
@@ -83,5 +98,41 @@ class ClientProbeTests(unittest.TestCase):
         self.assertEqual(result["failed"], 0)
 
 
+class BulkGraderTests(unittest.TestCase):
+    """The bulk grader must not turn an unanswered client into a failure."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="agentos-bulk-grade-")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.answers = self.root / "answers"
+        self.answers.mkdir()
+
+    def test_template_placeholders_are_unattested_not_failed(self):
+        template = {"import-load-order": "<the client's own answer>",
+                    "unknown-never-defaults": "<the client's own answer>",
+                    "candidate-blocks": "<the client's own answer>",
+                    "answered_at": "<YYYYMMDD-HHMM>"}
+        (self.answers / "answers-fixture.json").write_text(json.dumps(template), encoding="utf-8")
+        result = run_grader(ROOT, self.root, self.answers)
+        entry = next(x for x in result["clients"] if x["client"] == "fixture")
+        self.assertEqual(entry["state"], "unattested")
+        self.assertEqual(result["failed"], 0)
+
+    def test_a_correct_client_is_recorded_as_passed(self):
+        built = {p["id"]: p for p in probe.build_probe(ROOT)}
+        answers = {
+            "import-load-order": built["import-load-order"]["expected_answer"],
+            "unknown-never-defaults": ", ".join(built["unknown-never-defaults"]["expected_answer"]),
+            "candidate-blocks": built["candidate-blocks"]["expected_answer"],
+            "answered_at": "20260101-000000"}
+        (self.answers / "answers-fixture.json").write_text(json.dumps(answers), encoding="utf-8")
+        result = run_grader(ROOT, self.root, self.answers)
+        entry = next(x for x in result["clients"] if x["client"] == "fixture")
+        self.assertEqual(entry["state"], "passed")
+        self.assertEqual(result["passed"], 1)
+
+
 if __name__ == "__main__":
     unittest.main()
+

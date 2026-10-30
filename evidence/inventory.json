@@ -183,7 +183,7 @@
   "portable_agentos_profile": {
     "excluded_required_files": 54,
     "profile": "portable-owner-authorized",
-    "required_files": 58,
+    "required_files": 59,
     "test_template_sha256": "c99c66ce2a548537964306668e0f89f4973d56830f5347db36faa0114552f5be",
     "unavailable_capabilities": {
       "agentos-governed-integration": [

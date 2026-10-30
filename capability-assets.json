@@ -506,7 +506,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -534,7 +534,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -562,7 +562,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -590,7 +590,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -618,7 +618,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": true,
@@ -646,7 +646,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -674,7 +674,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -702,7 +702,35 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/grade_client_selftests.py",
+      "hashes": {
+        "governance/AgentOS/bin/grade_client_selftests.py": "fe3f67dfa94e1ddb6d84b6e564256be25e2957abd2820cbd57ef7e8de908aa26"
+      },
+      "id": "tool.governance.grade-client-selftests",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "grade-client-selftests",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -730,7 +758,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": true,
@@ -758,7 +786,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": true,
@@ -768,7 +796,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS-Decision.ps1": "addf9c65e7315a8860c100cc9217d5b2d8281533dc7d80325d2003186cb8ff33"
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "1fbf77720406aaffe5af190025b8c30d908bed73237e9a6ecfce8dd9088bfc0b"
       },
       "id": "tool.governance.agentos-decision",
       "kind": "tool",
@@ -786,7 +814,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": true,
@@ -814,7 +842,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": true,
@@ -842,7 +870,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -874,7 +902,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -906,7 +934,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -938,7 +966,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     },
     {
       "canonical": false,
@@ -970,7 +998,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.9.0"
+      "version": "1.9.1"
     }
   ],
   "schema": "agentos-capability-assets-v1"

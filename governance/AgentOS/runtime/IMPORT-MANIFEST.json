@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.9.0",
+  "agentos_version": "1.9.1",
   "confirmation_rule": "Framework-level domains require explicit user confirmation; preference tier may default after 300 s; contract recorded in .agentos/contract.",
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
@@ -108,7 +108,7 @@
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "9e974069f8ab066d16387663bcc59c9b6cce2e26793f672781113512fbc4884e",
+    "source_manifest_sha256": "89b1eb44c9eb96bf45300846796c85b69930b53885b05e64d5e621a36271d36d",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
         "meta-background-agent",
@@ -154,6 +154,7 @@
     "bin\\agentos_paths.py",
     "bin\\agentos_skills.py",
     "bin\\agentos_tools.py",
+    "bin\\grade_client_selftests.py",
     "constitution\\AGENTOS-CONSTITUTION.md",
     "policies\\DECISION-POLICY.json",
     "policies\\INTERACTION-POLICY.json",
