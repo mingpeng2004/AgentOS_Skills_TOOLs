@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.8.8",
+  "agentos_version": "1.9.0",
   "confirmation_rule": "Framework-level domains require explicit user confirmation; preference tier may default after 300 s; contract recorded in .agentos/contract.",
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
@@ -108,7 +108,7 @@
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "924e521db6d6823251a7f4a671aad5503936bd36b791fa0f71834b4d026c5542",
+    "source_manifest_sha256": "9e974069f8ab066d16387663bcc59c9b6cce2e26793f672781113512fbc4884e",
     "unavailable_capabilities": {
       "agentos-governed-integration": [
         "meta-background-agent",
@@ -149,6 +149,7 @@
     "bin\\AgentOS.ps1",
     "bin\\agentos_canary.py",
     "bin\\agentos_client_deploy.py",
+    "bin\\agentos_client_probe.py",
     "bin\\agentos_import.py",
     "bin\\agentos_paths.py",
     "bin\\agentos_skills.py",
@@ -162,6 +163,7 @@
     "protocols\\BEHAVIOR-CANARIES.md",
     "protocols\\CAPABILITY-OBJECTIVE.md",
     "protocols\\CLIENT-ADAPTER-CONTRACT.md",
+    "protocols\\CLIENT-BEHAVIOR-ATTESTATION.md",
     "protocols\\CONTEXT-PIPELINE.md",
     "protocols\\DELEGATED-AUTONOMY.md",
     "protocols\\DELIVERABLE-STANDARD.md",

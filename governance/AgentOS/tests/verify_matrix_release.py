@@ -93,6 +93,11 @@ def main():
         # unnoticed.
         results.append(run([sys.executable, "-B", str(root / "tests/test_agentos_canary.py")],
                            args.output / (label + "-canary-tests.log")))
+        # The client probe must also be exercised: a probe that a general model
+        # could pass would not separate a client that read the rules from one
+        # that guessed.
+        results.append(run([sys.executable, "-B", str(root / "tests/test_agentos_client_probe.py")],
+                           args.output / (label + "-client-probe-tests.log")))
     registry = json.loads((ROOT / "policies/SKILL-REGISTRY.json").read_text(encoding="utf-8-sig"))
     objective_text = args.objective.read_text(encoding="utf-8-sig")
     requested = set(re.findall(r"(?m)^((?:req|arch|plan|hw|mech|id|emb|sw|ui|qa|mfg|km|meta|vis)-[a-z0-9-]+)\s", objective_text))
@@ -233,3 +238,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

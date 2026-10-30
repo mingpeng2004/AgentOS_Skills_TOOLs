@@ -655,14 +655,6 @@
       "license": "unknown",
       "name": "agent-governance-os",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "client",
-      "source_id": "a53d34fd909a",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "agent-governance-os",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "c384cc197563",
       "state": "reference_only"
@@ -4595,6 +4587,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "fc576e760ae6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-host-test-blind-spot-audit",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b5af1706f6b0",
       "state": "reference_only"
     },
     {
@@ -9220,14 +9220,6 @@
       "name": "mechanical-cam-lab",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "d05e707d372f",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "mechanical-cam-lab",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
       "source_id": "44474c6a5251",
       "state": "reference_only"
     },
@@ -9237,6 +9229,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "shared",
       "source_id": "fa3db964e174",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "mechanical-cam-lab",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d05e707d372f",
       "state": "reference_only"
     },
     {
@@ -17836,6 +17836,14 @@
     },
     {
       "license": "unknown",
+      "name": "windows-hidden-background-service",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9615cbacdbce",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "windows-junction-safe-ops",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -18203,5 +18211,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2254
+  "source_count": 2255
 }

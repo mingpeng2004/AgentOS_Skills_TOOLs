@@ -1,6 +1,6 @@
 {
   "schema": "agentos-role-routing-v1",
-  "agentos_version": "1.8.8",
+  "agentos_version": "1.9.0",
   "authority": "Role routing maps a task description to an execution role and assignee. It is not execution permission, specialist certification or delivery evidence.",
   "profile": "ming-systems",
   "board": "ming-systems",

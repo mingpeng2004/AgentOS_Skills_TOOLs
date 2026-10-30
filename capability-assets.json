@@ -506,7 +506,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -534,7 +534,35 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_client_probe.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_client_probe.py": "88c1a1c57d57a5d5d3c9d9364a5837c732dd340fd910290a0455f1fcaa5e00ed"
+      },
+      "id": "tool.governance.agentos-client-probe",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-client-probe",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -562,7 +590,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -590,7 +618,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": true,
@@ -618,7 +646,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -646,7 +674,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -674,7 +702,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -702,7 +730,7 @@
       ],
       "status": "validated",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": true,
@@ -730,7 +758,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": true,
@@ -740,7 +768,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS-Decision.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS-Decision.ps1": "7b26206a113e02b85fcc54e747841b2c6d0cc36fc3022d201bd603adc331d21f"
+        "governance/AgentOS/bin/AgentOS-Decision.ps1": "addf9c65e7315a8860c100cc9217d5b2d8281533dc7d80325d2003186cb8ff33"
       },
       "id": "tool.governance.agentos-decision",
       "kind": "tool",
@@ -758,7 +786,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": true,
@@ -786,7 +814,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": true,
@@ -814,7 +842,7 @@
       ],
       "status": "active",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -846,7 +874,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -878,7 +906,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -910,7 +938,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     },
     {
       "canonical": false,
@@ -942,7 +970,7 @@
       ],
       "status": "candidate",
       "supersedes": [],
-      "version": "1.8.8"
+      "version": "1.9.0"
     }
   ],
   "schema": "agentos-capability-assets-v1"

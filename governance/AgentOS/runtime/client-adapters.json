@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.8.8",
+  "agentos_version": "1.9.0",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {
@@ -537,7 +537,7 @@
         "${USER_HOME}/.minimax/agents/mavis/skills"
       ],
       "rule_files": [
-        "${USER_HOME}/.minimax/agents/mavis/skills/agent-governance-os/SKILL.md"
+        "${USER_HOME}/.config/magpie/library/skills/agent-governance-os/SKILL.md"
       ],
       "entry": "runtime/managed-client-entry.md",
       "limits": "Registration and local file parity do not prove runtime import or behavior. Missing native surfaces use portable fallback.",
@@ -551,7 +551,7 @@
         "note": "Not yet verified under this protocol. A client-local background task store exists; that is shell/background-task evidence, not subagent background evidence.",
         "evidence": null
       },
-      "notes": "The managed rule surface is the Mavis profile skills root, where the adapter is a real file rather than a link. The global MiniMax skills root is a Magpie-owned symlink view of the shared library and stays a Skill root, never a required managed rule target."
+      "notes": "The managed rule surface is the shared library copy of the adapter, which is a real file rather than a link. The Mavis profile skills root is managed by the client and removes directories it does not know, so a managed file placed there does not persist. The global MiniMax skills root stays a Skill root only."
     },
     {
       "id": "trae",
@@ -703,6 +703,82 @@
       "entry": "runtime/managed-client-entry.md",
       "limits": "Observed only as a residual directory: the npm package chat-cc is no longer installed, no process is running, and the last log entry is 2026-08-18. The residual config.yaml holds live-looking app credentials and must never be copied into a governance package, receipt or adapter. This client has no local rule or Skill surface on this host; only the portable fallback applies. Reinstalling the client is required before any file parity, import or behavior claim.",
       "credential_handling": "Residual ~/.chat-cc/config.yaml contains an app_id/app_secret pair. It is classified as a credential and is excluded from every governance artifact, package and evidence file by the existing secret-pattern gate."
+    },
+    {
+      "id": "deepseek-harness",
+      "display_name": "DeepSeek Harness",
+      "version": "unknown (local dsh profile configuration; agent bundle version not established)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "dsh",
+        "deepseek-harness-desktop"
+      ],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Observed as a real agent client: ~/.dsh holds an active profile, session store and workspace, and Magpie drives it through the MCP hub. No native rule or Skill injection surface was found and the default workspace is empty, so only the portable fallback applies. Runtime import and behavior remain unknown."
+    },
+    {
+      "id": "qwen-code",
+      "display_name": "Qwen Code",
+      "version": "not installed on this host (configuration last modified 2026-04; Magpie still lists it as a target)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "removed_archived",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "qwen"
+      ],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Magpie still lists Qwen Code as a managed target and ~/.qwen retains its settings, skills directory and language rule, but the configuration was last modified in April 2026 and no application directory exists on this host. There is no native rule or Skill surface here; only the portable fallback applies. Reinstalling the client is required before any file parity, import or behavior claim."
+    },
+    {
+      "id": "codebuddy",
+      "display_name": "CodeBuddy",
+      "version": "unknown (client data root observed; application version not established)",
+      "source": null,
+      "surfaces": [
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "code-buddy"
+      ],
+      "skill_roots": [],
+      "rule_files": [],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "Magpie still writes this client's MCP configuration (~/.codebuddy/mcp.json, observed 2026-10-29) and the CodeBuddyExtension data root exists with a global memory store. No native rule or Skill injection surface was found on this host, so only the portable fallback applies. Runtime import and behavior remain unknown."
     }
   ],
   "future_client_rule": "Register a thin adapter and preserve unattested/blocked states; never copy a divergent governance body.",

@@ -71,11 +71,11 @@ class PathTests(unittest.TestCase):
         self.assertEqual(result["required_rule_files"], [canonical])
         self.assertEqual(result["rule_file_prefixes"], {canonical: prefix})
 
-    def test_minimax_mavis_profile_rule_surface_is_declared(self):
+    def test_minimax_rule_surface_is_a_real_file_not_a_client_managed_dir(self):
         manifest = json.loads((ROOT / "runtime/client-adapters.json").read_text(encoding="utf-8-sig"))
         adapter = next(item for item in manifest["adapters"] if item["id"] == "minimax-code")
         self.assertIn(
-            "${USER_HOME}/.minimax/agents/mavis/skills/agent-governance-os/SKILL.md",
+            "${USER_HOME}/.config/magpie/library/skills/agent-governance-os/SKILL.md",
             adapter["rule_files"],
         )
         # The global MiniMax skills root is a Magpie-owned symlink view of the
@@ -83,6 +83,13 @@ class PathTests(unittest.TestCase):
         # rule target, otherwise every private binding looks incomplete.
         self.assertNotIn(
             "${USER_HOME}/.minimax/skills/agent-governance-os/SKILL.md",
+            adapter["rule_files"],
+        )
+        # The Mavis profile skills root is managed by the client, which removes
+        # directories it does not know. A managed file placed there does not
+        # persist, so it must never be the declared rule surface.
+        self.assertNotIn(
+            "${USER_HOME}/.minimax/agents/mavis/skills/agent-governance-os/SKILL.md",
             adapter["rule_files"],
         )
 
