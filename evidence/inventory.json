@@ -44,7 +44,7 @@
   "learning_coverage": [
     {
       "directories_inspected": 2,
-      "files_inspected": 12,
+      "files_inspected": 13,
       "id": "maintenance-knowledge",
       "required": true,
       "state": "scanned"
@@ -178,7 +178,7 @@
   ],
   "learning_coverage_complete": true,
   "legacy_installer": "Not distributed; use the preflight/backup/rollback tool.",
-  "lesson_records_inspected": 115,
+  "lesson_records_inspected": 117,
   "limits": "Inventory/file checks are not domain certification, client invocation, second-computer or future scheduler evidence.",
   "portable_agentos_profile": {
     "excluded_required_files": 54,
@@ -209,14 +209,14 @@
       ]
     }
   },
-  "projects_inspected": 59,
+  "projects_inspected": 60,
   "scan_issues": [],
   "scope_complete": true,
-  "skill_sources": 2255,
+  "skill_sources": 2262,
   "states": {
-    "deduplicated": 25,
+    "deduplicated": 26,
     "exported": 6,
-    "reference_only": 2224
+    "reference_only": 2230
   },
-  "verified_link_aliases": 121
+  "verified_link_aliases": 122
 }

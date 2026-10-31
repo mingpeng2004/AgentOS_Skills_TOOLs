@@ -1,0 +1,39 @@
+{
+ "policy_id": "AI-BROWSER-POLICY",
+ "version": "1.0",
+ "date": "2026-10-31",
+ "origin": "2026-10-31 用户裁决：以后默认后台调用 AI 专用高效浏览器，不要影响我的工作（默认系统级要求）",
+ "default_browser": {
+  "kind": "dedicated-offscreen-chrome",
+  "profile": "${AGENTOS_HOME}\\.local\\ai-browser-profile",
+  "cdp_port": 9418,
+  "user_data_dir_isolation": true,
+  "window_position": "-32000,-32000",
+  "launch_flags": [
+   "--window-position=-32000,-32000",
+   "--disable-backgrounding-occluded-windows",
+   "--disable-renderer-backgrounding",
+   "--disable-background-timer-throttling",
+   "--disable-ipc-flooding-protection"
+  ],
+  "anti_throttle_note": "离屏窗口默认被 Chrome 节流：定时器被降频、渲染器被挂起 ⇒ SPA 永远渲染不完（表现为 CDP 超时）。上述四个 flag 必须存在，否则等于没有浏览器。",
+  "manager": "${AGENTOS_HOME}\\bin\\ai_browser.py",
+  "cdp_cli": "${AGENTOS_HOME}\\bin\\ai_browser.js"
+ },
+ "hard_rules": [
+  "默认使用 AI 专用浏览器，不使用用户自己的 Chrome/Edge",
+  "绝不启动、注入、结束用户自己的浏览器进程",
+  "关闭时只按 cdp_port 精确结束自己起的进程，禁止按进程名批量 kill",
+  "需要用户当场操作（登录/授权/确认）时才用用户可见界面（内置浏览器面板）",
+  "自动化产物是文件（截图/PDF/数据），不是屏幕上有个窗口在动"
+ ],
+ "verification": {
+  "cmd": "python ${AGENTOS_HOME}\\bin\\ai_browser.py status",
+  "expect": "running=true 且 pids 全部属于本端口；用户浏览器进程数不受影响"
+ },
+ "never": [
+  "在默认坐标(0,0 / 40,40)启动可见自动化窗口",
+  "使用用户的浏览器 profile 目录",
+  "因 Cloudflare 挑战而改用未授权转载站取内容（改用官方公开层 + 等效国标）"
+ ]
+}

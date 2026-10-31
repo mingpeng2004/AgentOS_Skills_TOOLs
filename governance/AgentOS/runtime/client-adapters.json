@@ -1,6 +1,6 @@
 {
   "schema": "agentos-client-adapters-v1",
-  "agentos_version": "1.9.1",
+  "agentos_version": "1.9.2",
   "canonical_import_protocol": "runtime/CLIENT-IMPORT-PROTOCOL.md",
   "adapters": [
     {
@@ -779,6 +779,39 @@
       "rule_files": [],
       "entry": "runtime/managed-client-entry.md",
       "limits": "Magpie still writes this client's MCP configuration (~/.codebuddy/mcp.json, observed 2026-10-29) and the CodeBuddyExtension data root exists with a global memory store. No native rule or Skill injection surface was found on this host, so only the portable fallback applies. Runtime import and behavior remain unknown."
+    },
+    {
+      "id": "kimi-openclaw",
+      "display_name": "Kimi OpenClaw instance (Kimi Claw plugin)",
+      "version": "unknown (independent OpenClaw runtime driven by the Kimi desktop plugin)",
+      "source": null,
+      "surfaces": [
+        "user_skill",
+        "project_rules",
+        "portable_fallback"
+      ],
+      "fallback": "runtime/AGENT-IMPORT.md",
+      "receipt": "unattested",
+      "status": "registered_unknown",
+      "reload_on_manifest_change": true,
+      "token_budget": {
+        "protocol": "protocols/TOKEN-BUDGET.md",
+        "capability": "meta-token-budget",
+        "state": "unattested"
+      },
+      "aliases": [
+        "kimi-claw",
+        "kimi-openclaw-desktop"
+      ],
+      "skill_roots": [
+        "${USER_HOME}/.kimi_openclaw/workspace/skills"
+      ],
+      "rule_files": [
+        "${USER_HOME}/.kimi_openclaw/workspace/AGENTS.md"
+      ],
+      "entry": "runtime/managed-client-entry.md",
+      "limits": "A second, independent OpenClaw runtime driven by the Kimi desktop plugin: its own gateway listens on 127.0.0.1:18679, its own workspace carries AGENTS.md, BOOTSTRAP.md, SOUL.md, TOOLS.md and five bundled Skills, and its session store is written daily. Its AGENTS.md is a Kimi-authored governance file and does not carry the AgentOS entry yet. Its openclaw.json holds a provider API key and two plugin tokens in clear text; those are credentials and must never reach a governance package, receipt, adapter or evidence file. Runtime import and behavior remain unknown.",
+      "credential_handling": "~/.kimi_openclaw/openclaw.json contains a clear-text provider API key, a plugin bridge token and a gateway token. The directory is outside every scanned and published root, and the package secret-pattern gate refuses such material if it is ever added to a source."
     }
   ],
   "future_client_rule": "Register a thin adapter and preserve unattested/blocked states; never copy a divergent governance body.",

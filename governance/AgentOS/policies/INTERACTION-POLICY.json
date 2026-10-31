@@ -1,6 +1,6 @@
 {
   "schema": "agentos-interaction-policy-v1",
-  "agentos_version": "1.9.1",
+  "agentos_version": "1.9.2",
   "policy_id": "upfront-confirmation-v1",
   "authority": "User request 2026-10-12: set the software framework and development framework once, up front, then iterate new requirements; keep design intent enforced across long-horizon tasks.",
   "tiers": {

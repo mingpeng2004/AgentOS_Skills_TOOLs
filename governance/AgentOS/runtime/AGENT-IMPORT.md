@@ -25,6 +25,11 @@ must read it before doing work.
 9. AgentOS/protocols/DELIVERABLE-STANDARD.md — 对外交付物的署名、中英双语与数据严谨性
    硬规则。任何产出报告、调研、方案、白皮书、评审结论或对外 PPT 的任务，本条为必读；
    不产出对外交付物的任务可跳过。
+9b. **凡需要开浏览器（自动化/抓取/渲染/长脚本）**：先读
+   `protocols/DESKTOP-NONINTERFERENCE.md` 与 `policies/AI-BROWSER-POLICY.json`，
+   并**默认使用 AI 专用浏览器**（`bin/ai_browser.py start`，独立 profile / 端口 9418 / 离屏 / 反限速），
+   **绝不启动、注入或结束用户自己的浏览器**；结束只按端口精确关进程。
+   需要用户当场操作时才用用户可见界面（内置浏览器面板）。
 10. The project's .agentos/project.json, active task and latest checkpoint.
 11. The project's .agentos/evidence/claims.jsonl, when present.
 12. AgentOS/protocols/DELEGATED-AUTONOMY.md,

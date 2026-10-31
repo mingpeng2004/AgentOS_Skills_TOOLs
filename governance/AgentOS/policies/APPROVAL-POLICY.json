@@ -1,5 +1,5 @@
 {
-  "agentos_version": "1.9.1",
+  "agentos_version": "1.9.2",
   "policy_id": "approval-scope-v1",
   "default_scope": "session",
   "session_ttl_minutes": 480,

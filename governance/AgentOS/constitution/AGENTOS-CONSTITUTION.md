@@ -101,3 +101,25 @@ AgentOS 的职责是让较弱或上下文不稳定的模型也能持续完成复
 
 本条适用于本机所有智能体、以后新装的智能体，以及全部客户端（MiniMax Code、Kimi Code、
 VS Code 集成、委派子智能体），不可按客户端或个人偏好豁免。
+
+## 10. 用户桌面不被占用
+
+智能体在执行浏览器自动化、抓取、渲染或长时间脚本时，**不得占用用户桌面**：
+不弹窗、不抢焦点、不移动系统鼠标、不让用户看见自己的窗口在闪。
+
+自动化浏览器一律离屏或无头运行（`--window-position=-32000,-32000` 或 `--headless=new`），
+必须使用独立 profile 与独立调试端口，结束时只关闭自己起的进程（按调试端口精确匹配），
+**绝不按进程名批量结束用户的浏览器**。自动化产物是文件（截图 / PDF / 数据），不是"屏幕上有个窗口在动"。
+
+需要用户当场操作时，优先用**内置浏览器面板**（用户可见且预期的界面），不得用弹窗打断。
+
+**默认浏览器 = AI 专用浏览器**（`bin/ai_browser.py` / `policies/AI-BROWSER-POLICY.json`）：
+独立 profile、独立调试端口 9418、离屏窗口（`--window-position=-32000,-32000`），
+并必须关闭 Chrome 的定时器节流与渲染器挂起
+（`--disable-backgrounding-occluded-windows --disable-renderer-backgrounding
+--disable-background-timer-throttling --disable-ipc-flooding-protection`），
+否则离屏窗口被限速、页面永远渲染不完。智能体**不得**启动、注入或结束用户自己的浏览器。
+
+依据 `protocols/DESKTOP-NONINTERFERENCE.md`（2026-10-31 用户裁决，按系统级要求处理）。
+本条适用于本机所有智能体、以后新装的智能体，以及全部客户端（MiniMax Code、Kimi Code、
+VS Code 集成、委派子智能体），不可按客户端或个人偏好豁免。
