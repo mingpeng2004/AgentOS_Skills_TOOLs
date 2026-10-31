@@ -214,9 +214,9 @@
   "scope_complete": true,
   "skill_sources": 2262,
   "states": {
-    "deduplicated": 26,
+    "deduplicated": 23,
     "exported": 6,
-    "reference_only": 2230
+    "reference_only": 2233
   },
   "verified_link_aliases": 122
 }

@@ -23,11 +23,11 @@
     },
     "capability-assets.json": {
       "bytes": 39432,
-      "sha256": "6ace09a35f0d5629f0cd15d715f01a8482129bbeb49228083d69960a2d1e3f8a"
+      "sha256": "e2c1775a3a5ca408c83830ef4d2aa1b286530badb1f4906e431e0686e01de5c1"
     },
     "catalog.json": {
-      "bytes": 685581,
-      "sha256": "78c439acee6474e684f21dfce3dffb019b0f65fe074149e610180051a1b5fb13"
+      "bytes": 685785,
+      "sha256": "727e70e02be0dea1699f73ae733b70d5e547b67172b3ef9b1c2dcc11e264da04"
     },
     "config/policy.example.json": {
       "bytes": 361,
@@ -47,7 +47,7 @@
     },
     "evidence/inventory.json": {
       "bytes": 6183,
-      "sha256": "c68da2a1463715a791783beb89f089f128193eeb4f1d053f967d7537d50127f0"
+      "sha256": "78f331b26ff89ff49197fdc37a033996cd43e664a74cb4ddf3f8c71b7c552dcc"
     },
     "evidence/learning.json": {
       "bytes": 1756,
@@ -366,8 +366,8 @@
       "sha256": "6b78f1a49e41ae25c486e9ed2e7241cc4d8050423141512e671f3fd460cbda0f"
     },
     "governance/AgentOS/skills/embedded-software-engineering/SKILL.md": {
-      "bytes": 14464,
-      "sha256": "581567c13f956d441ad5e2a6fe81062318bc81f3590e8b50cd91c80ea81325b8"
+      "bytes": 14528,
+      "sha256": "825ffcdb49a7e479b3c7665d6ce95cb2d14ac3a80210a9f0202245f98847618b"
     },
     "governance/AgentOS/skills/embedded-software-engineering/agents/openai.yaml": {
       "bytes": 470,
@@ -710,8 +710,8 @@
       "sha256": "6b78f1a49e41ae25c486e9ed2e7241cc4d8050423141512e671f3fd460cbda0f"
     },
     "skills/embedded-software-engineering/SKILL.md": {
-      "bytes": 14464,
-      "sha256": "581567c13f956d441ad5e2a6fe81062318bc81f3590e8b50cd91c80ea81325b8"
+      "bytes": 14528,
+      "sha256": "825ffcdb49a7e479b3c7665d6ce95cb2d14ac3a80210a9f0202245f98847618b"
     },
     "skills/embedded-software-engineering/agents/openai.yaml": {
       "bytes": 470,

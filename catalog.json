@@ -4645,43 +4645,11 @@
       "state": "reference_only"
     },
     {
-      "license": "unknown",
-      "name": "embedded-software-engineering",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "client",
-      "source_id": "fd099b94c261",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "embedded-software-engineering",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "7a2034601edc",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "embedded-software-engineering",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "079004b9681e",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "embedded-software-engineering",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "189e27bf338b",
-      "state": "reference_only"
-    },
-    {
-      "digest": "314ec5fcadee74c308f75cc77b7750212f3bbf549d4300829cea88dd3de15cbc",
+      "digest": "179f14b387e0c6492f7d218dfa3d22fe3859d8145e5756ea28cdd9263427641b",
       "export": "skills/embedded-software-engineering",
       "files": {
         "PROVENANCE.md": "6b78f1a49e41ae25c486e9ed2e7241cc4d8050423141512e671f3fd460cbda0f",
-        "SKILL.md": "581567c13f956d441ad5e2a6fe81062318bc81f3590e8b50cd91c80ea81325b8",
+        "SKILL.md": "825ffcdb49a7e479b3c7665d6ce95cb2d14ac3a80210a9f0202245f98847618b",
         "agents/openai.yaml": "945082e29b84fe3bd0880ff846c40c1cc46fd52be3f75000894483c14af36cb6",
         "assets/templates/ACCEPTANCE.md": "b0914e7a8b9898a8cef9d1a1106a81271cef30707d5ed12ce7d602611bf3bc7d",
         "assets/templates/DEVELOPMENT_PLAN.md": "be513948ff1a375e76fb3e1e0a653259ac2a5e3351c6d2b1a8b4b61971038fd7",
@@ -4740,32 +4708,8 @@
       ],
       "provenance": "Owner-authored maintained source; explicit public MIT authorization 2026-10-25. This is a portable text edition, not a byte-identical local installation.",
       "source_category": "client",
-      "source_id": "87f5c9b58a27",
-      "state": "exported"
-    },
-    {
-      "export": "skills/embedded-software-engineering",
-      "license": "MIT",
-      "name": "embedded-software-engineering",
-      "source_category": "client",
-      "source_id": "8b242fa4a2d5",
-      "state": "deduplicated"
-    },
-    {
-      "export": "skills/embedded-software-engineering",
-      "license": "MIT",
-      "name": "embedded-software-engineering",
-      "source_category": "client",
       "source_id": "4c0f4a3ac62e",
-      "state": "deduplicated"
-    },
-    {
-      "export": "skills/embedded-software-engineering",
-      "license": "MIT",
-      "name": "embedded-software-engineering",
-      "source_category": "project",
-      "source_id": "835212e83df9",
-      "state": "deduplicated"
+      "state": "exported"
     },
     {
       "export": "skills/embedded-software-engineering",
@@ -4782,6 +4726,62 @@
       "source_category": "project",
       "source_id": "3ff787687dcb",
       "state": "deduplicated"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "client",
+      "source_id": "fd099b94c261",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7a2034601edc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "079004b9681e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "189e27bf338b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "client",
+      "source_id": "87f5c9b58a27",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "client",
+      "source_id": "8b242fa4a2d5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "835212e83df9",
+      "state": "reference_only"
     },
     {
       "license": "unknown",
