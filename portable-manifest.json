@@ -50,8 +50,8 @@
       "sha256": "824361022286c86f73813e810a85de4c69e24e27db14095af87becdde158afd6"
     },
     "evidence/inventory.json": {
-      "bytes": 7056,
-      "sha256": "b8853fe510e837d28a3aebfbd41b91d537f9349dfab8f5ca176faad336208199"
+      "bytes": 7112,
+      "sha256": "29fafa21bc78dc0e2e3eceb0b9ec25fc3e16fe1e34b928867f3ab6bd4fe95397"
     },
     "evidence/learning.json": {
       "bytes": 1756,
@@ -59,7 +59,7 @@
     },
     "evidence/validation.json": {
       "bytes": 2354,
-      "sha256": "3524e4eae43259d0d4c29f7ab243cd0de29eebea21aa571713967310463f45a1"
+      "sha256": "1584d02bda8e5d9029da599ffc0f8501d4a09dd89c35e2045d042f797bd8fd99"
     },
     "governance/AgentOS/README.md": {
       "bytes": 8629,
@@ -248,6 +248,10 @@
     "governance/AgentOS/protocols/BEHAVIOR-CANARIES.md": {
       "bytes": 3290,
       "sha256": "c9160e75e5bcdc777da167f300fec1b1d91bd9aae6b2d80ecebf69d7e181a1d0"
+    },
+    "governance/AgentOS/protocols/CANDIDATE-PROMOTION.md": {
+      "bytes": 1865,
+      "sha256": "94173094cf19c3f71c26a70d5a92d044c9fca794975d345f999d663a01dce051"
     },
     "governance/AgentOS/protocols/CAPABILITY-OBJECTIVE.md": {
       "bytes": 10327,
