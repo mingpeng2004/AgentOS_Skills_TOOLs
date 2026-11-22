@@ -4,13 +4,7 @@
   "conflict_rule": "Conflicting evidence blocks delivery until resolved.",
   "distribution_profile": {
     "excluded_required_files": [
-      "skills/agentos-governed-integration/references/github-credential-governance.md",
-      "skills/agentos-governed-integration/references/runtime-performance.md",
-      "skills\\agentos-governed-integration\\SKILL.md",
-      "skills\\agentos-governed-integration\\references\\capability-provider-registration.md",
-      "skills\\agentos-governed-integration\\references\\import-receipts-and-verification.md",
-      "skills\\agentos-governed-integration\\references\\token-budget-workflow.md",
-      "skills\\agentos-governed-integration\\references\\token-efficiency.md",
+      "skills\\agent-governance-os\\SKILL.md",
       "skills\\cad-geometry-automation\\SKILL.md",
       "skills\\cad-geometry-automation\\references\\dwg-readonly-analysis.md",
       "skills\\cad-geometry-automation\\references\\feature-classification.md",
@@ -108,12 +102,13 @@
       "governance/AgentOS/skills/windows-crash-forensics/references/evidence-chain.md",
       "governance/AgentOS/skills/windows-crash-forensics/references/triage-playbook.md"
     ],
-    "source_manifest_sha256": "61a21adef17c2065ac24e83f94f2506cb6043aeaa754292e82969688427f9e1b",
+    "source_manifest_sha256": "dd595707a0edc4e28615c2902fddbc2957e53ce2cb15d745cf39854b71192df1",
     "unavailable_capabilities": {
-      "agentos-governed-integration": [
-        "meta-background-agent",
-        "meta-skill-registry",
-        "meta-token-budget"
+      "auditable-trip-handbook": [
+        "plan-trip-handbook"
+      ],
+      "authoring-storage-routing": [
+        "km-authoring-routing"
       ],
       "metal-process-engineering": [
         "hw-dfm",
@@ -123,6 +118,9 @@
         "mfg-npi",
         "mfg-spc"
       ],
+      "product-catalog-publishing": [
+        "ui-product-catalog"
+      ],
       "requirements-anchoring": [
         "req-acceptance",
         "req-jtbd",
@@ -130,6 +128,9 @@
         "req-qfd",
         "req-spec-freeze",
         "req-trace"
+      ],
+      "unslop": [
+        "ui-slop-redesign"
       ]
     }
   },
@@ -142,6 +143,7 @@
   ],
   "required_files": [
     "README.md",
+    "adapters\\easyclaw\\SKILL.md",
     "adapters\\kimi\\SKILL.md",
     "adapters\\minimax\\SKILL.md",
     "adapters\\openclaw\\SKILL.md",
@@ -150,10 +152,12 @@
     "bin\\agentos_canary.py",
     "bin\\agentos_client_deploy.py",
     "bin\\agentos_client_probe.py",
+    "bin\\agentos_derivation_deploy.py",
     "bin\\agentos_import.py",
     "bin\\agentos_paths.py",
     "bin\\agentos_skills.py",
     "bin\\agentos_tools.py",
+    "bin\\check_derivation_discipline.py",
     "bin\\grade_client_selftests.py",
     "constitution\\AGENTOS-CONSTITUTION.md",
     "policies\\DECISION-POLICY.json",
@@ -168,6 +172,7 @@
     "protocols\\CONTEXT-PIPELINE.md",
     "protocols\\DELEGATED-AUTONOMY.md",
     "protocols\\DELIVERABLE-STANDARD.md",
+    "protocols\\DERIVATION-DISCIPLINE.md",
     "protocols\\DESIGN-CONSISTENCY.md",
     "protocols\\HARNESS-ENHANCEMENTS.md",
     "protocols\\LONG-HORIZON.md",
@@ -187,11 +192,14 @@
     "runtime\\BOOT.md",
     "runtime\\CLIENT-IMPORT-PROTOCOL.md",
     "runtime\\client-adapters.json",
+    "runtime\\derivation-deployment.json",
     "runtime\\managed-client-entry.md",
     "schemas\\agentos-import-receipt-v1.json",
     "schemas\\agentos-import-receipt-v2.json",
     "schemas\\agentos-project-import-manifest-v1.json",
     "schemas\\agentos-token-observation-v1.json",
+    "skills/agentos-governed-integration/references/github-credential-governance.md",
+    "skills/agentos-governed-integration/references/runtime-performance.md",
     "skills/embedded-software-engineering/PROVENANCE.md",
     "skills/embedded-software-engineering/SKILL.md",
     "skills/embedded-software-engineering/agents/openai.yaml",
@@ -237,6 +245,11 @@
     "skills/windows-crash-forensics/references/bugcheck-codes.md",
     "skills/windows-crash-forensics/references/evidence-chain.md",
     "skills/windows-crash-forensics/references/triage-playbook.md",
+    "skills\\agentos-governed-integration\\SKILL.md",
+    "skills\\agentos-governed-integration\\references\\capability-provider-registration.md",
+    "skills\\agentos-governed-integration\\references\\import-receipts-and-verification.md",
+    "skills\\agentos-governed-integration\\references\\token-budget-workflow.md",
+    "skills\\agentos-governed-integration\\references\\token-efficiency.md",
     "skills\\production-skill-routing\\SKILL.md",
     "skills\\visual-asset-production\\SKILL.md",
     "templates\\AGENTOS-PORTABLE-ENTRY.md",

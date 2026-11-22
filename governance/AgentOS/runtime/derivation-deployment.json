@@ -1,0 +1,162 @@
+{
+  "schema": "agentos-derivation-deployment-v1",
+  "generated_at": "2026-11-19T09:51:56+00:00",
+  "protocol": "protocols/DERIVATION-DISCIPLINE.md",
+  "gate": "bin/check_derivation_discipline.py",
+  "fixed": 0,
+  "covered": 20,
+  "missing": 6,
+  "failed": 0,
+  "entries": [
+    {
+      "kind": "client:claude-code:rule",
+      "path": "${USER_HOME}\\.claude\\CLAUDE.md",
+      "status": "covered",
+      "sha256": "93c8c6122f0c4f67e20a545c318efca1b5b137a04a6856a25f59641655554410"
+    },
+    {
+      "kind": "client:cline:rule",
+      "path": "${USER_HOME}\\.cline\\rules\\agentos.md",
+      "status": "covered",
+      "sha256": "4b363641fea622a16c224ffdb2d0bbc7995f8c96946e25902d2c0cb011205486"
+    },
+    {
+      "kind": "client:continue:rule",
+      "path": "${USER_HOME}\\.continue\\rules\\agentos.md",
+      "status": "covered",
+      "sha256": "e2f4662468eb7f7299b73cb0d6fad21e0d312a7f9857838dd25ae011f1dafa0c"
+    },
+    {
+      "kind": "client:copilot:rule",
+      "path": "${USER_HOME}\\.copilot\\instructions\\agentos.instructions.md",
+      "status": "covered",
+      "sha256": "78abeb02517b75cdbbcd3ae6c773a56d50c30544bda19bc0c857dff98ee18b72"
+    },
+    {
+      "kind": "client:kimi:rule",
+      "path": "${USER_HOME}\\.kimi\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "client:kimi-code:rule",
+      "path": "${USER_HOME}\\.kimi-code\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "client:minimax-code:rule",
+      "path": "${USER_HOME}\\.config\\magpie\\library\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "client:minimax-code:governance-skill",
+      "path": "${USER_HOME}\\.minimax\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "client:vscode-copilot:rule",
+      "path": "${USER_HOME}\\AppData\\Roaming\\Code\\User\\prompts\\agentos.instructions.md",
+      "status": "covered",
+      "sha256": "78abeb02517b75cdbbcd3ae6c773a56d50c30544bda19bc0c857dff98ee18b72"
+    },
+    {
+      "kind": "client:openclaw:rule",
+      "path": "${USER_HOME}\\.openclaw\\workspace\\AGENTS.md",
+      "status": "covered",
+      "sha256": "4b363641fea622a16c224ffdb2d0bbc7995f8c96946e25902d2c0cb011205486"
+    },
+    {
+      "kind": "client:openclaw:governance-skill",
+      "path": "${USER_HOME}\\.openclaw\\workspace\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "client:kimi-openclaw:rule",
+      "path": "${USER_HOME}\\.kimi_openclaw\\workspace\\AGENTS.md",
+      "status": "covered",
+      "sha256": "6f9151da39e8009c8ac97791caa65a2e0c0489d9c8e60712df5a9a8e6134771a"
+    },
+    {
+      "kind": "client:easyclaw:rule",
+      "path": "${USER_HOME}\\.easyclaw\\workspace\\AGENTS.md",
+      "status": "covered",
+      "sha256": "5a122e2acc4ff26515aaa1b01f6a87fb6576f5900ef8ffd8182005e657c3b989"
+    },
+    {
+      "kind": "client:easyclaw:governance-skill",
+      "path": "${USER_HOME}\\.easyclaw\\workspace\\skills\\agent-governance-os\\SKILL.md",
+      "status": "missing"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\000_AI_KM\\AGENTS.md",
+      "status": "covered",
+      "sha256": "bdcac30e4bc54ff2d197eabb356d99733aae1e8dd4399eed4a3e97647863161d"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\002_CS5552_WCD_20260707\\AGENTS.md",
+      "status": "covered",
+      "sha256": "ad41c0a3866e08810bbcf73f3329538f930d7ad5099a871eda5042a1ca63bc81"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\002_Life_Test_Estimation20261021\\AGENTS.md",
+      "status": "covered",
+      "sha256": "01177571eae4ccc8afedee44a0d1c051ded8f99ae437b5d7a05c9abc2fc82040"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\003_STM32F407_4Motor_MiniMax20260924\\AGENTS.md",
+      "status": "covered",
+      "sha256": "af1501c5565895eff0b82a072f16acd4bfa321d1b73a60329ab16d7e3a097171"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\004_Harmony_app_202609\\AGENTS.md",
+      "status": "covered",
+      "sha256": "5cd3fdcdea70fcb21d91da2e105eaf601a92aa00c38ae959477fbf06696d5e6b"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\004_OpenMontage\\AGENTS.md",
+      "status": "covered",
+      "sha256": "74777066eba967ca7099c9460adc8c6d583b3e79eda2e467174c3698c38c6951"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\999_40_OCBOT_WEB_MAINTAIN\\AGENTS.md",
+      "status": "covered",
+      "sha256": "336d7c064674ca86f0946588f7223ccde3a0d3fc422e73f5c38fc53417d8c57a"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\999_AI_Capability_improving\\AGENTS.md",
+      "status": "covered",
+      "sha256": "0753e76cd58af3234068badefeaa360f67fc122d69fef58abd8a57d0977bfe4c"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\999_BG_report\\AGENTS.md",
+      "status": "covered",
+      "sha256": "74ccac3a3fbbc82a493d3a152db4de4f6136681e6e164966e52b5cd5ea1f0a8a"
+    },
+    {
+      "kind": "project:AGENTS.md",
+      "path": "${PROJECT_PATH}\\999_MINIMAX_100_SYS_Maintain\\AGENTS.md",
+      "status": "covered",
+      "sha256": "72d33ddde87d6cc14ccd4431ced1d27788c2bc5a532f841689fbe6f502b9c06c"
+    },
+    {
+      "kind": "project:CLAUDE.md",
+      "path": "${PROJECT_PATH}\\004_OpenMontage\\CLAUDE.md",
+      "status": "covered",
+      "sha256": "91ce9083398f4383277fedde02bf32e9227ba7c68f7e410b628f1e2b613319c3"
+    },
+    {
+      "kind": "project:CLAUDE.md",
+      "path": "${PROJECT_PATH}\\999_AI_agents\\claude\\CLAUDE.md",
+      "status": "covered",
+      "sha256": "93c8c6122f0c4f67e20a545c318efca1b5b137a04a6856a25f59641655554410"
+    }
+  ]
+}

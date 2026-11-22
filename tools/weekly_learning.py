@@ -35,10 +35,14 @@ TEXT = {".md", ".txt", ".json", ".yaml", ".yml", ".toml", ".py", ".ps1", ".cs", 
         ".mdc", ".sh", ".bat", ".js", ".ts", ".html", ".css", ".svg", ".xml", ".ini", ".cfg"}
 BINARY = {".png", ".jpg", ".jpeg", ".webp", ".docx", ".mp3", ".mp4", ".wav", ".woff2", ".woff", ".ttf"}
 SECRETS = re.compile(rb"gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{25,}|AKIA[A-Z0-9]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
-LOCAL = re.compile(r"(?i)(?:[a-z]:[\\/](?:users|000_ai)[\\/]|/" + r"Users/[^/]+/|/" + r"home/[^/]+/)")
+# A private machine path. The rule matches the drive root itself as well as
+# the paths beneath it: a rule that requires a trailing separator lets the
+# bare root through, and the bare root still names the owner's corpus.
+LOCAL = re.compile(r"(?i)(?:[a-z]:[\\/](?:users|000_ai)(?=[\\/]|$)|/" + r"Users/[^/]+/|/" + r"home/[^/]+/)")
 IP = re.compile(r"\b(?:192\.168|10\.\d+|172\.(?:1[6-9]|2\d|3[01]))\.\d+\.\d+\b")
 PRIVATE_BACKUP_NAME = re.compile(r"(?i)\.bak(?:\.[^/\\]+)*$")
 MAX_SKILL_FILE_BYTES = 64 * 1024 * 1024
+NON_DISTRIBUTABLE_POLICY = "policies/NON-DISTRIBUTABLE.json"
 
 
 def sha_file(path, chunk_size=1024 * 1024):
@@ -53,7 +57,11 @@ def mapped_link_alias(link_path, aliases):
     """Resolve a link only by metadata to an explicitly declared direct source root."""
     try:
         target = os.readlink(link_path)
-    except OSError:
+    except (OSError, ValueError):
+        # A Windows junction raises ValueError, not OSError, when it is
+        # read as a symbolic link. Both mean the same thing here: this path
+        # is not a link that can be resolved by metadata, so it has no
+        # declared alias.
         return None
     target = target.replace("\\\\?\\", "").replace("/", "\\")
     folded = target.casefold().rstrip("\\")
@@ -73,6 +81,31 @@ def mapped_link_alias(link_path, aliases):
             return None
         return candidate
     return None
+
+
+def is_skill_link(link_path, aliases):
+    """True when this link points into a declared Skill alias prefix.
+
+    A link whose target lives under a declared alias prefix IS a Skill
+    source: the client resolves it to a Skill. A link that points anywhere
+    else -- a runtime socket, an application shim -- is not a Skill and is
+    outside the Skill inventory.
+
+    A link whose declared alias target does not exist is still a Skill link:
+    that is precisely the dangling case, and it is the case worth reporting.
+    """
+    try:
+        target = os.readlink(link_path)
+    except (OSError, ValueError):
+        # A Windows junction cannot be read as a symbolic link. It is a
+        # reparse point, not a Skill alias, unless its name says otherwise.
+        return False
+    folded = target.replace("\\\\?\\", "").replace("/", "\\").casefold()
+    for declaration in aliases:
+        prefix = str(declaration.get("target_prefix", "")).replace("/", "\\").rstrip("\\").casefold()
+        if prefix and folded.startswith(prefix + "\\"):
+            return True
+    return False
 
 
 class Blocked(RuntimeError):
@@ -133,7 +166,7 @@ def is_link(path):
     return stat.S_ISLNK(info.st_mode) or bool(getattr(info, "st_file_attributes", 0) & 0x400)
 
 
-def root_files(root):
+def root_files(root, excluded_paths=(), relative_to=None):
     root = dist.no_links(root)
     if not root.is_dir():
         raise Blocked("Source directory missing")
@@ -141,6 +174,11 @@ def root_files(root):
         raise Blocked("Linked source root refused")
     def unreadable(exc):
         raise Blocked("Source directory unreadable") from exc
+    # Exclusion paths are declared relative to the governance root; compare
+    # them against the same base the caller walks, or the filter silently
+    # matches nothing.
+    origin = Path(relative_to) if relative_to else root
+    excluded = {PurePosixPath(item).as_posix() for item in excluded_paths}
     for base, dirs, files in os.walk(root, followlinks=False, onerror=unreadable):
         dirs[:] = sorted(x for x in dirs if x not in SKIP)
         for name in dirs:
@@ -152,9 +190,279 @@ def root_files(root):
                 raise Blocked("Linked source file refused")
             if PRIVATE_BACKUP_NAME.search(name):
                 continue
+            relative = path.relative_to(origin).as_posix()
+            if relative in excluded:
+                continue
             yield path
 
 
+def non_distributable(agentos_root):
+    """Read the declared local-only file list from its single source of truth.
+
+    The list lives in AgentOS so that the publisher, the installer and the
+    release gate all read the same declaration. A copy of a declared file
+    inherits its status, so backups and archives are covered too.
+
+    A declared entry may name a DIRECTORY by a trailing slash. A directory
+    is refused as a whole: every file under it inherits the status. That is
+    the only way to exclude a tree whose contents change every time a script
+    writes a new timestamped snapshot into it.
+
+    The trailing slash is preserved. PurePosixPath would strip it, and a
+    directory declaration that silently becomes a file declaration is a
+    declaration that stops working.
+    """
+    policy_path = Path(agentos_root) / NON_DISTRIBUTABLE_POLICY
+    if not policy_path.is_file():
+        return []
+    document = load(policy_path)
+    declared = document.get("files", [])
+    if not isinstance(declared, list):
+        raise Blocked("Non-distributable policy is malformed")
+    return [str(item["path"]) for item in declared if isinstance(item, dict) and item.get("path")]
+
+
+def is_non_distributable(relative, declared, exceptions=()):
+    """True when a package-relative path is a declared local-only file or a copy of one.
+
+    A file listed in `exceptions` may ship even when its name derives from a
+    declared file. The exemption is decided by content, not by name: the
+    caller has already established that the file carries no confidential
+    identifier, and a name-based exemption would also exempt a replaced copy.
+
+    A declared entry that names a DIRECTORY refuses everything under it. The
+    directory may be written to at any time -- the derivation deployment
+    backups grow a new timestamped snapshot on every run -- so a file-level
+    rule cannot keep up with it.
+    """
+    relative = PurePosixPath(relative).as_posix()
+    for entry in exceptions:
+        if not isinstance(entry, dict):
+            continue
+        if PurePosixPath(str(entry.get("path", ""))).as_posix().casefold() == relative.casefold():
+            return False
+    for entry in declared:
+        raw = str(entry)
+        # A trailing slash marks a DIRECTORY. It must survive normalisation:
+        # PurePosixPath strips it, and a directory declaration that becomes a
+        # file declaration stops protecting the tree it names.
+        is_directory = raw.endswith("/") or raw.endswith("\\")
+        entry = PurePosixPath(raw).as_posix()
+        if is_directory and not entry.endswith("/"):
+            entry += "/"
+        if relative.casefold() == entry.casefold():
+            return True
+        # A declared directory refuses every path beneath it.
+        if entry.endswith("/"):
+            prefix = entry.casefold()
+            if relative.casefold().startswith(prefix):
+                return True
+            continue
+        # A backup, an archived copy or an older revision of a declared file
+        # keeps the stem but changes the suffix, and it may sit in another
+        # directory. Match the stem so those copies are refused too.
+        stem = PurePosixPath(entry).name.split(".")[0]
+        name = PurePosixPath(relative).name
+        lowered = name.casefold()
+        stem = stem.casefold()
+        if lowered == stem or lowered.startswith(stem + ".") or lowered.startswith(stem + "-"):
+            return True
+    return False
+
+
+def distributable_exceptions(declared):
+    """Files that may ship even though their name derives from a local-only file.
+
+    Each entry carries the path and the content digest that is allowed to
+    travel under it. The exemption is by digest, not by name: a name-based
+    exemption would also exempt a same-named file whose content had been
+    replaced with the secret.
+    """
+    if not isinstance(declared, dict):
+        return []
+    entries = []
+    for item in declared.get("distributable_exceptions", []):
+        if not isinstance(item, dict) or not item.get("path"):
+            continue
+        entries.append({"path": str(item["path"]),
+                        "sha256": str(item.get("sha256", "")).lower()})
+    return entries
+
+
+REDISTRIBUTION_ALLOWLIST_POLICY = "policies/REDISTRIBUTION-ALLOWLIST.json"
+
+
+def redistributable_skill_names(agentos_root):
+    """The Skill names the redistribution allowlist authorises for travel.
+
+    The list is INCLUSION based: it names the Skills that may travel, and
+    material nobody classified is removed rather than published by accident.
+    The installer build reads the same file, so the published corpus and the
+    installer payload agree on what travels.
+
+    The list names Skill DIRECTORIES ("skills/<name>"); the decision it
+    expresses is about the Skill, not about the directory, so the name is
+    what is compared.
+    """
+    path = Path(agentos_root) / REDISTRIBUTION_ALLOWLIST_POLICY
+    if not path.is_file():
+        return None
+    document = load(path)
+    named = []
+    for item in document.get("skills", []):
+        if isinstance(item, dict) and item.get("path"):
+            parts = PurePosixPath(str(item["path"])).as_posix().strip("/").split("/")
+            if parts and parts[-1]:
+                named.append(parts[-1].casefold())
+    return set(named)
+
+
+def redistributable_skill(name, agentos_root):
+    """True when the redistribution allowlist authorises this Skill to travel.
+
+    When the allowlist is absent the answer is True: the publisher then ships
+    what it has, which is the pre-allowlist behaviour. That fallback is
+    deliberate -- a missing list must not silently empty the corpus -- but the
+    distribution declares the list as part of the tree, so the shipped edition
+    always has one.
+    """
+    named = redistributable_skill_names(agentos_root)
+    if named is None:
+        return True
+    return str(name).casefold() in named
+
+
+def governance_root(policy):
+    """The local governance root, or None when the policy does not name one."""
+    root = policy.get("agentos_root")
+    return Path(root) if root else None
+
+
+def published_validation(package):
+    """Hash the bytes the package actually ships, under their shipped names.
+
+    A receipt that names the pre-normalisation source digests describes files
+    the consumer never receives: the shipped copies carry the portable
+    substitutions. The digests here are the digests a consumer gets.
+    """
+    package = Path(package)
+    files = {}
+    for folder in ("tools", "tests", "governance/AgentOS/installer"):
+        base = package / folder
+        if not base.is_dir():
+            continue
+        for file in sorted(base.rglob("*")):
+            if not file.is_file() or "__pycache__" in file.parts:
+                continue
+            files[file.relative_to(package).as_posix()] = sha(file.read_bytes())
+    return {
+        "schema": "agentos-published-verification-v1",
+        "state": "bound-to-package",
+        "scope": ("Digests of the tools/ and tests/ files as they ship in this package, "
+                  "including the security scanner. It is not a staged-package, installer, "
+                  "security, independent-review, client-activation or remote-publication "
+                  "receipt; those are separate artifacts with separate scopes."),
+        "published_files_sha256": files,
+        "generated_at": now(),
+    }
+
+
+def installer_receipt(package, agentos):
+    """Run the installer gate suite and bind its result to this package."""
+    import installer_gate_receipt
+    result = installer_gate_receipt.main(["--package", str(package),
+                                          "--agentos-root", str(agentos)],
+                                         strict=False)
+    if result == 1:
+        raise Blocked("Installer confidentiality gate suite did not pass")
+
+
+def confidential_terms(agentos_root):
+    """Load the local confidential-term list. It never ships; it only gates.
+
+    The list names customer, product and personnel identifiers that must not
+    appear in any distributed artifact. It is the local source of truth for
+    the content gate, so it is read from the governance root at publish time
+    and never copied into the package.
+    """
+    path = Path(agentos_root) / "policies" / "REDACTION-TERMS.json"
+    if not path.is_file():
+        return []
+    document = load(path)
+    terms = []
+    for item in document.get("terms", []):
+        if isinstance(item, str) and item:
+            terms.append((item, "literal"))
+        elif isinstance(item, dict) and item.get("pattern"):
+            terms.append((str(item["pattern"]), str(item.get("kind", "literal"))))
+    return terms
+
+
+# A file can hide a term behind a NUL byte or a UTF-16 code unit. Decoding
+# one way and skipping what does not decode is how a term walks past a gate,
+# so every plausible encoding is tried before a file is called clean.
+CONFIDENTIAL_ENCODINGS = ("utf-8-sig", "utf-16-le", "utf-16-be", "gb18030")
+
+
+def scan_confidential(files, terms):
+    """Return the confidential terms that appear in the given files.
+
+    Path-based exclusion cannot catch an identifier typed into an ordinary
+    markdown file. This scans content, and it scans it under every encoding a
+    file might plausibly use. No file is skipped for its extension: an
+    extension is not evidence of content, and the publisher ships whatever it
+    is handed.
+    """
+    hits = []
+    for name, data in sorted(files.items()):
+        # Every file is read. An extension is not evidence of content: a term
+        # written into a .png, a .docx or a .ttf is still a term, and the
+        # publisher ships whatever it is handed.
+        texts = []
+        for encoding in CONFIDENTIAL_ENCODINGS:
+            try:
+                texts.append(data.decode(encoding))
+            except (UnicodeDecodeError, LookupError):
+                continue
+        if not texts:
+            continue
+        for pattern, kind in terms:
+            for text in texts:
+                if kind == "regex":
+                    try:
+                        found = re.search(pattern, text)
+                    except re.error:
+                        found = None
+                else:
+                    found = pattern if pattern and pattern.lower() in text.lower() else None
+                if found:
+                    hits.append({"file": name, "pattern": pattern, "kind": kind})
+                    break
+    return hits
+
+
+def declared_digests(declared):
+    """Content digests of the declared local-only files, keyed by their path."""
+    digests = {}
+    if isinstance(declared, dict):
+        for path, digest in (declared.get("sha256") or {}).items():
+            digests[str(path)] = str(digest).lower()
+    return digests
+
+
+def matches_declared_digest(data, digests):
+    """True when a file's bytes are those of a declared local-only file.
+
+    A digest identifies content, not a name. A renamed or relocated copy
+    still matches; a file that merely mentions the schema name does not.
+    """
+    if not digests:
+        return None
+    actual = sha(data)
+    for path, digest in digests.items():
+        if actual == digest:
+            return path
+    return None
 def source_entry(root, category):
     root = Path(root)
     files = {}
@@ -228,6 +536,40 @@ def scan(workspace=WORKSPACE):
                 else:
                     pending_link_aliases.append((str(link_path), str(mapped)))
             dirs[:] = sorted(x for x in candidates if x not in linked)
+            # A BROKEN link is reported by os.walk as a FILE, not as a
+            # directory, so the branch above never sees it. A dangling link
+            # therefore vanishes from the inventory: the scan reports no
+            # issue for a path that does not resolve, which presents a
+            # coverage gap as a clean scan. It is reported here so the issue
+            # count is truthful.
+            for name in files:
+                candidate = here / name
+                if not is_link(candidate):
+                    continue
+                mapped = mapped_link_alias(candidate, policy.get("link_aliases", []))
+                if mapped is None:
+                    # A link that resolves to a declared alias prefix but whose
+                    # target does not exist is a DANGLING alias: the client
+                    # points at a Skill that is gone. It is a real defect and
+                    # it is reported as an issue.
+                    #
+                    # A link that has nothing to do with a Skill -- a runtime
+                    # socket, an application shim -- is outside the Skill
+                    # inventory. It is recorded as a scope exclusion so the
+                    # coverage claim stays truthful about what was in scope,
+                    # rather than inflating the issue count with paths the
+                    # Skill inventory never claimed to cover.
+                    if is_skill_link(candidate, policy.get("link_aliases", [])):
+                        issues.append({"root": str(candidate), "state": "linked_alias_dangling",
+                                       "observed_at": now()})
+                    else:
+                        scope_exclusions.append({"root": str(candidate),
+                                                 "state": "non_skill_link",
+                                                 "reason": "A runtime link that is not a Skill source; "
+                                                           "outside the Skill inventory.",
+                                                 "observed_at": now()})
+                else:
+                    pending_link_aliases.append((str(candidate), str(mapped)))
             if "SKILL.md" in files:
                 try:
                     entry = source_entry(here, category)
@@ -338,6 +680,10 @@ def portable(data, suffix, replacements):
         text = text.replace(old.replace("\\", "\\\\"), new.replace("\\", "\\\\"))
     # Private paths in examples are portable placeholders, never executable defaults.
     text = re.sub(r"(?i)[A-Z]:[\\/]+Users[\\/]+[^\s\"'`<>]+", "${USER_SKILLS_PATH}", text)
+    # The project root itself must be replaced too, not only the paths
+    # BENEATH it. A rule that requires a trailing separator lets the bare
+    # drive root through, and the drive root names the owner's corpus.
+    text = re.sub(r"(?i)[A-Z]:[\\/]+000_AI(?![A-Za-z0-9])", "${PROJECT_PATH}", text)
     text = re.sub(r"(?i)[A-Z]:[\\/]+000_AI[\\/]+[^\s\"'`<>]+", "${PROJECT_PATH}", text)
     text = re.sub(r"/(?:" + r"Users|home)/[^/\s]+/[^\s\"'`<>]*", "${USER_PROJECT_PATH}", text)
     text = re.sub(r"\bmvs_[a-z0-9]{16,}\b", "LOCAL_SESSION_REDACTED", text)
@@ -490,6 +836,8 @@ def stage(scan_path, workspace=WORKSPACE):
     package = run / "payload"
     replacements = {policy["agentos_root"]: "${AGENTOS_HOME}", str(Path.home()): "${USER_HOME}"}
     catalog, bindings, source_trees = [], [], []
+    omitted_unreviewed = []
+    omitted_unauthorised = []
     def bind_tree(root):
         root = Path(root)
         excluded = set(SKIP) | {"*.bak", "*.bak.*"}
@@ -511,23 +859,55 @@ def stage(scan_path, workspace=WORKSPACE):
         bindings.append({"source": str(source), "sha256": sha(raw), "target": relative, "normalized": normalized})
         return out
     bindings.append({"source": str(policy_path), "sha256": sha(policy_path.read_bytes())})
-    bindings.append({"source": str(scan_path), "sha256": sha(Path(scan_path).read_bytes())})
+    # The binding is resolved at publish time from an arbitrary working
+    # directory, so it records an absolute path. A relative one silently
+    # becomes a false "source drift" the moment the caller runs from
+    # somewhere else.
+    bindings.append({"source": str(Path(scan_path).resolve()),
+                      "sha256": sha(Path(scan_path).read_bytes())})
     agentos = Path(policy["agentos_root"])
+    local_only = non_distributable(agentos)
+    exceptions = distributable_exceptions(load(Path(agentos) / NON_DISTRIBUTABLE_POLICY))
+    if local_only:
+        for relative in local_only:
+            # A trailing slash names a DIRECTORY. Its absence is also a
+            # defect, but a different one: the declaration promises the tree
+            # is local-only, and a tree that is not there cannot be.
+            if relative.endswith("/"):
+                if not (agentos / relative.rstrip("/")).is_dir():
+                    raise Blocked("Declared non-distributable tree is absent: " + relative)
+                continue
+            if not (agentos / relative).is_file():
+                raise Blocked("Declared non-distributable file is absent: " + relative)
     if policy.get("security_check_source"):
         export("tools/security_check.ps1", policy["security_check_source"])
     # Legacy installers mutate client/environment state without rollback; do not ship them.
-    for name in ["VERSION", "README.md", "adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests"]:
+    # The governance tree's skills/ directory is NOT copied wholesale. A
+    # Skill travels through the catalogue path below, which is gated by the
+    # redistribution allowlist and by an explicit redistribution licence.
+    # Copying the tree as well would publish every Skill in it, including the
+    # ones nobody authorised -- two copies of one decision, and the copy
+    # that is not gated.
+    for name in ["VERSION", "README.md", "adapters", "bin", "constitution", "installer", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests"]:
         base = agentos / name
         if base.is_file():
             export("governance/AgentOS/" + name, base)
         else:
             bind_tree(base)
-            for file in root_files(base):
+            for file in root_files(base, excluded_paths=local_only, relative_to=agentos):
                 if file.suffix.lower() in BINARY:
+                    continue
+                if file.suffix.lower() not in TEXT:
+                    # An unreviewed file type is not distributed. The omission
+                    # is recorded rather than silent.
+                    omitted_unreviewed.append(file.relative_to(agentos).as_posix())
                     continue
                 if name == "tests" and file.relative_to(base).as_posix() == "test_agentos_skills.py":
                     continue
-                export("governance/AgentOS/" + file.relative_to(agentos).as_posix(), file)
+                relative = file.relative_to(agentos).as_posix()
+                if is_non_distributable(relative, local_only, exceptions):
+                    continue
+                export("governance/AgentOS/" + relative, file)
     for relative in ["VERSION", "README.md", "bin/AgentOS.ps1", "bin/AgentOS-Contract.ps1",
                      "bin/agentos_import.py", "bin/agentos_paths.py", "bin/agentos_skills.py",
                      "policies/SKILL-REGISTRY.json", "runtime/IMPORT-MANIFEST.json"]:
@@ -570,6 +950,18 @@ def stage(scan_path, workspace=WORKSPACE):
             public.update(state="reference_only", reason="Redistribution rights or complete source integrity not established; obtain from original provider.", license="unknown")
             catalog.append(public)
             continue
+        # The redistribution allowlist is the single decision about what may
+        # travel. It is inclusion based: a Skill that nobody authorised is
+        # reference_only, not shipped by accident. The installer build reads
+        # the same file, so the published corpus and the installer payload
+        # agree on what travels.
+        if not redistributable_skill(item["name"], agentos):
+            omitted_unauthorised.append(item["name"])
+            public.update(state="reference_only",
+                          reason="The redistribution allowlist does not authorise this Skill to travel.",
+                          license="unknown")
+            catalog.append(public)
+            continue
         if key in canonical:
             public.update(state="deduplicated", export=canonical[key], license="MIT")
             catalog.append(public)
@@ -587,6 +979,9 @@ def stage(scan_path, workspace=WORKSPACE):
             file = source / rel
             if file.suffix.lower() in BINARY or file.suffix.lower() in {".log", ".pyc"}:
                 omitted.append({"file": rel, "reason": "Binary/privacy review not included in text-only first release"})
+                continue
+            if file.suffix.lower() not in TEXT:
+                omitted.append({"file": rel, "reason": "Unreviewed file type; not distributed"})
                 continue
             out = export(prefix + "/" + rel, file)
             content[rel] = sha(out)
@@ -615,7 +1010,9 @@ def stage(scan_path, workspace=WORKSPACE):
         "privacy": "Raw project, client learning and machine data remain private."})
     public_profile = portable_agentos_profile(package, agentos, catalog)
     create(package / "capability-assets.json", dist.assets(package, catalog))
-    summary = {"projects_inspected": len(scan_data["projects"]), "lesson_records_inspected": len(scan_data["records"]),
+    summary = {"projects_inspected": len(scan_data["projects"]),
+        "omitted_unreviewed_files": sorted(omitted_unreviewed), "lesson_records_inspected": len(scan_data["records"]),
+        "omitted_unauthorised_files": sorted(omitted_unauthorised),
         "skill_sources": len(catalog), "states": {s: sum(x["state"] == s for x in catalog) for s in sorted({x["state"] for x in catalog})},
         "scan_issues": [{"state": x["state"], "source_id": sha(x["root"].encode())[:12]} for x in scan_data["issues"]],
         "verified_link_aliases": len(scan_data.get("link_aliases", [])),
@@ -634,7 +1031,21 @@ def stage(scan_path, workspace=WORKSPACE):
     create(package / "evidence/inventory.json", summary)
     for file in (workspace / ".local/public-evidence").glob("*"):
         if file.is_file():
+            # A validation receipt must describe the code that is shipping.
+            # The stored one is regenerated here so it cannot attest a
+            # different version of the publisher than the one in the package.
+            if file.name == "validation.json":
+                continue
             export("evidence/" + file.name, file)
+    # The shipped registry must agree with what the package ships, and the
+    # validation receipt must hash the bytes as they finally are. Both run
+    # before the manifest is sealed.
+    reconcile_bundled_registry(package)
+    create(package / "evidence/validation.json", published_validation(package))
+    # The installer confidentiality gates live in the AgentOS source tree,
+    # outside this package. Their result reaches the release gate as a
+    # receipt bound to the AgentOS content that is shipping.
+    installer_receipt(package, agentos)
     seal_portable_manifest(package)
     bindings.extend(source_trees)
     create(run / "source-bindings.json", bindings)
@@ -644,6 +1055,36 @@ def stage(scan_path, workspace=WORKSPACE):
     return package
 
 
+def reconcile_bundled_registry(package):
+    """Make the shipped registry agree with what the package actually ships.
+
+    A provider declares `bundled: "<path>"` for a Skill that travels with the
+    governance tree. When that Skill is not part of this distribution, the
+    declaration is a pointer to nothing. The provider contract fixes the field
+    set, so the field is emptied rather than removed: an empty `bundled` means
+    "this Skill is not provided by this edition", which the router already
+    understands as "not a bundled source". The Skill stays discoverable by
+    name; it is simply not installable from here.
+    """
+    path = Path(package) / "governance" / "AgentOS" / "policies" / "SKILL-REGISTRY.json"
+    if not path.is_file():
+        return []
+    registry = load(path)
+    changed = []
+    for provider in registry.get("providers", []):
+        if not isinstance(provider, dict) or not provider.get("bundled"):
+            continue
+        bundled = str(provider.get("bundled")).replace("\\", "/").lstrip("/")
+        target = Path(package) / "governance" / "AgentOS" / bundled
+        if not target.exists():
+            provider["bundled"] = ""
+            changed.append(str(provider.get("id")))
+    if changed:
+        path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n",
+                        encoding="utf-8")
+    return changed
+
+
 def seal_portable_manifest(package):
     """Create the complete install manifest only after staging is finished."""
     manifest = portable_install.build_manifest(package)
@@ -651,11 +1092,55 @@ def seal_portable_manifest(package):
     return manifest
 
 
-def validate(package):
+def validate(package, agentos_root=None):
     package = Path(package)
     files = payload_files(package)
     if not files or "catalog.json" not in files or "governance/AgentOS/VERSION" not in files:
         raise Blocked("Incomplete/empty publish package")
+    # Gate F-ND-1: a declared local-only file must never reach a distribution
+    # channel, no matter how the package was assembled.
+    declared_path = package / "governance/AgentOS" / NON_DISTRIBUTABLE_POLICY
+    if not declared_path.is_file():
+        raise Blocked("Non-distributable policy missing from package")
+    declared = load(declared_path)
+    local_only = [str(item["path"]) for item in declared.get("files", [])
+                  if isinstance(item, dict) and item.get("path")]
+    digests = declared_digests(declared)
+    exceptions = distributable_exceptions(declared)
+    for name in files:
+        relative = name
+        if relative.startswith("governance/AgentOS/"):
+            relative = relative[len("governance/AgentOS/"):]
+        if is_non_distributable(relative, local_only, exceptions):
+            raise Blocked("Non-distributable file in publish package: " + name)
+        if digests:
+            origin = matches_declared_digest(files[name], digests)
+            if origin:
+                raise Blocked("Non-distributable content in publish package: "
+                               + name + " (declared local-only " + origin + ")")
+    # Gate F-ND-4: no shipped file may carry a confidential identifier. Path
+    # exclusion cannot see an identifier typed into an ordinary markdown
+    # file, so the content of every shipped file is scanned against the local
+    # term list. The list is read from the governance root and never ships.
+    if agentos_root is not None:
+        # Gate F-ND-5: a stale digest declaration is a silent hole. When the
+        # confidential list changes, its digest changes and the declaration
+        # must change with it; otherwise the renamed-copy gate would stop
+        # recognising the new content.
+        for path, digest in digests.items():
+            local = Path(agentos_root) / path
+            if not local.is_file():
+                raise Blocked("Declared non-distributable file is absent locally: " + path)
+            if sha(local.read_bytes()) != digest:
+                raise Blocked("Stale non-distributable digest for " + path
+                               + "; update the declaration with the current content")
+        terms = confidential_terms(agentos_root)
+        if terms:
+            hits = scan_confidential(files, terms)
+            if hits:
+                names = sorted({hit["file"] for hit in hits})
+                raise Blocked("Confidential identifier in publish package: "
+                               + ", ".join(names[:8]))
     for name, data in files.items():
         if len(data) > 8 * 1024 * 1024 or SECRETS.search(data):
             raise Blocked("Secret/oversize public file: " + name)
@@ -693,7 +1178,7 @@ def validate(package):
     return {"state": "valid", "files": len(files), "fingerprint": fingerprint(package)}
 
 
-def check_sources(bindings):
+def check_sources(bindings, workspace=WORKSPACE):
     if not bindings:
         raise Blocked("Empty source binding")
     for item in bindings:
@@ -702,14 +1187,20 @@ def check_sources(bindings):
                 raise Blocked("Source tree membership/content drift invalidates readiness")
             continue
         path = Path(item["source"])
+        if not path.is_absolute():
+            # A relative binding is resolved against the publication
+            # workspace, not against whatever directory the caller happens to
+            # be in. Resolving it against the process working directory turns
+            # a healthy source into a false "source drift".
+            path = Path(workspace) / path
         dist.no_links(path)
         if not path.is_file() or sha(path.read_bytes()) != item["sha256"]:
             raise Blocked("Source drift invalidates publication readiness")
 
 
-def release_review(package, review_path):
+def release_review(package, review_path, agentos_root=None):
     package = dist.no_links(package)
-    validation = validate(package)
+    validation = validate(package, agentos_root)
     catalog = load(package / "catalog.json")
     if catalog.get("schema") != "governed-skill-catalog-v2" or not (package / "portable-manifest.json").is_file():
         raise Blocked("Production release requires v2 catalog and complete portable manifest")
@@ -734,7 +1225,8 @@ def release_review(package, review_path):
 
 def prepare(package, review_path, workspace=WORKSPACE):
     package = dist.no_links(package)
-    validation = release_review(package, review_path)
+    policy = load(Path(workspace) / ".local/policy.json")
+    validation = release_review(package, review_path, governance_root(policy))
     sources = load(package.parent / "source-bindings.json")
     check_sources(sources)
     identity = dist.target(load(Path(workspace) / ".local/policy.json"))
@@ -815,12 +1307,13 @@ def remote(api, branch):
 def publish(ready_path, workspace=WORKSPACE, api=None):
     workspace = Path(workspace)
     ready = load(ready_path)
-    identity = dist.target(load(workspace / ".local/policy.json"))
+    policy = load(workspace / ".local/policy.json")
+    identity = dist.target(policy)
     if ready.get("schema") != "weekly-publication-ready-v2" or ready.get("target") != identity:
         raise Blocked("Readiness is not authorized for this repository identity")
     target_state = dist.state_root(workspace, identity)
     package = Path(ready["package"])
-    actual = release_review(package, ready["review"])
+    actual = release_review(package, ready["review"], governance_root(policy))
     if ready["fingerprint"] != actual["fingerprint"] or sha(Path(ready["review"]).read_bytes()) != ready["review_sha256"]:
         raise Blocked("Reviewed package changed")
     review = load(ready["review"])
@@ -956,7 +1449,8 @@ def main(argv=None):
         elif args.command == "stage" and args.scan:
             stage(args.scan)
         elif args.command == "validate" and args.package:
-            print(json.dumps(validate(args.package)))
+            policy = load(WORKSPACE / ".local/policy.json")
+            print(json.dumps(validate(args.package, governance_root(policy))))
         elif args.command == "prepare" and args.package and args.review:
             prepare(args.package, args.review)
         elif args.command == "publish" and args.ready:

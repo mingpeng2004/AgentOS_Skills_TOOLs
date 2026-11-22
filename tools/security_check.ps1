@@ -10,7 +10,7 @@
 #   # dot-source 后手动调用（向后兼容，用于在同一会话内多次调用）:
 #   . .\src\SecurityCheck.ps1
 #   Invoke-MingSecurityCheck -FilePath 'src\smartmon.ps1'
-#   Invoke-MingSecurityCheck -All -ProjectRoot '${PROJECT_PATH}'
+#   Invoke-MingSecurityCheck -All -ProjectRoot '${PROJECT_PATH}\999_MINIMAX_100_SYS_Maintain'
 #
 #   不传 -FilePath 时默认全栈扫描（避免「跑起来了但扫了 0 个文件」）。
 #

@@ -13,14 +13,6 @@
     },
     {
       "license": "unknown",
-      "name": "3d-animation-short-generator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "4af0a416c343",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "3d-asset-generation",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -49,14 +41,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "d7e3be41385e",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "a-share-technical-analysis-cskill",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "7b1828d83267",
       "state": "reference_only"
     },
     {
@@ -272,7 +256,15 @@
       "name": "activate",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "5f5d9189757a",
+      "source_id": "516f94375d10",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "add-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "90ee0b03df3d",
       "state": "reference_only"
     },
     {
@@ -344,6 +336,38 @@
       "name": "add-python-version-support",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "973be190688b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "add-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "22932943f6d5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "add-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8c6b396910b1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "add-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e9aa8c859d44",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "add-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "9a0925f80152",
       "state": "reference_only"
     },
@@ -353,6 +377,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "60ca14ca4245",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "address-pr-comments",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2d1c1fa497bd",
       "state": "reference_only"
     },
     {
@@ -424,6 +456,38 @@
       "name": "address-pr-comments",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "2db492094996",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "address-pr-comments",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cbc21767fdc0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "address-pr-comments",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "67bf1c1b8d82",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "address-pr-comments",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "65d6c65ee2e9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "address-pr-comments",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "9d0e4c908bef",
       "state": "reference_only"
     },
@@ -432,15 +496,7 @@
       "name": "address-pr-comments",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "328983898c67",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "address-pr-comments",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "11696255e299",
+      "source_id": "1609f8a3e6b8",
       "state": "reference_only"
     },
     {
@@ -600,7 +656,31 @@
       "name": "agent-customization",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "49a7c41a5dc5",
+      "source_id": "26d2afbbad77",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-customization",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "395b4beb18e3",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-customization",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4140521ac4ea",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-customization",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "11033fd4d5c3",
       "state": "reference_only"
     },
     {
@@ -631,6 +711,326 @@
       "license": "unknown",
       "name": "agent-governance-os",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "075c9b325059",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b0ae4011f652",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2c2643a499bd",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "539b607aa961",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4939a3eb33a6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "423c03d2e1e6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ae2d72d47755",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "21fe6eddfe41",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "bea11afae02f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a55e47f65deb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7348e6603557",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "6e1f7e9e159e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5cd3b479db0e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c5da78b2da67",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cd98b7072efc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9bf06f203f8e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7d36ccee8c2f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d8769b6be10e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9b5705436e74",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7673959a7933",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9bb906eb9ef8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "6bea3d398ed9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "bae0d696b985",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "aaf0c0d6053b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5c09f97de8fb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "20caef4b2631",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1fb18094be36",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7a6caa556807",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "df5f85c867d5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ec312a2fe675",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4050d70247f9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ba04ea502ea4",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9f3256049138",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "81dfb2bd18ce",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e28503138574",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3179b324cb08",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a8da0619567e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ac75b25e7004",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "07503a36612c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8d9ed61d46ac",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agent-governance-os",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "client",
       "source_id": "69e4d00aac5e",
       "state": "reference_only"
@@ -648,23 +1048,7 @@
       "name": "agent-governance-os",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "9bb906eb9ef8",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "agent-governance-os",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
       "source_id": "c384cc197563",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "agent-governance-os",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "7673959a7933",
       "state": "reference_only"
     },
     {
@@ -708,11 +1092,99 @@
       "state": "reference_only"
     },
     {
+      "digest": "6fb0610c1424a009c4fe0ed5dd42b8debb1fab72c1e32a5d4e15caa8bf790d6b",
+      "export": "governance/AgentOS/skills/agentos-governed-integration",
+      "files": {
+        "SKILL.md": "794d3e263e7f358a70eb85e75e637a5eab82e839b2626d9df83b65f2cfa586ce",
+        "references/background-agent-execution.md": "c61af53cf3b27f50deb6f75885092e5fa57243f1ad58035efc902eecf58be0b2",
+        "references/capability-provider-registration.md": "35c77ffec51a247bbd7fa17477fffc7e8d4996fbdd494afb884563f8c8de92e5",
+        "references/github-credential-governance.md": "2bbd49916e017120a157d6c15860ba88808ec91081ca414f1bce7caab9ce909c",
+        "references/import-receipts-and-verification.md": "250c663bb98c46eb6d90336367c922fab703ba647bd1b26811444a5749e25c41",
+        "references/runtime-performance.md": "590975356b92f61eedee9e095efd4c00c738edcb045b5af9d79e25aec135adc4",
+        "references/token-budget-workflow.md": "57a665a3e6639932fe3bbb07bd37e03d8d74b6d34e43bb940bc1269640e921ac",
+        "references/token-efficiency.md": "e0ce6b921caa884a212dcbca22122ef911024a156a5362b97641c7c18757f91a"
+      },
+      "license": "MIT",
+      "license_notices": [
+        "LICENSE"
+      ],
+      "name": "agentos-governed-integration",
+      "omitted_runtime_assets": [],
+      "provenance": "Owner-authored maintained source; explicit public MIT authorization 2026-10-25. This is a portable text edition, not a byte-identical local installation.",
+      "source_category": "project",
+      "source_id": "1c3c676f9b4e",
+      "state": "exported"
+    },
+    {
       "license": "unknown",
       "name": "agentos-governed-integration",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1c3c676f9b4e",
+      "source_id": "60afe0eddfc8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "908c725f90dd",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c2ddc2effde1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "fcea076513e7",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "82d777e989a3",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "14ed6bcd5e57",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8e1370477662",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "462f5fe9f59f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "agentos-governed-integration",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "26bc8c02bf9e",
       "state": "reference_only"
     },
     {
@@ -760,7 +1232,7 @@
       "name": "agents-sdk",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "76f3547b665f",
+      "source_id": "2b37fa22698c",
       "state": "reference_only"
     },
     {
@@ -768,7 +1240,7 @@
       "name": "agents-sdk",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2b37fa22698c",
+      "source_id": "76f3547b665f",
       "state": "reference_only"
     },
     {
@@ -968,6 +1440,14 @@
       "name": "analyze-prompt",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "6d5b1594e0cf",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "analyze-prompt",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "64aa30dcb908",
       "state": "reference_only"
     },
@@ -1032,6 +1512,30 @@
       "name": "analyze-prompt",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "32417c41d8d0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "analyze-prompt",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "fbc920f9ddae",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "analyze-prompt",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7206a7216ce9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "analyze-prompt",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "57696bd9ebea",
       "state": "reference_only"
     },
@@ -1041,6 +1545,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "ab713165f02d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "analyze-prompt",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5ea2f6478e32",
       "state": "reference_only"
     },
     {
@@ -1270,10 +1782,26 @@
     },
     {
       "license": "unknown",
+      "name": "auditable-trip-handbook",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "584fef6499ec",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "auth",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "af3c5fecf1b4",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "authoring-storage-routing",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "99064652482c",
       "state": "reference_only"
     },
     {
@@ -1362,6 +1890,22 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "a4f224fddb02",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "backend-development",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d5630cd05131",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "backend-development",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "75c8709b9038",
       "state": "reference_only"
     },
     {
@@ -1830,18 +2374,10 @@
     },
     {
       "license": "unknown",
-      "name": "brand-promo-video-generator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "4b1860a31ebc",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "browser-use",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2f4c503342ce",
+      "source_id": "b8a7ad6df8e1",
       "state": "reference_only"
     },
     {
@@ -2414,6 +2950,14 @@
     },
     {
       "license": "unknown",
+      "name": "check-skills",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5901b351201d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "chembl",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -2481,7 +3025,7 @@
       "name": "chronicle",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "52a73ee59fa8",
+      "source_id": "d0614a97ddaf",
       "state": "reference_only"
     },
     {
@@ -2614,10 +3158,10 @@
     },
     {
       "license": "unknown",
-      "name": "cloudflare",
+      "name": "cloud-findings",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "7c79d3589b39",
+      "source_id": "540900e4bff3",
       "state": "reference_only"
     },
     {
@@ -2634,6 +3178,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "63ac597d92c4",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "cloudflare",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7c79d3589b39",
       "state": "reference_only"
     },
     {
@@ -2662,10 +3214,10 @@
     },
     {
       "license": "unknown",
-      "name": "co-op-game-intro-generator",
+      "name": "code-review",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1cbdacfdbd63",
+      "source_id": "4a5ff664bf83",
       "state": "reference_only"
     },
     {
@@ -2674,14 +3226,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "fc452554d6fd",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "code-review",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "4a5ff664bf83",
       "state": "reference_only"
     },
     {
@@ -2862,14 +3406,6 @@
     },
     {
       "license": "unknown",
-      "name": "company-brief",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "afb9db4f5d19",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "company-tearsheet",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -2921,7 +3457,7 @@
       "name": "computer-use",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "4c76d13ea139",
+      "source_id": "c3e0125f4503",
       "state": "reference_only"
     },
     {
@@ -3017,7 +3553,31 @@
       "name": "consolidate-memory",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "87d8b5b48bdf",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "consolidate-memory",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "b7aefb97dbb5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "content-creation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "003a9bc29bbc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "content-creation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9e3432a19727",
       "state": "reference_only"
     },
     {
@@ -3121,7 +3681,7 @@
       "name": "create-agent",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "bc58ab699f58",
+      "source_id": "ee4dfa0d8ba9",
       "state": "reference_only"
     },
     {
@@ -3137,7 +3697,31 @@
       "name": "create-canvas",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "dd316764460e",
+      "source_id": "c16d88f8caf2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-canvas",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1a1b173facde",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-canvas",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "afb41c164716",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-canvas",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8b721c3ba5c9",
       "state": "reference_only"
     },
     {
@@ -3193,7 +3777,7 @@
       "name": "create-hook",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "a8999da5655d",
+      "source_id": "13cb33bfe743",
       "state": "reference_only"
     },
     {
@@ -3201,7 +3785,7 @@
       "name": "create-instructions",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "dfb5105edeb4",
+      "source_id": "b16a2a3097b7",
       "state": "reference_only"
     },
     {
@@ -3249,7 +3833,15 @@
       "name": "create-prompt",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "abab0d8f4d33",
+      "source_id": "a3710d66a008",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-pull-request",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "6ed29d41e391",
       "state": "reference_only"
     },
     {
@@ -3313,7 +3905,7 @@
       "name": "create-pull-request",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "951bf284269d",
+      "source_id": "1beac3688626",
       "state": "reference_only"
     },
     {
@@ -3321,7 +3913,31 @@
       "name": "create-pull-request",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "ccfc396787a5",
+      "source_id": "9dc4c7e0506d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-pull-request",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "29ae78a47e1e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-pull-request",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a90e82de4e0e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-pull-request",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4dbd743d7861",
       "state": "reference_only"
     },
     {
@@ -3377,7 +3993,7 @@
       "name": "create-skill",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1c6d838b4d75",
+      "source_id": "79db4561e0c6",
       "state": "reference_only"
     },
     {
@@ -3402,6 +4018,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "shared",
       "source_id": "321a171802fc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "create-statusline",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "vendor",
+      "source_id": "2b6bbf506636",
       "state": "reference_only"
     },
     {
@@ -3545,7 +4169,7 @@
       "name": "cross-platform-paths",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2181d0c6d65b",
+      "source_id": "052c6fa9a95f",
       "state": "reference_only"
     },
     {
@@ -3721,7 +4345,7 @@
       "name": "deactivate",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "0b146a516f50",
+      "source_id": "e5f1b51b7c29",
       "state": "reference_only"
     },
     {
@@ -3737,7 +4361,7 @@
       "name": "debug-failing-test",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "667b31faabb9",
+      "source_id": "721fc58bb4ff",
       "state": "reference_only"
     },
     {
@@ -3793,7 +4417,7 @@
       "name": "deep-research",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "27e3ac90430f",
+      "source_id": "45eeeaff3fc4",
       "state": "reference_only"
     },
     {
@@ -3801,7 +4425,7 @@
       "name": "deep-research",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "45eeeaff3fc4",
+      "source_id": "27e3ac90430f",
       "state": "reference_only"
     },
     {
@@ -4105,7 +4729,7 @@
       "name": "doctor",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "b600cc13ddff",
+      "source_id": "1d8e64701f2b",
       "state": "reference_only"
     },
     {
@@ -4137,7 +4761,7 @@
       "name": "documents",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "b90e5ca15d9d",
+      "source_id": "72b5c9a42ddd",
       "state": "reference_only"
     },
     {
@@ -4145,7 +4769,7 @@
       "name": "docx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "031b05d4a1fc",
+      "source_id": "0f48250f96dc",
       "state": "reference_only"
     },
     {
@@ -4162,6 +4786,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "d64dbc6004e3",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "docx",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "fc346d03e530",
       "state": "reference_only"
     },
     {
@@ -4202,6 +4834,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "94c3d56bf2b1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "drop-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "f9d50ffa048d",
       "state": "reference_only"
     },
     {
@@ -4266,6 +4906,38 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "2b063a2ab76d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "drop-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7f1d38944ad6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "drop-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3e6688cbc4bc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "drop-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "aba981e5e024",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "drop-python-version-support",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "56cf697a7d3d",
       "state": "reference_only"
     },
     {
@@ -4478,14 +5150,6 @@
     },
     {
       "license": "unknown",
-      "name": "economic-impact-report",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "cb5070d40080",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "economy-designer",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -4553,6 +5217,14 @@
       "name": "email",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "acfda61b271c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "email",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "1d75cb26cdc6",
       "state": "reference_only"
     },
@@ -4562,14 +5234,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "eeb4554505a5",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "email",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "acfda61b271c",
       "state": "reference_only"
     },
     {
@@ -4594,6 +5258,86 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "b5af1706f6b0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "693620d3d8e4",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ce307cf6d5c1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8cb2bc152969",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ddd69b5c9d5c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "88b00a952a8d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "98d436f9f7ba",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3f99f627308d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1b09eeb22859",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cb003dcdd677",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "embedded-software-engineering",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1e1f9ffeadab",
       "state": "reference_only"
     },
     {
@@ -4716,6 +5460,14 @@
       "license": "MIT",
       "name": "embedded-software-engineering",
       "source_category": "project",
+      "source_id": "835212e83df9",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/embedded-software-engineering",
+      "license": "MIT",
+      "name": "embedded-software-engineering",
+      "source_category": "project",
       "source_id": "3cd8d2812f7a",
       "state": "deduplicated"
     },
@@ -4773,14 +5525,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "client",
       "source_id": "8b242fa4a2d5",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "embedded-software-engineering",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "835212e83df9",
       "state": "reference_only"
     },
     {
@@ -4893,6 +5637,86 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "63a5883cec1f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ea192bb5008b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "49d0d634b9bb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cf5a33685831",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ccb7b40d1c6e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b22ec7d29748",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "63ee952424f7",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "43b21f29465b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9830db761e45",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "16c446d1c795",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-contract-and-confirmation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ae5b0de7aeae",
       "state": "reference_only"
     },
     {
@@ -5297,6 +6121,22 @@
     },
     {
       "license": "unknown",
+      "name": "engineering-review-deck",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "89dfa44647ed",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "engineering-review-deck",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a91c2240de9f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "engineering-rust-refactoring-specialist",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -5529,14 +6369,6 @@
     },
     {
       "license": "unknown",
-      "name": "event-driven-analyzer",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "1c5a5eb12573",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "evidence-report-engineering",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -5580,7 +6412,15 @@
       "name": "excel-live-control",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "1e711a668d70",
+      "source_id": "c8162fcc4ce2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "executing-plans",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "95b7c543bc43",
       "state": "reference_only"
     },
     {
@@ -5617,18 +6457,18 @@
     },
     {
       "license": "unknown",
-      "name": "executing-plans",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "95b7c543bc43",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "executive-brief",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "588cedfd4270",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "explain-usage",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "0632ce7785ca",
       "state": "reference_only"
     },
     {
@@ -6052,14 +6892,6 @@
       "name": "finishing-a-development-branch",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "5dda76141c80",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "finishing-a-development-branch",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
       "source_id": "96e73275afdc",
       "state": "reference_only"
     },
@@ -6069,6 +6901,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "084c0a81b313",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "finishing-a-development-branch",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5dda76141c80",
       "state": "reference_only"
     },
     {
@@ -6172,6 +7012,14 @@
       "name": "fix-customization-evaluation-diagnostics",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "331edaf85c4a",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "fix-customization-evaluation-diagnostics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "94b39ca6bdf0",
       "state": "reference_only"
     },
@@ -6236,6 +7084,30 @@
       "name": "fix-customization-evaluation-diagnostics",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "8c5a0de3ec36",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "fix-customization-evaluation-diagnostics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d40cd581ad80",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "fix-customization-evaluation-diagnostics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "86b1645d3a95",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "fix-customization-evaluation-diagnostics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "0c0002d58cc5",
       "state": "reference_only"
     },
@@ -6245,6 +7117,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "d9605d352491",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "fix-customization-evaluation-diagnostics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2af3d42ad63a",
       "state": "reference_only"
     },
     {
@@ -6316,6 +7196,14 @@
       "name": "form-github-search-query",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "f12486b05e0f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "form-github-search-query",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "994377cb696b",
       "state": "reference_only"
     },
@@ -6380,6 +7268,38 @@
       "name": "form-github-search-query",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "bdbceefeddd0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "form-github-search-query",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a9521d7afc3b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "form-github-search-query",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c5b13c6ee324",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "form-github-search-query",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4538d7246474",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "form-github-search-query",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "d7479bc28445",
       "state": "reference_only"
     },
@@ -6388,15 +7308,7 @@
       "name": "form-github-search-query",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "625ec9361f10",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "form-github-search-query",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "4e9027ad14a6",
+      "source_id": "b2188a017b24",
       "state": "reference_only"
     },
     {
@@ -6444,6 +7356,14 @@
       "name": "frontend-design",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "26ee82776caf",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "frontend-design",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "611704ec576d",
       "state": "reference_only"
     },
@@ -6477,6 +7397,22 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "f09e012dd181",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "game",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ddba9ff7e454",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "game",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "90a7c6fc7bc6",
       "state": "reference_only"
     },
     {
@@ -6628,7 +7564,7 @@
       "name": "generate-snapshot",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "69629b77f3a0",
+      "source_id": "f9d9c80e19e3",
       "state": "reference_only"
     },
     {
@@ -6653,14 +7589,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "5aafb5cdf9f6",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "get-search-view-results",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "5663b621fc49",
       "state": "reference_only"
     },
     {
@@ -7089,14 +8017,6 @@
     },
     {
       "license": "unknown",
-      "name": "h3-prompt-writing",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "ba338bd32831",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "h3-sprite-sheet",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -7109,14 +8029,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "2ca7eb9bd84f",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "handdrawn-live-video-generator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "5ea984602a77",
       "state": "reference_only"
     },
     {
@@ -7682,6 +8594,14 @@
       "state": "reference_only"
     },
     {
+      "license": "unknown",
+      "name": "image-generation",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d8d9616f8d6f",
+      "state": "reference_only"
+    },
+    {
       "kind": "unregistered_skill",
       "license": "unknown",
       "name": "image-generation",
@@ -7800,7 +8720,7 @@
       "name": "init",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "4bccc8e9b42a",
+      "source_id": "b0dfa7d583bd",
       "state": "reference_only"
     },
     {
@@ -7857,14 +8777,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "549e19b0aa88",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "install-vscode-extension",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "62d015f39a61",
       "state": "reference_only"
     },
     {
@@ -8417,7 +9329,7 @@
       "name": "latex-compile",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "215651b3ce2b",
+      "source_id": "e8fb3dee9b86",
       "state": "reference_only"
     },
     {
@@ -8433,7 +9345,7 @@
       "name": "latex-doctor",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "764afac62999",
+      "source_id": "837f6a129c90",
       "state": "reference_only"
     },
     {
@@ -8810,14 +9722,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "f14f1c6ddcca",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "marginal-tracker",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "978971a6ee7c",
       "state": "reference_only"
     },
     {
@@ -9248,6 +10152,14 @@
     },
     {
       "license": "unknown",
+      "name": "mechanical-cam-lab",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "66a139ec33a1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "media-use",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -9515,7 +10427,7 @@
       "name": "migrate-agent-session",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "c496b10a8ed6",
+      "source_id": "7feed2d366cb",
       "state": "reference_only"
     },
     {
@@ -9587,7 +10499,47 @@
       "name": "migrate-customizations",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "90f781477468",
+      "source_id": "54eb682db682",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "migrate-customizations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ef5f7608fa4e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "migrate-customizations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e85edd723675",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "migrate-customizations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "132894358d54",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "migrate-customizations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7f7d1d49dc87",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "migrate-customizations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e6ecb314ea23",
       "state": "reference_only"
     },
     {
@@ -9824,10 +10776,10 @@
     },
     {
       "license": "unknown",
-      "name": "minimalist-product-ad-generator",
+      "name": "minimax-code-product",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "abca9c9eac6f",
+      "source_id": "831d5772aa4d",
       "state": "reference_only"
     },
     {
@@ -10222,14 +11174,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "8d972cad57b3",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "music-video-subtitle-generator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "c65c1223e613",
       "state": "reference_only"
     },
     {
@@ -10940,26 +11884,10 @@
     },
     {
       "license": "unknown",
-      "name": "paper-collage-explainer-generator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "0dd9ac3e2154",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
       "name": "paper-to-claim-verifier",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "056284249e3d",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "papercraft-stop-motion-explainer",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "6b4fb0ff42d0",
       "state": "reference_only"
     },
     {
@@ -11039,6 +11967,22 @@
       "name": "pdf",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "120c4e0aa428",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pdf",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1ad08f6b7a89",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pdf",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "406858faaea1",
       "state": "reference_only"
     },
@@ -11047,7 +11991,15 @@
       "name": "pdf",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "11c9abe2eeb5",
+      "source_id": "9b46cee12547",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pdf",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "vendor",
+      "source_id": "23ce91d6b4df",
       "state": "reference_only"
     },
     {
@@ -11068,26 +12020,10 @@
     },
     {
       "license": "unknown",
-      "name": "pdf",
+      "name": "pdf-reading",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "9b46cee12547",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "pdf",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "vendor",
-      "source_id": "ff438eb91f9f",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "pdf",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "c77a2c1fc9a8",
+      "source_id": "951913aacf4e",
       "state": "reference_only"
     },
     {
@@ -11220,10 +12156,26 @@
     },
     {
       "license": "unknown",
+      "name": "playwright-cli",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "07b9921496a8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "playwright-component-testing",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "58c352651a6a",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "playwright-component-testing",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "561728077c84",
       "state": "reference_only"
     },
     {
@@ -11248,6 +12200,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "fb32d89edd8e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "playwright-trace",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "29bcbd12e8ba",
       "state": "reference_only"
     },
     {
@@ -11280,6 +12240,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "1a36fc34a666",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "plugin-management",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "95445fd444df",
       "state": "reference_only"
     },
     {
@@ -11559,7 +12527,7 @@
       "name": "pptx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2e5d521d9e9b",
+      "source_id": "858cfedc2022",
       "state": "reference_only"
     },
     {
@@ -11567,7 +12535,7 @@
       "name": "pptx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "d4c07512b7d9",
+      "source_id": "16814135aa83",
       "state": "reference_only"
     },
     {
@@ -11623,7 +12591,7 @@
       "name": "presentations",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "339a1074ae1b",
+      "source_id": "a033df2c5aac",
       "state": "reference_only"
     },
     {
@@ -11672,6 +12640,30 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "adaabb96eb4f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "product-catalog-publishing",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "960cad849e6f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "product-catalog-publishing",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "970dca723752",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "product-catalog-publishing",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d3c838e54ee0",
       "state": "reference_only"
     },
     {
@@ -11803,6 +12795,78 @@
       "export": "governance/AgentOS/skills/production-skill-routing",
       "license": "MIT",
       "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "2185ea799256",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "f06dbca88387",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "6dbdbd59c02b",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "cc3e10f2716b",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "f2712af1b288",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "81817a3c0e9d",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "bca419a88d86",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "8428d8d721f7",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
+      "source_category": "project",
+      "source_id": "bd1bd10339c1",
+      "state": "deduplicated"
+    },
+    {
+      "export": "governance/AgentOS/skills/production-skill-routing",
+      "license": "MIT",
+      "name": "production-skill-routing",
       "source_category": "shared",
       "source_id": "e5d08f69ed0d",
       "state": "deduplicated"
@@ -11869,22 +12933,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "a57bb62d3dc9",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "project-setup-info-context7",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "6017e0fa1bea",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "project-setup-info-local",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "af3709011942",
       "state": "reference_only"
     },
     {
@@ -11961,6 +13009,14 @@
     },
     {
       "license": "unknown",
+      "name": "publish-findings",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2a7b6183d366",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "pubmed",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -11997,6 +13053,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "cc97edec2d5d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-docs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d6b70b5c2a7f",
       "state": "reference_only"
     },
     {
@@ -12068,6 +13132,38 @@
       "name": "pylance-docs",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "6dc779a89aa7",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-docs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cc21a31c50e9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-docs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "de0d69589e47",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-docs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "f212777ff6fb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-docs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "ef74226a7923",
       "state": "reference_only"
     },
@@ -12085,6 +13181,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "5a91572510b5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-python-profiling",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8f7734496160",
       "state": "reference_only"
     },
     {
@@ -12156,6 +13260,38 @@
       "name": "pylance-python-profiling",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "a58fc8ab6016",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-python-profiling",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "714a804d0ed2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-python-profiling",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d3b1f5642266",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-python-profiling",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7250234444dc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-python-profiling",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "6272e0504dd8",
       "state": "reference_only"
     },
@@ -12173,6 +13309,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "0aca69a0e9d6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-refactoring",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "fbc7a461e29c",
       "state": "reference_only"
     },
     {
@@ -12244,6 +13388,38 @@
       "name": "pylance-refactoring",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "9918804db139",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-refactoring",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "52ea0aee6fe5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-refactoring",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "08122ea4b024",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-refactoring",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4743f016452f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "pylance-refactoring",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "67cbaa440042",
       "state": "reference_only"
     },
@@ -12253,6 +13429,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "05165f7ae5b0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-add-type-annotations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4da5746242f6",
       "state": "reference_only"
     },
     {
@@ -12324,6 +13508,38 @@
       "name": "python-add-type-annotations",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "a46da4a85631",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-add-type-annotations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "90410cff95c6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-add-type-annotations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "bcdaff69b7ca",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-add-type-annotations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "145cc50709e2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-add-type-annotations",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "9424abe917ea",
       "state": "reference_only"
     },
@@ -12349,6 +13565,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "ea96b8ecdcf2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-fact-grounded-coding",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2dd05fd99bd4",
       "state": "reference_only"
     },
     {
@@ -12420,6 +13644,38 @@
       "name": "python-fact-grounded-coding",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "37c6e977f183",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-fact-grounded-coding",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b402c19cbbdd",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-fact-grounded-coding",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "f11ea2a081ee",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-fact-grounded-coding",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "f682cd791031",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-fact-grounded-coding",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "9a900bcae51b",
       "state": "reference_only"
     },
@@ -12444,7 +13700,7 @@
       "name": "python-manager-discovery",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2af426b4417b",
+      "source_id": "c7979e07eca2",
       "state": "reference_only"
     },
     {
@@ -12461,6 +13717,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "89b8b7911283",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-type-inference",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b63975ffa2a8",
       "state": "reference_only"
     },
     {
@@ -12532,7 +13796,47 @@
       "name": "python-type-inference",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "83bbe7de8e19",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-type-inference",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7fef92379b20",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-type-inference",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2be88a0350a0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-type-inference",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9d347816f3fe",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-type-inference",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "c6f40f036ffd",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-write-stubs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2dbec831f345",
       "state": "reference_only"
     },
     {
@@ -12597,6 +13901,38 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "b4539a29b1c2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-write-stubs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c0504f8c49f1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-write-stubs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3424ed354229",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-write-stubs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "23cdab2cf000",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "python-write-stubs",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1d934cb0d77f",
       "state": "reference_only"
     },
     {
@@ -12716,14 +14052,6 @@
       "name": "receiving-code-review",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "d055f47bb083",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "receiving-code-review",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
       "source_id": "f158d1db2a4b",
       "state": "reference_only"
     },
@@ -12749,6 +14077,22 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "a1ea5780ee1c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "receiving-code-review",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d055f47bb083",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "record-video",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "ffbfb37217cd",
       "state": "reference_only"
     },
     {
@@ -12921,6 +14265,14 @@
     },
     {
       "license": "unknown",
+      "name": "report-format-baseline",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2b6ac58edcba",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "reports-pdfs-and-slide-automation",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -13021,6 +14373,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "09fcd0d3aa40",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "resolve-dependency-alert",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cdd1763b4622",
       "state": "reference_only"
     },
     {
@@ -13188,7 +14548,7 @@
       "name": "run-e2e-tests",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "9a7470cc5f16",
+      "source_id": "396f5168f902",
       "state": "reference_only"
     },
     {
@@ -13196,7 +14556,7 @@
       "name": "run-integration-tests",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "4d9964072891",
+      "source_id": "8a991d62358f",
       "state": "reference_only"
     },
     {
@@ -13212,7 +14572,7 @@
       "name": "run-pre-commit-checks",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "fc77b4fe9a95",
+      "source_id": "d86c9b676278",
       "state": "reference_only"
     },
     {
@@ -13228,7 +14588,7 @@
       "name": "run-smoke-tests",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "47ad5e7411c2",
+      "source_id": "663e8eb489b9",
       "state": "reference_only"
     },
     {
@@ -13702,7 +15062,7 @@
       "name": "settings-precedence",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "bbfc62b3573a",
+      "source_id": "09bc50ac1124",
       "state": "reference_only"
     },
     {
@@ -13734,7 +15094,23 @@
       "name": "setup-claude",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "54842203f0bc",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "setup-claude",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "8aee12b6871b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "setup-cowork",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9348ec1e8b97",
       "state": "reference_only"
     },
     {
@@ -13990,6 +15366,14 @@
       "name": "show-github-search-result",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "bcf8a044579e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "show-github-search-result",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "9023e02759d5",
       "state": "reference_only"
     },
@@ -14054,6 +15438,38 @@
       "name": "show-github-search-result",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "29c76e86ae21",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "show-github-search-result",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "29fb51c710c6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "show-github-search-result",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "d585926bb4c8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "show-github-search-result",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "fafdba8a519a",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "show-github-search-result",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "0cbb3c824969",
       "state": "reference_only"
     },
@@ -14062,15 +15478,7 @@
       "name": "show-github-search-result",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2dd30ec6921d",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "show-github-search-result",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "0a3f42f5d8fd",
+      "source_id": "7a6fb233a0df",
       "state": "reference_only"
     },
     {
@@ -14134,6 +15542,14 @@
       "name": "skill-creator",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "3d8d3d5e48df",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "skill-creator",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "c918c3bdf36a",
       "state": "reference_only"
     },
@@ -14159,14 +15575,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "97bc0adf10cc",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "skill-creator",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "3d8d3d5e48df",
       "state": "reference_only"
     },
     {
@@ -14526,7 +15934,7 @@
       "name": "spreadsheets",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "a480748ad334",
+      "source_id": "ecd3df3e84ef",
       "state": "reference_only"
     },
     {
@@ -14726,14 +16134,6 @@
       "name": "subagent-driven-development",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "cfddc7b3dcbf",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "subagent-driven-development",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
       "source_id": "77648498f621",
       "state": "reference_only"
     },
@@ -14763,6 +16163,14 @@
     },
     {
       "license": "unknown",
+      "name": "subagent-driven-development",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "cfddc7b3dcbf",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
       "name": "subtitles",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
@@ -14775,6 +16183,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "6830213f7be0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "suggest-fix-issue",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e368cf22265b",
       "state": "reference_only"
     },
     {
@@ -14846,6 +16262,38 @@
       "name": "suggest-fix-issue",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "074bd1ea287b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "suggest-fix-issue",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a0a4d808972b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "suggest-fix-issue",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "b0f02af785d6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "suggest-fix-issue",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "01a2e4a93ebb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "suggest-fix-issue",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "31f2ecba4e02",
       "state": "reference_only"
     },
@@ -14854,15 +16302,7 @@
       "name": "suggest-fix-issue",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "a639a04252a5",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "suggest-fix-issue",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "481d6ec65135",
+      "source_id": "e074f2c6e7bb",
       "state": "reference_only"
     },
     {
@@ -14879,6 +16319,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "6c5ec1d5a995",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "summarize-github-issue-pr-notification",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9200dbfe8385",
       "state": "reference_only"
     },
     {
@@ -14950,7 +16398,7 @@
       "name": "summarize-github-issue-pr-notification",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "eb51e3d57bdb",
+      "source_id": "6111f19ede2d",
       "state": "reference_only"
     },
     {
@@ -14958,7 +16406,31 @@
       "name": "summarize-github-issue-pr-notification",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "6a3925c0fcf8",
+      "source_id": "66fc72a05d55",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "summarize-github-issue-pr-notification",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "0681a51713e3",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "summarize-github-issue-pr-notification",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e750a6c25bb5",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "summarize-github-issue-pr-notification",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "e014a32468a1",
       "state": "reference_only"
     },
     {
@@ -15230,6 +16702,14 @@
       "name": "systematic-debugging",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "6f2ffcbb1811",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "systematic-debugging",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "29f19d66e9a2",
       "state": "reference_only"
     },
@@ -15271,14 +16751,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "32edeea02561",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "systematic-debugging",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "6f2ffcbb1811",
       "state": "reference_only"
     },
     {
@@ -15374,7 +16846,7 @@
       "name": "template-creator",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "d2906d65557b",
+      "source_id": "2269950811a1",
       "state": "reference_only"
     },
     {
@@ -15582,7 +17054,7 @@
       "name": "texlive-runtime-installer",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "d50c45ed39c5",
+      "source_id": "8e14f2f33726",
       "state": "reference_only"
     },
     {
@@ -15623,6 +17095,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "4f75df044eeb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "threat-model-visualize",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a20571aa9e0a",
       "state": "reference_only"
     },
     {
@@ -16134,7 +17614,7 @@
       "name": "troubleshoot",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "61cf7415730e",
+      "source_id": "efffba801ec9",
       "state": "reference_only"
     },
     {
@@ -16142,7 +17622,31 @@
       "name": "troubleshoot",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "efffba801ec9",
+      "source_id": "3f9f78297837",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "troubleshoot",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "7b0fc4ab38f6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "troubleshoot",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "797b7de205ed",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "troubleshoot",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "16197274f4b8",
       "state": "reference_only"
     },
     {
@@ -16622,7 +18126,39 @@
       "name": "typescript-setup",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "2ace0b3901f9",
+      "source_id": "e7829b8b254c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-setup",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a6708859c287",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-setup",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1ebdc0c092a4",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-setup",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "66a157ae841c",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-setup",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "1cb1ea00f67d",
       "state": "reference_only"
     },
     {
@@ -16630,7 +18166,39 @@
       "name": "typescript-update",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "1c7ebebc1b30",
+      "source_id": "95a522c263d1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-update",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "31e99aea264d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-update",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "47b2dc13a71f",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-update",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "87c2220899b6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "typescript-update",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "8765e455c226",
       "state": "reference_only"
     },
     {
@@ -16743,6 +18311,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "dc4af41b3d5d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "unslop",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3cc3c55f1441",
       "state": "reference_only"
     },
     {
@@ -16902,7 +18478,7 @@
       "name": "user-context",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "0e6202036bb0",
+      "source_id": "63e88a786fff",
       "state": "reference_only"
     },
     {
@@ -16910,15 +18486,7 @@
       "name": "user-context",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "63e88a786fff",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "using-git-worktrees",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "09162fbaa9fe",
+      "source_id": "0e6202036bb0",
       "state": "reference_only"
     },
     {
@@ -16942,6 +18510,14 @@
       "name": "using-git-worktrees",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "09162fbaa9fe",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "using-git-worktrees",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "50c6f954ceec",
       "state": "reference_only"
     },
@@ -16951,14 +18527,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "237194f47a6c",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "using-superpowers",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "be8316668534",
       "state": "reference_only"
     },
     {
@@ -16991,6 +18559,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "f6777ada21b9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "using-superpowers",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "be8316668534",
       "state": "reference_only"
     },
     {
@@ -17355,6 +18931,78 @@
       "state": "reference_only"
     },
     {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9597a0eef8a6",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "5417a9351d9b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "2593ef16bca0",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "191abb808223",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9bbf8591c821",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c6148769b8b7",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "0b8055a1aecb",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "c1b424ec9d26",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "visual-asset-production",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9c79d3d8b8dc",
+      "state": "reference_only"
+    },
+    {
       "digest": "84fcf624b20f7db87c7abf43052d422f8dbe55ee70714adb03200a24cf5adb33",
       "export": "governance/AgentOS/skills/visual-asset-production",
       "files": {
@@ -17438,7 +19086,7 @@
       "name": "visualize",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "vendor",
-      "source_id": "e26fc4fcf455",
+      "source_id": "d55ef6dbf6eb",
       "state": "reference_only"
     },
     {
@@ -17654,7 +19302,23 @@
       "name": "webapp-building",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
+      "source_id": "2d06d87dcca9",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "webapp-building",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
       "source_id": "946330ec4ef2",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "webapp-publish",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "3e73dc4efd38",
       "state": "reference_only"
     },
     {
@@ -17772,6 +19436,86 @@
       "state": "deduplicated"
     },
     {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "754d37fa7c8d",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "7c6369ff2f76",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "abbe916fd15e",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "24e874db362b",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "2fb63027046e",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "2374bdab17b0",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "6bd147d6b6ca",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "13654798a2a6",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "22881b7787a2",
+      "state": "deduplicated"
+    },
+    {
+      "export": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "name": "weekly-governance-learning",
+      "source_category": "project",
+      "source_id": "cfde5113eca5",
+      "state": "deduplicated"
+    },
+    {
       "license": "unknown",
       "name": "weekly-review-planning",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
@@ -17809,6 +19553,86 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "6ed935f1cac8",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "13e413277956",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "03e930a55cf7",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "a63d55712ef1",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "59ef061c502d",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "9fc42be0bc27",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "91e8b2ec8342",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "f65fe3ce68f3",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "80ee1fe83d01",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "11f0d856394b",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "windows-crash-forensics",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "4cdc3e4d983b",
       "state": "reference_only"
     },
     {
@@ -17959,7 +19783,7 @@
       "name": "write-h3-prompts",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "18a303cebad8",
+      "source_id": "0958141320cc",
       "state": "reference_only"
     },
     {
@@ -17968,6 +19792,14 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "3938c0d0c62e",
+      "state": "reference_only"
+    },
+    {
+      "license": "unknown",
+      "name": "writing-plans",
+      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "source_category": "project",
+      "source_id": "479095f01d5c",
       "state": "reference_only"
     },
     {
@@ -18000,14 +19832,6 @@
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "855bf1fba50e",
-      "state": "reference_only"
-    },
-    {
-      "license": "unknown",
-      "name": "writing-plans",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
-      "source_category": "project",
-      "source_id": "479095f01d5c",
       "state": "reference_only"
     },
     {
@@ -18063,7 +19887,7 @@
       "name": "xlsx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "7c6d51c8a34e",
+      "source_id": "55608a866827",
       "state": "reference_only"
     },
     {
@@ -18071,7 +19895,7 @@
       "name": "xlsx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "0dacb843ac1b",
+      "source_id": "7c6d51c8a34e",
       "state": "reference_only"
     },
     {
@@ -18095,7 +19919,7 @@
       "name": "xlsx",
       "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
-      "source_id": "efe6d2d20fba",
+      "source_id": "ddb005d587ab",
       "state": "reference_only"
     },
     {
@@ -18265,5 +20089,5 @@
       "state": "reference_only"
     }
   ],
-  "source_count": 2262
+  "source_count": 2488
 }

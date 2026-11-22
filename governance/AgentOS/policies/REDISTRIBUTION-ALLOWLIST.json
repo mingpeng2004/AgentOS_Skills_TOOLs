@@ -1,0 +1,72 @@
+{
+  "schema": "agentos-redistribution-allowlist-v1",
+  "agentos_version": "1.9.2",
+  "authority": "Owner authorization 2026-10-25 for the governed corpus, and the private-repository distribution of the same content to named accounts.",
+  "purpose": "Decide which AgentOS Skill directories the installer payload may carry. The publisher and the installer must agree: a Skill the published corpus does not carry must not reach a target machine through the installer either.",
+  "applies_to": [
+    "installer/build-installer.ps1"
+  ],
+  "basis": "The published corpus is the reference. The skills array names the Skills the published corpus carries; the excluded array names the Skills it deliberately does not, with the reason. Both surfaces obey this one list.",
+  "skills": [
+    {
+      "path": "skills/production-skill-routing",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/visual-asset-production",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/agentos-governed-integration",
+      "license": "MIT",
+      "reason": "Owner-authored governance Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/embedded-software-engineering",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/engineering-contract-and-confirmation",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/windows-crash-forensics",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/weekly-governance-learning",
+      "license": "MIT",
+      "reason": "Owner-authored Skill published in the governed corpus."
+    }
+  ],
+  "excluded": [
+    {
+      "path": "skills/metal-process-engineering",
+      "reason": "Not published: the catalog classifies it reference_only, and it carries machine-local paths into other projects that the portable edition replaces with placeholders, which would make the published Skill point at nothing."
+    },
+    {
+      "path": "skills/cad-geometry-automation",
+      "reason": "Not published: the catalog classifies it reference_only."
+    },
+    {
+      "path": "skills/ming-systems",
+      "reason": "Not published: the catalog classifies it reference_only."
+    },
+    {
+      "path": "skills/requirements-anchoring",
+      "reason": "Not published: the catalog classifies it reference_only."
+    }
+  ],
+  "notes": [
+    "The allowlist decides what may travel. The confidentiality gates decide what must not, and they apply to whatever this list permits.",
+    "The published corpus and the installer payload carry the same Skills. A Skill that is reference_only is reference_only in both.",
+    "The import manifest in the payload is portable too: a required file this edition does not carry is recorded as excluded, so the installed copy does not fail its own import gate for a file it was never given.",
+    "An earlier revision of this file described the list as exclusion based. That was wrong: the code read only the excluded half, so a Skill that nobody classified travelled freely. The list is inclusion based and the code reads both halves."
+  ],
+  "policy": "Inclusion based. A Skill travels with the installer payload only when this file names it in the skills array. A Skill that is neither named nor excluded is removed: material nobody classified must not travel by default."
+}

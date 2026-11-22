@@ -5,12 +5,16 @@ displayNames:
   zh-Hans: AgentOS system governance
 ---
 
-# AgentOS for OpenClaw
+# AgentOS governance entry for OpenClaw
 
-This skill is the client entry point, not the source of truth. OpenClaw loads
-workspace skills from `~/.openclaw/workspace/skills/<skill>/SKILL.md` and injects
-`AGENTS.md`, `SOUL.md` and `TOOLS.md` into the agent workspace prompt.
+This skill is the client entry point, not the source of truth. The canonical
+governance source is `$env:AGENTOS_HOME`. A client loads this entry from its own
+workspace and then reads the canonical files below. The client-specific
+adapters under `adapters/<client>/SKILL.md` say only how that client loads the
+entry; the governance content lives here and is not restated per client.
 
+OpenClaw loads workspace Skills from `~/.openclaw/workspace/skills/<skill>/SKILL.md`
+and injects `AGENTS.md`, `SOUL.md` and `TOOLS.md` into the agent workspace prompt.
 At the start of every new conversation, load these files in order:
 
 1. AGENTS.md in the project.
@@ -18,11 +22,12 @@ At the start of every new conversation, load these files in order:
 3. $env:AGENTOS_HOME/runtime/BOOT.md
 4. $env:AGENTOS_HOME/constitution/AGENTOS-CONSTITUTION.md
 5. $env:AGENTOS_HOME/protocols/TRUTH-AND-EVIDENCE.md
-6. $env:AGENTOS_HOME/protocols/DELIVERABLE-STANDARD.md - when the task produces
+6. $env:AGENTOS_HOME/protocols/DERIVATION-DISCIPLINE.md - derivation discipline: conclusion strength may not exceed evidence strength; every technical conclusion carries an evidence label ([measured]/[schematic]/[inferred]/[assumed]/[user-stated]); an information gap becomes an evidence-acquisition task (how to obtain, how to measure, what counts as passed), never an inference filled in by analogy or convention. Before delivery run the mechanical gate bin/check_derivation_discipline.py on the changed documents.
+7. $env:AGENTOS_HOME/protocols/DELIVERABLE-STANDARD.md - when the task produces
    any report, study, plan, whitepaper, review or external deck.
-7. $env:AGENTOS_HOME/protocols/TASK-PROTOCOL.md
-8. $env:AGENTOS_HOME/protocols/RECURSIVE-PLANNING.md
-9. The project .agentos/project.json, active task, checkpoint and evidence
+8. $env:AGENTOS_HOME/protocols/TASK-PROTOCOL.md
+9. $env:AGENTOS_HOME/protocols/RECURSIVE-PLANNING.md
+10. The project .agentos/project.json, active task, checkpoint and evidence
    ledger.
 
 For complex work, use protocols/SKILL-MATRIX.md and bin/agentos_skills.py to
@@ -66,7 +71,7 @@ permission gates never default.
 
 ## Third-party Skill ecosystem
 
-OpenClaw ships its own bundled Skill registry (ClawHub). Those Skills are
+Clients ship their own Skill registries and plugin bundles. Those Skills are
 third-party, not AgentOS-governed. They never become a second governance body:
 use AgentOS `bin/agentos_skills.py` to route, and treat a bundled Skill as an
 external provider whose availability must be checked before use. When a bundled

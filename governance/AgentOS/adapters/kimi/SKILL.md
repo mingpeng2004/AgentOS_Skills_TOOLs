@@ -1,6 +1,6 @@
 ---
 name: agent-governance-os
-description: Portable AgentOS governance for long-running software, firmware, hardware-in-loop and operations tasks.
+description: System-level governance for long-running software, firmware, hardware-in-loop and operations tasks.
 displayNames:
   zh-Hans: AgentOS system governance
 ---
@@ -9,67 +9,83 @@ displayNames:
 ## Public distribution profile boundary (takes precedence over the historical owner text)
 Personal signature, bilingual file-triplet, presentation-style and image-generation preferences in this historical owner profile are opt-in only. They are NOT mandatory defaults for another user. Configure profiles/OWNER-PROFILE.example.json explicitly. This JSON is a declarative configuration example, not a runtime loader; the importing agent must explicitly apply the user's selected profile. Core evidence, safety, authorization and truthful reporting remain mandatory. Unknown evidence must stay unknown; a zero-gap preference cannot authorize fabrication.
 
-# AgentOS for Kimi Code
+# AgentOS governance entry for Kimi Code
 
-For complex work, read protocols/SKILL-MATRIX.md and use bin/agentos_skills.py
-to select one primary method and at most two necessary constraints. Load only
-matched provider files. Missing inputs/providers and candidate methods block
-dependent work. Gate outputs with current source hashes, applicable evidence and
-distinct verifier checks. Routing never grants safety or native permissions.
+This skill is the client entry point, not the source of truth. The canonical
+governance source is `$env:AGENTOS_HOME`. A client loads this entry from its own
+workspace and then reads the canonical files below. The client-specific
+adapters under `adapters/<client>/SKILL.md` say only how that client loads the
+entry; the governance content lives here and is not restated per client.
 
-At every new conversation, import the project AGENTS.md and then:
+Kimi Code loads workspace Skills from `~/.kimi/skills/<skill>/SKILL.md` and
+`~/.kimi-code/skills/<skill>/SKILL.md`. It reads the project `AGENTS.md`
+at the start of every conversation.
+At the start of every new conversation, load these files in order:
 
-1. $env:AGENTOS_HOME/runtime/AGENT-IMPORT.md
-2. $env:AGENTOS_HOME/runtime/BOOT.md
-3. $env:AGENTOS_HOME/constitution/AGENTOS-CONSTITUTION.md
-4. $env:AGENTOS_HOME/protocols/TRUTH-AND-EVIDENCE.md
-5. $env:AGENTOS_HOME/protocols/DELIVERABLE-STANDARD.md — when the task produces
-   any report, study, plan, whitepaper, review or external deck. Fixed signature
-   `${OWNER_SIGNATURE}`; Chinese and English both delivered; every
-   number traceable and independently reviewed.
-6. $env:AGENTOS_HOME/protocols/TASK-PROTOCOL.md
-7. $env:AGENTOS_HOME/protocols/RECURSIVE-PLANNING.md
-8. $env:AGENTOS_HOME/protocols/CONTEXT-PIPELINE.md
-9. Project .agentos state, current task, checkpoint and claims ledger.
+1. AGENTS.md in the project.
+2. $env:AGENTOS_HOME/runtime/AGENT-IMPORT.md
+3. $env:AGENTOS_HOME/runtime/BOOT.md
+4. $env:AGENTOS_HOME/constitution/AGENTOS-CONSTITUTION.md
+5. $env:AGENTOS_HOME/protocols/TRUTH-AND-EVIDENCE.md
+6. $env:AGENTOS_HOME/protocols/DERIVATION-DISCIPLINE.md - derivation discipline: conclusion strength may not exceed evidence strength; every technical conclusion carries an evidence label ([measured]/[schematic]/[inferred]/[assumed]/[user-stated]); an information gap becomes an evidence-acquisition task (how to obtain, how to measure, what counts as passed), never an inference filled in by analogy or convention. Before delivery run the mechanical gate bin/check_derivation_discipline.py on the changed documents.
+7. $env:AGENTOS_HOME/protocols/DELIVERABLE-STANDARD.md - when the task produces
+   any report, study, plan, whitepaper, review or external deck.
+8. $env:AGENTOS_HOME/protocols/TASK-PROTOCOL.md
+9. $env:AGENTOS_HOME/protocols/RECURSIVE-PLANNING.md
+10. The project .agentos/project.json, active task, checkpoint and evidence
+   ledger.
+
+For complex work, use protocols/SKILL-MATRIX.md and bin/agentos_skills.py to
+select one primary method plus at most two necessary constraints. Check actual
+input/provider availability; load only those references. Candidate/absent
+capabilities remain blocked. A route grants no execution permission.
 
 ## Upfront confirmation
 
-Settle the development and software framework once before implementation: seed
-domains from project SSOT, present one confirmation packet for unresolved
-domains, and record explicit user confirmation in .agentos/contract. Framework-level
-domains never time out. Later requirements are amendments; tasks bind
-contract_version and run bin/AgentOS-Contract.ps1 check at unit boundaries and on
-resume. Read protocols/UPFRONT-CONFIRMATION.md.
+Before a new project or major framework change, settle the development and software
+framework once: read project SSOT, seed decided domains, then present one
+confirmation packet for the unresolved domains. Framework-level domains need
+explicit user confirmation and never time out. Record them in .agentos/contract
+and run bin/AgentOS-Contract.ps1 check at unit boundaries. Later requirements are
+amendments to that contract. Read protocols/UPFRONT-CONFIRMATION.md.
 
-## Truth gate
+## Non-negotiable truth rules
 
-No traceable source means no verified fact. Keep user-stated information,
-model reasoning, assumptions, proposals, synthetic data and observed results
-explicitly labeled. Never invent versions, test results, device states,
-performance values or acceptance results.
+- No source means unknown, assumption, proposal or user-stated, never verified.
+- Model memory, plausible numbers, examples and screenshots without provenance
+  are not evidence.
+- Synthetic, mock, demo and simulated data must be labeled and cannot satisfy
+  real-device, safety, production-performance or user-acceptance gates.
+- Failed, timed-out, disconnected or truncated operations are not successes.
+- Conflicts and stale evidence block delivery.
+- Use bin/AgentOS-Evidence.ps1 to record, verify, invalidate and validate
+  claims. Preserve complete command output and SHA256 artifacts.
 
-Every command or test used as evidence must have complete output, exit code,
-time and a saved artifact hash. A failed, timed-out, truncated or disconnected
-operation is failed or unknown. Conflicting or stale evidence blocks delivery.
-Synthetic or mixed data cannot satisfy real-device, safety, production or
-user-acceptance gates.
+## Execution loop
 
-## Long-task loop
+Create .agentos/tasks/<task-id>.md for complex work. Build the Phase/Task/Unit
+tree, execute only the first ready Unit, capture evidence, validate the ledger,
+update the task and checkpoint, then refine the remaining plan.
 
-For complex work, create a task file, define Phase/Task/Unit dependencies and
-the evidence level for every DoD item. Execute one ready Unit, validate it
-with an external check, record the claim using bin/AgentOS-Evidence.ps1, update
-the checkpoint and working memory, and refine the next Unit.
+Use the approval policy for normal and high-risk actions. A session approval
+does not authorize credentials, external network, dependency installation,
+services, remote hosts, real hardware motion, firmware flashing or safety
+controls. Load protocols/DELEGATED-AUTONOMY.md and policies/DECISION-POLICY.json.
+Routine authorized work proceeds immediately. Safety, unknown facts and native
+permission gates never default.
 
-Import protocols/DELEGATED-AUTONOMY.md and policies/DECISION-POLICY.json. Execute
-authorized routine work immediately. Persist and actually notify ordinary
-reversible preferences; after 300 seconds without feedback, adopt only through
-bin/AgentOS-Decision.ps1 evaluate as delegated_default. Record actual user
-feedback before deadline evaluation at every Unit/resume. Safety, unknown facts,
-native approvals and user acceptance never default. Continue independent Units
-while waiting; do not claim a wakeup timer exists when the host has none.
+## Third-party Skill ecosystem
 
-Kimi CLI may load the skill directory explicitly with the client option that
-points to $env:AGENTOS_HOME/adapters/kimi. If the client does not expose a
-session-scoped approval control or context compaction hook, do not pretend it
-does; use the AgentOS ledger and checkpoint protocols and state the limitation.
+Clients ship their own Skill registries and plugin bundles. Those Skills are
+third-party, not AgentOS-governed. They never become a second governance body:
+use AgentOS `bin/agentos_skills.py` to route, and treat a bundled Skill as an
+external provider whose availability must be checked before use. When a bundled
+Skill overlaps an AgentOS capability, AgentOS routing decides; when it does not,
+register the gap in the AgentOS registry rather than letting the bundle grow
+silently.
+
+## Answer-time truth preflight
+
+State what is verified, observed, derived, user-stated, synthetic, unknown,
+conflicted or stale. Never claim completion without the applicable evidence
+level and artifact.

@@ -208,6 +208,12 @@ class WeeklyTests(unittest.TestCase):
         m.create(package / "governance/AgentOS/VERSION", b"1.4.0\n")
         m.create(package / "catalog.json", {"schema": "governed-skill-catalog-v2", "source_count": 0, "skills": []})
         m.create(package / "governance/AgentOS/policies/SKILL-REGISTRY.json", {"schema": "agentos-skill-registry-v1", "capabilities": [{"id": "fixture-cap"}]})
+        m.create(package / "governance/AgentOS/policies/NON-DISTRIBUTABLE.json",
+                 {"schema": "agentos-non-distributable-v1", "files": [
+                     {"path": "policies/REDACTION-TERMS.json", "reason": "fixture",
+                      "content_signature": "redaction-terms-v1"}],
+                  "signatures": ["redaction-terms-v1", "retained_public_identifiers"],
+                  "sha256": {"policies/REDACTION-TERMS.json": m.sha(self.declared_secret())}})
         m.create(package / "tools/test.py", b"print('fixture')\n")
         m.create(package / "capability-assets.json", {"schema":"agentos-capability-assets-v1", "assets":[{
             "id":"fixture-tool", "name":"fixture", "kind":"tool", "version":"1.0.0", "capabilities":["fixture-cap"],
@@ -220,6 +226,13 @@ class WeeklyTests(unittest.TestCase):
     def seal(self, package):
         import portable_install
         m.atomic(package / "portable-manifest.json", portable_install.build_manifest(package))
+
+    def declared_secret(self):
+        """The synthetic confidential list whose digest the fixture declares."""
+        return m.encoded({
+            "schema": "redaction-terms-v1",
+            "terms": [{"pattern": "ConfidiaBrand", "kind": "literal"}],
+            "retained_public_identifiers": []})
 
     def test_stage_manifest_sealer_emits_complete_install_manifest(self):
         package = self.root / "manifest-sealer"
@@ -253,6 +266,274 @@ class WeeklyTests(unittest.TestCase):
 
         with self.assertRaises(m.Blocked):
             m.validate(package)
+
+    def test_declared_non_distributable_file_can_never_reach_a_package(self):
+        """Gate F-ND-1: the declared local-only file is refused, copies included."""
+        package = self.package()
+        m.create(package / "governance/AgentOS/policies/REDACTION-TERMS.json",
+                 b'{"terms": ["confidential"]}\n')
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package)
+        self.assertIn("Non-distributable", str(caught.exception))
+
+    def test_a_copy_of_a_non_distributable_file_is_also_refused(self):
+        """A backup or archived copy of a declared file is the same secret."""
+        package = self.package()
+        m.create(package / "governance/AgentOS/policies/backups/REDACTION-TERMS.json.bak-20261102",
+                 b'{"terms": ["confidential"]}\n')
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked):
+            m.validate(package)
+
+    def test_package_without_the_non_distributable_policy_is_refused(self):
+        """The declaration is mandatory: a package cannot opt out of the gate."""
+        package = self.package()
+        (package / "governance/AgentOS/policies/NON-DISTRIBUTABLE.json").unlink()
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package)
+        self.assertIn("Non-distributable policy missing", str(caught.exception))
+
+    def test_non_distributable_matcher_covers_copies_and_exact_paths(self):
+        declared = ["policies/REDACTION-TERMS.json"]
+
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS.json", declared))
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS.json.bak-20261102", declared))
+        self.assertTrue(m.is_non_distributable("policies/backups/REDACTION-TERMS.json.bak-20261102", declared))
+        # The paths an independent review demonstrated escaping the old rule.
+        self.assertTrue(m.is_non_distributable("policies/backups/REDACTION-TERMS.json", declared))
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS-backup.json", declared))
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS.json~", declared))
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS.JSON", declared))
+        self.assertFalse(m.is_non_distributable("policies/SKILL-REGISTRY.json", declared))
+        # A different file that merely starts with the same words is refused
+        # too. The rule is deliberately conservative: a false refusal is
+        # recoverable, a published secret is not.
+        self.assertTrue(m.is_non_distributable("policies/REDACTION-TERMS-OTHER.json", declared))
+
+    def test_a_declared_directory_refuses_everything_beneath_it(self):
+        """A tree that grows on every run cannot be protected file by file.
+
+        The derivation deployment writes a timestamped snapshot of every
+        client rule file into runtime/backups/derivation/. A file-level
+        declaration would have to be rewritten every time a snapshot is
+        added, so the declaration names the tree and the rule refuses
+        everything beneath it.
+        """
+        declared = ["runtime/backups/derivation/"]
+
+        self.assertTrue(m.is_non_distributable(
+            "runtime/backups/derivation/20261112-201800/AGENTS.md", declared))
+        self.assertTrue(m.is_non_distributable(
+            "runtime/backups/derivation/20990101-000000/AGENTS.md", declared))
+        # The rule must not refuse the governance tree itself. A declaration
+        # that protects one tree by accident protecting another is a gate
+        # that stops meaning what it says.
+        self.assertFalse(m.is_non_distributable(
+            "runtime/derivation-deployment.json", declared))
+        self.assertFalse(m.is_non_distributable("runtime/BOOT.md", declared))
+
+    def test_a_trailing_slash_must_survive_normalisation(self):
+        """PurePosixPath strips a trailing slash; the rule must not rely on it.
+
+        If the declaration's trailing slash is normalised away, the
+        directory becomes an ordinary file declaration and the tree it names
+        is published. The rule therefore reads the raw text.
+        """
+        declared = ["runtime/backups/derivation/"]
+
+        self.assertTrue(m.is_non_distributable(
+            "runtime/backups/derivation/snapshot/AGENTS.md", declared))
+        # A declaration without the slash names a FILE, not a tree, and must
+        # not silently protect the tree.
+        self.assertFalse(m.is_non_distributable(
+            "runtime/backups/derivation/snapshot/AGENTS.md",
+            ["runtime/backups/derivation"]))
+
+    def test_the_allowlist_decides_which_skill_travels(self):
+        """The redistribution allowlist is inclusion based.
+
+        A Skill nobody authorised must not travel. The installer build reads
+        the same list, so the published corpus and the installer payload
+        agree.
+        """
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDISTRIBUTION-ALLOWLIST.json", {
+            "schema": "agentos-redistribution-allowlist-v1",
+            "skills": [{"path": "skills/allowed-skill"}],
+            "excluded": [{"path": "skills/refused-skill"}]})
+
+        self.assertTrue(m.redistributable_skill("allowed-skill", agentos))
+        self.assertFalse(m.redistributable_skill("refused-skill", agentos))
+        self.assertFalse(m.redistributable_skill("unclassified-skill", agentos))
+
+    def test_a_missing_allowlist_does_not_empty_the_corpus(self):
+        """The fallback must ship what it has, not nothing.
+
+        A missing list must not silently empty the corpus: that would look
+        like a successful release that publishes no Skills.
+        """
+        agentos = self.root / "agentos-without-list"
+        agentos.mkdir()
+
+        self.assertTrue(m.redistributable_skill("anything", agentos))
+
+    def test_a_renamed_copy_is_refused_by_content(self):
+        """A renamed copy keeps its content, so a path rule cannot see it."""
+        package = self.package()
+        secret = self.declared_secret()
+        m.create(package / "governance/AgentOS/policies/some-other-name.txt", secret)
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package)
+        self.assertIn("Non-distributable", str(caught.exception))
+
+    def test_a_term_hidden_behind_a_nul_byte_is_still_found(self):
+        """A NUL byte is not a defence: the bytes are decoded every way."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", self.declared_secret())
+        package = self.package()
+        m.create(package / "docs/leak.md", b"\x00" * 64 + b"ConfidiaBrand suffix\n")
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Confidential identifier", str(caught.exception))
+
+    def test_a_term_in_a_binary_extension_is_still_found(self):
+        """An extension is not evidence of content.
+
+        A term written into a .png, a .docx or a .ttf is still a term, and
+        the publisher ships whatever it is handed.
+        """
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", self.declared_secret())
+        package = self.package()
+        for name in ["docs/logo.png", "docs/spec.docx", "docs/font.ttf", "docs/clip.wav"]:
+            m.create(package / name, b"ConfidiaBrand inside a binary-named file\n")
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Confidential identifier", str(caught.exception))
+
+    def test_a_term_in_utf16_is_still_found(self):
+        """UTF-16 without a BOM decodes as UTF-8 with NULs; it must still be read."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", self.declared_secret())
+        package = self.package()
+        m.create(package / "docs/leak.md", "ConfidiaBrand suffix\n".encode("utf-16-le"))
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Confidential identifier", str(caught.exception))
+
+    def test_a_renamed_copy_is_refused_by_digest(self):
+        """The digest identifies the content, so any name is refused."""
+        package = self.package()
+        secret = self.declared_secret()
+        m.create(package / "docs/notes.md", secret)
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package)
+        self.assertIn("Non-distributable content", str(caught.exception))
+
+    def test_the_declaration_file_itself_is_not_a_violation(self):
+        """The declaration names its own signatures; it is the rule, not a copy."""
+        package = self.package()
+
+        self.assertGreater(m.validate(package)["files"], 0)
+
+    def test_a_file_mentioning_one_signature_is_not_refused(self):
+        """Documentation and tests legitimately mention the schema name."""
+        package = self.package()
+        m.create(package / "docs/how-to.md",
+                 b'The redaction-terms-v1 schema names the confidential list.\n')
+        self.seal(package)
+
+        self.assertGreater(m.validate(package)["files"], 0)
+
+    def test_a_stale_digest_declaration_blocks_the_release(self):
+        """Gate F-ND-5: a digest that no longer matches is a silent hole.
+
+        The confidential list is updated as identifiers are found. If the
+        declaration keeps the old digest, the renamed-copy gate stops
+        recognising the new content, and nothing else would say so.
+        """
+        agentos = self.root / "agentos"
+        # The local list has moved on since the declaration was written.
+        m.create(agentos / "policies/REDACTION-TERMS.json", m.encoded(
+            {"schema": "redaction-terms-v1", "terms": [{"pattern": "NewerBrand", "kind": "literal"}],
+             "retained_public_identifiers": []}))
+        package = self.package()
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Stale non-distributable digest", str(caught.exception))
+
+    def test_a_stale_digest_is_reported_with_the_declared_path(self):
+        """The refusal must name the entry that is stale, not just fail."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", m.encoded(
+            {"schema": "redaction-terms-v1", "terms": [{"pattern": "NewerBrand", "kind": "literal"}],
+             "retained_public_identifiers": []}))
+        package = self.package()
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("policies/REDACTION-TERMS.json", str(caught.exception))
+    def test_confidential_identifier_in_a_markdown_file_is_refused(self):
+        """Gate F-ND-4: path exclusion cannot see an identifier in prose."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", self.declared_secret())
+        package = self.package()
+        m.create(package / "docs/leak.md",
+                 b"The customer is ConfidiaBrand and the product is ConfidiaProduct.\n")
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Confidential identifier", str(caught.exception))
+
+    def test_content_scan_covers_every_shipped_text_file(self):
+        """The scan is not limited to code files."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", self.declared_secret())
+        package = self.package()
+        for name in ["docs/a.md", "docs/b.yaml", "governance/AgentOS/protocols/c.md",
+                     "skills/example/e.json"]:
+            m.create(package / name, b"prefix ConfidiaBrand suffix\n")
+        self.seal(package)
+
+        with self.assertRaises(m.Blocked) as caught:
+            m.validate(package, agentos)
+        self.assertIn("Confidential identifier", str(caught.exception))
+
+    def test_staging_omits_the_declared_file_from_the_agentos_tree(self):
+        """The file must never be staged, so the gate never has to rescue it."""
+        agentos = self.root / "agentos"
+        m.create(agentos / "policies/REDACTION-TERMS.json", b'{"terms": ["confidential"]}\n')
+        m.create(agentos / "policies/SKILL-REGISTRY.json", b"{}\n")
+        m.create(agentos / "policies/NON-DISTRIBUTABLE.json", m.encoded(
+            {"schema": "agentos-non-distributable-v1",
+             "files": [{"path": "policies/REDACTION-TERMS.json", "reason": "fixture"}]}))
+
+        self.assertEqual(m.non_distributable(agentos), ["policies/REDACTION-TERMS.json"])
+        staged = [p.relative_to(agentos).as_posix() for p in m.root_files(
+            agentos / "policies", excluded_paths=m.non_distributable(agentos),
+            relative_to=agentos)]
+
+        self.assertNotIn("policies/REDACTION-TERMS.json", staged)
+        self.assertIn("policies/SKILL-REGISTRY.json", staged)
 
     def review_fixture(self, package, review):
         log = self.root / "independent.log"

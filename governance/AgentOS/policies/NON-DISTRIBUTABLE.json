@@ -1,0 +1,107 @@
+{
+  "schema": "agentos-non-distributable-v1",
+  "agentos_version": "1.9.2",
+  "policy_id": "non-distributable-governance-v1",
+  "authority": "Owner governance decision 2026-11-08: files that carry customer, product or personnel identifiers must never leave this machine through a distribution channel.",
+  "purpose": "Declare, in one place, which AgentOS source files are local-only. Every publisher, installer and release gate reads this list instead of hard-coding filenames.",
+  "scope": "Applies to every text distribution channel of this corpus: the governed skills repository, the portable installer payload, and any staged publish package.",
+  "matches": "path-and-digest",
+  "channel_coverage": {
+    "F-ND-1": "Publisher: refuses the declared path and any file whose name derives from its stem, in any directory.",
+    "F-ND-2": "Installer build: refuses the declared file, its stem-derived copies, and any file whose bytes match the declared digest.",
+    "F-ND-3": "Installer runtime: refuses a payload carrying the declared file, the declared digest, or the declared structural content markers. It cannot scan for confidential identifiers because the term list deliberately does not travel.",
+    "F-ND-4": "Publisher: scans every shipped file that decodes under any of the checked encodings (UTF-8, UTF-16 LE and BE, GB18030) against the local confidential term list. The list never travels. A file that hides a term behind a NUL byte or a UTF-16 code unit is decoded under every encoding before it is called clean.",
+    "F-ND-5": "Publisher: refuses a publication whose declared digest no longer matches the local confidential file.",
+    "F-ND-6": "Installer build: scans every payload file under each checked encoding (UTF-8, UTF-16 LE and BE, GB18030) against the local confidential term list and refuses to build a payload that carries one. The list never travels. No file is skipped for looking binary: the bytes are decoded every way a term could be written.",
+    "F-ND-7": "Installer build: carries only the Skills the redistribution allowlist names, removes any Skill it excludes, and removes its own output when it refuses, so a refused build leaves no tree behind."
+  },
+  "sha256": {
+    "policies/REDACTION-TERMS.json": "6b8aed19063aa708a1f708506afa6fe8b83a40ef177c43e657ee9afdfb7f2c13"
+  },
+  "sha256_note": "Content digests of the declared local-only files. A renamed or relocated copy has the same bytes and the same digest, so it is recognised; a file that merely mentions the schema name does not, because a mention is not the file. A literal-signature scheme was tried first and rejected: this file and the tests that exercise the gate legitimately mention the literals, so a literal match refused honest files. When the confidential list is updated its digest changes and this entry must be updated in the same change, otherwise gate F-ND-5 refuses the release and names the stale declaration.",
+  "content_markers": [
+    "\"schema\": \"redaction-terms-v1\"",
+    "\"retained_public_identifiers\":",
+    "\"review_candidates\":",
+    "\"maintained_by\":"
+  ],
+  "content_markers_note": "Exact JSON fragments that identify the confidential list by structure. A distribution channel that cannot know the confidential bytes -- the installer runtime, for example -- still recognises a copy by these. Each marker is INDEPENDENTLY sufficient: a rule that requires every marker lets a copy shed one of them and pass, and the file still carries the confidential list. They include the COLON that follows the key, so that prose and test code which merely NAME a key are not refused: only a file that carries the key as JSON is. They are deliberately exact JSON fragments: ordinary documentation and tests mention the schema name but do not reproduce its JSON shape, so an honest file is not refused.",
+  "distributable_exceptions": [
+    {
+      "path": "policies/REDACTION-TERMS.example.json",
+      "reason": "The public placeholder term list. It carries placeholder names only and no real identifier, and it must ship so that bin/qa_leak.py is usable on another machine. It is exempt from the stem rule by exact path, not by a looser name pattern.",
+      "sha256": "b0102d94be3064ae2cc0ef040cd855d15e9a1d14bce173f53c11355f3acfe341",
+      "rule": "The exemption applies only to a file whose content carries no confidential identifier. The publisher decides this with the confidential-term content scan (F-ND-4). The installer build decides it with the declared content digest (F-ND-2). A file at this path whose content was replaced with the secret is refused by both."
+    }
+  ],
+  "exceptions_note": "An exact path that may ship even though its name derives from a declared local-only file. The exemption is decided by CONTENT, never by name alone: the publisher channel requires the file to pass the confidential-term content scan, and the installer build requires its bytes to match the declared digest. A same-named file whose content was replaced is refused by both channels.",
+  "coverage_note": "The two channels do different jobs and neither substitutes for the other. A payload is produced by the installer build, which scans every decodable text file against the local term list, so a payload that leaves this machine has already been content-checked. The runtime gate exists for an OLDER payload handed to the installer later; it refuses by path, digest and structural marker, because it cannot know the term list.",
+  "not_implementing_this_policy": [
+    {
+      "path": "tools/security_check.ps1",
+      "reason": "The security scanner looks for malicious-code patterns. It implements no confidentiality rule and is not one of the distribution channels for this policy. A reader who expects it to refuse a confidential identifier will not find that behaviour there."
+    }
+  ],
+  "files": [
+    {
+      "path": "policies/REDACTION-TERMS.json",
+      "content_signature": "redaction-terms-v1",
+      "content_signature_note": "A stable literal that identifies this file by content rather than by name. A per-file hash was rejected: the term list is updated as new identifiers are found, so a declared digest would go stale and either block a legitimate local file or stop meaning anything.",
+      "reason": "Holds the R10-confidential customer, product and personnel identifier list. Its own note states these terms are redacted precisely because they reveal who the work is for. Publishing the list publishes the identifiers it exists to suppress.",
+      "introduced": "2026-10-29 publication cycle d18b7b560f5b",
+      "remediation": "Removed from the published corpus. It stays local so bin/qa_leak.py can still read it as a local input."
+    },
+    {
+      "path": "runtime/backups/derivation/",
+      "kind": "directory",
+      "kind_note": "A trailing slash marks a DIRECTORY. Every file beneath it inherits the status. The publisher, the installer build and the installer runtime all read this convention, so one declaration governs all three channels.",
+      "content_signature": "agentos-derivation-backup-tree",
+      "content_signature_note": "A directory, not a file: the derivation deployment script writes a timestamped snapshot of every client rule file it touches under runtime/backups/derivation/<stamp>/. Each snapshot is a copy of a client's AGENTS.md or CLAUDE.md, so it carries that project's own engagement identifiers, project codes and machine paths verbatim. The tree is local evidence of what was deployed and when, not distributable governance source.",
+      "reason": "The derivation deployment backups are pre-publication snapshots of client and project rule files. They carry live engagement identifiers (project codes, customer-facing descriptions, drive layouts) that the confidential-term scan cannot see, because the identifiers are not in the term list -- the term list holds product and brand names, while these are per-project codes. The tree is local evidence, exactly like the reports/ tree the installer already declines to carry.",
+      "introduced": "2026-11-12 derivation deployment (backup tree first written); would have been published for the first time by the 2026-11-19 cycle",
+      "remediation": "Excluded from the published corpus and from the installer payload. The declaration names the tree by prefix, so every timestamped snapshot under it inherits the status. The tree stays on this machine as deployment evidence."
+    }
+  ],
+  "gates": [
+    {
+      "id": "F-ND-1",
+      "owner": "tools/weekly_learning.py validate()",
+      "description": "Publisher: refuses the declared path and any file whose name derives from its stem, in any directory."
+    },
+    {
+      "id": "F-ND-4",
+      "owner": "tools/weekly_learning.py validate()",
+      "description": "Publisher: scans every shipped file under each checked encoding against the local confidential term list. The list never travels."
+    },
+    {
+      "id": "F-ND-5",
+      "owner": "tools/weekly_learning.py validate()",
+      "description": "Publisher: refuses a publication whose declared digest no longer matches the local confidential file."
+    },
+    {
+      "id": "F-ND-2",
+      "owner": "installer/build-installer.ps1",
+      "description": "Installer build: refuses the declared file, its stem-derived copies, and any file whose bytes match the declared digest. Only the declaration at its declared path is exempt; a file that merely shares its name is not."
+    },
+    {
+      "id": "F-ND-6",
+      "owner": "installer/build-installer.ps1",
+      "description": "Installer build: scans every payload file under each checked encoding against the local confidential term list. The list never travels."
+    },
+    {
+      "id": "F-ND-7",
+      "owner": "installer/build-installer.ps1",
+      "description": "Installer build: carries only the Skills the redistribution allowlist names, removes any Skill it excludes, and removes its own output when it refuses."
+    },
+    {
+      "id": "F-ND-3",
+      "owner": "installer/AgentOS.Setup.cs",
+      "description": "Installer runtime: refuses a payload carrying the declared file, the declared digest, or the declared structural content markers. It cannot scan for confidential identifiers because the term list deliberately does not travel."
+    }
+  ],
+  "notes": [
+    "A file that a client needs at runtime must not be declared here. The redaction list is a local input to a local gate, never a distributed dependency.",
+    "A copy of a declared file inherits its status ONLY while it keeps the declared path or a name derived from it. A renamed copy is caught by gate F-ND-4, which scans the CONTENT of every shipped file against the local term list; that gate, not the path list, is what makes a renamed copy fail.",
+    "Gate F-ND-4 is the load-bearing gate. The path list removes the obvious cases; the content scan removes the rest. Neither substitutes for the other."
+  ]
+}

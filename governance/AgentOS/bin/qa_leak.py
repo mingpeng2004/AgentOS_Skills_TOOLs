@@ -14,7 +14,7 @@
 ------------
 | 层 | 查什么 | 抓什么 |
 |---|---|---|
-| `path` | 完整相对路径（目录名 + 文件名） | `BYD_Sealion08_电耗优化报告/` 这类整目录名 |
+| `path` | 完整相对路径（目录名 + 文件名） | `<客户>_<型号>_电耗优化报告/` 这类整目录名 |
 | `text` | 可检索文本文件全文 | md / txt / csv / tsv / json / html / xml / yaml / py / js |
 | `pdf_text` | PDF 每页的文本层 | PDF 里的一行字、一张图上烧进去的字 |
 
@@ -50,6 +50,16 @@ sys.stdout.reconfigure(encoding="utf-8")
 AGENTOS_HOME = os.environ.get(
     "AGENTOS_HOME", r"${AGENTOS_HOME}")
 DEFAULT_TERMS = os.path.join(AGENTOS_HOME, "policies", "REDACTION-TERMS.json")
+# The authoritative term list names real customer, product and personnel
+# identifiers, so it stays on the owner's machine and is never distributed.
+# This placeholder ships instead: the tool stays usable on another machine,
+# and the run says out loud that it is scanning placeholders rather than a
+# real confidential list. A scan that silently used the wrong list would be a
+# false green, which is worse than no gate at all.
+# Resolved next to this script so it is found wherever the tool is
+# installed, not only under a configured AGENTOS_HOME.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+EXAMPLE_TERMS = os.path.join(os.path.dirname(_HERE), "policies", "REDACTION-TERMS.example.json")
 
 TEXT_EXT = {
     ".md", ".txt", ".csv", ".tsv", ".json", ".html", ".htm", ".xml",
@@ -150,6 +160,12 @@ def scan_path(root: str, terms: list[dict], recursive: bool = True,
     exclude_globs = list(exclude_globs or [])
     hits: list[dict] = []
 
+    # The term list necessarily contains every term it forbids, so scanning it
+    # always reports a full set of hits. Those are self-matches, not leaks.
+    # The list is a local input, not a deliverable.
+    term_files = {os.path.normcase(os.path.abspath(DEFAULT_TERMS)),
+                  os.path.normcase(os.path.abspath(EXAMPLE_TERMS))}
+
     def add(fp, rel, layer, matched, term):
         hits.append({
             "file": fp,
@@ -175,6 +191,8 @@ def scan_path(root: str, terms: list[dict], recursive: bool = True,
 
     for fp, rel in candidates:
         if exclude_globs and _excluded(rel, exclude_globs):
+            continue
+        if os.path.normcase(os.path.abspath(fp)) in term_files:
             continue
         # layer 1: the path itself -- a branded folder name leaks just as
         # loudly as a branded sentence.
@@ -261,9 +279,23 @@ def main() -> int:
     try:
         terms = load_terms(a.terms)
     except Exception as exc:  # noqa: BLE001
-        sys.stderr.write("脱敏词表不可用：%s（%s）\n"
-                         "注意：读不到词表等于没检过，不是检过了没发现。\n" % (a.terms, exc))
-        return 2
+        # Fall back to the shipped placeholder list so the gate still runs.
+        # The run states plainly that it is scanning placeholders, so nobody
+        # mistakes a placeholder scan for a real confidential scan. A scan
+        # that silently used the wrong list would be a false green, which is
+        # worse than no gate at all.
+        try:
+            terms = load_terms(EXAMPLE_TERMS)
+        except Exception:  # noqa: BLE001
+            sys.stderr.write("脱敏词表不可用：%s（%s）\n"
+                             "注意：读不到词表等于没检过，不是检过了没发现。\n" % (a.terms, exc))
+            return 2
+        sys.stderr.write(
+            "NOTICE: 本机没有机密词表（%s）。\n"
+            "         当前使用公开占位词表（%s），只能命中占位名。\n"
+            "         这不能证明真实的客户／产品／人员标识已不存在。\n"
+            "         请用 --terms <路径> 提供你自己的词表再做真正的检查。\n"
+            % (a.terms, EXAMPLE_TERMS))
     if not terms:
         sys.stderr.write("脱敏词表为空：%s\n" % a.terms)
         return 2

@@ -1,0 +1,104 @@
+{
+  "schema": "agentos-claim-tier-policy-v1",
+  "version": "1.0",
+  "created": "2026-11-14",
+  "author": "mavis (root session)",
+  "status": "draft-pending-independent-review",
+  "purpose": [
+    "把「结论的风险等级」变成机器可读的枚举，使门禁能按等级决定「报告」还是「阻断」。",
+    "分级依据：ISO 26262 的 Tool Qualification 三因子（Tool Error / Tool Impact / Tool Error Detection）——",
+    "同一道闸对不同等级的结论应投入不同强度，并把「错误可检测性」本身纳入分级。",
+    "边界：本文件只定义等级与处置，不定义任何等级的具体校验逻辑；校验逻辑在各自的 gate 里。"
+  ],
+  "tiers": {
+    "T0": {
+      "name": "措辞类",
+      "name_en": "wording",
+      "blocks_delivery": false,
+      "report_only": true,
+      "rationale": "描述性/排版性内容，错了不产生物理后果；且门禁误报率高，阻断只会让人忽略整道闸。",
+      "examples": [
+        "章节标题与段落顺序",
+        "术语译法与排版规范",
+        "不含技术断言的说明性文字"
+      ],
+      "verification": [
+        "S1-S4 措辞扫描（现有 check_derivation_discipline.py）",
+        "渲染层回读（数字与事实源一致）"
+      ]
+    },
+    "T1": {
+      "name": "事实类",
+      "name_en": "fact",
+      "blocks_delivery": false,
+      "report_only": true,
+      "rationale": "单个事实错误会被读者自行核对发现，且修复成本低；此时阻断会拖慢交付。但必须报告并进入台账。",
+      "examples": [
+        "单个数值、字节数、计数",
+        "文件是否存在、路径是否可定位",
+        "某个条目当前处于什么状态"
+      ],
+      "verification": [
+        "事实异路重算（不同代码路径，不复用生成方逻辑）",
+        "证据可达性检查（evidence ref 指向的行/命令真的存在且内容匹配）",
+        "渲染层回读"
+      ]
+    },
+    "T2": {
+      "name": "判定类",
+      "name_en": "verdict",
+      "blocks_delivery": true,
+      "report_only": false,
+      "rationale": "「装/不装」「合格/不合格」这类结论会直接改变用户的行动；错了代价高且不易被读者自查发现。",
+      "examples": [
+        "第三方工具的装 / 不装判定",
+        "零件或样品的合格 / 不合格判定",
+        "方案选型与采购建议"
+      ],
+      "verification": [
+        "T1 全部验证项",
+        "覆盖性检查（断言的适用条件是否覆盖它被使用的地方）",
+        "独立盲审（信息不对称：只给原子命题与证据，不给原推理链）",
+        "溯源收据多方交叉（lock / manifest / 磁盘三方对拍，任一绿不算通过）"
+      ]
+    },
+    "T3": {
+      "name": "动作类",
+      "name_en": "action",
+      "blocks_delivery": true,
+      "report_only": false,
+      "fail_closed": true,
+      "rationale": "会动用户磁盘、生产设备或对外产生不可逆动作的结论。工业/现场场景的默认等级。",
+      "examples": [
+        "删除、覆盖、迁移用户数据",
+        "改动产线设备状态、参数、下发指令",
+        "现场作业步骤里的尺寸/扭矩/工艺参数判定"
+      ],
+      "verification": [
+        "T2 全部验证项",
+        "动作门禁（APPROVAL-POLICY.json 的必审类别）",
+        "确定性规则包络：智能体输出始终被独立规则层夹住，规则层有最终否决权",
+        "证据全部可机验 + 人工确认放行，不得由模型自行放行"
+      ],
+      "note": "fail_closed=true 的含义：验证器自身失能、证据缺失或任何一项无法判定时，默认不放行（拒绝执行），而不是放行。"
+    }
+  },
+  "classification": {
+    "who_assigns": "agent",
+    "how": "由任务的性质判定，不由结论的语气判定；同一条交付物内可以分属不同等级（例如结论 T2、叙述 T0）。",
+    "escalation_rule": "只要一条结论会导致 T2/T3 动作，整条交付物的等级取最高。",
+    "downgrade_rule": "不得自行降级；若认为等级过高，写入待拍板台账由用户裁定。"
+  },
+  "enforcement": {
+    "default_for_unclassified": "T1",
+    "note": "未分类时按 T1（只报告）处理，而不是按最严处理——否则会重演「永久变红的门禁没人看」。但 T3 的动作本身仍受既有动作门禁约束，不受本文件影响。",
+    "existing_gates_unchanged": true,
+    "note_2": "本文件不改变现有任何门禁的强制程度；它定义的是新闸落地时的默认档位。"
+  },
+  "references": [
+    "ISO 26262 Tool Qualification: Tool Error / Tool Impact / Tool Error Detection",
+    "AgentOS protocols/DERIVATION-DISCIPLINE.md v1.2",
+    "AgentOS policies/APPROVAL-POLICY.json",
+    "Electronics 2026, 15(5), 966 — standards-aligned survey of AR LLM failure modes (IEC 61508 / ISO 26262 / ISO 21448)"
+  ]
+}

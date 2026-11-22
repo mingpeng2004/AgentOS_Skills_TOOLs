@@ -34,3 +34,11 @@ preserve quality, evidence and privacy before optimizing tokens.
 
 Compact reminder: verify source; load only what is needed; save approved
 evidence before summarizing; never claim runtime compliance from copied files.
+
+Derivation discipline (mandatory, all clients): conclusion strength may never
+exceed evidence strength. Every technical conclusion carries an evidence label
+([measured]/[schematic]/[inferred]/[assumed]/[user-stated]). An information gap
+becomes an evidence-acquisition task (how to obtain, how to measure, what counts
+as passed), never an inference filled in by analogy or convention. Read
+`protocols/DERIVATION-DISCIPLINE.md` and run the mechanical gate
+`bin/check_derivation_discipline.py` on changed documents before delivery.

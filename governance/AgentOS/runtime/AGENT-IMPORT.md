@@ -14,6 +14,9 @@ must read it before doing work.
 3. AgentOS/runtime/BOOT.md.
 4. AgentOS/constitution/AGENTOS-CONSTITUTION.md.
 5. AgentOS/protocols/TRUTH-AND-EVIDENCE.md.
+5b. AgentOS/protocols/DERIVATION-DISCIPLINE.md — 推导纪律（证据等级标签、依据链与覆盖性检查、
+   缺口即取证任务、输出前自洽扫描、观测工具先校验、推翻痕迹）。**结论强度不得超过证据强度；
+   遇到信息缺口先取证，不得用推断填补**。本条对所有技术类结论强制执行。
 6. AgentOS/protocols/TASK-PROTOCOL.md and
    AgentOS/protocols/RECURSIVE-PLANNING.md.
 7. AgentOS/protocols/CONTEXT-PIPELINE.md,
@@ -47,7 +50,7 @@ must read it before doing work.
 16. Before installing, relocating or upgrading any tool, CLI, IDE, MCP
     server or skill library on this host, read
     protocols/TOOL-DEPLOYMENT-STANDARD.md. All tool deployment belongs under
-    `${PROJECT_PATH}`; the C: drive keeps only junctions.
+    `${PROJECT_PATH}\999_AI_TOOLS_SKILLS`; the C: drive keeps only junctions.
 
 ## Import acknowledgement
 
@@ -64,6 +67,14 @@ The agent must internally establish these facts before acting:
   not default. New feedback is ingested before evaluating saved deadlines.
 - No material claim will be presented as verified without a source and a
   validation record.
+- Every technical conclusion carries an evidence level label
+  ([实测]/[图纸]/[推论]/[假设]/[用户]); an information gap becomes an
+  evidence-acquisition task (how to obtain, how to measure, what counts as
+  passed), never an inference filled in by analogy or convention.
+- Before delivering, the self-consistency scan has been run and the
+  derivation-discipline gate
+  (bin/check_derivation_discipline.py) reports no blocking finding on the
+  changed documents.
 - User-stated, model-derived, assumed and synthetic values will remain
   explicitly labeled.
 - Conflicting, stale, failed, timed-out or truncated evidence blocks delivery.

@@ -16,6 +16,35 @@ spec = importlib.util.spec_from_file_location("verify_release", Path(__file__).r
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 
+PUBLISHER_FIXTURE = """import json
+import sys
+
+
+def validate(package, agentos_root=None):
+    import pathlib
+    root = pathlib.Path(package)
+    if not (root / "catalog.json").is_file():
+        raise RuntimeError("Incomplete/empty publish package")
+    if agentos_root is not None:
+        terms = pathlib.Path(agentos_root) / "policies" / "REDACTION-TERMS.json"
+        if terms.is_file():
+            import re
+            document = json.loads(terms.read_text(encoding="utf-8-sig"))
+            for item in document.get("terms", []):
+                pattern = item.get("pattern") if isinstance(item, dict) else item
+                if not pattern:
+                    continue
+                for file in root.rglob("*"):
+                    if not file.is_file():
+                        continue
+                    try:
+                        text = file.read_text(encoding="utf-8-sig")
+                    except (OSError, UnicodeDecodeError):
+                        continue
+                    if re.search(pattern, text):
+                        raise RuntimeError("Confidential identifier in publish package: " + str(file))
+    return {"state": "valid", "files": 1}
+"""
 
 class VerifyReleaseTests(unittest.TestCase):
     def setUp(self):
@@ -29,7 +58,38 @@ class VerifyReleaseTests(unittest.TestCase):
         self.ps.write_bytes(b"synthetic path only; never executed")
         self.write("tools/security_check.ps1", b"# synthetic scanner fixture\n")
         self.write("tests/test_example.py", b"# synthetic suite fixture\n")
-        self.write("governance/AgentOS/tests/test_agentos_skills.py", b"# synthetic matrix fixture\n")
+        self.write("governance/AgentOS/tests/test_agentos_skills.py",
+                   b"import unittest\n\n"
+                   b"class SyntheticMatrix(unittest.TestCase):\n"
+                   b"    def test_fixture(self):\n"
+                   b"        self.assertTrue(True)\n\n"
+                   b"if __name__ == '__main__':\n"
+                   b"    unittest.main()\n")
+        self.write("governance/AgentOS/policies/NON-DISTRIBUTABLE.json", b'{"schema": "x"}\n')
+        # The release gate runs the publisher that is IN the package, so the
+        # fixture has to carry one. A package without a publisher cannot be
+        # released, and that refusal is what the new suite checks.
+        self.write("tools/weekly_learning.py", PUBLISHER_FIXTURE.encode("utf-8"))
+        self.write("governance/AgentOS/VERSION", b"1.0.0\n")
+        self.write("catalog.json", b'{"schema": "governed-skill-catalog-v2", "skills": [], "source_count": 0}\n')
+        self.agentos = self.root / "agentos"
+        self.agentos.mkdir()
+        self.write_agentos("policies/REDACTION-TERMS.json",
+                           b'{"schema": "redaction-terms-v1", "terms": [{"pattern": "ExampleSecretBrand", "kind": "literal"}]}\n')
+        self.write_agentos("policies/NON-DISTRIBUTABLE.json", b'{"schema": "agentos-non-distributable-v1", "files": [], "sha256": {}}\n')
+        self.write("evidence/installer-gate-receipt.json", json.dumps({
+            "schema": "agentos-installer-gate-receipt-v1", "state": "passed",
+            "suite": "test_agentos_non_distributable.py", "exit_code": 0,
+            "observed_test_count": 2,
+            "executed_tests": ["test_runtime_gate_rejects_a_tainted_payload_when_executed",
+                               "test_installer_build_refuses_a_confidential_identifier_in_any_file"],
+            "executed_test_count": 2,
+            "agentos_sha256": {"policies/NON-DISTRIBUTABLE.json": m._sha(
+                (self.package / "governance/AgentOS/policies/NON-DISTRIBUTABLE.json").read_bytes())},
+            "tested_against_sha256": {"policies/NON-DISTRIBUTABLE.json": m._sha(
+                (self.package / "governance/AgentOS/policies/NON-DISTRIBUTABLE.json").read_bytes())},
+            "normalisation": {},
+        }).encode("utf-8"))
         for name in m.PS_TESTS:
             self.write("governance/AgentOS/tests/" + name, b"# synthetic suite fixture\n")
         self.commands = []
@@ -59,6 +119,11 @@ class VerifyReleaseTests(unittest.TestCase):
             reports = project / "reports"
             reports.mkdir()
             (reports / "fixture-security-audit-file.json").write_text(json.dumps(report), encoding="utf-8")
+        elif "run-gate.py" in " ".join(argv):
+            # The publisher confidentiality gate runs a real subprocess. The
+            # fake must not pretend to be it: the gate's own verdict is what
+            # this release checks, so the fake reports it honestly.
+            stdout = b'{"files": 1, "state": "valid"}\n'
         else:
             script = Path(argv[argv.index("-File") + 1]).name if "-File" in argv else None
             anchors = {
@@ -80,19 +145,89 @@ class VerifyReleaseTests(unittest.TestCase):
         m._json(output / "command.json", result)
         return result
 
-    def run_fake(self, powershell=True):
+    def write_agentos(self, name, data):
+        path = self.agentos / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+
+    def run_fake(self, powershell=True, agentos_root=None):
         with mock.patch.object(m, "_powershell", return_value=self.ps if powershell else None), mock.patch.object(m, "_command", side_effect=self.fake_command):
-            return m.run_release(self.package, self.output)
+            return m.run_release(self.package, self.output,
+                                 agentos_root=self.agentos if agentos_root is None else agentos_root)
+
+    def test_the_release_gate_runs_the_publishers_own_confidentiality_gate(self):
+        """The release must not rely on a receipt produced elsewhere.
+
+        The publisher's confidentiality gate refuses a package that carries
+        a declared local-only file or a confidential identifier. If that
+        gate lives only in the `stage` step, a package edited after staging
+        passes the release. The release gate runs the publisher that is IN
+        the package, against the package being released.
+        """
+        result = self.run_fake()
+        suites = {x["suite"]: x for x in result["suites"]}
+        self.assertIn("publisher-confidentiality-gate", suites)
+        gate = suites["publisher-confidentiality-gate"]
+        self.assertEqual(gate["state"], "passed")
+        # It must have run the publisher that ships, not one on this machine.
+        gate_commands = [x for x in self.commands if "run-gate.py" in " ".join(x)]
+        self.assertTrue(gate_commands, "The publisher gate did not run.")
+        self.assertTrue(any("weekly_learning.py" in " ".join(x)
+                            and "package" in " ".join(x)
+                            for x in gate_commands),
+                        "The publisher gate did not run the publisher that ships "
++                       "in the package.")
+
+    def test_a_package_without_a_publisher_cannot_be_released(self):
+        """A gate that is skipped is a gate that never ran."""
+        (self.package / "tools" / "weekly_learning.py").unlink()
+        result = self.run_fake()
+        suites = {x["suite"]: x for x in result["suites"]}
+        gate = suites["publisher-confidentiality-gate"]
+        self.assertEqual(gate["state"], "failed")
+        self.assertEqual(result["state"], "failed")
+
+    def test_a_receipt_that_does_not_explain_a_difference_fails(self):
+        """A shipped file that differs from the tested file needs a reason.
+
+        The suite ran against the source-tree bytes. The published edition
+        carries normalised bytes. That difference is legitimate, but it must
+        be declared: an undeclared difference means the gate proved something
+        other than what ships.
+        """
+        receipt_path = self.package / "evidence" / "installer-gate-receipt.json"
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt["tested_against_sha256"]["policies/NON-DISTRIBUTABLE.json"] = "f" * 64
+        receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+        result = self.run_fake()
+        suites = {x["suite"]: x for x in result["suites"]}
+        self.assertEqual(suites["installer-gate-receipt"]["state"], "failed")
+        self.assertIn("explain", suites["installer-gate-receipt"]["reason"])
+
+    def test_a_receipt_whose_test_count_disagrees_with_its_list_fails(self):
+        """The count must cover the tests that are named."""
+        receipt_path = self.package / "evidence" / "installer-gate-receipt.json"
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt["executed_test_count"] = 999
+        receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+        result = self.run_fake()
+        suites = {x["suite"]: x for x in result["suites"]}
+        self.assertEqual(suites["installer-gate-receipt"]["state"], "failed")
 
     def test_normal_complete_coverage_and_sanitized_summary(self):
         result = self.run_fake()
         self.assertEqual(result["state"], "passed")
-        self.assertEqual(len(result["suites"]), 6)
-        self.assertEqual(len(result["security"]), len(result["code_coverage"]))
+        self.assertEqual(len(result["suites"]), 9)
+        # Every shipped file is scanned. A gate that scans only a
+        # self-defined subset answers its own coverage question.
+        self.assertEqual(len(result["security"]), len(result["sources"]))
         self.assertTrue(all(x["state"] == "passed" and x["total_files"] == 1 for x in result["security"]))
         summary = (self.output / "public_summary.json").read_text(encoding="utf-8")
         self.assertNotIn(str(self.root), summary)
-        self.assertTrue(json.loads(summary)["log_sha256"])
+        public = json.loads(summary)
+        self.assertTrue(public["log_sha256"])
+        self.assertEqual(public["scanned_files"], public["source_files"])
+        self.assertEqual(public["unscanned_files"], 0)
         scanner_calls = [x for x in self.commands if "-FilePath" in x]
         self.assertTrue(all("-FailOnCritical" in x and "-FailOnWarning" in x for x in scanner_calls))
         self.assertEqual(len({x[x.index("-ProjectRoot") + 1] for x in scanner_calls}), len(scanner_calls))
@@ -103,6 +238,95 @@ class VerifyReleaseTests(unittest.TestCase):
         self.assertEqual(result["state"], "planned")
         self.assertFalse(self.output.exists())
 
+    def test_missing_confidentiality_gate_suite_fails_the_release(self):
+        """The installer confidentiality gates must be covered by the release gate.
+
+        The installer gates live outside the package, so their result arrives
+        as a receipt. Without it the release has no evidence that the
+        installer channels were checked.
+        """
+        (self.package / "evidence/installer-gate-receipt.json").unlink()
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
+        record = next(x for x in result["suites"]
+                      if x["suite"] == "installer-gate-receipt")
+        self.assertEqual(record["state"], "failed")
+
+    def test_stale_installer_gate_receipt_fails_the_release(self):
+        """A receipt that does not cover the shipped content is not evidence."""
+        path = self.package / "evidence/installer-gate-receipt.json"
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        receipt["agentos_sha256"] = {"policies/NON-DISTRIBUTABLE.json": "0" * 64}
+        path.write_text(json.dumps(receipt), encoding="utf-8")
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
+        record = next(x for x in result["suites"]
+                      if x["suite"] == "installer-gate-receipt")
+        self.assertEqual(record["state"], "failed")
+
+    def test_a_receipt_that_names_a_different_tested_set_fails(self):
+        """The tested set must be the shipped set, not merely present.
+
+        A receipt whose tested digests cover different files asserts coverage
+        it cannot show, which is the same defect as a path rule standing where
+        a content rule should be.
+        """
+        path = self.package / "evidence/installer-gate-receipt.json"
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        receipt["tested_against_sha256"] = {"policies/OTHER.json": "0" * 64}
+        path.write_text(json.dumps(receipt), encoding="utf-8")
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
+        record = next(x for x in result["suites"]
+                      if x["suite"] == "installer-gate-receipt")
+        self.assertEqual(record["state"], "failed")
+
+    def test_a_receipt_whose_count_does_not_match_its_tests_fails(self):
+        """A count that is only a positive integer is a number, not evidence.
+
+        The receipt names two tests. Reporting a count of one cannot cover
+        them, so the receipt is refused rather than believed.
+        """
+        path = self.package / "evidence/installer-gate-receipt.json"
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        receipt["observed_test_count"] = 1
+        path.write_text(json.dumps(receipt), encoding="utf-8")
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
+        record = next(x for x in result["suites"]
+                      if x["suite"] == "installer-gate-receipt")
+        self.assertEqual(record["state"], "failed")
+
+    def test_a_receipt_that_names_no_test_fails(self):
+        """A receipt must name the tests it ran, including the load-bearing one."""
+        path = self.package / "evidence/installer-gate-receipt.json"
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        receipt["executed_tests"] = []
+        receipt["observed_test_count"] = 0
+        path.write_text(json.dumps(receipt), encoding="utf-8")
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
+
+    def test_installer_gate_receipt_that_did_not_pass_fails_the_release(self):
+        path = self.package / "evidence/installer-gate-receipt.json"
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        receipt["state"] = "failed"
+        receipt["exit_code"] = 1
+        path.write_text(json.dumps(receipt), encoding="utf-8")
+
+        result = self.run_fake()
+
+        self.assertEqual(result["state"], "failed")
     def test_missing_powershell_is_not_run_not_passed(self):
         result = self.run_fake(False)
         self.assertEqual(result["state"], "incomplete")

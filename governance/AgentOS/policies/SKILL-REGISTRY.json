@@ -3271,7 +3271,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "protocol",
       "domain": "H",
       "downstream": [],
       "failure_modes": [
@@ -3295,7 +3295,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "AgentOS 接入与能力注册的操作方法；治理正文仍以 AgentOS 原文为准，本方法不复制治理正文，不构成客户端已接入的证据。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "AgentOS 接入与能力注册的操作方法；治理正文仍以 AgentOS 原文为准，本方法不复制治理正文，不构成客户端已接入的证据。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -3303,8 +3303,10 @@
           "purpose": "meta-skill-registry result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "governance",
+      "resources": [
+        "references/capability-provider-registration.md"
+      ],
       "scenarios": [
         "Produce the meta-skill-registry deliverable in a scoped engineering task."
       ],
@@ -3667,7 +3669,7 @@
         "Artifact-first eviction, SHA256, data classification and rollback evidence are present when context is reduced.",
         "Existing task quality, safety and evidence gates remain green; provider charges are not fabricated."
       ],
-      "availability": "candidate",
+      "availability": "protocol",
       "domain": "H",
       "downstream": [
         "meta-qc-gate",
@@ -3694,7 +3696,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "Provides measurement and governance guidance, not provider billing truth or universal client runtime enforcement. Client-specific compression values require matched evidence; unobserved client behavior remains unattested. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "Provides measurement and governance guidance, not provider billing truth or universal client runtime enforcement. Client-specific compression values require matched evidence; unobserved client behavior remains unattested.",
       "outputs": [
         {
           "format": "project-owned token observation or governance report",
@@ -3702,8 +3704,11 @@
           "purpose": "Measured token baseline, intervention, comparison and rollback/acceptance decision."
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "governance",
+      "resources": [
+        "references/token-efficiency.md",
+        "references/token-budget-workflow.md"
+      ],
       "scenarios": [
         "Measure and reduce client token consumption without weakening quality, safety or evidence gates."
       ],
@@ -3728,7 +3733,7 @@
         "A rejected background launch is recorded with the client's own rejection text and the effective tool list.",
         "No AgentOS change disables or filters a background-task or subagent tool, and the token-budget protocol is unchanged in meaning."
       ],
-      "availability": "candidate",
+      "availability": "protocol",
       "domain": "H",
       "downstream": [],
       "failure_modes": [
@@ -3752,7 +3757,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "Provides measurement and governance guidance. It cannot grant a client a capability its product withholds, and it never claims runtime behavior without the client's own evidence. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "Provides measurement and governance guidance. It cannot grant a client a capability its product withholds, and it never claims runtime behavior without the client's own evidence.",
       "outputs": [
         {
           "format": "project-owned background-agent capability report",
@@ -3760,8 +3765,10 @@
           "purpose": "Per-client background execution state with the client's own rejection evidence or live handle."
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "governance",
+      "resources": [
+        "references/background-agent-execution.md"
+      ],
       "scenarios": [
         "Verify or restore a client's ability to launch and manage background subagents without letting governance remove the capability."
       ],
@@ -3843,6 +3850,233 @@
         "Strengthen an existing capability when the learning fits it; register a new capability when it is a real gap.",
         "Produce the reviewed, gated and published corpus update, then read the remote state back."
       ]
+    },
+    {
+      "acceptance": [
+        "Inputs and declared result exist with current hashes.",
+        "Every itinerary conclusion maps to a fact-ledger row with a source and a checked date."
+      ],
+      "availability": "candidate",
+      "domain": "C",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Missing or outdated input",
+          "response": "Block dependent work and acquire the authoritative asset."
+        },
+        {
+          "failure": "Unsupported specialist or standard claim",
+          "response": "Mark unvalidated and request the relevant tool or specialist."
+        },
+        {
+          "failure": "Repeated failed attempt",
+          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
+        }
+      ],
+      "group": "planning",
+      "id": "plan-trip-handbook",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Delivery method for auditable trip handbooks; it does not certify opening hours, prices, road conditions or any booking outcome, and unverified facts stay labelled as not found. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "plan-trip-handbook result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the plan-trip-handbook deliverable in a scoped trip-planning task."
+      ],
+      "triggers": [
+        "行程手册",
+        "自驾行程手册",
+        "旅行手册",
+        "行程手册交付"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the task and declared authoritative inputs.",
+        "Apply plan-trip-handbook within the current confirmed scope; label missing facts.",
+        "Produce the declared result, verify it, and link current claims before handoff."
+      ]
+    },
+    {
+      "acceptance": [
+        "The chosen tool and the chosen storage tier are named explicitly, and the placement gate returns no new violation.",
+        "A mapped drive that is unavailable is reported as a warning with its remote path, and the task continues on local storage."
+      ],
+      "availability": "candidate",
+      "domain": "G",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Missing or outdated input",
+          "response": "Block dependent work and acquire the authoritative asset."
+        },
+        {
+          "failure": "Unsupported specialist or standard claim",
+          "response": "Mark unvalidated and request the relevant tool or specialist."
+        },
+        {
+          "failure": "Repeated failed attempt",
+          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
+        }
+      ],
+      "group": "knowledge",
+      "id": "km-authoring-routing",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Routing contract only. It does not certify document quality or visual style, and it does not make a human-facing application automatable. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "km-authoring-routing result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Choose the production tool for a deliverable (native PPTX vs document editor vs HTML/PDF vs Markdown) before any file is produced.",
+        "Place a new artifact in the contracted storage tier and audit an existing deliverable against the placement rules."
+      ],
+      "triggers": [
+        "交付工具选型",
+        "创作工具选型",
+        "存储分层",
+        "落盘位置",
+        "存储契约",
+        "NAS 路径契约",
+        "delivery tool selection",
+        "storage tiering"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the task and declared authoritative inputs.",
+        "Apply km-authoring-routing within the current confirmed scope; label missing facts.",
+        "Produce the declared result, verify it, and link current claims before handoff."
+      ]
+    },
+    {
+      "acceptance": [
+        "The redesign follows the nine ordered passes, and each changed file is reported with its before and after state.",
+        "The human confirmation gate before editing is respected, and paid image generation is never invoked without an explicit request."
+      ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Missing or outdated input",
+          "response": "Block dependent work and acquire the authoritative asset."
+        },
+        {
+          "failure": "Unsupported specialist or standard claim",
+          "response": "Mark unvalidated and request the relevant tool or specialist."
+        },
+        {
+          "failure": "Repeated failed attempt",
+          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
+        }
+      ],
+      "group": "ui",
+      "id": "ui-slop-redesign",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "Method and local runtime only. It does not generate images by itself: the paid image services it can call are optional, cost money, and are never invoked without an explicit request. Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "ui-slop-redesign result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Redesign one specific screen that reads as generic AI output, in the fixed order spacing, color, icons, copy, type, layout, details, visuals, motion.",
+        "Capture a live page as a static snapshot and render a before-after story video of the redesign."
+      ],
+      "triggers": [
+        "unslop",
+        "去 AI 味界面",
+        "界面重设计",
+        "AI 感界面",
+        "anti-AI UI polish"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the task and declared authoritative inputs.",
+        "Apply ui-slop-redesign within the current confirmed scope; label missing facts.",
+        "Produce the declared result, verify it, and link current claims before handoff."
+      ]
+    },
+    {
+      "acceptance": [
+        "The catalog list page, every product detail page and every download file are generated from one data source, and every outbound link is verified reachable by an external probe."
+      ],
+      "availability": "candidate",
+      "domain": "D",
+      "downstream": [],
+      "failure_modes": [
+        {
+          "failure": "Missing or outdated input",
+          "response": "Block dependent work and acquire the authoritative asset."
+        },
+        {
+          "failure": "Unsupported specialist or standard claim",
+          "response": "Mark unvalidated and request the relevant tool or specialist."
+        },
+        {
+          "failure": "Repeated failed attempt",
+          "response": "Change path at second failure; root-cause table at third; escalate at fourth."
+        }
+      ],
+      "group": "ui",
+      "id": "ui-product-catalog",
+      "inputs": [
+        "task",
+        "goals",
+        "constraints"
+      ],
+      "limits": "提供产品目录与资料下载的构造与核验方法；不认证产品参数真实性，不替代业主对规格的确认，也不构成视觉或对比度结论。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "outputs": [
+        {
+          "format": "project-owned file",
+          "id": "result",
+          "purpose": "ui-product-catalog result linked to task and acceptance evidence"
+        }
+      ],
+      "provider": null,
+      "resources": [],
+      "scenarios": [
+        "Produce the ui-product-catalog deliverable in a scoped engineering task."
+      ],
+      "triggers": [
+        "产品目录",
+        "产品列表页",
+        "资料下载",
+        "datasheet下载",
+        "产品规格书"
+      ],
+      "upstream": [],
+      "workflow": [
+        "Read only the task and declared authoritative inputs.",
+        "Apply ui-product-catalog within the current confirmed scope; label missing facts.",
+        "Produce the declared result, verify it, and link current claims before handoff."
+      ]
     }
   ],
   "providers": [
@@ -3862,7 +4096,7 @@
       "skill": "visual-asset-production"
     },
     {
-      "bundled": "skills/metal-process-engineering",
+      "bundled": "",
       "id": "metal",
       "skill": "metal-process-engineering"
     },
@@ -3872,12 +4106,12 @@
       "skill": "agentos-governed-integration"
     },
     {
-      "bundled": "skills/cad-geometry-automation",
+      "bundled": "",
       "id": "cad-geometry",
       "skill": "cad-geometry-automation"
     },
     {
-      "bundled": "skills/requirements-anchoring",
+      "bundled": "",
       "id": "requirements",
       "skill": "requirements-anchoring"
     },
@@ -3885,6 +4119,26 @@
       "bundled": "skills/weekly-governance-learning",
       "id": "weekly",
       "skill": "weekly-governance-learning"
+    },
+    {
+      "bundled": "",
+      "id": "travel",
+      "skill": "auditable-trip-handbook"
+    },
+    {
+      "bundled": "",
+      "id": "authoring",
+      "skill": "authoring-storage-routing"
+    },
+    {
+      "bundled": "",
+      "id": "unslop",
+      "skill": "unslop"
+    },
+    {
+      "bundled": "",
+      "id": "catalog",
+      "skill": "product-catalog-publishing"
     }
   ],
   "schema": "agentos-skill-registry-v1",

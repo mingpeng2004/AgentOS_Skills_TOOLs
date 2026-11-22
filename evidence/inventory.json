@@ -6,9 +6,29 @@
       "state": "explicitly_excluded"
     },
     {
+      "reason": "A runtime link that is not a Skill source; outside the Skill inventory.",
+      "source_id": "af39866afc76",
+      "state": "non_skill_link"
+    },
+    {
+      "reason": "A runtime link that is not a Skill source; outside the Skill inventory.",
+      "source_id": "33ebdda78d3f",
+      "state": "non_skill_link"
+    },
+    {
       "reason": "Version alias inside the bundled browser plugin cache; no project learning or authored Skill source is stored at the alias.",
       "source_id": "7405f7ec7aa1",
       "state": "explicitly_excluded"
+    },
+    {
+      "reason": "A runtime link that is not a Skill source; outside the Skill inventory.",
+      "source_id": "9a623fb730b4",
+      "state": "non_skill_link"
+    },
+    {
+      "reason": "A runtime link that is not a Skill source; outside the Skill inventory.",
+      "source_id": "21e3ccf37bc3",
+      "state": "non_skill_link"
     },
     {
       "reason": "Windows Known Folder media alias; personal media is outside Agent/Skill learning scope.",
@@ -44,7 +64,7 @@
   "learning_coverage": [
     {
       "directories_inspected": 2,
-      "files_inspected": 13,
+      "files_inspected": 15,
       "id": "maintenance-knowledge",
       "required": true,
       "state": "scanned"
@@ -114,14 +134,14 @@
     },
     {
       "directories_inspected": 1,
-      "files_inspected": 11,
+      "files_inspected": 12,
       "id": "maintenance-checkpoints",
       "required": false,
       "state": "scanned"
     },
     {
       "directories_inspected": 1,
-      "files_inspected": 13,
+      "files_inspected": 14,
       "id": "maintenance-tasks",
       "required": false,
       "state": "scanned"
@@ -137,6 +157,13 @@
       "directories_inspected": 1,
       "files_inspected": 10,
       "id": "project-61d7105f4a76-checkpoints",
+      "required": false,
+      "state": "scanned"
+    },
+    {
+      "directories_inspected": 1,
+      "files_inspected": 2,
+      "id": "project-58bf2e88829d-checkpoints",
       "required": false,
       "state": "scanned"
     },
@@ -163,7 +190,7 @@
     },
     {
       "directories_inspected": 1,
-      "files_inspected": 11,
+      "files_inspected": 12,
       "id": "project-4d3c12b9b37c-checkpoints",
       "required": false,
       "state": "scanned"
@@ -178,18 +205,21 @@
   ],
   "learning_coverage_complete": true,
   "legacy_installer": "Not distributed; use the preflight/backup/rollback tool.",
-  "lesson_records_inspected": 117,
+  "lesson_records_inspected": 123,
   "limits": "Inventory/file checks are not domain certification, client invocation, second-computer or future scheduler evidence.",
+  "omitted_unauthorised_files": [],
+  "omitted_unreviewed_files": [],
   "portable_agentos_profile": {
-    "excluded_required_files": 54,
+    "excluded_required_files": 48,
     "profile": "portable-owner-authorized",
-    "required_files": 59,
+    "required_files": 71,
     "test_template_sha256": "c99c66ce2a548537964306668e0f89f4973d56830f5347db36faa0114552f5be",
     "unavailable_capabilities": {
-      "agentos-governed-integration": [
-        "meta-skill-registry",
-        "meta-token-budget",
-        "meta-background-agent"
+      "auditable-trip-handbook": [
+        "plan-trip-handbook"
+      ],
+      "authoring-storage-routing": [
+        "km-authoring-routing"
       ],
       "metal-process-engineering": [
         "hw-dfm",
@@ -199,6 +229,9 @@
         "mfg-npi",
         "mfg-spc"
       ],
+      "product-catalog-publishing": [
+        "ui-product-catalog"
+      ],
       "requirements-anchoring": [
         "req-jtbd",
         "req-kano",
@@ -206,17 +239,20 @@
         "req-spec-freeze",
         "req-acceptance",
         "req-trace"
+      ],
+      "unslop": [
+        "ui-slop-redesign"
       ]
     }
   },
-  "projects_inspected": 60,
+  "projects_inspected": 63,
   "scan_issues": [],
   "scope_complete": true,
-  "skill_sources": 2262,
+  "skill_sources": 2488,
   "states": {
-    "deduplicated": 23,
-    "exported": 6,
-    "reference_only": 2233
+    "deduplicated": 43,
+    "exported": 7,
+    "reference_only": 2438
   },
-  "verified_link_aliases": 122
+  "verified_link_aliases": 126
 }

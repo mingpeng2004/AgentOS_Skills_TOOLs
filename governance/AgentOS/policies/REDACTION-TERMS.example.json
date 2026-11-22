@@ -1,0 +1,39 @@
+{
+  "schema": "redaction-terms-example-v1",
+  "version": "1.0",
+  "note": "PUBLIC EXAMPLE. This file ships with the distribution so that bin/qa_leak.py is usable on another machine. It contains NO real customer, product or personnel identifiers. The authoritative term list stays on the owner's machine because the identifiers themselves are the secret. Replace this file with your own list, or pass --terms <path>.",
+  "maintained_by": "${OWNER_SIGNATURE}",
+  "terms": [
+    {
+      "pattern": "ExampleCustomerBrand",
+      "kind": "literal",
+      "category": "brand",
+      "note": "Placeholder brand. Replace with your own confidential brand names."
+    },
+    {
+      "pattern": "ExampleProductCode",
+      "kind": "literal",
+      "category": "product_code",
+      "note": "Placeholder product code. Replace with your own confidential part numbers."
+    },
+    {
+      "pattern": "ExampleInternalCode",
+      "kind": "literal",
+      "category": "internal_code",
+      "note": "Placeholder internal project code. Replace with your own confidential project codes."
+    },
+    {
+      "pattern": "ExamplePersonName",
+      "kind": "literal",
+      "category": "person_name",
+      "note": "Placeholder contact name. Replace with your own confidential personnel names."
+    }
+  ],
+  "review_candidates": [
+    {
+      "pattern": "ClientName|Client Company|ContractorName|EngagementAlias",
+      "note": "Generic placeholders. These match customer-identity vocabulary and are reviewed, not blocked automatically."
+    }
+  ],
+  "retained_public_identifiers": []
+}

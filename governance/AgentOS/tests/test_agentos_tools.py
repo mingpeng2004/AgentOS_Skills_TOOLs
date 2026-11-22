@@ -34,9 +34,21 @@ class ToolRouteTests(unittest.TestCase):
             "hashes": {"tools/check.py": entry_hash}, "status": "active", "canonical": True,
             "supersedes": [], "runtime_dependencies": []}]}))
         self.validator = self.assets / "capability_assets.py"
-        source = Path(r"${PROJECT_PATH}")
-        if not source.is_file():
-            self.skipTest("shared validator source is unavailable")
+        # Look for the validator relative to this tree, not at a fixed machine
+        # path. A fixed path made these tests skip in every distributed
+        # package, so the coverage existed only on the build machine.
+        source = None
+        probe = ROOT
+        for _ in range(4):
+            if not probe:
+                break
+            candidate = probe / "tools" / "capability_assets.py"
+            if candidate.is_file():
+                source = candidate
+                break
+            probe = probe.parent
+        if source is None:
+            self.skipTest("capability_assets validator source is unavailable here")
         shutil.copy2(source, self.validator)
         binding = {"schema": "agentos-host-bindings-v1", "runtime": {"python": {
             "path": sys.executable, "observed_version": "3.14.0"}, "assets": {

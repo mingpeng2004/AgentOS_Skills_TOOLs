@@ -1,6 +1,6 @@
 # AgentOS 能力目标清单（CAPABILITY-OBJECTIVE）
 
-> 版本：AgentOS 1.9.2 · 注册表 1.4.0 · 能力总数 68
+> 版本：AgentOS 1.9.2 · 注册表 1.4.0 · 能力总数 72
 >
 > 本文件由 `policies/SKILL-REGISTRY.json` 生成（生成器：`bin/gen_capability_objective.py`），
 > 是**能力集合的机读基准**。`tests/verify_matrix_release.py` 会抽取本文件中每行开头的
@@ -39,6 +39,7 @@ plan-gate  C/planning · protocol · core/production-skill-routing · Stage-Gate
 plan-rolling  C/planning · mapped · core/production-skill-routing · 滚动规划、远粗近细、rolling · 2 项验收
 plan-risk  C/planning · protocol · core/production-skill-routing · 风险登记、预案、风险敞口 · 2 项验收
 plan-decompose  C/planning · mapped · core/production-skill-routing · 任务派发、子智能体、工作包 · 2 项验收
+plan-trip-handbook  C/planning · protocol · travel/auditable-trip-handbook · 行程手册、自驾行程手册、旅行手册、行程手册交付 · 2 项验收
 
 ## 域 D · design
 
@@ -69,6 +70,8 @@ ui-heuristic  D/ui · candidate · —（未部署） · Nielsen、可用性启�
 ui-a11y  D/ui · mapped · core/production-skill-routing · 可访问性、无障碍、焦点、对比度 · 2 项验收
 vis-concept-illustration  D/visual · protocol · visual/visual-asset-production · 概念渲染、实景插画、场景插画、示意图风格 · 4 项验收
 vis-dfm-illustration  D/visual · protocol · visual/visual-asset-production · DFM 配图、设计规范配图、注塑设计准则、工艺准则插图 · 6 项验收
+ui-slop-redesign  D/ui · protocol · unslop/unslop · unslop、去 AI 味界面、界面重设计、AI 感界面 · 2 项验收
+ui-product-catalog  D/ui · mapped · catalog/product-catalog-publishing · 产品目录、产品列表页、资料下载、datasheet下载 · 1 项验收
 
 ## 域 E · mechanical
 
@@ -93,6 +96,7 @@ km-decision-log  G/knowledge · mapped · core/production-skill-routing · 决�
 km-postmortem  G/knowledge · protocol · core/production-skill-routing · 复盘、AAR、事故教训 · 2 项验收
 km-lessons  G/knowledge · protocol · core/production-skill-routing · 教训入库、checklist更新 · 2 项验收
 km-context-pack  G/knowledge · mapped · core/production-skill-routing · 上下文装配、context、pack、checkpoint · 2 项验收
+km-authoring-routing  G/knowledge · protocol · authoring/authoring-storage-routing · 交付工具选型、创作工具选型、存储分层、落盘位置 · 2 项验收
 
 ## 域 H · quality
 
@@ -108,6 +112,6 @@ meta-weekly-learning  H/meta · mapped · weekly/weekly-governance-learning · �
 ## 汇总
 
 - candidate: 18 项
-- mapped: 29 项
-- protocol: 21 项
-- 合计: 68 项
+- mapped: 30 项
+- protocol: 24 项
+- 合计: 72 项

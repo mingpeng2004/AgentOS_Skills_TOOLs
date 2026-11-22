@@ -177,10 +177,12 @@ class DistributionTests(fixtures.WeeklyTests):
         workspace = self.root / "publisher"
         framework = self.root / "framework"
         framework.mkdir()
-        for folder in ["adapters", "bin", "constitution", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests", "skills"]:
+        for folder in ["adapters", "bin", "constitution", "installer", "policies", "profiles", "protocols", "runtime", "schemas", "templates", "tests", "skills"]:
             (framework / folder).mkdir()
         (framework / "VERSION").write_text("1.6.0\n")
         (framework / "README.md").write_text("fixture framework")
+        w.create(framework / "policies/NON-DISTRIBUTABLE.json",
+                 {"schema": "agentos-non-distributable-v1", "files": [], "sha256": {}})
         w.create(framework / "policies/SKILL-REGISTRY.json", {"schema":"agentos-skill-registry-v1", "providers":[{"id":"engineering", "skill":"embedded-software-engineering"}],
                  "capabilities":[{"id":"meta-qc-gate", "provider":"engineering", "availability":"mapped"}]})
         unauthorized = framework / "skills/vendor-unlicensed"

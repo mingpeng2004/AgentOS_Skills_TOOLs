@@ -1,0 +1,49 @@
+{
+ "schema": "agentos-installer-gate-receipt-v1",
+ "state": "passed",
+ "suite": "test_agentos_non_distributable.py",
+ "exit_code": 0,
+ "observed_test_count": 20,
+ "executed_test_count": 18,
+ "executed_tests": [
+  "test_a_refused_build_leaves_no_payload_on_disk",
+  "test_build_script_removes_the_secret_from_a_fresh_payload",
+  "test_build_script_verifies_the_exclusion_took_effect",
+  "test_installer_build_refuses_a_confidential_identifier_in_any_file",
+  "test_installer_build_refuses_a_tainted_declaration",
+  "test_installer_build_refuses_a_term_hidden_behind_a_nul_byte",
+  "test_installer_build_refuses_a_term_written_in_utf16",
+  "test_installer_build_refuses_an_identifier_in_an_unlisted_extension",
+  "test_installer_payload_carries_no_local_only_tree",
+  "test_installer_payload_carries_only_authorised_skills",
+  "test_runtime_gate_is_not_disabled_by_a_wrong_collection_cast",
+  "test_runtime_gate_rejects_a_tainted_payload_when_executed",
+  "test_runtime_installer_refuses_a_tainted_payload",
+  "test_the_declaration_names_the_local_only_tree",
+  "test_the_runtime_gate_refuses_a_term_list_with_its_markers_stripped",
+  "test_the_runtime_installer_refuses_a_payload_carrying_the_tree",
+  "test_policy_file_ships_so_other_machines_can_enforce_it",
+  "test_the_confidential_file_itself_is_still_present_locally"
+ ],
+ "agentos_sha256": {
+  "policies/NON-DISTRIBUTABLE.json": "d734baaf926db634d6287ef30cc31290f7b040f3f6eb02450025989476e9b26a",
+  "policies/REDACTION-TERMS.example.json": "b0102d94be3064ae2cc0ef040cd855d15e9a1d14bce173f53c11355f3acfe341",
+  "installer/AgentOS.Setup.cs": "bbda8bdbfdcb6e5a25563b151e63ca7711f8c5e4b80ef0bdcea102ccc5f7e9a2",
+  "installer/build-installer.ps1": "f69f6c1fff57b1561046f7c75b5efc14191fe679783a07d332d5ddb7fc9483f9",
+  "tests/test_agentos_non_distributable.py": "01c59b321403beea7cabd1eb786bfa0bf975f21e4f895b88a1c1425ac8845785"
+ },
+ "tested_against_sha256": {
+  "policies/NON-DISTRIBUTABLE.json": "d734baaf926db634d6287ef30cc31290f7b040f3f6eb02450025989476e9b26a",
+  "policies/REDACTION-TERMS.example.json": "b0102d94be3064ae2cc0ef040cd855d15e9a1d14bce173f53c11355f3acfe341",
+  "installer/AgentOS.Setup.cs": "c8fd3ececba904c04fee381e985945bf591e4037f12721cd9c4a5e10a33f7e90",
+  "installer/build-installer.ps1": "35f1df33b2a5f8650fa012a2032a4ac4620e9755e43975e12a1d61b7f5615187",
+  "tests/test_agentos_non_distributable.py": "bc5f865ae67470e9160320764e3f8d3b7739ffe36010f64b7f4d3aed1d5d14d7"
+ },
+ "normalisation": {
+  "installer/AgentOS.Setup.cs": "byte-order-mark-strip: the published edition carries no BOM on C# sources; the C# compiler does not require one",
+  "installer/build-installer.ps1": "portable-path-placeholder: an absolute machine path is replaced by ${PROJECT_PATH} in the published edition",
+  "tests/test_agentos_non_distributable.py": "byte-order-mark-strip: the published edition carries no BOM on Python sources; the interpreter does not require one"
+ },
+ "reason": "",
+ "limits": "Proves the installer confidentiality gates pass against the AgentOS content named in tested_against_sha256, which is the source tree the suite ran in. agentos_sha256 names the bytes that ship, which may differ by the portable normalisation. A file whose shipped bytes differ from the tested bytes is proven only for the tested form. It does not prove that a client loaded the rules, and it does not cover the remote repository history."
+}

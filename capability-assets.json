@@ -3,6 +3,40 @@
     {
       "canonical": true,
       "capabilities": [
+        "meta-skill-registry",
+        "meta-token-budget",
+        "meta-background-agent"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/agentos-governed-integration/SKILL.md",
+      "hashes": {
+        "governance/AgentOS/skills/agentos-governed-integration/SKILL.md": "794d3e263e7f358a70eb85e75e637a5eab82e839b2626d9df83b65f2cfa586ce",
+        "governance/AgentOS/skills/agentos-governed-integration/references/background-agent-execution.md": "c61af53cf3b27f50deb6f75885092e5fa57243f1ad58035efc902eecf58be0b2",
+        "governance/AgentOS/skills/agentos-governed-integration/references/capability-provider-registration.md": "35c77ffec51a247bbd7fa17477fffc7e8d4996fbdd494afb884563f8c8de92e5",
+        "governance/AgentOS/skills/agentos-governed-integration/references/github-credential-governance.md": "2bbd49916e017120a157d6c15860ba88808ec91081ca414f1bce7caab9ce909c",
+        "governance/AgentOS/skills/agentos-governed-integration/references/import-receipts-and-verification.md": "250c663bb98c46eb6d90336367c922fab703ba647bd1b26811444a5749e25c41",
+        "governance/AgentOS/skills/agentos-governed-integration/references/runtime-performance.md": "590975356b92f61eedee9e095efd4c00c738edcb045b5af9d79e25aec135adc4",
+        "governance/AgentOS/skills/agentos-governed-integration/references/token-budget-workflow.md": "57a665a3e6639932fe3bbb07bd37e03d8d74b6d34e43bb940bc1269640e921ac",
+        "governance/AgentOS/skills/agentos-governed-integration/references/token-efficiency.md": "e0ce6b921caa884a212dcbca22122ef911024a156a5362b97641c7c18757f91a"
+      },
+      "id": "skill.agentos-governed-integration",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "agentos-governed-integration",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
         "arch-icd",
         "arch-modular",
         "arch-adr",
@@ -340,6 +374,34 @@
         "meta-qc-gate"
       ],
       "dependencies": [],
+      "entry": "tools/installer_gate_receipt.py",
+      "hashes": {
+        "tools/installer_gate_receipt.py": "2317cbfc70bf212d6ecee4855c8014598d50fb79eb0918915805fa4ef9df55cf"
+      },
+      "id": "tool.distribution.installer-gate-receipt",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "installer-gate-receipt",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.0.1"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
       "entry": "tools/lesson_checks.py",
       "hashes": {
         "tools/lesson_checks.py": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce"
@@ -399,7 +461,7 @@
       "dependencies": [],
       "entry": "tools/verify_release.py",
       "hashes": {
-        "tools/verify_release.py": "700ceccd217791c1123f8ac141d2664836258b1f6c9be5b7774a49b521dfee14"
+        "tools/verify_release.py": "7c95d465f6535ab85ad4719cf40c5d10cb15c9833072298ea090943b003b519e"
       },
       "id": "tool.distribution.verify-release",
       "kind": "tool",
@@ -431,7 +493,7 @@
       ],
       "entry": "tools/weekly_learning.py",
       "hashes": {
-        "tools/weekly_learning.py": "04efc28aba9a132a2dd943b084d44c9b131752af607c4001a984f431ec1b8d0c"
+        "tools/weekly_learning.py": "372fb9896bd3b4e7e68478c2b017cde8066118a7d94ec830365e2c5cfaedf252"
       },
       "id": "tool.distribution.weekly-learning",
       "kind": "tool",
@@ -460,7 +522,7 @@
       "dependencies": [],
       "entry": "tools/security_check.ps1",
       "hashes": {
-        "tools/security_check.ps1": "f1230be26ad7cecf5fa2da9aa5c35902f9bed7ba13654a6d078b96af1e89e36c"
+        "tools/security_check.ps1": "5affbcddee086e5e5948cb553211e0fd9bec8c33c3ce38988a43d6a3509886cf"
       },
       "id": "tool.distribution.security-check",
       "kind": "tool",
@@ -570,6 +632,34 @@
         "meta-qc-gate"
       ],
       "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_derivation_deploy.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_derivation_deploy.py": "d98b9795c54627dbfe8646a32a6fac0c6cd1d0af780e2bc12f5c896ee27d0dff"
+      },
+      "id": "tool.governance.agentos-derivation-deploy",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-derivation-deploy",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
       "entry": "governance/AgentOS/bin/agentos_import.py",
       "hashes": {
         "governance/AgentOS/bin/agentos_import.py": "909adff9da2215cf566c11931fe97ed03075f90d867751fb47b5ba26db101c5c"
@@ -578,6 +668,34 @@
       "kind": "tool",
       "license": "MIT",
       "name": "agentos-import",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_matrix_check.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_matrix_check.py": "d382103008c18ecdede8a5b43a0e20ddf3fb5e2e5c0f51223e8a4d99873e6590"
+      },
+      "id": "tool.governance.agentos-matrix-check",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-matrix-check",
       "platforms": [
         "*"
       ],
@@ -621,6 +739,62 @@
       "version": "1.9.2"
     },
     {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_record_receipt.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_record_receipt.py": "2037a968808b709ae5559a7bc371e02f38032b0939be810d7b51fe44126ea94f"
+      },
+      "id": "tool.governance.agentos-record-receipt",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-record-receipt",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/agentos_register.py",
+      "hashes": {
+        "governance/AgentOS/bin/agentos_register.py": "89cfc3c96d83c111f88fec767d24ff1fd2f7503e92ea93fb5f78f3d983733ff4"
+      },
+      "id": "tool.governance.agentos-register",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "agentos-register",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
       "canonical": true,
       "capabilities": [
         "meta-skill-registry"
@@ -628,7 +802,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/agentos_skills.py",
       "hashes": {
-        "governance/AgentOS/bin/agentos_skills.py": "2497a03f412d9b1d047b088952f9ab72605600079b0f7686ef8e7b8ae4b23237"
+        "governance/AgentOS/bin/agentos_skills.py": "816d10bff65f72ffafa87aaba8272f1fe79d44a0887b8d99035f89c355fe82f4"
       },
       "id": "tool.governance.agentos-skills",
       "kind": "tool",
@@ -707,6 +881,62 @@
     {
       "canonical": false,
       "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/check_claim_ledger.py",
+      "hashes": {
+        "governance/AgentOS/bin/check_claim_ledger.py": "db5d3b7db77deaa565a5a64ca28795c9a9e9530eefc62bf2b3931665f695c0b5"
+      },
+      "id": "tool.governance.check-claim-ledger",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "check-claim-ledger",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
+        "meta-qc-gate"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/bin/check_derivation_discipline.py",
+      "hashes": {
+        "governance/AgentOS/bin/check_derivation_discipline.py": "f86705c0e60998176b32127db10e8c30f7c5a459c1681834eff2a3dc77431148"
+      },
+      "id": "tool.governance.check-derivation-discipline",
+      "kind": "tool",
+      "license": "MIT",
+      "name": "check-derivation-discipline",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "runtime_dependencies": [
+        "Python 3.9+"
+      ],
+      "side_effects": [
+        "Local file/state access according to explicit command; no implicit execution authorization"
+      ],
+      "status": "validated",
+      "supersedes": [],
+      "version": "1.9.2"
+    },
+    {
+      "canonical": false,
+      "capabilities": [
         "meta-skill-registry"
       ],
       "dependencies": [],
@@ -768,7 +998,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/qa_leak.py",
       "hashes": {
-        "governance/AgentOS/bin/qa_leak.py": "baea47580ed0f1ae998d0aeb015444c7c36d35688ddebdea0374328fc53a92bd"
+        "governance/AgentOS/bin/qa_leak.py": "127d3a394537ac7158de15a5d66642ca9e4ab2a510a956fc771b1112b4e0a4b5"
       },
       "id": "tool.governance.qa-leak",
       "kind": "tool",
@@ -880,7 +1110,7 @@
       "dependencies": [],
       "entry": "governance/AgentOS/bin/AgentOS.ps1",
       "hashes": {
-        "governance/AgentOS/bin/AgentOS.ps1": "62769f4475dc68b0c06a9c41a1c136d67f68893aecf07b41180d7820d7a8a14d"
+        "governance/AgentOS/bin/AgentOS.ps1": "20ae4be2bbb3158f4f91543874491971116dd2e48b26bc153610dac1286099ed"
       },
       "id": "tool.governance.agentos",
       "kind": "tool",

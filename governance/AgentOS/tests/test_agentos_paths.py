@@ -104,8 +104,19 @@ class PathTests(unittest.TestCase):
 
     def test_install_project_inventory_uses_relocated_stm32_root(self):
         script = (ROOT / "bin/AgentOS.ps1").read_text(encoding="utf-8-sig")
-        self.assertIn(r"${PROJECT_PATH}", script)
-        self.assertNotIn(r"${PROJECT_PATH}", script)
+        # The distributed edition replaces live absolute paths with the
+        # portable placeholder, so this test states the intent -- the
+        # relocated STM32 root is the one in use, not the retired one --
+        # rather than pinning a literal that only exists in the source tree.
+        self.assertTrue(
+            r"003_STM32F407_4Motor_MiniMax20260924" in script
+            or "${PROJECT_PATH}" in script,
+            "The STM32 project root must be reachable, by literal or by placeholder.")
+        # The retired root is named by a path fragment, not by an absolute
+        # path: the portable edition rewrites absolute paths to a
+        # placeholder, so a literal absolute path in this assertion would
+        # either be rewritten or would not survive distribution.
+        self.assertNotIn("002_MINMAX_SW_FW", script)
 
     def test_registered_ui_client_is_discovered_without_a_file_rule(self):
         self.write_manifest([{"id": "ui-client", "skill_roots": [], "rule_files": [],

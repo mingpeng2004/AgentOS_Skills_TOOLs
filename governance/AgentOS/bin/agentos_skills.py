@@ -226,7 +226,13 @@ def resolve_provider(provider, project, client, user_root=None, system_root=ROOT
             text = entry.read_text(encoding="utf-8-sig")
             if not re.search(r"(?m)^name:\s*[\"']?" + re.escape(provider["skill"]) + r"[\"']?\s*$", text):
                 raise Blocked("provider identity mismatch: " + str(entry))
-                if scope == "shared":
+            if scope == "shared":
+                # A shared Skill is published content: it must be bound by a private,
+                # complete tree receipt, or any edited copy could serve it silently.
+                # A bundled provider is not shared content -- its canonical copy ships
+                # inside the AgentOS root and is validated by the bundled path below.
+                bundled = system_root / provider["bundled"] if provider["bundled"] else None
+                if bundled is None or entry.parent.resolve() != bundled.resolve():
                     expected = shared_sources.get(provider["skill"])
                     if expected is None or Path(expected).resolve() != entry.parent.resolve():
                         raise Blocked("shared provider lacks a verified canonical tree binding: " + provider["skill"])

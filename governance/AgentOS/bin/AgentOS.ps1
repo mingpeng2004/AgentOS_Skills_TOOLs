@@ -525,8 +525,8 @@ switch ($Command) {
     'install' {
         Install-ClientAdapters | Out-Null
         $known = @(
-            '${PROJECT_PATH}',
-            '${PROJECT_PATH}'
+            '${PROJECT_PATH}\999_MINIMAX_100_SYS_Maintain',
+            '${PROJECT_PATH}\003_STM32F407_4Motor_MiniMax20260924'
         )
         if ($ProjectRoot) { $known += $ProjectRoot }
         if (-not $ClientsOnly) {

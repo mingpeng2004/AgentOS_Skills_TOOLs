@@ -2,20 +2,20 @@
 
 > Version: 1.0
 > Effective: 2026-10-29
-> Authority: `${PROJECT_PATH}`
+> Authority: `${PROJECT_PATH}\999_AI_TOOLS_SKILLS\_ops\DEPLOYMENT_POLICY.md`
 
 Every tool, CLI, IDE, MCP server, skill library, model cache and update
 staging area on this host lives under
-`${PROJECT_PATH}`. The C: drive keeps only junctions.
+`${PROJECT_PATH}\999_AI_TOOLS_SKILLS`. The C: drive keeps only junctions.
 
 ## Mandatory rules
 
 1. **Do not install a new tool to C:**. Confirm the install path points at
-   `${PROJECT_PATH}<name>` before the installer runs.
+   `${PROJECT_PATH}\999_AI_TOOLS_SKILLS\installed\<name>` before the installer runs.
 2. **A tool already on C: gets migrated**, not left in place. Keep the
    original C: path as a directory junction so installers, PATH entries,
    shortcuts and running programs keep working untouched.
-3. **Skills** go to `${PROJECT_PATH}`.
+3. **Skills** go to `${PROJECT_PATH}\999_AI_TOOLS_SKILLS\999_SKILLS`.
    The Magpie library is already there and is reached through
    `${USER_HOME}\.config\magpie\library`.
 4. Placement by kind: complete applications to `installed\`, user
@@ -35,8 +35,8 @@ Check three things and state the result:
 ## Evidence required before declaring a migration done
 
 ```powershell
-pwsh -File ${PROJECT_PATH}
-pwsh -File ${PROJECT_PATH}
+pwsh -File ${PROJECT_PATH}\999_AI_TOOLS_SKILLS\scripts\Audit-ToolMigrationState.ps1
+pwsh -File ${PROJECT_PATH}\999_AI_TOOLS_SKILLS\scripts\Verify-ToolMigrationFull.ps1
 ```
 
 The audit must report every entry as a junction with a non-empty target.
@@ -59,7 +59,7 @@ is not evidence that the migration succeeded.
 ## Recovery and rollback
 
 The registry at
-`${PROJECT_PATH}`
+`${PROJECT_PATH}\999_AI_TOOLS_SKILLS\_ops\TOOL_MIGRATION_REGISTRY_20261029.md`
 holds the full C-to-D mapping, the failure modes found in practice and the
 scripts that implement each step.
 

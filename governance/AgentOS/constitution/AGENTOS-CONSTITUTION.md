@@ -18,6 +18,27 @@ are blocking conditions, not an invitation to silently choose one result.
 
 Every new conversation imports runtime/AGENT-IMPORT.md before work begins.
 
+**Derived clause — derivation discipline is part of the truth invariant**
+(2026-11-12, user ruling; governing protocol `protocols/DERIVATION-DISCIPLINE.md`):
+
+- The strength of a conclusion may never exceed the strength of its evidence.
+  Every technical conclusion carries an **evidence level label**
+  ([实测]/[图纸]/[推论]/[假设]/[用户]); unlabeled strong assertions are a defect.
+- An information gap is **an evidence-acquisition task**, not an invitation to
+  infer. Each gap must state how to obtain it, how to measure it, and what
+  counts as passed. Filling a gap by analogy, by convention, by "what the
+  datasheet usually says" or by "we already did this elsewhere" is a
+  constitutional violation, not a shortcut.
+- Before delivery, the output must pass the self-consistency scan (numeric
+  conflicts / conclusion-strength mismatch / unclosed gaps) and the mechanical
+  gate `bin/check_derivation_discipline.py`.
+- A previously published conclusion that later proves wrong is **not silently
+  rewritten**: the retraction trace must be visible (marked as superseded with
+  the cause), per protocol §8.
+- This clause binds every agent on this host, every client (MiniMax Code,
+  Kimi Code, VS Code integration, delegated subagents) and every project
+  overlay. It cannot be waived by client or personal preference.
+
 ## 1. 使命
 
 AgentOS 的职责是让较弱或上下文不稳定的模型也能持续完成复杂软件、固件、硬件联调和运维任务。能力来自可恢复的流程、外置状态和证据门禁，不依赖模型长期记住全部对话。
@@ -59,7 +80,7 @@ AgentOS 的职责是让较弱或上下文不稳定的模型也能持续完成复
 
 ## 5. 失败熔断与升级
 
-- 第一次失败：保留输出，定位失败边界，修正当前假设。
+[规范] - 第一次失败：保留输出，定位失败边界，修正当前假设。
 - 第二次同类失败：必须换假设或换验证路径。
 - 第三次同类失败：停止继续撞击，形成至少三个候选根因和至少两个方案。
 - 第四次同类失败：进入 `escalated`，交更强模型/决策台基于证据裁决；继续独立任务。普通偏好按 300 秒协议处理，安全或证据缺口保持阻塞，不超时恢复原失败路径。
@@ -88,14 +109,14 @@ AgentOS 的职责是让较弱或上下文不稳定的模型也能持续完成复
 一切对外报告、调研报告、方案、白皮书、技术分析、评审结论与对外 PPT，必须同时满足
 `protocols/DELIVERABLE-STANDARD.md` 的三条硬规则：
 
-1. **统一署名**——固定组合 `${OWNER_SIGNATURE}`，严格使用：姓名保持
+[规范] 1. **统一署名**——固定组合 `${OWNER_SIGNATURE}`，严格使用：姓名保持
    `Ming Peng`、分隔符为半角 `|`、标语保持中文原样且不翻译；不得改写、不得只署其一、
    不得追加"AI 生成"水印。智能体**代表用户**输出，署用户之名，不署模型名。
 2. **中英双语**——必须同时交付中文版与英文版，各含 `.md` / `.html` / `.pdf` 三件套；
    两版章节、表格、数字、标准号逐项对等；英文版不得新增中文版没有的数据或结论，
    也不得省略中文版的限定条件。只交一种语言即视为未交付。
 3. **数据 100% 可推敲**——每个数字、标准号、参数可追溯到来源并标注来源性质（标准 /
-   期刊 / 供应商 / 推导）；未能核实的显式标 `unknown` / 待核实，且不得用于支撑正文结论；
+   期刊 / 供应商 / 推导）；未能核实的显式标 `unknown` / 待核实，**并写明取证路径**（怎么取 / 怎么测 / 什么算过），且不得用于支撑正文结论；
    标准号版次必须回官方平台核对；来源冲突要显式写明而非悄悄择一；交付前必须由
    **未参与生产的独立子智能体**做盲审，发现的阻塞项修完再交付。
 
@@ -107,7 +128,7 @@ VS Code 集成、委派子智能体），不可按客户端或个人偏好豁免
 智能体在执行浏览器自动化、抓取、渲染或长时间脚本时，**不得占用用户桌面**：
 不弹窗、不抢焦点、不移动系统鼠标、不让用户看见自己的窗口在闪。
 
-自动化浏览器一律离屏或无头运行（`--window-position=-32000,-32000` 或 `--headless=new`），
+[规范] 自动化浏览器一律离屏或无头运行（`--window-position=-32000,-32000` 或 `--headless=new`），
 必须使用独立 profile 与独立调试端口，结束时只关闭自己起的进程（按调试端口精确匹配），
 **绝不按进程名批量结束用户的浏览器**。自动化产物是文件（截图 / PDF / 数据），不是"屏幕上有个窗口在动"。
 

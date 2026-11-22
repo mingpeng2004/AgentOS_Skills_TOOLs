@@ -63,6 +63,93 @@ look similar.
 True blind spots stay `candidate` until real evidence exists. Adding a name does
 not create a capability.
 
+### 4.1 Registration is part of creating the asset
+
+A Skill or Tool that is not registered is not part of the matrix, whatever directory
+it sits in. Registration therefore belongs to the create-or-change sequence, not to
+a later cleanup pass: step 10 is not finished until the registry, the generated
+capability objective and the tree receipt all reflect the new asset.
+
+Run the registrar rather than hand-editing the registry. The registry contract has
+exact field sets, a globally unique trigger list and a generated objective manifest;
+a hand edit that passes validation can still leave the objective manifest stale.
+
+```powershell
+python -B "$AGENTOS/bin/agentos_register.py" `
+  --provider-id <id> --skill <skill-name> `
+  --capability-id <id> --domain <A-H> --group <group> `
+  --availability mapped `
+  --trigger "<trigger>" --trigger "<second trigger>" `
+  --scenario "<one scenario>" --acceptance "<one acceptance criterion>" `
+  --resource SKILL.md --resource references/<topic>.md `
+  --limit "<what this does not certify>"
+```
+
+The registrar backs the registry up, validates the proposed entry against
+`bin/agentos_skills.py` before writing it, then regenerates
+`protocols/CAPABILITY-OBJECTIVE.md`. A rejected entry means the proposal is wrong;
+the contract is not relaxed to make a write succeed.
+
+A Skill that lives outside the AgentOS root also needs a shared tree receipt, so a
+later edit of the published copy cannot serve silently:
+
+```powershell
+python -B "$AGENTOS/bin/agentos_record_receipt.py" `
+  --skill <skill-name> --canonical-root "<absolute path to the skill directory>"
+```
+
+### 4.2 Three gates on a new entry
+
+1. **Registration is not deployment.** A new entry enters as `candidate` with
+   `provider: null` and empty `resources`. It becomes routable only when a real
+   provider and real resource files back it.
+2. **A candidate is never auto-selected.** The router blocks `candidate`, so an
+   unproven entry cannot be picked up by a task that merely mentions its topic.
+3. **The objective manifest must match.** `bin/gen_capability_objective.py --check`
+   compares the generated capability IDs against the registry. A new capability ID
+   that is not regenerated is a release break, not a harmless omission.
+
+### 4.3 Keep the matrix current
+
+The registry is only useful while it matches reality. Two checks keep it honest:
+
+- `python -B bin/agentos_skills.py catalog --project <project>` reports the provider
+  status of every capability. A capability that claims `mapped` or `protocol` but
+  resolves as `blocked` is a drift, not a warning.
+- A capability whose provider file was moved or renamed stops resolving. Fix the
+  provider path or retire the capability; do not leave an entry that only looks
+  registered.
+
+Every new Skill or Tool on this host is registered in the same change that creates
+it. An unregistered asset is invisible to routing, so its absence is cheaper to
+prevent than to discover later.
+
+### 4.4 A Skill that gains or loses a reference file
+
+`capabilities[].resources` is not decoration: routing loads exactly
+`["SKILL.md"] + resources`. A Skill that grows a new `references/*.md` but keeps
+the old list resolves cleanly and then runs **without** the new file — the method
+silently loses a step.
+
+Update it through the script, not by hand-editing the registry:
+
+```powershell
+python -B bin/agentos_register.py --update-capability <capability-id> `
+    --add-resource references/<new-file>.md
+```
+
+The script resolves the provider root first and refuses to register a path that
+does not exist under it, validates the candidate registry, backs up, regenerates
+`protocols/CAPABILITY-OBJECTIVE.md`, and re-resolves the provider to prove the new
+resource binds. `--remove-resource` takes the same path. A `candidate` capability
+must not advertise resources at all, so the script refuses that combination too.
+
+If the file list changes on a **shared** Skill, re-record the tree receipt
+(`bin/agentos_record_receipt.py --skill <name> --canonical-root <dir>`) before the
+registry update: the provider is bound by a private tree receipt, and an edited
+shared copy without a refreshed receipt stops resolving.
+
+
 ## 5. Learning to capability
 
 ```text
