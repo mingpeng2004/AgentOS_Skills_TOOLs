@@ -210,9 +210,9 @@
   "omitted_unauthorised_files": [],
   "omitted_unreviewed_files": [],
   "portable_agentos_profile": {
-    "excluded_required_files": 48,
+    "excluded_required_files": 43,
     "profile": "portable-owner-authorized",
-    "required_files": 71,
+    "required_files": 76,
     "test_template_sha256": "c99c66ce2a548537964306668e0f89f4973d56830f5347db36faa0114552f5be",
     "unavailable_capabilities": {
       "auditable-trip-handbook": [
@@ -229,17 +229,6 @@
         "mfg-npi",
         "mfg-spc"
       ],
-      "product-catalog-publishing": [
-        "ui-product-catalog"
-      ],
-      "requirements-anchoring": [
-        "req-jtbd",
-        "req-kano",
-        "req-qfd",
-        "req-spec-freeze",
-        "req-acceptance",
-        "req-trace"
-      ],
       "unslop": [
         "ui-slop-redesign"
       ]
@@ -250,9 +239,9 @@
   "scope_complete": true,
   "skill_sources": 2488,
   "states": {
-    "deduplicated": 43,
-    "exported": 7,
-    "reference_only": 2438
+    "deduplicated": 45,
+    "exported": 9,
+    "reference_only": 2434
   },
   "verified_link_aliases": 126
 }

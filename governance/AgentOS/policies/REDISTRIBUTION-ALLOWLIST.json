@@ -42,6 +42,16 @@
       "path": "skills/weekly-governance-learning",
       "license": "MIT",
       "reason": "Owner-authored Skill published in the governed corpus."
+    },
+    {
+      "path": "skills/requirements-anchoring",
+      "license": "MIT",
+      "reason": "Owner-authored Skill; published in the governed corpus to back the requirements-anchoring capabilities."
+    },
+    {
+      "path": "skills/product-catalog-publishing",
+      "license": "MIT",
+      "reason": "Owner-authored Skill; published in the governed corpus to back the product-catalog-publishing capability."
     }
   ],
   "excluded": [
@@ -55,10 +65,6 @@
     },
     {
       "path": "skills/ming-systems",
-      "reason": "Not published: the catalog classifies it reference_only."
-    },
-    {
-      "path": "skills/requirements-anchoring",
       "reason": "Not published: the catalog classifies it reference_only."
     }
   ],

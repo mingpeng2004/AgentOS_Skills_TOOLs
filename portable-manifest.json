@@ -22,12 +22,12 @@
       "sha256": "814185014c606d2d34c3f6db8a6ba9a5154b5d1f76c80c9607026a335fcb8d66"
     },
     "capability-assets.json": {
-      "bytes": 47919,
-      "sha256": "106322fec75539718b4b437bff3e2f1c53bbe842b27a3556fa531aa051460af1"
+      "bytes": 50524,
+      "sha256": "1f1ee01ef22e5d8d68324ee11aa71f1ff9064addb61671763308e05cd6773d48"
     },
     "catalog.json": {
-      "bytes": 753987,
-      "sha256": "d381e7d208caa7191f7aee96465c4a942d6e5010d2c2656becc48487fbe85029"
+      "bytes": 755294,
+      "sha256": "0e0f22015652378a871b31b8e01700425a4752c988fec4fa339e5cb37d373e7a"
     },
     "config/policy.example.json": {
       "bytes": 361,
@@ -50,8 +50,8 @@
       "sha256": "824361022286c86f73813e810a85de4c69e24e27db14095af87becdde158afd6"
     },
     "evidence/inventory.json": {
-      "bytes": 7249,
-      "sha256": "da164ded4b8f5aad03f4839fced6d06514ee607e33e0f83ff33653b5ae553dd0"
+      "bytes": 6998,
+      "sha256": "ca112c9e2d6f0aa19f5011649f0c2c6d922e44a330360606b71b09fb020c185c"
     },
     "evidence/learning.json": {
       "bytes": 1756,
@@ -59,7 +59,7 @@
     },
     "evidence/validation.json": {
       "bytes": 2354,
-      "sha256": "ee9845afa83dd6814c66055f6b1cb4eb1859c70f93969603ad2df4d08c5828e0"
+      "sha256": "7f2cf4b1388e141c7f2ce186c89acf6330b7a1528e650b818857f806c1dc03e3"
     },
     "governance/AgentOS/README.md": {
       "bytes": 8629,
@@ -218,16 +218,16 @@
       "sha256": "b0102d94be3064ae2cc0ef040cd855d15e9a1d14bce173f53c11355f3acfe341"
     },
     "governance/AgentOS/policies/REDISTRIBUTION-ALLOWLIST.json": {
-      "bytes": 3705,
-      "sha256": "31aeeabfba791fd72c3f8352f1693f67a6ad42604857316bdc859606ff8c0853"
+      "bytes": 3992,
+      "sha256": "2cd48f93a2a5cf63ec19844a79f741b3acc4d71e3eab7c2dbb4a81af7135d8ec"
     },
     "governance/AgentOS/policies/ROLE-ROUTING.json": {
       "bytes": 12787,
       "sha256": "fa47cb4406de3efe8003480ca063074efa204ff1387aa83e4c36ff8dbbd6f9bc"
     },
     "governance/AgentOS/policies/SKILL-REGISTRY.json": {
-      "bytes": 150306,
-      "sha256": "3ebd23042922e69c61cdecdc102f84b019457c39f8ad690023fe3838f7932135"
+      "bytes": 150017,
+      "sha256": "c988e173699aa229ac503596e8f492dc83137d5471e900ab242a7f9527125a2b"
     },
     "governance/AgentOS/profiles/EMBEDDED.md": {
       "bytes": 2617,
@@ -390,8 +390,8 @@
       "sha256": "d054db5e2c800e271df74837d5da38616c7c58f61562bfc6bbf33a343fce7efa"
     },
     "governance/AgentOS/runtime/IMPORT-MANIFEST.json": {
-      "bytes": 15624,
-      "sha256": "51d20de562b29dedab4e9ae6ade225c792d334da4131c58415a6c3807decaaf9"
+      "bytes": 15363,
+      "sha256": "48054f96c455ae29a889d6bf71e247fb6f6013a33e3785766aeb59f63c9ec984"
     },
     "governance/AgentOS/runtime/client-adapters.json": {
       "bytes": 39068,
@@ -605,6 +605,14 @@
       "bytes": 3256,
       "sha256": "e11b8e241fab0c350065e478f715d104d9f62d652bf47f39dee8d4f06bc882cf"
     },
+    "governance/AgentOS/skills/product-catalog-publishing/SKILL.md": {
+      "bytes": 8508,
+      "sha256": "8ef5ed03a225d6709e75289b4de343f260a6a3dbb5635b66bb890472a40b9467"
+    },
+    "governance/AgentOS/skills/product-catalog-publishing/references/link-verification-checklist.md": {
+      "bytes": 2582,
+      "sha256": "18ed810b75a89be3cd43266c3c244dc1927c97390b78d49bd9791d4f5f96bc0a"
+    },
     "governance/AgentOS/skills/production-skill-routing/SKILL.md": {
       "bytes": 6202,
       "sha256": "fb1411632b2970a11aecd2305417ee309a3196d5081800c2dbefa2db99c709a6"
@@ -624,6 +632,26 @@
     "governance/AgentOS/skills/production-skill-routing/references/workflow.md": {
       "bytes": 6762,
       "sha256": "a523e0df454b91b8e1d0ac3d89505ab7ceea803d49d03f028512cb59977ab6e9"
+    },
+    "governance/AgentOS/skills/requirements-anchoring/SKILL.md": {
+      "bytes": 12478,
+      "sha256": "3d0499400db99278468dfc0820636c9033b3a73d93ab701dfcfc317695d17d90"
+    },
+    "governance/AgentOS/skills/requirements-anchoring/assets/templates/REQUIREMENTS.template.md": {
+      "bytes": 3049,
+      "sha256": "32eb5e839131208452beff388e55d80940847091b18e8058633682253cf7b44a"
+    },
+    "governance/AgentOS/skills/requirements-anchoring/assets/templates/open-questions.template.md": {
+      "bytes": 964,
+      "sha256": "faf5944d50594bedf60098817bbe3ae8f660807df31f0ecfed8a6779c671c769"
+    },
+    "governance/AgentOS/skills/requirements-anchoring/references/anchor-file-format.md": {
+      "bytes": 9054,
+      "sha256": "9e5710d59af634eb8bc78816cd5908184a705056e39651d9af0af15261981dd8"
+    },
+    "governance/AgentOS/skills/requirements-anchoring/references/convergence-and-traceability.md": {
+      "bytes": 7315,
+      "sha256": "479a6d0943ca704ead75a5e6b406ea23726a71e6f930db9504eb1dce90dbbebb"
     },
     "governance/AgentOS/skills/visual-asset-production/SKILL.md": {
       "bytes": 10986,

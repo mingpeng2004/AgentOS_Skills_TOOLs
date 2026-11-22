@@ -12643,28 +12643,38 @@
       "state": "reference_only"
     },
     {
-      "license": "unknown",
+      "digest": "728ec090e728bc16cae423dc157d18a5167918b7fc07a1068891110ba82eb1eb",
+      "export": "governance/AgentOS/skills/product-catalog-publishing",
+      "files": {
+        "SKILL.md": "8ef5ed03a225d6709e75289b4de343f260a6a3dbb5635b66bb890472a40b9467",
+        "references/link-verification-checklist.md": "18ed810b75a89be3cd43266c3c244dc1927c97390b78d49bd9791d4f5f96bc0a"
+      },
+      "license": "MIT",
+      "license_notices": [
+        "LICENSE"
+      ],
       "name": "product-catalog-publishing",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "omitted_runtime_assets": [],
+      "provenance": "Owner-authored maintained source; explicit public MIT authorization 2026-10-25. This is a portable text edition, not a byte-identical local installation.",
       "source_category": "project",
       "source_id": "960cad849e6f",
-      "state": "reference_only"
+      "state": "exported"
     },
     {
-      "license": "unknown",
+      "export": "governance/AgentOS/skills/product-catalog-publishing",
+      "license": "MIT",
       "name": "product-catalog-publishing",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "970dca723752",
-      "state": "reference_only"
+      "state": "deduplicated"
     },
     {
-      "license": "unknown",
+      "export": "governance/AgentOS/skills/product-catalog-publishing",
+      "license": "MIT",
       "name": "product-catalog-publishing",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
       "source_category": "project",
       "source_id": "d3c838e54ee0",
-      "state": "reference_only"
+      "state": "deduplicated"
     },
     {
       "license": "unknown",
@@ -14336,12 +14346,25 @@
       "state": "reference_only"
     },
     {
-      "license": "unknown",
+      "digest": "2592ef89ed6a9f0721eb9296012bbe9be31eb47769ebcbc5cdb79658fc41e080",
+      "export": "governance/AgentOS/skills/requirements-anchoring",
+      "files": {
+        "SKILL.md": "3d0499400db99278468dfc0820636c9033b3a73d93ab701dfcfc317695d17d90",
+        "assets/templates/REQUIREMENTS.template.md": "32eb5e839131208452beff388e55d80940847091b18e8058633682253cf7b44a",
+        "assets/templates/open-questions.template.md": "faf5944d50594bedf60098817bbe3ae8f660807df31f0ecfed8a6779c671c769",
+        "references/anchor-file-format.md": "9e5710d59af634eb8bc78816cd5908184a705056e39651d9af0af15261981dd8",
+        "references/convergence-and-traceability.md": "479a6d0943ca704ead75a5e6b406ea23726a71e6f930db9504eb1dce90dbbebb"
+      },
+      "license": "MIT",
+      "license_notices": [
+        "LICENSE"
+      ],
       "name": "requirements-anchoring",
-      "reason": "Redistribution rights or complete source integrity not established; obtain from original provider.",
+      "omitted_runtime_assets": [],
+      "provenance": "Owner-authored maintained source; explicit public MIT authorization 2026-10-25. This is a portable text edition, not a byte-identical local installation.",
       "source_category": "project",
       "source_id": "7fa3b3816f13",
-      "state": "reference_only"
+      "state": "exported"
     },
     {
       "license": "unknown",

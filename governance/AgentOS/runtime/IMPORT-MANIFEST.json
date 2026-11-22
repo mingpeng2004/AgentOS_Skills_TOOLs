@@ -46,11 +46,6 @@
       "skills\\metal-process-engineering\\scripts\\scan_assets.py",
       "skills\\metal-process-engineering\\scripts\\tool_inventory.py",
       "skills\\metal-process-engineering\\scripts\\validate_card.py",
-      "skills\\requirements-anchoring\\SKILL.md",
-      "skills\\requirements-anchoring\\assets\\templates\\REQUIREMENTS.template.md",
-      "skills\\requirements-anchoring\\assets\\templates\\open-questions.template.md",
-      "skills\\requirements-anchoring\\references\\anchor-file-format.md",
-      "skills\\requirements-anchoring\\references\\convergence-and-traceability.md",
       "tests\\test_agentos_skills.py"
     ],
     "id": "portable-owner-authorized",
@@ -117,17 +112,6 @@
         "mech-tolerance",
         "mfg-npi",
         "mfg-spc"
-      ],
-      "product-catalog-publishing": [
-        "ui-product-catalog"
-      ],
-      "requirements-anchoring": [
-        "req-acceptance",
-        "req-jtbd",
-        "req-kano",
-        "req-qfd",
-        "req-spec-freeze",
-        "req-trace"
       ],
       "unslop": [
         "ui-slop-redesign"
@@ -251,6 +235,11 @@
     "skills\\agentos-governed-integration\\references\\token-budget-workflow.md",
     "skills\\agentos-governed-integration\\references\\token-efficiency.md",
     "skills\\production-skill-routing\\SKILL.md",
+    "skills\\requirements-anchoring\\SKILL.md",
+    "skills\\requirements-anchoring\\assets\\templates\\REQUIREMENTS.template.md",
+    "skills\\requirements-anchoring\\assets\\templates\\open-questions.template.md",
+    "skills\\requirements-anchoring\\references\\anchor-file-format.md",
+    "skills\\requirements-anchoring\\references\\convergence-and-traceability.md",
     "skills\\visual-asset-production\\SKILL.md",
     "templates\\AGENTOS-PORTABLE-ENTRY.md",
     "tests\\test_agentos_canary.py",

@@ -6,7 +6,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [],
       "failure_modes": [
@@ -30,7 +30,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -38,8 +38,10 @@
           "purpose": "req-jtbd result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/anchor-file-format.md"
+      ],
       "scenarios": [
         "Produce the req-jtbd deliverable in a scoped engineering task."
       ],
@@ -61,7 +63,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [],
       "failure_modes": [
@@ -85,7 +87,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -93,8 +95,10 @@
           "purpose": "req-kano result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/anchor-file-format.md"
+      ],
       "scenarios": [
         "Produce the req-kano deliverable in a scoped engineering task."
       ],
@@ -115,7 +119,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [],
       "failure_modes": [
@@ -139,7 +143,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：需求点落盘为锚点、目标铆钉先行、来源与验收字段规范。不替代产品市场分析与用户确认。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -147,8 +151,10 @@
           "purpose": "req-qfd result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/anchor-file-format.md"
+      ],
       "scenarios": [
         "Produce the req-qfd deliverable in a scoped engineering task."
       ],
@@ -169,7 +175,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [],
       "failure_modes": [
@@ -193,7 +199,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -201,8 +207,11 @@
           "purpose": "req-spec-freeze result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/anchor-file-format.md",
+        "references/convergence-and-traceability.md"
+      ],
       "scenarios": [
         "Produce the req-spec-freeze deliverable in a scoped engineering task."
       ],
@@ -223,7 +232,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [
         "req-trace"
@@ -249,7 +258,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -257,8 +266,10 @@
           "purpose": "req-acceptance result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/anchor-file-format.md"
+      ],
       "scenarios": [
         "Produce the req-acceptance deliverable in a scoped engineering task."
       ],
@@ -280,7 +291,7 @@
         "Inputs and declared result exist with current hashes.",
         "Task-specific acceptance criteria and external verification have current ledger evidence."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "A",
       "downstream": [],
       "failure_modes": [
@@ -304,7 +315,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "需求锚定方法已提供：目标铆钉（输出形式与定义）先行冻结、需求点落盘为锚点、Unit 回指需求 ID、交付前对账。不构成产品验收或用户签字的替代。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -312,8 +323,10 @@
           "purpose": "req-trace result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "requirements",
+      "resources": [
+        "references/convergence-and-traceability.md"
+      ],
       "scenarios": [
         "Produce the req-trace deliverable in a scoped engineering task."
       ],
@@ -4027,7 +4040,7 @@
       "acceptance": [
         "The catalog list page, every product detail page and every download file are generated from one data source, and every outbound link is verified reachable by an external probe."
       ],
-      "availability": "candidate",
+      "availability": "mapped",
       "domain": "D",
       "downstream": [],
       "failure_modes": [
@@ -4051,7 +4064,7 @@
         "goals",
         "constraints"
       ],
-      "limits": "提供产品目录与资料下载的构造与核验方法；不认证产品参数真实性，不替代业主对规格的确认，也不构成视觉或对比度结论。 Portable release: specialist Skill is reference-only/not redistributed; obtain and verify a licensed provider before use.",
+      "limits": "提供产品目录与资料下载的构造与核验方法；不认证产品参数真实性，不替代业主对规格的确认，也不构成视觉或对比度结论。",
       "outputs": [
         {
           "format": "project-owned file",
@@ -4059,8 +4072,11 @@
           "purpose": "ui-product-catalog result linked to task and acceptance evidence"
         }
       ],
-      "provider": null,
-      "resources": [],
+      "provider": "catalog",
+      "resources": [
+        "SKILL.md",
+        "references/link-verification-checklist.md"
+      ],
       "scenarios": [
         "Produce the ui-product-catalog deliverable in a scoped engineering task."
       ],
@@ -4111,7 +4127,7 @@
       "skill": "cad-geometry-automation"
     },
     {
-      "bundled": "",
+      "bundled": "skills/requirements-anchoring",
       "id": "requirements",
       "skill": "requirements-anchoring"
     },
@@ -4136,7 +4152,7 @@
       "skill": "unslop"
     },
     {
-      "bundled": "",
+      "bundled": "skills/product-catalog-publishing",
       "id": "catalog",
       "skill": "product-catalog-publishing"
     }

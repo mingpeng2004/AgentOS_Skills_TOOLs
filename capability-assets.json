@@ -135,6 +135,32 @@
     {
       "canonical": true,
       "capabilities": [
+        "ui-product-catalog"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/product-catalog-publishing/SKILL.md",
+      "hashes": {
+        "governance/AgentOS/skills/product-catalog-publishing/SKILL.md": "8ef5ed03a225d6709e75289b4de343f260a6a3dbb5635b66bb890472a40b9467",
+        "governance/AgentOS/skills/product-catalog-publishing/references/link-verification-checklist.md": "18ed810b75a89be3cd43266c3c244dc1927c97390b78d49bd9791d4f5f96bc0a"
+      },
+      "id": "skill.product-catalog-publishing",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "product-catalog-publishing",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
         "plan-wbs",
         "plan-gate",
         "plan-rolling",
@@ -168,6 +194,40 @@
       "kind": "skill",
       "license": "MIT",
       "name": "production-skill-routing",
+      "platforms": [
+        "*"
+      ],
+      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
+      "side_effects": [
+        "Read method files only; no permission implied"
+      ],
+      "status": "active",
+      "supersedes": [],
+      "version": "1.0.0"
+    },
+    {
+      "canonical": true,
+      "capabilities": [
+        "req-jtbd",
+        "req-kano",
+        "req-qfd",
+        "req-spec-freeze",
+        "req-acceptance",
+        "req-trace"
+      ],
+      "dependencies": [],
+      "entry": "governance/AgentOS/skills/requirements-anchoring/SKILL.md",
+      "hashes": {
+        "governance/AgentOS/skills/requirements-anchoring/SKILL.md": "3d0499400db99278468dfc0820636c9033b3a73d93ab701dfcfc317695d17d90",
+        "governance/AgentOS/skills/requirements-anchoring/assets/templates/REQUIREMENTS.template.md": "32eb5e839131208452beff388e55d80940847091b18e8058633682253cf7b44a",
+        "governance/AgentOS/skills/requirements-anchoring/assets/templates/open-questions.template.md": "faf5944d50594bedf60098817bbe3ae8f660807df31f0ecfed8a6779c671c769",
+        "governance/AgentOS/skills/requirements-anchoring/references/anchor-file-format.md": "9e5710d59af634eb8bc78816cd5908184a705056e39651d9af0af15261981dd8",
+        "governance/AgentOS/skills/requirements-anchoring/references/convergence-and-traceability.md": "479a6d0943ca704ead75a5e6b406ea23726a71e6f930db9504eb1dce90dbbebb"
+      },
+      "id": "skill.requirements-anchoring",
+      "kind": "skill",
+      "license": "MIT",
+      "name": "requirements-anchoring",
       "platforms": [
         "*"
       ],
