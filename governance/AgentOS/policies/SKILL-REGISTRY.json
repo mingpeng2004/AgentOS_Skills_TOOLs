@@ -8,7 +8,10 @@
       ],
       "availability": "mapped",
       "domain": "A",
-      "downstream": [],
+      "downstream": [
+        "req-kano",
+        "req-qfd"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -65,7 +68,9 @@
       ],
       "availability": "mapped",
       "domain": "A",
-      "downstream": [],
+      "downstream": [
+        "req-spec-freeze"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -107,7 +112,9 @@
         "需求分级",
         "镀金"
       ],
-      "upstream": [],
+      "upstream": [
+        "req-jtbd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-kano within the current confirmed scope; label missing facts.",
@@ -121,7 +128,9 @@
       ],
       "availability": "mapped",
       "domain": "A",
-      "downstream": [],
+      "downstream": [
+        "req-spec-freeze"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -163,7 +172,9 @@
         "用户需求",
         "工程指标"
       ],
-      "upstream": [],
+      "upstream": [
+        "req-jtbd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-qfd within the current confirmed scope; label missing facts.",
@@ -177,7 +188,9 @@
       ],
       "availability": "mapped",
       "domain": "A",
-      "downstream": [],
+      "downstream": [
+        "req-acceptance"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -220,7 +233,10 @@
         "冻结约束",
         "specification"
       ],
-      "upstream": [],
+      "upstream": [
+        "req-kano",
+        "req-qfd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-spec-freeze within the current confirmed scope; label missing facts.",
@@ -279,7 +295,9 @@
         "criteria",
         "DoD"
       ],
-      "upstream": [],
+      "upstream": [
+        "req-spec-freeze"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply req-acceptance within the current confirmed scope; label missing facts.",
@@ -405,7 +423,9 @@
       ],
       "availability": "mapped",
       "domain": "B",
-      "downstream": [],
+      "downstream": [
+        "arch-api-first"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -448,7 +468,9 @@
         "interface",
         "contract"
       ],
-      "upstream": [],
+      "upstream": [
+        "arch-modular"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-icd within the current confirmed scope; label missing facts.",
@@ -462,7 +484,9 @@
       ],
       "availability": "mapped",
       "domain": "B",
-      "downstream": [],
+      "downstream": [
+        "arch-icd"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -504,7 +528,9 @@
         "模块边界",
         "依赖方向"
       ],
-      "upstream": [],
+      "upstream": [
+        "arch-ddd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-modular within the current confirmed scope; label missing facts.",
@@ -574,7 +600,9 @@
       ],
       "availability": "candidate",
       "domain": "B",
-      "downstream": [],
+      "downstream": [
+        "arch-modular"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -671,7 +699,9 @@
         "first",
         "接口先行"
       ],
-      "upstream": [],
+      "upstream": [
+        "arch-icd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply arch-api-first within the current confirmed scope; label missing facts.",
@@ -685,7 +715,10 @@
       ],
       "availability": "mapped",
       "domain": "C",
-      "downstream": [],
+      "downstream": [
+        "plan-cpm",
+        "plan-decompose"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -781,7 +814,9 @@
         "PERT",
         "关键路径"
       ],
-      "upstream": [],
+      "upstream": [
+        "plan-wbs"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-cpm within the current confirmed scope; label missing facts.",
@@ -896,7 +931,9 @@
         "远粗近细",
         "rolling"
       ],
-      "upstream": [],
+      "upstream": [
+        "plan-decompose"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-rolling within the current confirmed scope; label missing facts.",
@@ -966,7 +1003,9 @@
       ],
       "availability": "mapped",
       "domain": "C",
-      "downstream": [],
+      "downstream": [
+        "plan-rolling"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1008,7 +1047,9 @@
         "子智能体",
         "工作包"
       ],
-      "upstream": [],
+      "upstream": [
+        "plan-wbs"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply plan-decompose within the current confirmed scope; label missing facts.",
@@ -1677,7 +1718,9 @@
       ],
       "availability": "mapped",
       "domain": "D",
-      "downstream": [],
+      "downstream": [
+        "emb-rtos-pattern"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1831,7 +1874,9 @@
         "队列",
         "信号量"
       ],
-      "upstream": [],
+      "upstream": [
+        "emb-state-machine"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply emb-rtos-pattern within the current confirmed scope; label missing facts.",
@@ -1954,7 +1999,9 @@
       ],
       "availability": "mapped",
       "domain": "D",
-      "downstream": [],
+      "downstream": [
+        "sw-ci-gate"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -1996,7 +2043,9 @@
         "测试驱动",
         "先红后绿"
       ],
-      "upstream": [],
+      "upstream": [
+        "sw-solid-clean"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-tdd within the current confirmed scope; label missing facts.",
@@ -2010,7 +2059,9 @@
       ],
       "availability": "mapped",
       "domain": "D",
-      "downstream": [],
+      "downstream": [
+        "sw-tdd"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2109,7 +2160,9 @@
         "可重复",
         "构建门禁"
       ],
-      "upstream": [],
+      "upstream": [
+        "sw-tdd"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply sw-ci-gate within the current confirmed scope; label missing facts.",
@@ -2400,7 +2453,9 @@
       ],
       "availability": "protocol",
       "domain": "E",
-      "downstream": [],
+      "downstream": [
+        "qa-reliability"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2512,7 +2567,9 @@
       ],
       "availability": "mapped",
       "domain": "E",
-      "downstream": [],
+      "downstream": [
+        "qa-doe"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2609,7 +2666,9 @@
         "多因素",
         "实验设计"
       ],
-      "upstream": [],
+      "upstream": [
+        "qa-test-pyramid"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-doe within the current confirmed scope; label missing facts.",
@@ -2663,7 +2722,9 @@
         "可靠性",
         "寿命预估"
       ],
-      "upstream": [],
+      "upstream": [
+        "qa-fmea"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply qa-reliability within the current confirmed scope; label missing facts.",
@@ -2787,7 +2848,9 @@
       ],
       "availability": "candidate",
       "domain": "F",
-      "downstream": [],
+      "downstream": [
+        "mfg-spc"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -2936,7 +2999,9 @@
         "Cpk",
         "统计过程控制"
       ],
-      "upstream": [],
+      "upstream": [
+        "mfg-npi"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply mfg-spc within the current confirmed scope; label missing facts.",
@@ -3062,7 +3127,9 @@
       ],
       "availability": "protocol",
       "domain": "G",
-      "downstream": [],
+      "downstream": [
+        "km-lessons"
+      ],
       "failure_modes": [
         {
           "failure": "Missing or outdated input",
@@ -3159,7 +3226,9 @@
         "教训入库",
         "checklist更新"
       ],
-      "upstream": [],
+      "upstream": [
+        "km-postmortem"
+      ],
       "workflow": [
         "Read only the task and declared authoritative inputs.",
         "Apply km-lessons within the current confirmed scope; label missing facts.",

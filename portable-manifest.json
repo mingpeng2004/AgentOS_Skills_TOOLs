@@ -50,8 +50,8 @@
       "sha256": "824361022286c86f73813e810a85de4c69e24e27db14095af87becdde158afd6"
     },
     "evidence/inventory.json": {
-      "bytes": 6998,
-      "sha256": "ca112c9e2d6f0aa19f5011649f0c2c6d922e44a330360606b71b09fb020c185c"
+      "bytes": 7056,
+      "sha256": "b8853fe510e837d28a3aebfbd41b91d537f9349dfab8f5ca176faad336208199"
     },
     "evidence/learning.json": {
       "bytes": 1756,
@@ -59,7 +59,7 @@
     },
     "evidence/validation.json": {
       "bytes": 2354,
-      "sha256": "64a3830a1710c857a61bcc8c70d8417469b0b7a765d1e99fc1cc2968efe07b00"
+      "sha256": "3524e4eae43259d0d4c29f7ab243cd0de29eebea21aa571713967310463f45a1"
     },
     "governance/AgentOS/README.md": {
       "bytes": 8629,
@@ -226,8 +226,8 @@
       "sha256": "fa47cb4406de3efe8003480ca063074efa204ff1387aa83e4c36ff8dbbd6f9bc"
     },
     "governance/AgentOS/policies/SKILL-REGISTRY.json": {
-      "bytes": 150017,
-      "sha256": "c988e173699aa229ac503596e8f492dc83137d5471e900ab242a7f9527125a2b"
+      "bytes": 151095,
+      "sha256": "65161c8acd6decf703eced647e8a93dedf6f6d71f681b9413ae10a194a371c42"
     },
     "governance/AgentOS/profiles/EMBEDDED.md": {
       "bytes": 2617,

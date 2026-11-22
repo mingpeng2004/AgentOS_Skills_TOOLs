@@ -208,7 +208,9 @@
   "lesson_records_inspected": 123,
   "limits": "Inventory/file checks are not domain certification, client invocation, second-computer or future scheduler evidence.",
   "omitted_unauthorised_files": [],
-  "omitted_unreviewed_files": [],
+  "omitted_unreviewed_files": [
+    "policies/SKILL-REGISTRY.json.bak-20261122-152227"
+  ],
   "portable_agentos_profile": {
     "excluded_required_files": 43,
     "profile": "portable-owner-authorized",
