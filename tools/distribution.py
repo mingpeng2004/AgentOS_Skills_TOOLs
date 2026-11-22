@@ -144,7 +144,6 @@ def assets(package, catalog):
     paths += sorted((package / "tools").glob("*.ps1"))
     paths += sorted((package / "governance/AgentOS/bin").glob("*.py"))
     paths += sorted((package / "governance/AgentOS/bin").glob("*.ps1"))
-    paths += sorted((package / "governance/AgentOS/skills").glob("*/scripts/*.py"))
     for file in paths:
         rel = file.relative_to(package).as_posix()
         # Utility modules are indexed too, but only the documented CLIs are active.

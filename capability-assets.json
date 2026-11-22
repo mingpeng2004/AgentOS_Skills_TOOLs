@@ -408,7 +408,7 @@
       "dependencies": [],
       "entry": "tools/distribution.py",
       "hashes": {
-        "tools/distribution.py": "6fd430e7bb6960f79e95d13ba8c4f38d6ca8b6e729281bc2ff2112687ccac35a"
+        "tools/distribution.py": "544ac33ca38fede9571722d73ddedc317d2d397811137175f517f99ffa7fcd8f"
       },
       "id": "tool.distribution.distribution",
       "kind": "tool",
@@ -1187,134 +1187,6 @@
         "Local file/state access according to explicit command; no implicit execution authorization"
       ],
       "status": "active",
-      "supersedes": [],
-      "version": "1.9.2"
-    },
-    {
-      "canonical": false,
-      "capabilities": [
-        "vis-concept-illustration"
-      ],
-      "dependencies": [],
-      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/dfm_panel.py",
-      "hashes": {
-        "governance/AgentOS/skills/visual-asset-production/scripts/dfm_panel.py": "89faf84995d178a9d08cf0303e0e12d9f9bb55f026a8cf2ccb17142aea57d95e"
-      },
-      "id": "tool.governance.dfm-panel",
-      "kind": "tool",
-      "license": "MIT",
-      "name": "dfm-panel",
-      "platforms": [
-        "*"
-      ],
-      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
-      "runtime_dependencies": [
-        "Python 3.9+",
-        "numpy",
-        "Pillow",
-        "scipy",
-        "matplotlib"
-      ],
-      "side_effects": [
-        "Local file/state access according to explicit command; no implicit execution authorization"
-      ],
-      "status": "candidate",
-      "supersedes": [],
-      "version": "1.9.2"
-    },
-    {
-      "canonical": false,
-      "capabilities": [
-        "vis-concept-illustration"
-      ],
-      "dependencies": [],
-      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/iso_render.py",
-      "hashes": {
-        "governance/AgentOS/skills/visual-asset-production/scripts/iso_render.py": "574bcb0862516058fdfb524081bd5cf793da766ff40d3f88a24d7803c1c3e4f1"
-      },
-      "id": "tool.governance.iso-render",
-      "kind": "tool",
-      "license": "MIT",
-      "name": "iso-render",
-      "platforms": [
-        "*"
-      ],
-      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
-      "runtime_dependencies": [
-        "Python 3.9+",
-        "numpy",
-        "Pillow",
-        "scipy",
-        "matplotlib"
-      ],
-      "side_effects": [
-        "Local file/state access according to explicit command; no implicit execution authorization"
-      ],
-      "status": "candidate",
-      "supersedes": [],
-      "version": "1.9.2"
-    },
-    {
-      "canonical": false,
-      "capabilities": [
-        "vis-concept-illustration"
-      ],
-      "dependencies": [],
-      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py",
-      "hashes": {
-        "governance/AgentOS/skills/visual-asset-production/scripts/overlay_compose.py": "0aacd74f874c0a8baa87220b94050d3b92841206aaa94f9ab1c98e8c0db42e8d"
-      },
-      "id": "tool.governance.overlay-compose",
-      "kind": "tool",
-      "license": "MIT",
-      "name": "overlay-compose",
-      "platforms": [
-        "*"
-      ],
-      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
-      "runtime_dependencies": [
-        "Python 3.9+",
-        "numpy",
-        "Pillow",
-        "scipy",
-        "matplotlib"
-      ],
-      "side_effects": [
-        "Local file/state access according to explicit command; no implicit execution authorization"
-      ],
-      "status": "candidate",
-      "supersedes": [],
-      "version": "1.9.2"
-    },
-    {
-      "canonical": false,
-      "capabilities": [
-        "vis-concept-illustration"
-      ],
-      "dependencies": [],
-      "entry": "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py",
-      "hashes": {
-        "governance/AgentOS/skills/visual-asset-production/scripts/text_screen.py": "10b073ce04656c552fdf0db196b93ede0f933bdcc1781728907ec5e69100af72"
-      },
-      "id": "tool.governance.text-screen",
-      "kind": "tool",
-      "license": "MIT",
-      "name": "text-screen",
-      "platforms": [
-        "*"
-      ],
-      "provenance": "Owner-authored source; explicit public MIT authorization 2026-10-25; exported-content hashes.",
-      "runtime_dependencies": [
-        "Python 3.9+",
-        "numpy",
-        "Pillow",
-        "scipy",
-        "matplotlib"
-      ],
-      "side_effects": [
-        "Local file/state access according to explicit command; no implicit execution authorization"
-      ],
-      "status": "candidate",
       "supersedes": [],
       "version": "1.9.2"
     }

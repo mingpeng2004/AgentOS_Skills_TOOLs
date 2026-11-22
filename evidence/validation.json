@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T02:54:19.590178+00:00",
+  "generated_at": "2026-11-22T03:05:33.804231+00:00",
   "published_files_sha256": {
     "governance/AgentOS/installer/AgentOS.Setup.cs": "bbda8bdbfdcb6e5a25563b151e63ca7711f8c5e4b80ef0bdcea102ccc5f7e9a2",
     "governance/AgentOS/installer/build-installer.ps1": "f69f6c1fff57b1561046f7c75b5efc14191fe679783a07d332d5ddb7fc9483f9",
@@ -11,7 +11,7 @@
     "tests/test_weekly_learning.py": "5de352384b85539eb82016c43b21ab0552da1782b3b773477b3ec59054049a1f",
     "tools/agentos_toolkit.py": "514e2cae614bf9121eb4ceb1755c413c6564c946544f6b0f5c689cbade1162cc",
     "tools/capability_assets.py": "b7ca805666d777a08c4cc9080518330eb837bfb34de8650461a40c974f7149cb",
-    "tools/distribution.py": "6fd430e7bb6960f79e95d13ba8c4f38d6ca8b6e729281bc2ff2112687ccac35a",
+    "tools/distribution.py": "544ac33ca38fede9571722d73ddedc317d2d397811137175f517f99ffa7fcd8f",
     "tools/installer_gate_receipt.py": "2317cbfc70bf212d6ecee4855c8014598d50fb79eb0918915805fa4ef9df55cf",
     "tools/lesson_checks.py": "063207c12d3d1b3528604ccd9ce11471be4dda1a2fe4126b6cfbc971fd1cc3ce",
     "tools/portable_install.py": "bf47e6b7ff086e636c07eb334fff6868d2bb36dc194e53e02ef12fd0fe5ddf97",

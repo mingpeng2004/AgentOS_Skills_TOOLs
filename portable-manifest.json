@@ -22,8 +22,8 @@
       "sha256": "814185014c606d2d34c3f6db8a6ba9a5154b5d1f76c80c9607026a335fcb8d66"
     },
     "capability-assets.json": {
-      "bytes": 50524,
-      "sha256": "1f1ee01ef22e5d8d68324ee11aa71f1ff9064addb61671763308e05cd6773d48"
+      "bytes": 46408,
+      "sha256": "5e80f60f5108941a65d1ceabfa05c6f493ba1cfba7856e241da353bcd856e132"
     },
     "catalog.json": {
       "bytes": 755294,
@@ -59,7 +59,7 @@
     },
     "evidence/validation.json": {
       "bytes": 2354,
-      "sha256": "7f2cf4b1388e141c7f2ce186c89acf6330b7a1528e650b818857f806c1dc03e3"
+      "sha256": "64a3830a1710c857a61bcc8c70d8417469b0b7a765d1e99fc1cc2968efe07b00"
     },
     "governance/AgentOS/README.md": {
       "bytes": 8629,
@@ -1046,8 +1046,8 @@
       "sha256": "b7ca805666d777a08c4cc9080518330eb837bfb34de8650461a40c974f7149cb"
     },
     "tools/distribution.py": {
-      "bytes": 11330,
-      "sha256": "6fd430e7bb6960f79e95d13ba8c4f38d6ca8b6e729281bc2ff2112687ccac35a"
+      "bytes": 11246,
+      "sha256": "544ac33ca38fede9571722d73ddedc317d2d397811137175f517f99ffa7fcd8f"
     },
     "tools/installer_gate_receipt.py": {
       "bytes": 12603,
